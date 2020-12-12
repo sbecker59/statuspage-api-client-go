@@ -8,6 +8,7 @@
  */
 
 package openapi
+
 import (
 	"time"
 )
@@ -27,7 +28,7 @@ type Incident struct {
 	// The incident updates for incident.
 	IncidentUpdates []IncidentUpdate `json:"incident_updates,omitempty"`
 	// Metadata attached to the incident. Top level values must be objects.
-	Metadata *Object `json:"metadata,omitempty"`
+	// Metadata *Object `json:"metadata,omitempty"`
 	// The timestamp when incident entered monitoring state.
 	MonitoringAt time.Time `json:"monitoring_at,omitempty"`
 	// Incident Name
