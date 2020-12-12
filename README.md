@@ -1,1 +1,0 @@
-# statuspage-api-client-go
