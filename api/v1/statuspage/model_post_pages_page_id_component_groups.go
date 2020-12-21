@@ -11,7 +11,5 @@ package openapi
 
 // Create a component group
 type PostPagesPageIdComponentGroups struct {
-	// Description of the component group.
-	Description string `json:"description,omitempty"`
 	ComponentGroup *PostPagesPageIdComponentGroupsComponentGroup `json:"component_group,omitempty"`
 }

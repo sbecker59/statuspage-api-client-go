@@ -7846,9 +7846,6 @@ components:
     postPagesPageIdComponentGroups:
       type: object
       properties:
-        description:
-          type: string
-          description: Description of the component group.
         component_group:
           $ref: '#/components/schemas/postPagesPageIdComponentGroups_component_group'
       description: Create a component group
@@ -8647,6 +8644,9 @@ components:
             type: string
         name:
           type: string
+        description:
+          type: string
+          description: Description of the component group.
     ComponentGroupUptime_related_events:
       properties:
         component_id:
