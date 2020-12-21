@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **PageId** | **string** |  | [optional] 
 **Name** | **string** |  | [optional] 
 **Description** | **string** |  | [optional] 
-**Components** | **string** |  | [optional] 
+**Components** | **[]string** |  | [optional] 
 **Position** | **string** |  | [optional] 
 **CreatedAt** | [**time.Time**](time.Time.md) |  | [optional] 
 **UpdatedAt** | [**time.Time**](time.Time.md) |  | [optional] 

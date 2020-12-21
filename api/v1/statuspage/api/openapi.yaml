@@ -7867,8 +7867,10 @@ components:
         description:
           type: string
         components:
-          type: string
+          type: array
           example: '["abc123","abc124"]'
+          items:
+            type: string
         position:
           type: string
         created_at:

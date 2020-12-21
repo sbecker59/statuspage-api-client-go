@@ -19,7 +19,7 @@ type GroupComponent struct {
 	PageId string `json:"page_id,omitempty"`
 	Name string `json:"name,omitempty"`
 	Description string `json:"description,omitempty"`
-	Components string `json:"components,omitempty"`
+	Components []string `json:"components,omitempty"`
 	Position string `json:"position,omitempty"`
 	CreatedAt time.Time `json:"created_at,omitempty"`
 	UpdatedAt time.Time `json:"updated_at,omitempty"`
