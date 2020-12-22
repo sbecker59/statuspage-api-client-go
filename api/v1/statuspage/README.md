@@ -1,45 +1,60 @@
 # Go API client for openapi
 
-Code of Conduct Please don't abuse the API, and please report all feature requests and issues to https://help.statuspage.io/help/contact-us-30  
+# Code of Conduct
+Please don't abuse the API, and please report all feature requests and issues to
+https://help.statuspage.io/help/contact-us-30
 
-# Rate Limiting 
-Each API token is limited to 1 request / second as measured on a 60 second rolling window. To get this limit increased, please contact us at https://help.statuspage.io/help/contact-us-30  
+# Rate Limiting
+Each API token is limited to 1 request / second as measured on a 60 second rolling window.
+To get this limit increased, please contact us at https://help.statuspage.io/help/contact-us-30
 
-# Basics 
-## HTTPS 
-It's required 
+# Basics
 
-## URL Prefix 
-In order to maintain version integrity into the future, the API is versioned. All calls currently begin with the following prefix:    https://api.statuspage.io/v1/  
+## HTTPS
+It's required
 
-## RESTful Interface 
-Wherever possible, the API seeks to implement repeatable patterns with logical, representative URLs and descriptive HTTP verbs. Below are some examples and conventions you will see throughout the documentation.  
-* Collections are buckets: https://api.statuspage.io/v1/pages/asdf123/incidents.json 
-* Elements have unique IDs: https://api.statuspage.io/v1/pages/asdf123/incidents/jklm456.json 
-* GET will retrieve information about a collection/element 
-* POST will create an element in a collection 
-* PATCH will update a single element 
-* PUT will replace a single element in a collection (rarely used) 
-* DELETE will destroy a single element  
+## URL Prefix
+In order to maintain version integrity into the future, the API is versioned. All calls
+currently begin with the following prefix:
 
-## Sending Data 
-Information can be sent in the body as form urlencoded or JSON, but make sure the Content-Type header matches the body structure or the server gremlins will be angry.  All examples are provided in JSON format, however they can easily be converted to form encoding if required.  Some examples of how to convert things are below:      
+  https://api.statuspage.io/v1/
 
-```bash     
-{       "incident": {         
-		"name": "test incident",         
-		"components": ["8kbf7d35c070", "vtnh60py4yd7"]       
-	}     
-}      
+## RESTful Interface
+Wherever possible, the API seeks to implement repeatable patterns with logical,
+representative URLs and descriptive HTTP verbs. Below are some examples and conventions
+you will see throughout the documentation.
 
-// Form Encoded (using curl as an example):     
-curl -X POST https://api.statuspage.io/v1/example \     
-	-d "incident[name]=test incident" \
-	-d "incident[components][]=8kbf7d35c070" \       
-	-d "incident[components][]=vtnh60py4yd7"  
+* Collections are buckets: https://api.statuspage.io/v1/pages/asdf123/incidents.json
+* Elements have unique IDs: https://api.statuspage.io/v1/pages/asdf123/incidents/jklm456.json
+* GET will retrieve information about a collection/element
+* POST will create an element in a collection
+* PATCH will update a single element
+* PUT will replace a single element in a collection (rarely used)
+* DELETE will destroy a single element
 
-```
-# Authentication  
+## Sending Data
+Information can be sent in the body as form urlencoded or JSON, but make sure the
+Content-Type header matches the body structure or the server gremlins will be angry.
+
+All examples are provided in JSON format, however they can easily be converted to form encoding
+if required.  Some examples of how to convert things are below:
+
+    // JSON
+    {
+      \"incident\": {
+        \"name\": \"test incident\",
+        \"components\": [\"8kbf7d35c070\", \"vtnh60py4yd7\"]
+      }
+    }
+
+    // Form Encoded (using curl as an example):
+    curl -X POST https://api.statuspage.io/v1/example \\
+      -d \"incident[name]=test incident\" \\
+      -d \"incident[components][]=8kbf7d35c070\" \\
+      -d \"incident[components][]=vtnh60py4yd7\"
+
+# Authentication
+
 <!-- ReDoc-Inject: <security-definitions> -->
 
 ## Overview
@@ -53,16 +68,64 @@ For more information, please visit [https://help.statuspage.io/help/contact-us-3
 ## Installation
 
 Install the following dependencies:
-```
+
+```shell
 go get github.com/stretchr/testify/assert
 go get golang.org/x/oauth2
 go get golang.org/x/net/context
-go get github.com/antihax/optional
 ```
 
 Put the package under your project folder and add the following in import:
+
 ```golang
-import "./openapi"
+import sw "./openapi"
+```
+
+To use a proxy, set the environment variable `HTTP_PROXY`:
+
+```golang
+os.Setenv("HTTP_PROXY", "http://proxy_name:proxy_port")
+```
+
+## Configuration of Server URL
+
+Default configuration comes with `Servers` field that contains server objects as defined in the OpenAPI specification.
+
+### Select Server Configuration
+
+For using other server than the one defined on index 0 set context value `sw.ContextServerIndex` of type `int`.
+
+```golang
+ctx := context.WithValue(context.Background(), sw.ContextServerIndex, 1)
+```
+
+### Templated Server URL
+
+Templated server URL is formatted using default variables from configuration or from context value `sw.ContextServerVariables` of type `map[string]string`.
+
+```golang
+ctx := context.WithValue(context.Background(), sw.ContextServerVariables, map[string]string{
+	"basePath": "v2",
+})
+```
+
+Note, enum values are always validated and all unused variables are silently ignored.
+
+### URLs Configuration per Operation
+
+Each operation can use different server URL defined using `OperationServers` map in the `Configuration`.
+An operation is uniquely identifield by `"{classname}Service.{nickname}"` string.
+Similar rules for overriding default operation server index and variables applies by using `sw.ContextOperationServerIndices` and `sw.ContextOperationServerVariables` context maps.
+
+```
+ctx := context.WithValue(context.Background(), sw.ContextOperationServerIndices, map[string]int{
+	"{classname}Service.{nickname}": 2,
+})
+ctx = context.WithValue(context.Background(), sw.ContextOperationServerVariables, map[string]map[string]string{
+	"{classname}Service.{nickname}": {
+		"port": "8443",
+	},
+})
 ```
 
 ## Documentation for API Endpoints
@@ -282,17 +345,32 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Authorization
 
-## api_key
-- **Type**: API key 
 
-Example
-```golang
-auth := context.WithValue(context.Background(), sw.ContextAPIKey, sw.APIKey{
-	Key: "APIKEY",
-	Prefix: "Bearer", // Omit if not necessary.
-})
-r, err := client.Service.Operation(auth, args)
-```
+
+### api_key
+
+- **Type**: API key
+- **API key parameter name**: Authorization
+- **Location**: HTTP header
+
+Note, each API key must be added to a map of `map[string]APIKey` where the key is: Authorization and passed in as the auth context for each request.
+
+
+## Documentation for Utility Methods
+
+Due to the fact that model structure members are all pointers, this package contains
+a number of utility functions to easily obtain pointers to values of basic types.
+Each of these functions takes a value of the given basic type and returns a pointer to it:
+
+* `PtrBool`
+* `PtrInt`
+* `PtrInt32`
+* `PtrInt64`
+* `PtrFloat`
+* `PtrFloat32`
+* `PtrFloat64`
+* `PtrString`
+* `PtrTime`
 
 ## Author
 

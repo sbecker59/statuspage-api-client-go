@@ -12,20 +12,63 @@ Method | HTTP request | Description
 [**PutPagesPageIdPageAccessUsersPageAccessUserIdMetrics**](PageAccessUserMetricsApi.md#PutPagesPageIdPageAccessUsersPageAccessUserIdMetrics) | **Put** /pages/{page_id}/page_access_users/{page_access_user_id}/metrics | Add metrics for page access user
 
 
-# **DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics**
-> PageAccessUser DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics(ctx, pageId, pageAccessUserId, deletePagesPageIdPageAccessUsersPageAccessUserIdMetrics)
-Delete metrics for page access user
+
+## DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics
+
+> PageAccessUser DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics(ctx, pageId, pageAccessUserId).DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics(deletePagesPageIdPageAccessUsersPageAccessUserIdMetrics).Execute()
 
 Delete metrics for page access user
 
-### Required Parameters
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    pageId := "pageId_example" // string | Page identifier
+    pageAccessUserId := "pageAccessUserId_example" // string | Page Access User Identifier
+    deletePagesPageIdPageAccessUsersPageAccessUserIdMetrics := *openapiclient.NewDeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics() // DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.PageAccessUserMetricsApi.DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics(context.Background(), pageId, pageAccessUserId).DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics(deletePagesPageIdPageAccessUsersPageAccessUserIdMetrics).Execute()
+    if err.Error() != "" {
+        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUserMetricsApi.DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics`: PageAccessUser
+    fmt.Fprintf(os.Stdout, "Response from `PageAccessUserMetricsApi.DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **pageId** | **string**| Page identifier | 
-  **pageAccessUserId** | **string**| Page Access User Identifier | 
-  **deletePagesPageIdPageAccessUsersPageAccessUserIdMetrics** | [**DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics**](DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics.md)|  | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**pageId** | **string** | Page identifier | 
+**pageAccessUserId** | **string** | Page Access User Identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeletePagesPageIdPageAccessUsersPageAccessUserIdMetricsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **deletePagesPageIdPageAccessUsersPageAccessUserIdMetrics** | [**DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics**](DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics.md) |  | 
 
 ### Return type
 
@@ -37,25 +80,71 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **DeletePagesPageIdPageAccessUsersPageAccessUserIdMetricsMetricId**
-> PageAccessUser DeletePagesPageIdPageAccessUsersPageAccessUserIdMetricsMetricId(ctx, pageId, pageAccessUserId, metricId)
+
+## DeletePagesPageIdPageAccessUsersPageAccessUserIdMetricsMetricId
+
+> PageAccessUser DeletePagesPageIdPageAccessUsersPageAccessUserIdMetricsMetricId(ctx, pageId, pageAccessUserId, metricId).Execute()
+
 Delete metric for page access user
 
-Delete metric for page access user
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    pageId := "pageId_example" // string | Page identifier
+    pageAccessUserId := "pageAccessUserId_example" // string | Page Access User Identifier
+    metricId := "metricId_example" // string | Identifier of metric requested
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.PageAccessUserMetricsApi.DeletePagesPageIdPageAccessUsersPageAccessUserIdMetricsMetricId(context.Background(), pageId, pageAccessUserId, metricId).Execute()
+    if err.Error() != "" {
+        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUserMetricsApi.DeletePagesPageIdPageAccessUsersPageAccessUserIdMetricsMetricId``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeletePagesPageIdPageAccessUsersPageAccessUserIdMetricsMetricId`: PageAccessUser
+    fmt.Fprintf(os.Stdout, "Response from `PageAccessUserMetricsApi.DeletePagesPageIdPageAccessUsersPageAccessUserIdMetricsMetricId`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **pageId** | **string**| Page identifier | 
-  **pageAccessUserId** | **string**| Page Access User Identifier | 
-  **metricId** | **string**| Identifier of metric requested | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**pageId** | **string** | Page identifier | 
+**pageAccessUserId** | **string** | Page Access User Identifier | 
+**metricId** | **string** | Identifier of metric requested | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeletePagesPageIdPageAccessUsersPageAccessUserIdMetricsMetricIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
 
 ### Return type
 
@@ -67,24 +156,68 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **GetPagesPageIdPageAccessUsersPageAccessUserIdMetrics**
-> []Metric GetPagesPageIdPageAccessUsersPageAccessUserIdMetrics(ctx, pageId, pageAccessUserId)
+
+## GetPagesPageIdPageAccessUsersPageAccessUserIdMetrics
+
+> []Metric GetPagesPageIdPageAccessUsersPageAccessUserIdMetrics(ctx, pageId, pageAccessUserId).Execute()
+
 Get metrics for page access user
 
-Get metrics for page access user
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    pageId := "pageId_example" // string | Page identifier
+    pageAccessUserId := "pageAccessUserId_example" // string | Page Access User Identifier
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.PageAccessUserMetricsApi.GetPagesPageIdPageAccessUsersPageAccessUserIdMetrics(context.Background(), pageId, pageAccessUserId).Execute()
+    if err.Error() != "" {
+        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUserMetricsApi.GetPagesPageIdPageAccessUsersPageAccessUserIdMetrics``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetPagesPageIdPageAccessUsersPageAccessUserIdMetrics`: []Metric
+    fmt.Fprintf(os.Stdout, "Response from `PageAccessUserMetricsApi.GetPagesPageIdPageAccessUsersPageAccessUserIdMetrics`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **pageId** | **string**| Page identifier | 
-  **pageAccessUserId** | **string**| Page Access User Identifier | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**pageId** | **string** | Page identifier | 
+**pageAccessUserId** | **string** | Page Access User Identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetPagesPageIdPageAccessUsersPageAccessUserIdMetricsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
 
 ### Return type
 
@@ -96,25 +229,70 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **PatchPagesPageIdPageAccessUsersPageAccessUserIdMetrics**
-> PageAccessUser PatchPagesPageIdPageAccessUsersPageAccessUserIdMetrics(ctx, pageId, pageAccessUserId, patchPagesPageIdPageAccessUsersPageAccessUserIdMetrics)
+
+## PatchPagesPageIdPageAccessUsersPageAccessUserIdMetrics
+
+> PageAccessUser PatchPagesPageIdPageAccessUsersPageAccessUserIdMetrics(ctx, pageId, pageAccessUserId).PatchPagesPageIdPageAccessUsersPageAccessUserIdMetrics(patchPagesPageIdPageAccessUsersPageAccessUserIdMetrics).Execute()
+
 Add metrics for page access user
 
-Add metrics for page access user
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    pageId := "pageId_example" // string | Page identifier
+    pageAccessUserId := "pageAccessUserId_example" // string | Page Access User Identifier
+    patchPagesPageIdPageAccessUsersPageAccessUserIdMetrics := *openapiclient.NewPatchPagesPageIdPageAccessUsersPageAccessUserIdMetrics([]string{"MetricIds_example"}) // PatchPagesPageIdPageAccessUsersPageAccessUserIdMetrics | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.PageAccessUserMetricsApi.PatchPagesPageIdPageAccessUsersPageAccessUserIdMetrics(context.Background(), pageId, pageAccessUserId).PatchPagesPageIdPageAccessUsersPageAccessUserIdMetrics(patchPagesPageIdPageAccessUsersPageAccessUserIdMetrics).Execute()
+    if err.Error() != "" {
+        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUserMetricsApi.PatchPagesPageIdPageAccessUsersPageAccessUserIdMetrics``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PatchPagesPageIdPageAccessUsersPageAccessUserIdMetrics`: PageAccessUser
+    fmt.Fprintf(os.Stdout, "Response from `PageAccessUserMetricsApi.PatchPagesPageIdPageAccessUsersPageAccessUserIdMetrics`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **pageId** | **string**| Page identifier | 
-  **pageAccessUserId** | **string**| Page Access User Identifier | 
-  **patchPagesPageIdPageAccessUsersPageAccessUserIdMetrics** | [**PatchPagesPageIdPageAccessUsersPageAccessUserIdMetrics**](PatchPagesPageIdPageAccessUsersPageAccessUserIdMetrics.md)|  | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**pageId** | **string** | Page identifier | 
+**pageAccessUserId** | **string** | Page Access User Identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPatchPagesPageIdPageAccessUsersPageAccessUserIdMetricsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **patchPagesPageIdPageAccessUsersPageAccessUserIdMetrics** | [**PatchPagesPageIdPageAccessUsersPageAccessUserIdMetrics**](PatchPagesPageIdPageAccessUsersPageAccessUserIdMetrics.md) |  | 
 
 ### Return type
 
@@ -126,25 +304,70 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **PostPagesPageIdPageAccessUsersPageAccessUserIdMetrics**
-> PageAccessUser PostPagesPageIdPageAccessUsersPageAccessUserIdMetrics(ctx, pageId, pageAccessUserId, postPagesPageIdPageAccessUsersPageAccessUserIdMetrics)
+
+## PostPagesPageIdPageAccessUsersPageAccessUserIdMetrics
+
+> PageAccessUser PostPagesPageIdPageAccessUsersPageAccessUserIdMetrics(ctx, pageId, pageAccessUserId).PostPagesPageIdPageAccessUsersPageAccessUserIdMetrics(postPagesPageIdPageAccessUsersPageAccessUserIdMetrics).Execute()
+
 Replace metrics for page access user
 
-Replace metrics for page access user
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    pageId := "pageId_example" // string | Page identifier
+    pageAccessUserId := "pageAccessUserId_example" // string | Page Access User Identifier
+    postPagesPageIdPageAccessUsersPageAccessUserIdMetrics := *openapiclient.NewPostPagesPageIdPageAccessUsersPageAccessUserIdMetrics([]string{"MetricIds_example"}) // PostPagesPageIdPageAccessUsersPageAccessUserIdMetrics | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.PageAccessUserMetricsApi.PostPagesPageIdPageAccessUsersPageAccessUserIdMetrics(context.Background(), pageId, pageAccessUserId).PostPagesPageIdPageAccessUsersPageAccessUserIdMetrics(postPagesPageIdPageAccessUsersPageAccessUserIdMetrics).Execute()
+    if err.Error() != "" {
+        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUserMetricsApi.PostPagesPageIdPageAccessUsersPageAccessUserIdMetrics``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PostPagesPageIdPageAccessUsersPageAccessUserIdMetrics`: PageAccessUser
+    fmt.Fprintf(os.Stdout, "Response from `PageAccessUserMetricsApi.PostPagesPageIdPageAccessUsersPageAccessUserIdMetrics`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **pageId** | **string**| Page identifier | 
-  **pageAccessUserId** | **string**| Page Access User Identifier | 
-  **postPagesPageIdPageAccessUsersPageAccessUserIdMetrics** | [**PostPagesPageIdPageAccessUsersPageAccessUserIdMetrics**](PostPagesPageIdPageAccessUsersPageAccessUserIdMetrics.md)|  | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**pageId** | **string** | Page identifier | 
+**pageAccessUserId** | **string** | Page Access User Identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPostPagesPageIdPageAccessUsersPageAccessUserIdMetricsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **postPagesPageIdPageAccessUsersPageAccessUserIdMetrics** | [**PostPagesPageIdPageAccessUsersPageAccessUserIdMetrics**](PostPagesPageIdPageAccessUsersPageAccessUserIdMetrics.md) |  | 
 
 ### Return type
 
@@ -156,25 +379,70 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **PutPagesPageIdPageAccessUsersPageAccessUserIdMetrics**
-> PageAccessUser PutPagesPageIdPageAccessUsersPageAccessUserIdMetrics(ctx, pageId, pageAccessUserId, putPagesPageIdPageAccessUsersPageAccessUserIdMetrics)
+
+## PutPagesPageIdPageAccessUsersPageAccessUserIdMetrics
+
+> PageAccessUser PutPagesPageIdPageAccessUsersPageAccessUserIdMetrics(ctx, pageId, pageAccessUserId).PutPagesPageIdPageAccessUsersPageAccessUserIdMetrics(putPagesPageIdPageAccessUsersPageAccessUserIdMetrics).Execute()
+
 Add metrics for page access user
 
-Add metrics for page access user
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    pageId := "pageId_example" // string | Page identifier
+    pageAccessUserId := "pageAccessUserId_example" // string | Page Access User Identifier
+    putPagesPageIdPageAccessUsersPageAccessUserIdMetrics := *openapiclient.NewPutPagesPageIdPageAccessUsersPageAccessUserIdMetrics([]string{"MetricIds_example"}) // PutPagesPageIdPageAccessUsersPageAccessUserIdMetrics | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.PageAccessUserMetricsApi.PutPagesPageIdPageAccessUsersPageAccessUserIdMetrics(context.Background(), pageId, pageAccessUserId).PutPagesPageIdPageAccessUsersPageAccessUserIdMetrics(putPagesPageIdPageAccessUsersPageAccessUserIdMetrics).Execute()
+    if err.Error() != "" {
+        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUserMetricsApi.PutPagesPageIdPageAccessUsersPageAccessUserIdMetrics``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PutPagesPageIdPageAccessUsersPageAccessUserIdMetrics`: PageAccessUser
+    fmt.Fprintf(os.Stdout, "Response from `PageAccessUserMetricsApi.PutPagesPageIdPageAccessUsersPageAccessUserIdMetrics`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **pageId** | **string**| Page identifier | 
-  **pageAccessUserId** | **string**| Page Access User Identifier | 
-  **putPagesPageIdPageAccessUsersPageAccessUserIdMetrics** | [**PutPagesPageIdPageAccessUsersPageAccessUserIdMetrics**](PutPagesPageIdPageAccessUsersPageAccessUserIdMetrics.md)|  | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**pageId** | **string** | Page identifier | 
+**pageAccessUserId** | **string** | Page Access User Identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPutPagesPageIdPageAccessUsersPageAccessUserIdMetricsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **putPagesPageIdPageAccessUsersPageAccessUserIdMetrics** | [**PutPagesPageIdPageAccessUsersPageAccessUserIdMetrics**](PutPagesPageIdPageAccessUsersPageAccessUserIdMetrics.md) |  | 
 
 ### Return type
 
@@ -186,8 +454,10 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 

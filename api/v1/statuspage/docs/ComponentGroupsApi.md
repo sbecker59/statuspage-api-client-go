@@ -13,19 +13,61 @@ Method | HTTP request | Description
 [**PutPagesPageIdComponentGroupsId**](ComponentGroupsApi.md#PutPagesPageIdComponentGroupsId) | **Put** /pages/{page_id}/component-groups/{id} | Update a component group
 
 
-# **DeletePagesPageIdComponentGroupsId**
-> GroupComponent DeletePagesPageIdComponentGroupsId(ctx, pageId, id)
-Delete a component group
+
+## DeletePagesPageIdComponentGroupsId
+
+> GroupComponent DeletePagesPageIdComponentGroupsId(ctx, pageId, id).Execute()
 
 Delete a component group
 
-### Required Parameters
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    pageId := "pageId_example" // string | Page identifier
+    id := "id_example" // string | Component group identifier
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.ComponentGroupsApi.DeletePagesPageIdComponentGroupsId(context.Background(), pageId, id).Execute()
+    if err.Error() != "" {
+        fmt.Fprintf(os.Stderr, "Error when calling `ComponentGroupsApi.DeletePagesPageIdComponentGroupsId``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeletePagesPageIdComponentGroupsId`: GroupComponent
+    fmt.Fprintf(os.Stdout, "Response from `ComponentGroupsApi.DeletePagesPageIdComponentGroupsId`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **pageId** | **string**| Page identifier | 
-  **id** | **string**| Component group identifier | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**pageId** | **string** | Page identifier | 
+**id** | **string** | Component group identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeletePagesPageIdComponentGroupsIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
 
 ### Return type
 
@@ -37,23 +79,65 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **GetPagesPageIdComponentGroups**
-> []GroupComponent GetPagesPageIdComponentGroups(ctx, pageId)
+
+## GetPagesPageIdComponentGroups
+
+> []GroupComponent GetPagesPageIdComponentGroups(ctx, pageId).Execute()
+
 Get a list of component groups
 
-Get a list of component groups
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    pageId := "pageId_example" // string | Page identifier
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.ComponentGroupsApi.GetPagesPageIdComponentGroups(context.Background(), pageId).Execute()
+    if err.Error() != "" {
+        fmt.Fprintf(os.Stderr, "Error when calling `ComponentGroupsApi.GetPagesPageIdComponentGroups``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetPagesPageIdComponentGroups`: []GroupComponent
+    fmt.Fprintf(os.Stdout, "Response from `ComponentGroupsApi.GetPagesPageIdComponentGroups`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **pageId** | **string**| Page identifier | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**pageId** | **string** | Page identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetPagesPageIdComponentGroupsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
 
 ### Return type
 
@@ -65,24 +149,68 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **GetPagesPageIdComponentGroupsId**
-> GroupComponent GetPagesPageIdComponentGroupsId(ctx, pageId, id)
+
+## GetPagesPageIdComponentGroupsId
+
+> GroupComponent GetPagesPageIdComponentGroupsId(ctx, pageId, id).Execute()
+
 Get a component group
 
-Get a component group
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    pageId := "pageId_example" // string | Page identifier
+    id := "id_example" // string | Component group identifier
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.ComponentGroupsApi.GetPagesPageIdComponentGroupsId(context.Background(), pageId, id).Execute()
+    if err.Error() != "" {
+        fmt.Fprintf(os.Stderr, "Error when calling `ComponentGroupsApi.GetPagesPageIdComponentGroupsId``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetPagesPageIdComponentGroupsId`: GroupComponent
+    fmt.Fprintf(os.Stdout, "Response from `ComponentGroupsApi.GetPagesPageIdComponentGroupsId`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **pageId** | **string**| Page identifier | 
-  **id** | **string**| Component group identifier | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**pageId** | **string** | Page identifier | 
+**id** | **string** | Component group identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetPagesPageIdComponentGroupsIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
 
 ### Return type
 
@@ -94,35 +222,72 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **GetPagesPageIdComponentGroupsIdUptime**
-> ComponentGroupUptime GetPagesPageIdComponentGroupsIdUptime(ctx, pageId, id, optional)
+
+## GetPagesPageIdComponentGroupsIdUptime
+
+> ComponentGroupUptime GetPagesPageIdComponentGroupsIdUptime(ctx, pageId, id).Start(start).End(end).Execute()
+
 Get uptime data for a component group
 
-Get uptime data for a component group that has uptime showcase enabled for at least one component.
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    pageId := "pageId_example" // string | Page identifier
+    id := "id_example" // string | Component group identifier
+    start := TODO // PartialStartDate | The start date for uptime calculation (defaults to the date of the component in the group with the earliest start_date, or 90 days ago, whichever is more recent). The maximum supported date range is six calendar months. If the year is given, the date defaults to the first day of the year. If the year and month are given, the start date defaults to the first day of that month. The earliest supported date is January 1, 1970.  (optional)
+    end := TODO // PartialEndDate | The end date for uptime calculation (defaults to today in the page's time zone). The maximum supported date range is six calendar months. If the year is given, the date defaults to the last day of the year. If the year and month are given, the date defaults to the last day of that month. The earliest supported date is January 1, 1970.  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.ComponentGroupsApi.GetPagesPageIdComponentGroupsIdUptime(context.Background(), pageId, id).Start(start).End(end).Execute()
+    if err.Error() != "" {
+        fmt.Fprintf(os.Stderr, "Error when calling `ComponentGroupsApi.GetPagesPageIdComponentGroupsIdUptime``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetPagesPageIdComponentGroupsIdUptime`: ComponentGroupUptime
+    fmt.Fprintf(os.Stdout, "Response from `ComponentGroupsApi.GetPagesPageIdComponentGroupsIdUptime`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **pageId** | **string**| Page identifier | 
-  **id** | **string**| Component group identifier | 
- **optional** | ***GetPagesPageIdComponentGroupsIdUptimeOpts** | optional parameters | nil if no parameters
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**pageId** | **string** | Page identifier | 
+**id** | **string** | Component group identifier | 
 
-### Optional Parameters
-Optional parameters are passed through a pointer to a GetPagesPageIdComponentGroupsIdUptimeOpts struct
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetPagesPageIdComponentGroupsIdUptimeRequest struct via the builder pattern
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **start** | [**optional.Interface of PartialStartDate**](.md)| The start date for uptime calculation (defaults to the date of the component in the group with the earliest start_date, or 90 days ago, whichever is more recent). The maximum supported date range is six calendar months. If the year is given, the date defaults to the first day of the year. If the year and month are given, the start date defaults to the first day of that month. The earliest supported date is January 1, 1970.  | 
- **end** | [**optional.Interface of PartialEndDate**](.md)| The end date for uptime calculation (defaults to today in the page&#39;s time zone). The maximum supported date range is six calendar months. If the year is given, the date defaults to the last day of the year. If the year and month are given, the date defaults to the last day of that month. The earliest supported date is January 1, 1970.  | 
+ **start** | [**PartialStartDate**](PartialStartDate.md) | The start date for uptime calculation (defaults to the date of the component in the group with the earliest start_date, or 90 days ago, whichever is more recent). The maximum supported date range is six calendar months. If the year is given, the date defaults to the first day of the year. If the year and month are given, the start date defaults to the first day of that month. The earliest supported date is January 1, 1970.  | 
+ **end** | [**PartialEndDate**](PartialEndDate.md) | The end date for uptime calculation (defaults to today in the page&#39;s time zone). The maximum supported date range is six calendar months. If the year is given, the date defaults to the last day of the year. If the year and month are given, the date defaults to the last day of that month. The earliest supported date is January 1, 1970.  | 
 
 ### Return type
 
@@ -134,25 +299,70 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **PatchPagesPageIdComponentGroupsId**
-> GroupComponent PatchPagesPageIdComponentGroupsId(ctx, pageId, id, patchPagesPageIdComponentGroups)
+
+## PatchPagesPageIdComponentGroupsId
+
+> GroupComponent PatchPagesPageIdComponentGroupsId(ctx, pageId, id).PatchPagesPageIdComponentGroups(patchPagesPageIdComponentGroups).Execute()
+
 Update a component group
 
-Update a component group
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    pageId := "pageId_example" // string | Page identifier
+    id := "id_example" // string | Component group identifier
+    patchPagesPageIdComponentGroups := *openapiclient.NewPatchPagesPageIdComponentGroups() // PatchPagesPageIdComponentGroups | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.ComponentGroupsApi.PatchPagesPageIdComponentGroupsId(context.Background(), pageId, id).PatchPagesPageIdComponentGroups(patchPagesPageIdComponentGroups).Execute()
+    if err.Error() != "" {
+        fmt.Fprintf(os.Stderr, "Error when calling `ComponentGroupsApi.PatchPagesPageIdComponentGroupsId``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PatchPagesPageIdComponentGroupsId`: GroupComponent
+    fmt.Fprintf(os.Stdout, "Response from `ComponentGroupsApi.PatchPagesPageIdComponentGroupsId`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **pageId** | **string**| Page identifier | 
-  **id** | **string**| Component group identifier | 
-  **patchPagesPageIdComponentGroups** | [**PatchPagesPageIdComponentGroups**](PatchPagesPageIdComponentGroups.md)|  | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**pageId** | **string** | Page identifier | 
+**id** | **string** | Component group identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPatchPagesPageIdComponentGroupsIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **patchPagesPageIdComponentGroups** | [**PatchPagesPageIdComponentGroups**](PatchPagesPageIdComponentGroups.md) |  | 
 
 ### Return type
 
@@ -164,24 +374,67 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **PostPagesPageIdComponentGroups**
-> GroupComponent PostPagesPageIdComponentGroups(ctx, pageId, postPagesPageIdComponentGroups)
+
+## PostPagesPageIdComponentGroups
+
+> GroupComponent PostPagesPageIdComponentGroups(ctx, pageId).PostPagesPageIdComponentGroups(postPagesPageIdComponentGroups).Execute()
+
 Create a component group
 
-Create a component group
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    pageId := "pageId_example" // string | Page identifier
+    postPagesPageIdComponentGroups := *openapiclient.NewPostPagesPageIdComponentGroups() // PostPagesPageIdComponentGroups | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.ComponentGroupsApi.PostPagesPageIdComponentGroups(context.Background(), pageId).PostPagesPageIdComponentGroups(postPagesPageIdComponentGroups).Execute()
+    if err.Error() != "" {
+        fmt.Fprintf(os.Stderr, "Error when calling `ComponentGroupsApi.PostPagesPageIdComponentGroups``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PostPagesPageIdComponentGroups`: GroupComponent
+    fmt.Fprintf(os.Stdout, "Response from `ComponentGroupsApi.PostPagesPageIdComponentGroups`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **pageId** | **string**| Page identifier | 
-  **postPagesPageIdComponentGroups** | [**PostPagesPageIdComponentGroups**](PostPagesPageIdComponentGroups.md)|  | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**pageId** | **string** | Page identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPostPagesPageIdComponentGroupsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **postPagesPageIdComponentGroups** | [**PostPagesPageIdComponentGroups**](PostPagesPageIdComponentGroups.md) |  | 
 
 ### Return type
 
@@ -193,25 +446,70 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **PutPagesPageIdComponentGroupsId**
-> GroupComponent PutPagesPageIdComponentGroupsId(ctx, pageId, id, putPagesPageIdComponentGroups)
+
+## PutPagesPageIdComponentGroupsId
+
+> GroupComponent PutPagesPageIdComponentGroupsId(ctx, pageId, id).PutPagesPageIdComponentGroups(putPagesPageIdComponentGroups).Execute()
+
 Update a component group
 
-Update a component group
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    pageId := "pageId_example" // string | Page identifier
+    id := "id_example" // string | Component group identifier
+    putPagesPageIdComponentGroups := *openapiclient.NewPutPagesPageIdComponentGroups() // PutPagesPageIdComponentGroups | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.ComponentGroupsApi.PutPagesPageIdComponentGroupsId(context.Background(), pageId, id).PutPagesPageIdComponentGroups(putPagesPageIdComponentGroups).Execute()
+    if err.Error() != "" {
+        fmt.Fprintf(os.Stderr, "Error when calling `ComponentGroupsApi.PutPagesPageIdComponentGroupsId``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PutPagesPageIdComponentGroupsId`: GroupComponent
+    fmt.Fprintf(os.Stdout, "Response from `ComponentGroupsApi.PutPagesPageIdComponentGroupsId`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **pageId** | **string**| Page identifier | 
-  **id** | **string**| Component group identifier | 
-  **putPagesPageIdComponentGroups** | [**PutPagesPageIdComponentGroups**](PutPagesPageIdComponentGroups.md)|  | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**pageId** | **string** | Page identifier | 
+**id** | **string** | Component group identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPutPagesPageIdComponentGroupsIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **putPagesPageIdComponentGroups** | [**PutPagesPageIdComponentGroups**](PutPagesPageIdComponentGroups.md) |  | 
 
 ### Return type
 
@@ -223,8 +521,10 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 

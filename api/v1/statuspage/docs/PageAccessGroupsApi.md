@@ -12,19 +12,61 @@ Method | HTTP request | Description
 [**PutPagesPageIdPageAccessGroupsPageAccessGroupId**](PageAccessGroupsApi.md#PutPagesPageIdPageAccessGroupsPageAccessGroupId) | **Put** /pages/{page_id}/page_access_groups/{page_access_group_id} | Update a page access group
 
 
-# **DeletePagesPageIdPageAccessGroupsPageAccessGroupId**
-> PageAccessGroup DeletePagesPageIdPageAccessGroupsPageAccessGroupId(ctx, pageId, pageAccessGroupId)
-Remove a page access group
+
+## DeletePagesPageIdPageAccessGroupsPageAccessGroupId
+
+> PageAccessGroup DeletePagesPageIdPageAccessGroupsPageAccessGroupId(ctx, pageId, pageAccessGroupId).Execute()
 
 Remove a page access group
 
-### Required Parameters
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    pageId := "pageId_example" // string | Page identifier
+    pageAccessGroupId := "pageAccessGroupId_example" // string | Page Access Group Identifier
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.PageAccessGroupsApi.DeletePagesPageIdPageAccessGroupsPageAccessGroupId(context.Background(), pageId, pageAccessGroupId).Execute()
+    if err.Error() != "" {
+        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupsApi.DeletePagesPageIdPageAccessGroupsPageAccessGroupId``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeletePagesPageIdPageAccessGroupsPageAccessGroupId`: PageAccessGroup
+    fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupsApi.DeletePagesPageIdPageAccessGroupsPageAccessGroupId`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **pageId** | **string**| Page identifier | 
-  **pageAccessGroupId** | **string**| Page Access Group Identifier | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**pageId** | **string** | Page identifier | 
+**pageAccessGroupId** | **string** | Page Access Group Identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeletePagesPageIdPageAccessGroupsPageAccessGroupIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
 
 ### Return type
 
@@ -36,23 +78,65 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **GetPagesPageIdPageAccessGroups**
-> []PageAccessGroup GetPagesPageIdPageAccessGroups(ctx, pageId)
+
+## GetPagesPageIdPageAccessGroups
+
+> []PageAccessGroup GetPagesPageIdPageAccessGroups(ctx, pageId).Execute()
+
 Get a list of page access groups
 
-Get a list of page access groups
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    pageId := "pageId_example" // string | Page identifier
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.PageAccessGroupsApi.GetPagesPageIdPageAccessGroups(context.Background(), pageId).Execute()
+    if err.Error() != "" {
+        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupsApi.GetPagesPageIdPageAccessGroups``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetPagesPageIdPageAccessGroups`: []PageAccessGroup
+    fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupsApi.GetPagesPageIdPageAccessGroups`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **pageId** | **string**| Page identifier | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**pageId** | **string** | Page identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetPagesPageIdPageAccessGroupsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
 
 ### Return type
 
@@ -64,24 +148,68 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **GetPagesPageIdPageAccessGroupsPageAccessGroupId**
-> PageAccessGroup GetPagesPageIdPageAccessGroupsPageAccessGroupId(ctx, pageId, pageAccessGroupId)
+
+## GetPagesPageIdPageAccessGroupsPageAccessGroupId
+
+> PageAccessGroup GetPagesPageIdPageAccessGroupsPageAccessGroupId(ctx, pageId, pageAccessGroupId).Execute()
+
 Get a page access group
 
-Get a page access group
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    pageId := "pageId_example" // string | Page identifier
+    pageAccessGroupId := "pageAccessGroupId_example" // string | Page Access Group Identifier
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.PageAccessGroupsApi.GetPagesPageIdPageAccessGroupsPageAccessGroupId(context.Background(), pageId, pageAccessGroupId).Execute()
+    if err.Error() != "" {
+        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupsApi.GetPagesPageIdPageAccessGroupsPageAccessGroupId``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetPagesPageIdPageAccessGroupsPageAccessGroupId`: PageAccessGroup
+    fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupsApi.GetPagesPageIdPageAccessGroupsPageAccessGroupId`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **pageId** | **string**| Page identifier | 
-  **pageAccessGroupId** | **string**| Page Access Group Identifier | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**pageId** | **string** | Page identifier | 
+**pageAccessGroupId** | **string** | Page Access Group Identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetPagesPageIdPageAccessGroupsPageAccessGroupIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
 
 ### Return type
 
@@ -93,25 +221,70 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **PatchPagesPageIdPageAccessGroupsPageAccessGroupId**
-> PageAccessGroup PatchPagesPageIdPageAccessGroupsPageAccessGroupId(ctx, pageId, pageAccessGroupId, patchPagesPageIdPageAccessGroups)
+
+## PatchPagesPageIdPageAccessGroupsPageAccessGroupId
+
+> PageAccessGroup PatchPagesPageIdPageAccessGroupsPageAccessGroupId(ctx, pageId, pageAccessGroupId).PatchPagesPageIdPageAccessGroups(patchPagesPageIdPageAccessGroups).Execute()
+
 Update a page access group
 
-Update a page access group
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    pageId := "pageId_example" // string | Page identifier
+    pageAccessGroupId := "pageAccessGroupId_example" // string | Page Access Group Identifier
+    patchPagesPageIdPageAccessGroups := *openapiclient.NewPatchPagesPageIdPageAccessGroups() // PatchPagesPageIdPageAccessGroups | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.PageAccessGroupsApi.PatchPagesPageIdPageAccessGroupsPageAccessGroupId(context.Background(), pageId, pageAccessGroupId).PatchPagesPageIdPageAccessGroups(patchPagesPageIdPageAccessGroups).Execute()
+    if err.Error() != "" {
+        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupsApi.PatchPagesPageIdPageAccessGroupsPageAccessGroupId``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PatchPagesPageIdPageAccessGroupsPageAccessGroupId`: PageAccessGroup
+    fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupsApi.PatchPagesPageIdPageAccessGroupsPageAccessGroupId`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **pageId** | **string**| Page identifier | 
-  **pageAccessGroupId** | **string**| Page Access Group Identifier | 
-  **patchPagesPageIdPageAccessGroups** | [**PatchPagesPageIdPageAccessGroups**](PatchPagesPageIdPageAccessGroups.md)|  | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**pageId** | **string** | Page identifier | 
+**pageAccessGroupId** | **string** | Page Access Group Identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPatchPagesPageIdPageAccessGroupsPageAccessGroupIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **patchPagesPageIdPageAccessGroups** | [**PatchPagesPageIdPageAccessGroups**](PatchPagesPageIdPageAccessGroups.md) |  | 
 
 ### Return type
 
@@ -123,24 +296,67 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **PostPagesPageIdPageAccessGroups**
-> PageAccessGroup PostPagesPageIdPageAccessGroups(ctx, pageId, postPagesPageIdPageAccessGroups)
+
+## PostPagesPageIdPageAccessGroups
+
+> PageAccessGroup PostPagesPageIdPageAccessGroups(ctx, pageId).PostPagesPageIdPageAccessGroups(postPagesPageIdPageAccessGroups).Execute()
+
 Create a page access group
 
-Create a page access group
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    pageId := "pageId_example" // string | Page identifier
+    postPagesPageIdPageAccessGroups := *openapiclient.NewPostPagesPageIdPageAccessGroups() // PostPagesPageIdPageAccessGroups | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.PageAccessGroupsApi.PostPagesPageIdPageAccessGroups(context.Background(), pageId).PostPagesPageIdPageAccessGroups(postPagesPageIdPageAccessGroups).Execute()
+    if err.Error() != "" {
+        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupsApi.PostPagesPageIdPageAccessGroups``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PostPagesPageIdPageAccessGroups`: PageAccessGroup
+    fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupsApi.PostPagesPageIdPageAccessGroups`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **pageId** | **string**| Page identifier | 
-  **postPagesPageIdPageAccessGroups** | [**PostPagesPageIdPageAccessGroups**](PostPagesPageIdPageAccessGroups.md)|  | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**pageId** | **string** | Page identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPostPagesPageIdPageAccessGroupsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **postPagesPageIdPageAccessGroups** | [**PostPagesPageIdPageAccessGroups**](PostPagesPageIdPageAccessGroups.md) |  | 
 
 ### Return type
 
@@ -152,25 +368,70 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
-# **PutPagesPageIdPageAccessGroupsPageAccessGroupId**
-> PageAccessGroup PutPagesPageIdPageAccessGroupsPageAccessGroupId(ctx, pageId, pageAccessGroupId, putPagesPageIdPageAccessGroups)
+
+## PutPagesPageIdPageAccessGroupsPageAccessGroupId
+
+> PageAccessGroup PutPagesPageIdPageAccessGroupsPageAccessGroupId(ctx, pageId, pageAccessGroupId).PutPagesPageIdPageAccessGroups(putPagesPageIdPageAccessGroups).Execute()
+
 Update a page access group
 
-Update a page access group
 
-### Required Parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    pageId := "pageId_example" // string | Page identifier
+    pageAccessGroupId := "pageAccessGroupId_example" // string | Page Access Group Identifier
+    putPagesPageIdPageAccessGroups := *openapiclient.NewPutPagesPageIdPageAccessGroups() // PutPagesPageIdPageAccessGroups | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.PageAccessGroupsApi.PutPagesPageIdPageAccessGroupsPageAccessGroupId(context.Background(), pageId, pageAccessGroupId).PutPagesPageIdPageAccessGroups(putPagesPageIdPageAccessGroups).Execute()
+    if err.Error() != "" {
+        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupsApi.PutPagesPageIdPageAccessGroupsPageAccessGroupId``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PutPagesPageIdPageAccessGroupsPageAccessGroupId`: PageAccessGroup
+    fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupsApi.PutPagesPageIdPageAccessGroupsPageAccessGroupId`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **pageId** | **string**| Page identifier | 
-  **pageAccessGroupId** | **string**| Page Access Group Identifier | 
-  **putPagesPageIdPageAccessGroups** | [**PutPagesPageIdPageAccessGroups**](PutPagesPageIdPageAccessGroups.md)|  | 
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**pageId** | **string** | Page identifier | 
+**pageAccessGroupId** | **string** | Page Access Group Identifier | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPutPagesPageIdPageAccessGroupsPageAccessGroupIdRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **putPagesPageIdPageAccessGroups** | [**PutPagesPageIdPageAccessGroups**](PutPagesPageIdPageAccessGroups.md) |  | 
 
 ### Return type
 
@@ -182,8 +443,10 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
