@@ -8114,8 +8114,8 @@ components:
           format: date-time
           type: string
         page_id:
-          format: int32
-          type: integer
+          format: string
+          type: string
       type: object
     postPagesPageIdMetricsProviders:
       description: Create a metric provider
