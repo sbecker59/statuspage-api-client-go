@@ -25,7 +25,7 @@ type MetricsProvider struct {
 	LastRevalidatedAt *time.Time `json:"last_revalidated_at,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-	PageId *int32 `json:"page_id,omitempty"`
+	PageId *string `json:"page_id,omitempty"`
 }
 
 // NewMetricsProvider instantiates a new MetricsProvider object
@@ -270,9 +270,9 @@ func (o *MetricsProvider) SetUpdatedAt(v time.Time) {
 }
 
 // GetPageId returns the PageId field value if set, zero value otherwise.
-func (o *MetricsProvider) GetPageId() int32 {
+func (o *MetricsProvider) GetPageId() string {
 	if o == nil || o.PageId == nil {
-		var ret int32
+		var ret string
 		return ret
 	}
 	return *o.PageId
@@ -280,7 +280,7 @@ func (o *MetricsProvider) GetPageId() int32 {
 
 // GetPageIdOk returns a tuple with the PageId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsProvider) GetPageIdOk() (*int32, bool) {
+func (o *MetricsProvider) GetPageIdOk() (*string, bool) {
 	if o == nil || o.PageId == nil {
 		return nil, false
 	}
@@ -296,8 +296,8 @@ func (o *MetricsProvider) HasPageId() bool {
 	return false
 }
 
-// SetPageId gets a reference to the given int32 and assigns it to the PageId field.
-func (o *MetricsProvider) SetPageId(v int32) {
+// SetPageId gets a reference to the given string and assigns it to the PageId field.
+func (o *MetricsProvider) SetPageId(v string) {
 	o.PageId = &v
 }
 

@@ -11593,7 +11593,7 @@
           },
           "page_id": {
             "type": "integer",
-            "format": "int32"
+            "format": "string"
           }
         },
         "description": "Delete a metric provider"
