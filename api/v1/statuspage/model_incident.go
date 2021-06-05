@@ -29,6 +29,8 @@ type Incident struct {
 	ImpactOverride *string `json:"impact_override,omitempty"`
 	// The incident updates for incident.
 	IncidentUpdates *[]IncidentUpdate `json:"incident_updates,omitempty"`
+	// Metadata attached to the incident. Top level values must be objects.
+	Metadata *Object `json:"metadata,omitempty"`
 	// The timestamp when incident entered monitoring state.
 	MonitoringAt *time.Time `json:"monitoring_at,omitempty"`
 	// Incident Name
@@ -276,6 +278,38 @@ func (o *Incident) HasIncidentUpdates() bool {
 // SetIncidentUpdates gets a reference to the given []IncidentUpdate and assigns it to the IncidentUpdates field.
 func (o *Incident) SetIncidentUpdates(v []IncidentUpdate) {
 	o.IncidentUpdates = &v
+}
+
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
+func (o *Incident) GetMetadata() Object {
+	if o == nil || o.Metadata == nil {
+		var ret Object
+		return ret
+	}
+	return *o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Incident) GetMetadataOk() (*Object, bool) {
+	if o == nil || o.Metadata == nil {
+		return nil, false
+	}
+	return o.Metadata, true
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *Incident) HasMetadata() bool {
+	if o != nil && o.Metadata != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given Object and assigns it to the Metadata field.
+func (o *Incident) SetMetadata(v Object) {
+	o.Metadata = &v
 }
 
 // GetMonitoringAt returns the MonitoringAt field value if set, zero value otherwise.
@@ -906,6 +940,9 @@ func (o Incident) MarshalJSON() ([]byte, error) {
 	if o.IncidentUpdates != nil {
 		toSerialize["incident_updates"] = o.IncidentUpdates
 	}
+	if o.Metadata != nil {
+		toSerialize["metadata"] = o.Metadata
+	}
 	if o.MonitoringAt != nil {
 		toSerialize["monitoring_at"] = o.MonitoringAt
 	}
@@ -1001,3 +1038,5 @@ func (v *NullableIncident) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

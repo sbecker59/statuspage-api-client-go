@@ -8441,19 +8441,6 @@ components:
             default: 4mphs8wm6f98
             type: string
           type: array
-    postPagesPageIdIncidents_incident_components:
-      description: Map of status changes to apply to affected components
-      properties:
-        component_id:
-          description: Map of status changes to apply to affected components
-          enum:
-          - operational
-          - under_maintenance
-          - degraded_performance
-          - partial_outage
-          - major_outage
-          - ""
-          type: string
     postPagesPageIdIncidents_incident:
       properties:
         name:
@@ -8553,7 +8540,8 @@ components:
           description: The initial message, created as the first incident update.
           type: string
         components:
-          $ref: '#/components/schemas/postPagesPageIdIncidents_incident_components'
+          description: Map of status changes to apply to affected components
+          type: object
         component_ids:
           description: List of component_ids affected by this incident
           items:
@@ -8663,7 +8651,8 @@ components:
           description: The initial message, created as the first incident update.
           type: string
         components:
-          $ref: '#/components/schemas/postPagesPageIdIncidents_incident_components'
+          description: Map of status changes to apply to affected components
+          type: object
         component_ids:
           description: List of component_ids affected by this incident
           items:

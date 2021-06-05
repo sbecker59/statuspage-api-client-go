@@ -59,7 +59,8 @@ type PatchPagesPageIdIncidentsIncident struct {
 	Backfilled *bool `json:"backfilled,omitempty"`
 	// The initial message, created as the first incident update.
 	Body *string `json:"body,omitempty"`
-	Components *PostPagesPageIdIncidentsIncidentComponents `json:"components,omitempty"`
+	// Map of status changes to apply to affected components
+	Components *map[string]interface{} `json:"components,omitempty"`
 	// List of component_ids affected by this incident
 	ComponentIds *[]string `json:"component_ids,omitempty"`
 	// Same as :scheduled_auto_transition_in_progress. Controls whether the incident is scheduled to automatically change to in progress.
@@ -760,9 +761,9 @@ func (o *PatchPagesPageIdIncidentsIncident) SetBody(v string) {
 }
 
 // GetComponents returns the Components field value if set, zero value otherwise.
-func (o *PatchPagesPageIdIncidentsIncident) GetComponents() PostPagesPageIdIncidentsIncidentComponents {
+func (o *PatchPagesPageIdIncidentsIncident) GetComponents() map[string]interface{} {
 	if o == nil || o.Components == nil {
-		var ret PostPagesPageIdIncidentsIncidentComponents
+		var ret map[string]interface{}
 		return ret
 	}
 	return *o.Components
@@ -770,7 +771,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetComponents() PostPagesPageIdIncid
 
 // GetComponentsOk returns a tuple with the Components field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchPagesPageIdIncidentsIncident) GetComponentsOk() (*PostPagesPageIdIncidentsIncidentComponents, bool) {
+func (o *PatchPagesPageIdIncidentsIncident) GetComponentsOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Components == nil {
 		return nil, false
 	}
@@ -786,8 +787,8 @@ func (o *PatchPagesPageIdIncidentsIncident) HasComponents() bool {
 	return false
 }
 
-// SetComponents gets a reference to the given PostPagesPageIdIncidentsIncidentComponents and assigns it to the Components field.
-func (o *PatchPagesPageIdIncidentsIncident) SetComponents(v PostPagesPageIdIncidentsIncidentComponents) {
+// SetComponents gets a reference to the given map[string]interface{} and assigns it to the Components field.
+func (o *PatchPagesPageIdIncidentsIncident) SetComponents(v map[string]interface{}) {
 	o.Components = &v
 }
 

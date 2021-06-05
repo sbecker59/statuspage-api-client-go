@@ -297,7 +297,6 @@ Class | Method | HTTP request | Description
  - [PostPagesPageIdIncidentTemplatesTemplate](docs/PostPagesPageIdIncidentTemplatesTemplate.md)
  - [PostPagesPageIdIncidents](docs/PostPagesPageIdIncidents.md)
  - [PostPagesPageIdIncidentsIncident](docs/PostPagesPageIdIncidentsIncident.md)
- - [PostPagesPageIdIncidentsIncidentComponents](docs/PostPagesPageIdIncidentsIncidentComponents.md)
  - [PostPagesPageIdIncidentsIncidentIdSubscribers](docs/PostPagesPageIdIncidentsIncidentIdSubscribers.md)
  - [PostPagesPageIdIncidentsIncidentIdSubscribersSubscriber](docs/PostPagesPageIdIncidentsIncidentIdSubscribersSubscriber.md)
  - [PostPagesPageIdMetricsData](docs/PostPagesPageIdMetricsData.md)

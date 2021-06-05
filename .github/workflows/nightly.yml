@@ -22,7 +22,7 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v3.10.0
         with:
-          commit-message: "build(deps): bumphttps://developer.statuspage.io/ from v1 to ?"
+          commit-message: "build(deps): bump https://developer.statuspage.io/ from v1 to ?"
           branch: dependencies/api/statuspage
           title: 'build(deps): bump https://developer.statuspage.io/ from v1 to ?'
           body: |
