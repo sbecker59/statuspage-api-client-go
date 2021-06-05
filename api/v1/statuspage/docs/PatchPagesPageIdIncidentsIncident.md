@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 **BackfillDate** | Pointer to **string** | TimeStamp when incident was backfilled. | [optional] 
 **Backfilled** | Pointer to **bool** | Controls whether incident is backfilled. If true, components cannot be specified. | [optional] 
 **Body** | Pointer to **string** | The initial message, created as the first incident update. | [optional] 
-**Components** | Pointer to [**PostPagesPageIdIncidentsIncidentComponents**](postPagesPageIdIncidents_incident_components.md) |  | [optional] 
+**Components** | Pointer to **map[string]interface{}** | Map of status changes to apply to affected components | [optional] 
 **ComponentIds** | Pointer to **[]string** | List of component_ids affected by this incident | [optional] 
 **ScheduledAutoTransition** | Pointer to **bool** | Same as :scheduled_auto_transition_in_progress. Controls whether the incident is scheduled to automatically change to in progress. | [optional] 
 
@@ -575,20 +575,20 @@ HasBody returns a boolean if a field has been set.
 
 ### GetComponents
 
-`func (o *PatchPagesPageIdIncidentsIncident) GetComponents() PostPagesPageIdIncidentsIncidentComponents`
+`func (o *PatchPagesPageIdIncidentsIncident) GetComponents() map[string]interface{}`
 
 GetComponents returns the Components field if non-nil, zero value otherwise.
 
 ### GetComponentsOk
 
-`func (o *PatchPagesPageIdIncidentsIncident) GetComponentsOk() (*PostPagesPageIdIncidentsIncidentComponents, bool)`
+`func (o *PatchPagesPageIdIncidentsIncident) GetComponentsOk() (*map[string]interface{}, bool)`
 
 GetComponentsOk returns a tuple with the Components field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetComponents
 
-`func (o *PatchPagesPageIdIncidentsIncident) SetComponents(v PostPagesPageIdIncidentsIncidentComponents)`
+`func (o *PatchPagesPageIdIncidentsIncident) SetComponents(v map[string]interface{})`
 
 SetComponents sets Components field to given value.
 
