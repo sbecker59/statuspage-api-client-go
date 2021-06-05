@@ -30,7 +30,7 @@ type Incident struct {
 	// The incident updates for incident.
 	IncidentUpdates *[]IncidentUpdate `json:"incident_updates,omitempty"`
 	// Metadata attached to the incident. Top level values must be objects.
-	Metadata *Object `json:"metadata,omitempty"`
+	Metadata *map[string]interface{} `json:"metadata,omitempty"`
 	// The timestamp when incident entered monitoring state.
 	MonitoringAt *time.Time `json:"monitoring_at,omitempty"`
 	// Incident Name
@@ -281,9 +281,9 @@ func (o *Incident) SetIncidentUpdates(v []IncidentUpdate) {
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *Incident) GetMetadata() Object {
+func (o *Incident) GetMetadata() map[string]interface{} {
 	if o == nil || o.Metadata == nil {
-		var ret Object
+		var ret map[string]interface{}
 		return ret
 	}
 	return *o.Metadata
@@ -291,7 +291,7 @@ func (o *Incident) GetMetadata() Object {
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Incident) GetMetadataOk() (*Object, bool) {
+func (o *Incident) GetMetadataOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Metadata == nil {
 		return nil, false
 	}
@@ -307,8 +307,8 @@ func (o *Incident) HasMetadata() bool {
 	return false
 }
 
-// SetMetadata gets a reference to the given Object and assigns it to the Metadata field.
-func (o *Incident) SetMetadata(v Object) {
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
+func (o *Incident) SetMetadata(v map[string]interface{}) {
 	o.Metadata = &v
 }
 

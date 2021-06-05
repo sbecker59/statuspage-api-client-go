@@ -7560,7 +7560,7 @@ components:
           example:
             jira:
               issue_id: value
-          type: Object
+          type: object
         monitoring_at:
           description: The timestamp when incident entered monitoring state.
           format: date-time
