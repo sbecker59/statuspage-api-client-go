@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Impact** | Pointer to **string** | The impact of the incident. | [optional] 
 **ImpactOverride** | Pointer to **string** | value to override calculated impact value | [optional] 
 **IncidentUpdates** | Pointer to [**[]IncidentUpdate**](IncidentUpdate.md) | The incident updates for incident. | [optional] 
-**Metadata** | Pointer to [**Object**](Object.md) | Metadata attached to the incident. Top level values must be objects. | [optional] 
+**Metadata** | Pointer to **map[string]interface{}** | Metadata attached to the incident. Top level values must be objects. | [optional] 
 **MonitoringAt** | Pointer to **time.Time** | The timestamp when incident entered monitoring state. | [optional] 
 **Name** | Pointer to **string** | Incident Name | [optional] 
 **PageId** | Pointer to **string** | Incident Page Identifier | [optional] 
@@ -202,20 +202,20 @@ HasIncidentUpdates returns a boolean if a field has been set.
 
 ### GetMetadata
 
-`func (o *Incident) GetMetadata() Object`
+`func (o *Incident) GetMetadata() map[string]interface{}`
 
 GetMetadata returns the Metadata field if non-nil, zero value otherwise.
 
 ### GetMetadataOk
 
-`func (o *Incident) GetMetadataOk() (*Object, bool)`
+`func (o *Incident) GetMetadataOk() (*map[string]interface{}, bool)`
 
 GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetadata
 
-`func (o *Incident) SetMetadata(v Object)`
+`func (o *Incident) SetMetadata(v map[string]interface{})`
 
 SetMetadata sets Metadata field to given value.
 
