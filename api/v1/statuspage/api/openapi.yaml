@@ -6725,7 +6725,7 @@ components:
         page_access_group_id: page_access_group_id
         id: q84skbxr4hv3
         email: user@example.com
-        page_access_group_ids: '[]'
+        page_access_group_ids: []
       properties:
         id:
           description: Page Access User Identifier
@@ -6742,8 +6742,10 @@ components:
         page_access_group_id:
           type: string
         page_access_group_ids:
-          example: '[]'
-          type: string
+          example: []
+          items:
+            type: string
+          type: array
         created_at:
           format: date-time
           type: string
