@@ -87,11 +87,7 @@ type Page struct {
 	CssLinkColor *string `json:"css_link_color,omitempty"`
 	// CSS Color
 	CssNoData *string `json:"css_no_data,omitempty"`
-	FaviconLogo *string `json:"favicon_logo,omitempty"`
-	TransactionalLogo *string `json:"transactional_logo,omitempty"`
-	HeroCover *string `json:"hero_cover,omitempty"`
-	EmailLogo *string `json:"email_logo,omitempty"`
-	TwitterLogo *string `json:"twitter_logo,omitempty"`
+
 }
 
 // NewPage instantiates a new Page object
@@ -1391,166 +1387,6 @@ func (o *Page) SetCssNoData(v string) {
 	o.CssNoData = &v
 }
 
-// GetFaviconLogo returns the FaviconLogo field value if set, zero value otherwise.
-func (o *Page) GetFaviconLogo() string {
-	if o == nil || o.FaviconLogo == nil {
-		var ret string
-		return ret
-	}
-	return *o.FaviconLogo
-}
-
-// GetFaviconLogoOk returns a tuple with the FaviconLogo field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Page) GetFaviconLogoOk() (*string, bool) {
-	if o == nil || o.FaviconLogo == nil {
-		return nil, false
-	}
-	return o.FaviconLogo, true
-}
-
-// HasFaviconLogo returns a boolean if a field has been set.
-func (o *Page) HasFaviconLogo() bool {
-	if o != nil && o.FaviconLogo != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetFaviconLogo gets a reference to the given string and assigns it to the FaviconLogo field.
-func (o *Page) SetFaviconLogo(v string) {
-	o.FaviconLogo = &v
-}
-
-// GetTransactionalLogo returns the TransactionalLogo field value if set, zero value otherwise.
-func (o *Page) GetTransactionalLogo() string {
-	if o == nil || o.TransactionalLogo == nil {
-		var ret string
-		return ret
-	}
-	return *o.TransactionalLogo
-}
-
-// GetTransactionalLogoOk returns a tuple with the TransactionalLogo field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Page) GetTransactionalLogoOk() (*string, bool) {
-	if o == nil || o.TransactionalLogo == nil {
-		return nil, false
-	}
-	return o.TransactionalLogo, true
-}
-
-// HasTransactionalLogo returns a boolean if a field has been set.
-func (o *Page) HasTransactionalLogo() bool {
-	if o != nil && o.TransactionalLogo != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTransactionalLogo gets a reference to the given string and assigns it to the TransactionalLogo field.
-func (o *Page) SetTransactionalLogo(v string) {
-	o.TransactionalLogo = &v
-}
-
-// GetHeroCover returns the HeroCover field value if set, zero value otherwise.
-func (o *Page) GetHeroCover() string {
-	if o == nil || o.HeroCover == nil {
-		var ret string
-		return ret
-	}
-	return *o.HeroCover
-}
-
-// GetHeroCoverOk returns a tuple with the HeroCover field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Page) GetHeroCoverOk() (*string, bool) {
-	if o == nil || o.HeroCover == nil {
-		return nil, false
-	}
-	return o.HeroCover, true
-}
-
-// HasHeroCover returns a boolean if a field has been set.
-func (o *Page) HasHeroCover() bool {
-	if o != nil && o.HeroCover != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetHeroCover gets a reference to the given string and assigns it to the HeroCover field.
-func (o *Page) SetHeroCover(v string) {
-	o.HeroCover = &v
-}
-
-// GetEmailLogo returns the EmailLogo field value if set, zero value otherwise.
-func (o *Page) GetEmailLogo() string {
-	if o == nil || o.EmailLogo == nil {
-		var ret string
-		return ret
-	}
-	return *o.EmailLogo
-}
-
-// GetEmailLogoOk returns a tuple with the EmailLogo field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Page) GetEmailLogoOk() (*string, bool) {
-	if o == nil || o.EmailLogo == nil {
-		return nil, false
-	}
-	return o.EmailLogo, true
-}
-
-// HasEmailLogo returns a boolean if a field has been set.
-func (o *Page) HasEmailLogo() bool {
-	if o != nil && o.EmailLogo != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetEmailLogo gets a reference to the given string and assigns it to the EmailLogo field.
-func (o *Page) SetEmailLogo(v string) {
-	o.EmailLogo = &v
-}
-
-// GetTwitterLogo returns the TwitterLogo field value if set, zero value otherwise.
-func (o *Page) GetTwitterLogo() string {
-	if o == nil || o.TwitterLogo == nil {
-		var ret string
-		return ret
-	}
-	return *o.TwitterLogo
-}
-
-// GetTwitterLogoOk returns a tuple with the TwitterLogo field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Page) GetTwitterLogoOk() (*string, bool) {
-	if o == nil || o.TwitterLogo == nil {
-		return nil, false
-	}
-	return o.TwitterLogo, true
-}
-
-// HasTwitterLogo returns a boolean if a field has been set.
-func (o *Page) HasTwitterLogo() bool {
-	if o != nil && o.TwitterLogo != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTwitterLogo gets a reference to the given string and assigns it to the TwitterLogo field.
-func (o *Page) SetTwitterLogo(v string) {
-	o.TwitterLogo = &v
-}
-
 func (o Page) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -1672,21 +1508,6 @@ func (o Page) MarshalJSON() ([]byte, error) {
 	}
 	if o.CssNoData != nil {
 		toSerialize["css_no_data"] = o.CssNoData
-	}
-	if o.FaviconLogo != nil {
-		toSerialize["favicon_logo"] = o.FaviconLogo
-	}
-	if o.TransactionalLogo != nil {
-		toSerialize["transactional_logo"] = o.TransactionalLogo
-	}
-	if o.HeroCover != nil {
-		toSerialize["hero_cover"] = o.HeroCover
-	}
-	if o.EmailLogo != nil {
-		toSerialize["email_logo"] = o.EmailLogo
-	}
-	if o.TwitterLogo != nil {
-		toSerialize["twitter_logo"] = o.TwitterLogo
 	}
 	return json.Marshal(toSerialize)
 }
