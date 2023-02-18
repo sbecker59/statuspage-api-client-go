@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ComponentGroup** | Pointer to [**PostPagesPageIdComponentGroupsComponentGroup**](postPagesPageIdComponentGroups_component_group.md) |  | [optional] 
+**Description** | Pointer to **string** | Description of the component group. | [optional] 
+**ComponentGroup** | Pointer to [**PostPagesPageIdComponentGroupsComponentGroup**](PostPagesPageIdComponentGroupsComponentGroup.md) |  | [optional] 
 
 ## Methods
 
@@ -24,6 +25,31 @@ will change when the set of required properties is changed
 NewPostPagesPageIdComponentGroupsWithDefaults instantiates a new PostPagesPageIdComponentGroups object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetDescription
+
+`func (o *PostPagesPageIdComponentGroups) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *PostPagesPageIdComponentGroups) GetDescriptionOk() (*string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *PostPagesPageIdComponentGroups) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
+
+### HasDescription
+
+`func (o *PostPagesPageIdComponentGroups) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
 
 ### GetComponentGroup
 

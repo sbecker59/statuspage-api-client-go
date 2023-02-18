@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**User** | [**PostOrganizationsOrganizationIdUsersUser**](postOrganizationsOrganizationIdUsers_user.md) |  | 
+**User** | [**PostOrganizationsOrganizationIdUsersUser**](PostOrganizationsOrganizationIdUsersUser.md) |  | 
 
 ## Methods
 

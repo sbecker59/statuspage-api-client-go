@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Subscriber** | Pointer to [**PostPagesPageIdSubscribersSubscriber**](postPagesPageIdSubscribers_subscriber.md) |  | [optional] 
+**Subscriber** | Pointer to [**PostPagesPageIdSubscribersSubscriber**](PostPagesPageIdSubscribersSubscriber.md) |  | [optional] 
 
 ## Methods
 

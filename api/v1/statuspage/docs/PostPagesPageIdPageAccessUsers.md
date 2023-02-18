@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PageAccessUser** | Pointer to [**PostPagesPageIdPageAccessUsersPageAccessUser**](postPagesPageIdPageAccessUsers_page_access_user.md) |  | [optional] 
+**PageAccessUser** | Pointer to [**PostPagesPageIdPageAccessUsersPageAccessUser**](PostPagesPageIdPageAccessUsersPageAccessUser.md) |  | [optional] 
 
 ## Methods
 

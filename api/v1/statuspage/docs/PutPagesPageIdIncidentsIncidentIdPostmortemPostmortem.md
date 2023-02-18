@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BodyDraft** | Pointer to **string** | Body of Postmortem to create. | [optional] 
+**BodyDraft** | **string** | Body of Postmortem to create. | 
 
 ## Methods
 
 ### NewPutPagesPageIdIncidentsIncidentIdPostmortemPostmortem
 
-`func NewPutPagesPageIdIncidentsIncidentIdPostmortemPostmortem() *PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem`
+`func NewPutPagesPageIdIncidentsIncidentIdPostmortemPostmortem(bodyDraft string, ) *PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem`
 
 NewPutPagesPageIdIncidentsIncidentIdPostmortemPostmortem instantiates a new PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +44,6 @@ and a boolean to check if the value has been set.
 
 SetBodyDraft sets BodyDraft field to given value.
 
-### HasBodyDraft
-
-`func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem) HasBodyDraft() bool`
-
-HasBodyDraft returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

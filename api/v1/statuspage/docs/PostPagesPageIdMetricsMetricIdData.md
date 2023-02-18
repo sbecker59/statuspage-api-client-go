@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | [**PostPagesPageIdMetricsMetricIdDataData**](postPagesPageIdMetricsMetricIdData_data.md) |  | 
+**Data** | [**PostPagesPageIdMetricsMetricIdDataData**](PostPagesPageIdMetricsMetricIdDataData.md) |  | 
 
 ## Methods
 

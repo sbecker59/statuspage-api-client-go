@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ComponentId** | Pointer to **string** | Component identifier | [optional] 
-**Incidents** | Pointer to [**ComponentUptimeRelatedEvents**](ComponentUptime_related_events.md) |  | [optional] 
+**Incidents** | Pointer to [**ComponentUptimeRelatedEvents**](ComponentUptimeRelatedEvents.md) |  | [optional] 
 
 ## Methods
 

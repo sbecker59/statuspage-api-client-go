@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 **Impact** | Pointer to **string** | The impact of the incident. | [optional] 
 **ImpactOverride** | Pointer to **string** | value to override calculated impact value | [optional] 
 **IncidentUpdates** | Pointer to [**[]IncidentUpdate**](IncidentUpdate.md) | The incident updates for incident. | [optional] 
-**Metadata** | Pointer to **map[string]interface{}** | Metadata attached to the incident. Top level values must be objects. | [optional] 
+**Metadata** | Pointer to [**Object**](Object.md) | Metadata attached to the incident. Top level values must be objects. | [optional] 
 **MonitoringAt** | Pointer to **time.Time** | The timestamp when incident entered monitoring state. | [optional] 
-**Name** | Pointer to **string** | Incident Name | [optional] 
+**Name** | Pointer to **string** | Incident Name. There is a maximum limit of 255 characters. | [optional] 
 **PageId** | Pointer to **string** | Incident Page Identifier | [optional] 
 **PostmortemBody** | Pointer to **string** | Body of the Postmortem. | [optional] 
 **PostmortemBodyLastUpdatedAt** | Pointer to **time.Time** | The timestamp when the incident postmortem body was last updated at. | [optional] 
@@ -24,6 +24,10 @@ Name | Type | Description | Notes
 **ScheduledAutoCompleted** | Pointer to **bool** | Controls whether the incident is scheduled to automatically change to complete. | [optional] 
 **ScheduledAutoInProgress** | Pointer to **bool** | Controls whether the incident is scheduled to automatically change to in progress. | [optional] 
 **ScheduledFor** | Pointer to **time.Time** | The timestamp the incident is scheduled for. | [optional] 
+**AutoTransitionDeliverNotificationsAtEnd** | Pointer to **bool** | Controls whether send notification when scheduled maintenances auto transition to completed. | [optional] 
+**AutoTransitionDeliverNotificationsAtStart** | Pointer to **bool** | Controls whether send notification when scheduled maintenances auto transition to started. | [optional] 
+**AutoTransitionToMaintenanceState** | Pointer to **bool** | Controls whether change components status to under_maintenance once scheduled maintenance is in progress. | [optional] 
+**AutoTransitionToOperationalState** | Pointer to **bool** | Controls whether change components status to operational once scheduled maintenance completes. | [optional] 
 **ScheduledRemindPrior** | Pointer to **bool** | Controls whether to remind subscribers prior to scheduled incidents. | [optional] 
 **ScheduledRemindedAt** | Pointer to **time.Time** | The timestamp when the scheduled incident reminder was sent at. | [optional] 
 **ScheduledUntil** | Pointer to **time.Time** | The timestamp the incident is scheduled until. | [optional] 
@@ -202,20 +206,20 @@ HasIncidentUpdates returns a boolean if a field has been set.
 
 ### GetMetadata
 
-`func (o *Incident) GetMetadata() map[string]interface{}`
+`func (o *Incident) GetMetadata() Object`
 
 GetMetadata returns the Metadata field if non-nil, zero value otherwise.
 
 ### GetMetadataOk
 
-`func (o *Incident) GetMetadataOk() (*map[string]interface{}, bool)`
+`func (o *Incident) GetMetadataOk() (*Object, bool)`
 
 GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetadata
 
-`func (o *Incident) SetMetadata(v map[string]interface{})`
+`func (o *Incident) SetMetadata(v Object)`
 
 SetMetadata sets Metadata field to given value.
 
@@ -549,6 +553,106 @@ SetScheduledFor sets ScheduledFor field to given value.
 `func (o *Incident) HasScheduledFor() bool`
 
 HasScheduledFor returns a boolean if a field has been set.
+
+### GetAutoTransitionDeliverNotificationsAtEnd
+
+`func (o *Incident) GetAutoTransitionDeliverNotificationsAtEnd() bool`
+
+GetAutoTransitionDeliverNotificationsAtEnd returns the AutoTransitionDeliverNotificationsAtEnd field if non-nil, zero value otherwise.
+
+### GetAutoTransitionDeliverNotificationsAtEndOk
+
+`func (o *Incident) GetAutoTransitionDeliverNotificationsAtEndOk() (*bool, bool)`
+
+GetAutoTransitionDeliverNotificationsAtEndOk returns a tuple with the AutoTransitionDeliverNotificationsAtEnd field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoTransitionDeliverNotificationsAtEnd
+
+`func (o *Incident) SetAutoTransitionDeliverNotificationsAtEnd(v bool)`
+
+SetAutoTransitionDeliverNotificationsAtEnd sets AutoTransitionDeliverNotificationsAtEnd field to given value.
+
+### HasAutoTransitionDeliverNotificationsAtEnd
+
+`func (o *Incident) HasAutoTransitionDeliverNotificationsAtEnd() bool`
+
+HasAutoTransitionDeliverNotificationsAtEnd returns a boolean if a field has been set.
+
+### GetAutoTransitionDeliverNotificationsAtStart
+
+`func (o *Incident) GetAutoTransitionDeliverNotificationsAtStart() bool`
+
+GetAutoTransitionDeliverNotificationsAtStart returns the AutoTransitionDeliverNotificationsAtStart field if non-nil, zero value otherwise.
+
+### GetAutoTransitionDeliverNotificationsAtStartOk
+
+`func (o *Incident) GetAutoTransitionDeliverNotificationsAtStartOk() (*bool, bool)`
+
+GetAutoTransitionDeliverNotificationsAtStartOk returns a tuple with the AutoTransitionDeliverNotificationsAtStart field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoTransitionDeliverNotificationsAtStart
+
+`func (o *Incident) SetAutoTransitionDeliverNotificationsAtStart(v bool)`
+
+SetAutoTransitionDeliverNotificationsAtStart sets AutoTransitionDeliverNotificationsAtStart field to given value.
+
+### HasAutoTransitionDeliverNotificationsAtStart
+
+`func (o *Incident) HasAutoTransitionDeliverNotificationsAtStart() bool`
+
+HasAutoTransitionDeliverNotificationsAtStart returns a boolean if a field has been set.
+
+### GetAutoTransitionToMaintenanceState
+
+`func (o *Incident) GetAutoTransitionToMaintenanceState() bool`
+
+GetAutoTransitionToMaintenanceState returns the AutoTransitionToMaintenanceState field if non-nil, zero value otherwise.
+
+### GetAutoTransitionToMaintenanceStateOk
+
+`func (o *Incident) GetAutoTransitionToMaintenanceStateOk() (*bool, bool)`
+
+GetAutoTransitionToMaintenanceStateOk returns a tuple with the AutoTransitionToMaintenanceState field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoTransitionToMaintenanceState
+
+`func (o *Incident) SetAutoTransitionToMaintenanceState(v bool)`
+
+SetAutoTransitionToMaintenanceState sets AutoTransitionToMaintenanceState field to given value.
+
+### HasAutoTransitionToMaintenanceState
+
+`func (o *Incident) HasAutoTransitionToMaintenanceState() bool`
+
+HasAutoTransitionToMaintenanceState returns a boolean if a field has been set.
+
+### GetAutoTransitionToOperationalState
+
+`func (o *Incident) GetAutoTransitionToOperationalState() bool`
+
+GetAutoTransitionToOperationalState returns the AutoTransitionToOperationalState field if non-nil, zero value otherwise.
+
+### GetAutoTransitionToOperationalStateOk
+
+`func (o *Incident) GetAutoTransitionToOperationalStateOk() (*bool, bool)`
+
+GetAutoTransitionToOperationalStateOk returns a tuple with the AutoTransitionToOperationalState field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoTransitionToOperationalState
+
+`func (o *Incident) SetAutoTransitionToOperationalState(v bool)`
+
+SetAutoTransitionToOperationalState sets AutoTransitionToOperationalState field to given value.
+
+### HasAutoTransitionToOperationalState
+
+`func (o *Incident) HasAutoTransitionToOperationalState() bool`
+
+HasAutoTransitionToOperationalState returns a boolean if a field has been set.
 
 ### GetScheduledRemindPrior
 

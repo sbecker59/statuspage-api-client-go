@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Description** | Pointer to **string** | Updated description of the component group. | [optional] 
-**ComponentGroup** | Pointer to [**PostPagesPageIdComponentGroupsComponentGroup**](postPagesPageIdComponentGroups_component_group.md) |  | [optional] 
+**ComponentGroup** | Pointer to [**PostPagesPageIdComponentGroupsComponentGroup**](PostPagesPageIdComponentGroupsComponentGroup.md) |  | [optional] 
 
 ## Methods
 

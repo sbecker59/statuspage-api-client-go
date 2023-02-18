@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents
 
-> PageAccessUser DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents(ctx, pageId, pageAccessUserId).ComponentIds(componentIds).Execute()
+> PageAccessUser DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents(ctx, pageId, pageAccessUserId).DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents(deletePagesPageIdPageAccessUsersPageAccessUserIdComponents).Execute()
 
 Remove components for page access user
 
@@ -36,12 +36,12 @@ import (
 func main() {
     pageId := "pageId_example" // string | Page identifier
     pageAccessUserId := "pageAccessUserId_example" // string | Page Access User Identifier
-    componentIds := []string{"Inner_example"} // []string | List of components codes to remove.  If omitted, all components will be removed. (optional)
+    deletePagesPageIdPageAccessUsersPageAccessUserIdComponents := *openapiclient.NewDeletePagesPageIdPageAccessUsersPageAccessUserIdComponents() // DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PageAccessUserComponentsApi.DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents(context.Background(), pageId, pageAccessUserId).ComponentIds(componentIds).Execute()
-    if err.Error() != "" {
+    resp, r, err := api_client.PageAccessUserComponentsApi.DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents(context.Background(), pageId, pageAccessUserId).DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents(deletePagesPageIdPageAccessUsersPageAccessUserIdComponents).Execute()
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUserComponentsApi.DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **componentIds** | **[]string** | List of components codes to remove.  If omitted, all components will be removed. | 
+ **deletePagesPageIdPageAccessUsersPageAccessUserIdComponents** | [**DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents**](DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents.md) |  | 
 
 ### Return type
 
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/x-www-form-urlencoded
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -116,7 +116,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.PageAccessUserComponentsApi.DeletePagesPageIdPageAccessUsersPageAccessUserIdComponentsComponentId(context.Background(), pageId, pageAccessUserId, componentId).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUserComponentsApi.DeletePagesPageIdPageAccessUsersPageAccessUserIdComponentsComponentId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -166,7 +166,7 @@ Name | Type | Description  | Notes
 
 ## GetPagesPageIdPageAccessUsersPageAccessUserIdComponents
 
-> []Component GetPagesPageIdPageAccessUsersPageAccessUserIdComponents(ctx, pageId, pageAccessUserId).Execute()
+> []Component GetPagesPageIdPageAccessUsersPageAccessUserIdComponents(ctx, pageId, pageAccessUserId).Page(page).PerPage(perPage).Execute()
 
 Get components for page access user
 
@@ -187,11 +187,13 @@ import (
 func main() {
     pageId := "pageId_example" // string | Page identifier
     pageAccessUserId := "pageAccessUserId_example" // string | Page Access User Identifier
+    page := int32(56) // int32 | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. (optional)
+    perPage := int32(56) // int32 | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PageAccessUserComponentsApi.GetPagesPageIdPageAccessUsersPageAccessUserIdComponents(context.Background(), pageId, pageAccessUserId).Execute()
-    if err.Error() != "" {
+    resp, r, err := api_client.PageAccessUserComponentsApi.GetPagesPageIdPageAccessUsersPageAccessUserIdComponents(context.Background(), pageId, pageAccessUserId).Page(page).PerPage(perPage).Execute()
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUserComponentsApi.GetPagesPageIdPageAccessUsersPageAccessUserIdComponents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -218,6 +220,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **page** | **int32** | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. | 
+ **perPage** | **int32** | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. | 
 
 ### Return type
 
@@ -239,7 +243,7 @@ Name | Type | Description  | Notes
 
 ## PatchPagesPageIdPageAccessUsersPageAccessUserIdComponents
 
-> PageAccessUser PatchPagesPageIdPageAccessUsersPageAccessUserIdComponents(ctx, pageId, pageAccessUserId).UNKNOWNBASETYPE(uNKNOWNBASETYPE).Execute()
+> PageAccessUser PatchPagesPageIdPageAccessUsersPageAccessUserIdComponents(ctx, pageId, pageAccessUserId).PatchPagesPageIdPageAccessUsersPageAccessUserIdComponents(patchPagesPageIdPageAccessUsersPageAccessUserIdComponents).Execute()
 
 Add components for page access user
 
@@ -260,12 +264,12 @@ import (
 func main() {
     pageId := "pageId_example" // string | Page identifier
     pageAccessUserId := "pageAccessUserId_example" // string | Page Access User Identifier
-    uNKNOWNBASETYPE := TODO // UNKNOWN_BASE_TYPE |  (optional)
+    patchPagesPageIdPageAccessUsersPageAccessUserIdComponents := *openapiclient.NewPatchPagesPageIdPageAccessUsersPageAccessUserIdComponents([]string{"ComponentIds_example"}) // PatchPagesPageIdPageAccessUsersPageAccessUserIdComponents | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PageAccessUserComponentsApi.PatchPagesPageIdPageAccessUsersPageAccessUserIdComponents(context.Background(), pageId, pageAccessUserId).UNKNOWNBASETYPE(uNKNOWNBASETYPE).Execute()
-    if err.Error() != "" {
+    resp, r, err := api_client.PageAccessUserComponentsApi.PatchPagesPageIdPageAccessUsersPageAccessUserIdComponents(context.Background(), pageId, pageAccessUserId).PatchPagesPageIdPageAccessUsersPageAccessUserIdComponents(patchPagesPageIdPageAccessUsersPageAccessUserIdComponents).Execute()
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUserComponentsApi.PatchPagesPageIdPageAccessUsersPageAccessUserIdComponents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -292,7 +296,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **uNKNOWNBASETYPE** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md) |  | 
+ **patchPagesPageIdPageAccessUsersPageAccessUserIdComponents** | [**PatchPagesPageIdPageAccessUsersPageAccessUserIdComponents**](PatchPagesPageIdPageAccessUsersPageAccessUserIdComponents.md) |  | 
 
 ### Return type
 
@@ -304,7 +308,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/x-www-form-urlencoded
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -314,7 +318,7 @@ Name | Type | Description  | Notes
 
 ## PostPagesPageIdPageAccessUsersPageAccessUserIdComponents
 
-> PageAccessUser PostPagesPageIdPageAccessUsersPageAccessUserIdComponents(ctx, pageId, pageAccessUserId).UNKNOWNBASETYPE(uNKNOWNBASETYPE).Execute()
+> PageAccessUser PostPagesPageIdPageAccessUsersPageAccessUserIdComponents(ctx, pageId, pageAccessUserId).PostPagesPageIdPageAccessUsersPageAccessUserIdComponents(postPagesPageIdPageAccessUsersPageAccessUserIdComponents).Execute()
 
 Replace components for page access user
 
@@ -335,12 +339,12 @@ import (
 func main() {
     pageId := "pageId_example" // string | Page identifier
     pageAccessUserId := "pageAccessUserId_example" // string | Page Access User Identifier
-    uNKNOWNBASETYPE := TODO // UNKNOWN_BASE_TYPE |  (optional)
+    postPagesPageIdPageAccessUsersPageAccessUserIdComponents := *openapiclient.NewPostPagesPageIdPageAccessUsersPageAccessUserIdComponents([]string{"ComponentIds_example"}) // PostPagesPageIdPageAccessUsersPageAccessUserIdComponents | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PageAccessUserComponentsApi.PostPagesPageIdPageAccessUsersPageAccessUserIdComponents(context.Background(), pageId, pageAccessUserId).UNKNOWNBASETYPE(uNKNOWNBASETYPE).Execute()
-    if err.Error() != "" {
+    resp, r, err := api_client.PageAccessUserComponentsApi.PostPagesPageIdPageAccessUsersPageAccessUserIdComponents(context.Background(), pageId, pageAccessUserId).PostPagesPageIdPageAccessUsersPageAccessUserIdComponents(postPagesPageIdPageAccessUsersPageAccessUserIdComponents).Execute()
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUserComponentsApi.PostPagesPageIdPageAccessUsersPageAccessUserIdComponents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -367,7 +371,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **uNKNOWNBASETYPE** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md) |  | 
+ **postPagesPageIdPageAccessUsersPageAccessUserIdComponents** | [**PostPagesPageIdPageAccessUsersPageAccessUserIdComponents**](PostPagesPageIdPageAccessUsersPageAccessUserIdComponents.md) |  | 
 
 ### Return type
 
@@ -379,7 +383,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/x-www-form-urlencoded
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -389,7 +393,7 @@ Name | Type | Description  | Notes
 
 ## PutPagesPageIdPageAccessUsersPageAccessUserIdComponents
 
-> PageAccessUser PutPagesPageIdPageAccessUsersPageAccessUserIdComponents(ctx, pageId, pageAccessUserId).UNKNOWNBASETYPE(uNKNOWNBASETYPE).Execute()
+> PageAccessUser PutPagesPageIdPageAccessUsersPageAccessUserIdComponents(ctx, pageId, pageAccessUserId).PutPagesPageIdPageAccessUsersPageAccessUserIdComponents(putPagesPageIdPageAccessUsersPageAccessUserIdComponents).Execute()
 
 Add components for page access user
 
@@ -410,12 +414,12 @@ import (
 func main() {
     pageId := "pageId_example" // string | Page identifier
     pageAccessUserId := "pageAccessUserId_example" // string | Page Access User Identifier
-    uNKNOWNBASETYPE := TODO // UNKNOWN_BASE_TYPE |  (optional)
+    putPagesPageIdPageAccessUsersPageAccessUserIdComponents := *openapiclient.NewPutPagesPageIdPageAccessUsersPageAccessUserIdComponents([]string{"ComponentIds_example"}) // PutPagesPageIdPageAccessUsersPageAccessUserIdComponents | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PageAccessUserComponentsApi.PutPagesPageIdPageAccessUsersPageAccessUserIdComponents(context.Background(), pageId, pageAccessUserId).UNKNOWNBASETYPE(uNKNOWNBASETYPE).Execute()
-    if err.Error() != "" {
+    resp, r, err := api_client.PageAccessUserComponentsApi.PutPagesPageIdPageAccessUsersPageAccessUserIdComponents(context.Background(), pageId, pageAccessUserId).PutPagesPageIdPageAccessUsersPageAccessUserIdComponents(putPagesPageIdPageAccessUsersPageAccessUserIdComponents).Execute()
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUserComponentsApi.PutPagesPageIdPageAccessUsersPageAccessUserIdComponents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -442,7 +446,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **uNKNOWNBASETYPE** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md) |  | 
+ **putPagesPageIdPageAccessUsersPageAccessUserIdComponents** | [**PutPagesPageIdPageAccessUsersPageAccessUserIdComponents**](PutPagesPageIdPageAccessUsersPageAccessUserIdComponents.md) |  | 
 
 ### Return type
 
@@ -454,7 +458,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/x-www-form-urlencoded
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

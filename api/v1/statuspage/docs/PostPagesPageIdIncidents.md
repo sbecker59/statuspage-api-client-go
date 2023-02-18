@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Incident** | Pointer to [**PostPagesPageIdIncidentsIncident**](postPagesPageIdIncidents_incident.md) |  | [optional] 
+**Incident** | Pointer to [**PostPagesPageIdIncidentsIncident**](PostPagesPageIdIncidentsIncident.md) |  | [optional] 
 
 ## Methods
 

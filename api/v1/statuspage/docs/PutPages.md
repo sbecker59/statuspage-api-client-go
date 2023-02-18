@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Page** | Pointer to [**PatchPagesPage**](patchPages_page.md) |  | [optional] 
+**Page** | Pointer to [**PatchPagesPage**](PatchPagesPage.md) |  | [optional] 
 
 ## Methods
 

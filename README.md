@@ -7,8 +7,8 @@ curl https://raw.githubusercontent.com/OpenAPITools/openapi-generator/master/bin
 chmod u+x ~/bin/openapitools/openapi-generator-cli
 export PATH=$PATH:~/bin/openapitools/
 
-export OPENAPI_GENERATOR_VERSION=5.0.0
-openapi-generator-cli version # is 5.0.0
+export OPENAPI_GENERATOR_VERSION=5.3.0
+openapi-generator-cli version # is 5.3.0
 
 openapi-generator-cli generate -i api/v1/statuspage/api/openapi.yaml -o api/v1/statuspage -g go
 ```

@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 **AllowIncidentSubscribers** | Pointer to **bool** | Can your users subscribe to notifications for a single incident | [optional] 
 **AllowEmailSubscribers** | Pointer to **bool** | Can your users choose to receive notifications via email | [optional] 
 **AllowSmsSubscribers** | Pointer to **bool** | Can your users choose to receive notifications via SMS | [optional] 
-**AllowRssAtomFeeds** | Pointer to **bool** | Can your users choose to access incident feeds via RSS/Atom | [optional] 
+**AllowRssAtomFeeds** | Pointer to **bool** | Can your users choose to access incident feeds via RSS/Atom (not functional on Audience-Specific pages) | [optional] 
 **AllowWebhookSubscribers** | Pointer to **bool** | Can your users choose to receive notifications via Webhooks | [optional] 
 **NotificationsFromEmail** | Pointer to **string** | Allows you to customize the email address your page notifications come from | [optional] 
 **TimeZone** | Pointer to **string** | Timezone configured for your page | [optional] 

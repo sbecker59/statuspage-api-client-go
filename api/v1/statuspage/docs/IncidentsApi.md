@@ -44,7 +44,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.IncidentsApi.DeletePagesPageIdIncidentsIncidentId(context.Background(), pageId, incidentId).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.DeletePagesPageIdIncidentsIncidentId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -119,7 +119,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.IncidentsApi.GetPagesPageIdIncidents(context.Background(), pageId).Q(q).Limit(limit).Page(page).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.GetPagesPageIdIncidents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -194,7 +194,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.IncidentsApi.GetPagesPageIdIncidentsActiveMaintenance(context.Background(), pageId).Page(page).PerPage(perPage).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.GetPagesPageIdIncidentsActiveMaintenance``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -267,7 +267,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.IncidentsApi.GetPagesPageIdIncidentsIncidentId(context.Background(), pageId, incidentId).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.GetPagesPageIdIncidentsIncidentId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -341,7 +341,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.IncidentsApi.GetPagesPageIdIncidentsScheduled(context.Background(), pageId).Page(page).PerPage(perPage).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.GetPagesPageIdIncidentsScheduled``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -415,7 +415,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.IncidentsApi.GetPagesPageIdIncidentsUnresolved(context.Background(), pageId).Page(page).PerPage(perPage).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.GetPagesPageIdIncidentsUnresolved``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -489,7 +489,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.IncidentsApi.GetPagesPageIdIncidentsUpcoming(context.Background(), pageId).Page(page).PerPage(perPage).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.GetPagesPageIdIncidentsUpcoming``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -563,7 +563,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.IncidentsApi.PatchPagesPageIdIncidentsIncidentId(context.Background(), pageId, incidentId).PatchPagesPageIdIncidents(patchPagesPageIdIncidents).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.PatchPagesPageIdIncidentsIncidentId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -637,7 +637,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.IncidentsApi.PostPagesPageIdIncidents(context.Background(), pageId).PostPagesPageIdIncidents(postPagesPageIdIncidents).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.PostPagesPageIdIncidents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -710,7 +710,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.IncidentsApi.PutPagesPageIdIncidentsIncidentId(context.Background(), pageId, incidentId).PutPagesPageIdIncidents(putPagesPageIdIncidents).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.PutPagesPageIdIncidentsIncidentId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }

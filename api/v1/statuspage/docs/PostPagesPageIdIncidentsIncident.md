@@ -4,28 +4,28 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | Incident Name | [optional] 
+**Name** | **string** | Incident Name. There is a maximum limit of 255 characters. | 
 **Status** | Pointer to **string** | The incident status. For realtime incidents, valid values are investigating, identified, monitoring, and resolved. For scheduled incidents, valid values are scheduled, in_progress, verifying, and completed. | [optional] 
 **ImpactOverride** | Pointer to **string** | value to override calculated impact value | [optional] 
-**ScheduledFor** | Pointer to **time.Time** | The timestamp the incident is scheduled for. | [optional] 
-**ScheduledUntil** | Pointer to **time.Time** | The timestamp the incident is scheduled until. | [optional] 
+**ScheduledFor** | Pointer to **time.Time** | The timestamp the incident is scheduled for. | [optional] [default to "2013-05-07T03:00:00.007Z"]
+**ScheduledUntil** | Pointer to **time.Time** | The timestamp the incident is scheduled until. | [optional] [default to "2013-05-07T06:00:00.007Z"]
 **ScheduledRemindPrior** | Pointer to **bool** | Controls whether to remind subscribers prior to scheduled incidents. | [optional] 
-**ScheduledAutoInProgress** | Pointer to **bool** | Controls whether the incident is scheduled to automatically change to in progress. | [optional] 
-**ScheduledAutoCompleted** | Pointer to **bool** | Controls whether the incident is scheduled to automatically change to complete. | [optional] 
-**Metadata** | Pointer to **map[string]interface{}** | Attach a json object to the incident. All top-level values in the object must also be objects. | [optional] 
-**DeliverNotifications** | Pointer to **bool** | Deliver notifications to subscribers if this is true. If this is false, create an incident without notifying customers. | [optional] [default to true]
-**AutoTransitionDeliverNotificationsAtEnd** | Pointer to **bool** | Controls whether send notification when scheduled maintenances auto transition to completed. | [optional] 
-**AutoTransitionDeliverNotificationsAtStart** | Pointer to **bool** | Controls whether send notification when scheduled maintenances auto transition to started. | [optional] 
 **AutoTransitionToMaintenanceState** | Pointer to **bool** | Controls whether change components status to under_maintenance once scheduled maintenance is in progress. | [optional] 
 **AutoTransitionToOperationalState** | Pointer to **bool** | Controls whether change components status to operational once scheduled maintenance completes. | [optional] 
+**ScheduledAutoInProgress** | Pointer to **bool** | Controls whether the incident is scheduled to automatically change to in progress. | [optional] 
+**ScheduledAutoCompleted** | Pointer to **bool** | Controls whether the incident is scheduled to automatically change to complete. | [optional] 
+**AutoTransitionDeliverNotificationsAtStart** | Pointer to **bool** | Controls whether send notification when scheduled maintenances auto transition to started. | [optional] 
+**AutoTransitionDeliverNotificationsAtEnd** | Pointer to **bool** | Controls whether send notification when scheduled maintenances auto transition to completed. | [optional] 
+**Metadata** | Pointer to **map[string]interface{}** | Attach a json object to the incident. All top-level values in the object must also be objects. | [optional] 
+**DeliverNotifications** | Pointer to **bool** | Deliver notifications to subscribers if this is true. If this is false, create an incident without notifying customers. | [optional] [default to true]
 **AutoTweetAtBeginning** | Pointer to **bool** | Controls whether tweet automatically when scheduled maintenance starts. | [optional] 
 **AutoTweetOnCompletion** | Pointer to **bool** | Controls whether tweet automatically when scheduled maintenance completes. | [optional] 
 **AutoTweetOnCreation** | Pointer to **bool** | Controls whether tweet automatically when scheduled maintenance is created. | [optional] 
 **AutoTweetOneHourBefore** | Pointer to **bool** | Controls whether tweet automatically one hour before scheduled maintenance starts. | [optional] 
 **BackfillDate** | Pointer to **string** | TimeStamp when incident was backfilled. | [optional] 
 **Backfilled** | Pointer to **bool** | Controls whether incident is backfilled. If true, components cannot be specified. | [optional] 
-**Body** | Pointer to **string** | The initial message, created as the first incident update. | [optional] 
-**Components** | Pointer to **map[string]interface{}** | Map of status changes to apply to affected components | [optional] 
+**Body** | Pointer to **string** | The initial message, created as the first incident update. There is a maximum limit of 25000 characters | [optional] 
+**Components** | Pointer to [**PostPagesPageIdIncidentsIncidentComponents**](PostPagesPageIdIncidentsIncidentComponents.md) |  | [optional] 
 **ComponentIds** | Pointer to **[]string** | List of component_ids affected by this incident | [optional] 
 **ScheduledAutoTransition** | Pointer to **bool** | Same as :scheduled_auto_transition_in_progress. Controls whether the incident is scheduled to automatically change to in progress. | [optional] 
 
@@ -33,7 +33,7 @@ Name | Type | Description | Notes
 
 ### NewPostPagesPageIdIncidentsIncident
 
-`func NewPostPagesPageIdIncidentsIncident() *PostPagesPageIdIncidentsIncident`
+`func NewPostPagesPageIdIncidentsIncident(name string, ) *PostPagesPageIdIncidentsIncident`
 
 NewPostPagesPageIdIncidentsIncident instantiates a new PostPagesPageIdIncidentsIncident object
 This constructor will assign default values to properties that have it defined,
@@ -67,11 +67,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *PostPagesPageIdIncidentsIncident) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetStatus
 
@@ -198,6 +193,56 @@ SetScheduledRemindPrior sets ScheduledRemindPrior field to given value.
 
 HasScheduledRemindPrior returns a boolean if a field has been set.
 
+### GetAutoTransitionToMaintenanceState
+
+`func (o *PostPagesPageIdIncidentsIncident) GetAutoTransitionToMaintenanceState() bool`
+
+GetAutoTransitionToMaintenanceState returns the AutoTransitionToMaintenanceState field if non-nil, zero value otherwise.
+
+### GetAutoTransitionToMaintenanceStateOk
+
+`func (o *PostPagesPageIdIncidentsIncident) GetAutoTransitionToMaintenanceStateOk() (*bool, bool)`
+
+GetAutoTransitionToMaintenanceStateOk returns a tuple with the AutoTransitionToMaintenanceState field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoTransitionToMaintenanceState
+
+`func (o *PostPagesPageIdIncidentsIncident) SetAutoTransitionToMaintenanceState(v bool)`
+
+SetAutoTransitionToMaintenanceState sets AutoTransitionToMaintenanceState field to given value.
+
+### HasAutoTransitionToMaintenanceState
+
+`func (o *PostPagesPageIdIncidentsIncident) HasAutoTransitionToMaintenanceState() bool`
+
+HasAutoTransitionToMaintenanceState returns a boolean if a field has been set.
+
+### GetAutoTransitionToOperationalState
+
+`func (o *PostPagesPageIdIncidentsIncident) GetAutoTransitionToOperationalState() bool`
+
+GetAutoTransitionToOperationalState returns the AutoTransitionToOperationalState field if non-nil, zero value otherwise.
+
+### GetAutoTransitionToOperationalStateOk
+
+`func (o *PostPagesPageIdIncidentsIncident) GetAutoTransitionToOperationalStateOk() (*bool, bool)`
+
+GetAutoTransitionToOperationalStateOk returns a tuple with the AutoTransitionToOperationalState field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoTransitionToOperationalState
+
+`func (o *PostPagesPageIdIncidentsIncident) SetAutoTransitionToOperationalState(v bool)`
+
+SetAutoTransitionToOperationalState sets AutoTransitionToOperationalState field to given value.
+
+### HasAutoTransitionToOperationalState
+
+`func (o *PostPagesPageIdIncidentsIncident) HasAutoTransitionToOperationalState() bool`
+
+HasAutoTransitionToOperationalState returns a boolean if a field has been set.
+
 ### GetScheduledAutoInProgress
 
 `func (o *PostPagesPageIdIncidentsIncident) GetScheduledAutoInProgress() bool`
@@ -248,6 +293,56 @@ SetScheduledAutoCompleted sets ScheduledAutoCompleted field to given value.
 
 HasScheduledAutoCompleted returns a boolean if a field has been set.
 
+### GetAutoTransitionDeliverNotificationsAtStart
+
+`func (o *PostPagesPageIdIncidentsIncident) GetAutoTransitionDeliverNotificationsAtStart() bool`
+
+GetAutoTransitionDeliverNotificationsAtStart returns the AutoTransitionDeliverNotificationsAtStart field if non-nil, zero value otherwise.
+
+### GetAutoTransitionDeliverNotificationsAtStartOk
+
+`func (o *PostPagesPageIdIncidentsIncident) GetAutoTransitionDeliverNotificationsAtStartOk() (*bool, bool)`
+
+GetAutoTransitionDeliverNotificationsAtStartOk returns a tuple with the AutoTransitionDeliverNotificationsAtStart field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoTransitionDeliverNotificationsAtStart
+
+`func (o *PostPagesPageIdIncidentsIncident) SetAutoTransitionDeliverNotificationsAtStart(v bool)`
+
+SetAutoTransitionDeliverNotificationsAtStart sets AutoTransitionDeliverNotificationsAtStart field to given value.
+
+### HasAutoTransitionDeliverNotificationsAtStart
+
+`func (o *PostPagesPageIdIncidentsIncident) HasAutoTransitionDeliverNotificationsAtStart() bool`
+
+HasAutoTransitionDeliverNotificationsAtStart returns a boolean if a field has been set.
+
+### GetAutoTransitionDeliverNotificationsAtEnd
+
+`func (o *PostPagesPageIdIncidentsIncident) GetAutoTransitionDeliverNotificationsAtEnd() bool`
+
+GetAutoTransitionDeliverNotificationsAtEnd returns the AutoTransitionDeliverNotificationsAtEnd field if non-nil, zero value otherwise.
+
+### GetAutoTransitionDeliverNotificationsAtEndOk
+
+`func (o *PostPagesPageIdIncidentsIncident) GetAutoTransitionDeliverNotificationsAtEndOk() (*bool, bool)`
+
+GetAutoTransitionDeliverNotificationsAtEndOk returns a tuple with the AutoTransitionDeliverNotificationsAtEnd field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAutoTransitionDeliverNotificationsAtEnd
+
+`func (o *PostPagesPageIdIncidentsIncident) SetAutoTransitionDeliverNotificationsAtEnd(v bool)`
+
+SetAutoTransitionDeliverNotificationsAtEnd sets AutoTransitionDeliverNotificationsAtEnd field to given value.
+
+### HasAutoTransitionDeliverNotificationsAtEnd
+
+`func (o *PostPagesPageIdIncidentsIncident) HasAutoTransitionDeliverNotificationsAtEnd() bool`
+
+HasAutoTransitionDeliverNotificationsAtEnd returns a boolean if a field has been set.
+
 ### GetMetadata
 
 `func (o *PostPagesPageIdIncidentsIncident) GetMetadata() map[string]interface{}`
@@ -297,106 +392,6 @@ SetDeliverNotifications sets DeliverNotifications field to given value.
 `func (o *PostPagesPageIdIncidentsIncident) HasDeliverNotifications() bool`
 
 HasDeliverNotifications returns a boolean if a field has been set.
-
-### GetAutoTransitionDeliverNotificationsAtEnd
-
-`func (o *PostPagesPageIdIncidentsIncident) GetAutoTransitionDeliverNotificationsAtEnd() bool`
-
-GetAutoTransitionDeliverNotificationsAtEnd returns the AutoTransitionDeliverNotificationsAtEnd field if non-nil, zero value otherwise.
-
-### GetAutoTransitionDeliverNotificationsAtEndOk
-
-`func (o *PostPagesPageIdIncidentsIncident) GetAutoTransitionDeliverNotificationsAtEndOk() (*bool, bool)`
-
-GetAutoTransitionDeliverNotificationsAtEndOk returns a tuple with the AutoTransitionDeliverNotificationsAtEnd field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAutoTransitionDeliverNotificationsAtEnd
-
-`func (o *PostPagesPageIdIncidentsIncident) SetAutoTransitionDeliverNotificationsAtEnd(v bool)`
-
-SetAutoTransitionDeliverNotificationsAtEnd sets AutoTransitionDeliverNotificationsAtEnd field to given value.
-
-### HasAutoTransitionDeliverNotificationsAtEnd
-
-`func (o *PostPagesPageIdIncidentsIncident) HasAutoTransitionDeliverNotificationsAtEnd() bool`
-
-HasAutoTransitionDeliverNotificationsAtEnd returns a boolean if a field has been set.
-
-### GetAutoTransitionDeliverNotificationsAtStart
-
-`func (o *PostPagesPageIdIncidentsIncident) GetAutoTransitionDeliverNotificationsAtStart() bool`
-
-GetAutoTransitionDeliverNotificationsAtStart returns the AutoTransitionDeliverNotificationsAtStart field if non-nil, zero value otherwise.
-
-### GetAutoTransitionDeliverNotificationsAtStartOk
-
-`func (o *PostPagesPageIdIncidentsIncident) GetAutoTransitionDeliverNotificationsAtStartOk() (*bool, bool)`
-
-GetAutoTransitionDeliverNotificationsAtStartOk returns a tuple with the AutoTransitionDeliverNotificationsAtStart field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAutoTransitionDeliverNotificationsAtStart
-
-`func (o *PostPagesPageIdIncidentsIncident) SetAutoTransitionDeliverNotificationsAtStart(v bool)`
-
-SetAutoTransitionDeliverNotificationsAtStart sets AutoTransitionDeliverNotificationsAtStart field to given value.
-
-### HasAutoTransitionDeliverNotificationsAtStart
-
-`func (o *PostPagesPageIdIncidentsIncident) HasAutoTransitionDeliverNotificationsAtStart() bool`
-
-HasAutoTransitionDeliverNotificationsAtStart returns a boolean if a field has been set.
-
-### GetAutoTransitionToMaintenanceState
-
-`func (o *PostPagesPageIdIncidentsIncident) GetAutoTransitionToMaintenanceState() bool`
-
-GetAutoTransitionToMaintenanceState returns the AutoTransitionToMaintenanceState field if non-nil, zero value otherwise.
-
-### GetAutoTransitionToMaintenanceStateOk
-
-`func (o *PostPagesPageIdIncidentsIncident) GetAutoTransitionToMaintenanceStateOk() (*bool, bool)`
-
-GetAutoTransitionToMaintenanceStateOk returns a tuple with the AutoTransitionToMaintenanceState field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAutoTransitionToMaintenanceState
-
-`func (o *PostPagesPageIdIncidentsIncident) SetAutoTransitionToMaintenanceState(v bool)`
-
-SetAutoTransitionToMaintenanceState sets AutoTransitionToMaintenanceState field to given value.
-
-### HasAutoTransitionToMaintenanceState
-
-`func (o *PostPagesPageIdIncidentsIncident) HasAutoTransitionToMaintenanceState() bool`
-
-HasAutoTransitionToMaintenanceState returns a boolean if a field has been set.
-
-### GetAutoTransitionToOperationalState
-
-`func (o *PostPagesPageIdIncidentsIncident) GetAutoTransitionToOperationalState() bool`
-
-GetAutoTransitionToOperationalState returns the AutoTransitionToOperationalState field if non-nil, zero value otherwise.
-
-### GetAutoTransitionToOperationalStateOk
-
-`func (o *PostPagesPageIdIncidentsIncident) GetAutoTransitionToOperationalStateOk() (*bool, bool)`
-
-GetAutoTransitionToOperationalStateOk returns a tuple with the AutoTransitionToOperationalState field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAutoTransitionToOperationalState
-
-`func (o *PostPagesPageIdIncidentsIncident) SetAutoTransitionToOperationalState(v bool)`
-
-SetAutoTransitionToOperationalState sets AutoTransitionToOperationalState field to given value.
-
-### HasAutoTransitionToOperationalState
-
-`func (o *PostPagesPageIdIncidentsIncident) HasAutoTransitionToOperationalState() bool`
-
-HasAutoTransitionToOperationalState returns a boolean if a field has been set.
 
 ### GetAutoTweetAtBeginning
 
@@ -575,20 +570,20 @@ HasBody returns a boolean if a field has been set.
 
 ### GetComponents
 
-`func (o *PostPagesPageIdIncidentsIncident) GetComponents() map[string]interface{}`
+`func (o *PostPagesPageIdIncidentsIncident) GetComponents() PostPagesPageIdIncidentsIncidentComponents`
 
 GetComponents returns the Components field if non-nil, zero value otherwise.
 
 ### GetComponentsOk
 
-`func (o *PostPagesPageIdIncidentsIncident) GetComponentsOk() (*map[string]interface{}, bool)`
+`func (o *PostPagesPageIdIncidentsIncident) GetComponentsOk() (*PostPagesPageIdIncidentsIncidentComponents, bool)`
 
 GetComponentsOk returns a tuple with the Components field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetComponents
 
-`func (o *PostPagesPageIdIncidentsIncident) SetComponents(v map[string]interface{})`
+`func (o *PostPagesPageIdIncidentsIncident) SetComponents(v PostPagesPageIdIncidentsIncidentComponents)`
 
 SetComponents sets Components field to given value.
 

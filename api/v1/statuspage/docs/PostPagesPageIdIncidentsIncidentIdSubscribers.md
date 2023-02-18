@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Subscriber** | Pointer to [**PostPagesPageIdIncidentsIncidentIdSubscribersSubscriber**](postPagesPageIdIncidentsIncidentIdSubscribers_subscriber.md) |  | [optional] 
+**Subscriber** | Pointer to [**PostPagesPageIdIncidentsIncidentIdSubscribersSubscriber**](PostPagesPageIdIncidentsIncidentIdSubscribersSubscriber.md) |  | [optional] 
 
 ## Methods
 

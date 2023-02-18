@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Metric** | Pointer to [**PatchPagesPageIdMetricsMetric**](patchPagesPageIdMetrics_metric.md) |  | [optional] 
+**Metric** | Pointer to [**PatchPagesPageIdMetricsMetric**](PatchPagesPageIdMetricsMetric.md) |  | [optional] 
 
 ## Methods
 

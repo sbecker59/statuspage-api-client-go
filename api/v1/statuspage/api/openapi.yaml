@@ -2,15 +2,17 @@ openapi: 3.0.0
 info:
   contact:
     name: Statuspage Support
-    url: https://help.statuspage.io/help/contact-us-30
+    url: https://support.atlassian.com/contact
   description: |-
     # Code of Conduct
     Please don't abuse the API, and please report all feature requests and issues to
-    https://help.statuspage.io/help/contact-us-30
+    https://support.atlassian.com/contact
 
     # Rate Limiting
     Each API token is limited to 1 request / second as measured on a 60 second rolling window.
-    To get this limit increased, please contact us at https://help.statuspage.io/help/contact-us-30
+    To get this limit increased, please contact us at https://support.atlassian.com/contact
+
+    Error codes 420 or 429 indicate that you have exceeded the rate limit and the request has been rejected.
 
     # Basics
 
@@ -69,6 +71,8 @@ servers:
 security:
 - api_key: []
 tags:
+- description: Operations about permissions
+  name: permissions
 - description: |
     Operations about status embed configs.
   name: status embed config
@@ -438,6 +442,27 @@ paths:
         schema:
           type: string
         style: form
+      - description: Page offset to fetch. Beginning February 28, 2023, this endpoint
+          will return paginated data even if this query parameter is not provided.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Number of results to return per page. Beginning February 28,
+          2023, a default and maximum limit of 100 will be imposed and this endpoint
+          will return paginated data even if this query parameter is not provided.
+        explode: true
+        in: query
+        name: per_page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
       responses:
         "200":
           content:
@@ -790,9 +815,10 @@ paths:
         style: simple
       requestBody:
         content:
-          application/x-www-form-urlencoded:
+          application/json:
             schema:
-              $ref: '#/components/schemas/body'
+              $ref: '#/components/schemas/deletePagesPageIdPageAccessUsersPageAccessUserIdComponents'
+        required: true
       responses:
         "200":
           content:
@@ -848,6 +874,27 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Page offset to fetch. Beginning February 28, 2023, this endpoint
+          will return paginated data even if this query parameter is not provided.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Number of results to return per page. Beginning February 28,
+          2023, a default and maximum limit of 100 will be imposed and this endpoint
+          will return paginated data even if this query parameter is not provided.
+        explode: true
+        in: query
+        name: per_page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
       responses:
         "200":
           content:
@@ -905,7 +952,11 @@ paths:
           type: string
         style: simple
       requestBody:
-        $ref: '#/components/requestBodies/patchPagesPageIdPageAccessUsersPageAccessUserIdComponents'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/patchPagesPageIdPageAccessUsersPageAccessUserIdComponents'
+        required: true
       responses:
         "200":
           content:
@@ -962,7 +1013,11 @@ paths:
           type: string
         style: simple
       requestBody:
-        $ref: '#/components/requestBodies/patchPagesPageIdPageAccessUsersPageAccessUserIdComponents'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/postPagesPageIdPageAccessUsersPageAccessUserIdComponents'
+        required: true
       responses:
         "201":
           content:
@@ -1019,7 +1074,11 @@ paths:
           type: string
         style: simple
       requestBody:
-        $ref: '#/components/requestBodies/patchPagesPageIdPageAccessUsersPageAccessUserIdComponents'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/putPagesPageIdPageAccessUsersPageAccessUserIdComponents'
+        required: true
       responses:
         "200":
           content:
@@ -1199,6 +1258,27 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Page offset to fetch. Beginning February 28, 2023, this endpoint
+          will return paginated data even if this query parameter is not provided.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Number of results to return per page. Beginning February 28,
+          2023, a default and maximum limit of 100 will be imposed and this endpoint
+          will return paginated data even if this query parameter is not provided.
+        explode: true
+        in: query
+        name: per_page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
       responses:
         "200":
           content:
@@ -1476,6 +1556,27 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Page offset to fetch. Beginning February 28, 2023, this endpoint
+          will return paginated data even if this query parameter is not provided.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Number of results to return per page. Beginning February 28,
+          2023, a default and maximum limit of 100 will be imposed and this endpoint
+          will return paginated data even if this query parameter is not provided.
+        explode: true
+        in: query
+        name: per_page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
       responses:
         "200":
           content:
@@ -1895,6 +1996,27 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Page offset to fetch. Beginning February 28, 2023, this endpoint
+          will return paginated data even if this query parameter is not provided.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Number of results to return per page. Beginning February 28,
+          2023, a default and maximum limit of 100 will be imposed and this endpoint
+          will return paginated data even if this query parameter is not provided.
+        explode: true
+        in: query
+        name: per_page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
       responses:
         "200":
           content:
@@ -2481,6 +2603,27 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Page offset to fetch. Beginning February 28, 2023, this endpoint
+          will return paginated data even if this query parameter is not provided.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Number of results to return per page. Beginning February 28,
+          2023, a default and maximum limit of 100 will be imposed and this endpoint
+          will return paginated data even if this query parameter is not provided.
+        explode: true
+        in: query
+        name: per_page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
       responses:
         "200":
           content:
@@ -2566,7 +2709,10 @@ paths:
       - description: The maximum number of rows to return. If a text query string
           is specified (q=), the default and maximum limit is 100. If the text query
           string is not specified, the default and maximum limit are not set, and
-          not providing a limit will return all the subscribers.
+          not providing a limit will return all the subscribers. Beginning February
+          28, 2023, a default limit of 100 will be imposed and this endpoint will
+          return paginated data (i.e. will no longer return all subscribers) even
+          if this query parameter is not provided.
         explode: true
         in: query
         name: limit
@@ -2576,7 +2722,9 @@ paths:
           type: integer
         style: form
       - description: The page offset of subscribers. The first page is page 0, the
-          second page 1, etc. This skips page * limit subscribers.
+          second page 1, etc. This skips page * limit subscribers. Beginning February
+          28, 2023, this endpoint will return paginated data even if this query parameter
+          is not provided.
         explode: true
         in: query
         name: page
@@ -3738,6 +3886,27 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Page offset to fetch. Beginning February 28, 2023, this endpoint
+          will return paginated data even if this query parameter is not provided.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Number of results to return per page. Beginning February 28,
+          2023, a default and maximum limit of 100 will be imposed and this endpoint
+          will return paginated data even if this query parameter is not provided.
+        explode: true
+        in: query
+        name: per_page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
       responses:
         "200":
           content:
@@ -4238,7 +4407,8 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Page offset to fetch.
+      - description: Page offset to fetch. Beginning February 28, 2023, this endpoint
+          will return paginated data even if this query parameter is not provided.
         explode: true
         in: query
         name: page
@@ -4247,7 +4417,9 @@ paths:
           format: int32
           type: integer
         style: form
-      - description: Number of results to return per page.
+      - description: Number of results to return per page. Beginning February 28,
+          2023, a default and maximum limit of 100 will be imposed and this endpoint
+          will return paginated data even if this query parameter is not provided.
         explode: true
         in: query
         name: per_page
@@ -4425,7 +4597,8 @@ paths:
             -H "Authorization: OAuth your-api-key-goes-here" \
             -X GET
     patch:
-      description: Update a component
+      description: If group_id is "null" then the component will be removed from a
+        group.
       operationId: patchPagesPageIdComponentsComponentId
       parameters:
       - description: Page identifier
@@ -4488,7 +4661,8 @@ paths:
             -d "component[status]=string" \
             -d "component[name]=string"
     put:
-      description: Update a component
+      description: If group_id is "null" then the component will be removed from a
+        group.
       operationId: putPagesPageIdComponentsComponentId
       parameters:
       - description: Page identifier
@@ -4571,29 +4745,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: |
-          The start date for uptime calculation (defaults to the component's start_date field or 90 days ago, whichever is more recent).
-          The maximum supported date range is six calendar months. If the year is given, the date defaults to the first day of the year.
-          If the year and month are given, the start date defaults to the first day of that month.
-          The earliest supported date is January 1, 1970.
-        explode: true
-        in: query
-        name: start
-        required: false
-        schema:
-          type: PartialStartDate
-        style: form
-      - description: |
-          The end date for uptime calculation (defaults to today in the page's time zone). The maximum supported date range is six calendar months.
-          If the year is given, the date defaults to the last day of the year. If the year and month are given, the date defaults to the last day of that month.
-          The earliest supported date is January 1, 1970.
-        explode: true
-        in: query
-        name: end
-        required: false
-        schema:
-          type: PartialEndDate
-        style: form
       responses:
         "200":
           content:
@@ -4692,10 +4843,19 @@ paths:
           type: string
         style: simple
       requestBody:
+        $ref: '#/components/requestBodies/inline_object'
         content:
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/body_1'
+              properties:
+                page_access_user_ids:
+                  description: List of page access users to add to component
+                  items:
+                    type: string
+                  type: array
+              required:
+              - page_access_user_ids
+              type: object
       responses:
         "201":
           content:
@@ -4848,6 +5008,27 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Page offset to fetch. Beginning February 28, 2023, this endpoint
+          will return paginated data even if this query parameter is not provided.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Number of results to return per page. Beginning February 28,
+          2023, a default and maximum limit of 100 will be imposed and this endpoint
+          will return paginated data even if this query parameter is not provided.
+        explode: true
+        in: query
+        name: per_page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
       responses:
         "200":
           content:
@@ -5181,29 +5362,6 @@ paths:
         schema:
           type: string
         style: simple
-      - description: |
-          The start date for uptime calculation (defaults to the date of the component in the group with the earliest start_date, or 90 days ago, whichever is more recent).
-          The maximum supported date range is six calendar months. If the year is given, the date defaults to the first day of the year.
-          If the year and month are given, the start date defaults to the first day of that month.
-          The earliest supported date is January 1, 1970.
-        explode: true
-        in: query
-        name: start
-        required: false
-        schema:
-          type: PartialStartDate
-        style: form
-      - description: |
-          The end date for uptime calculation (defaults to today in the page's time zone). The maximum supported date range is six calendar months.
-          If the year is given, the date defaults to the last day of the year. If the year and month are given, the date defaults to the last day of that month.
-          The earliest supported date is January 1, 1970.
-        explode: true
-        in: query
-        name: end
-        required: false
-        schema:
-          type: PartialEndDate
-        style: form
       responses:
         "200":
           content:
@@ -5253,18 +5411,19 @@ paths:
               $ref: '#/components/schemas/postPagesPageIdMetricsData'
         required: true
       responses:
-        "201":
+        "202":
           content:
             application/json:
               examples:
                 response:
                   value:
-                    s2jx68p8yn7j:
-                    - timestamp: 1607664952
+                    hnrmmgry6jm0:
+                    - timestamp: 1676023991
                       value: 123.456
               schema:
                 $ref: '#/components/schemas/MetricAddResponse'
-          description: Add data points to metrics
+          description: Data Point is submitted and is currently being added to the
+            metrics
         "401":
           content:
             application/json:
@@ -5313,6 +5472,27 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Page offset to fetch. Beginning February 28, 2023, this endpoint
+          will return paginated data even if this query parameter is not provided.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Number of results to return per page. Beginning February 28,
+          2023, a default and maximum limit of 100 will be imposed and this endpoint
+          will return paginated data even if this query parameter is not provided.
+        explode: true
+        in: query
+        name: per_page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
       responses:
         "200":
           content:
@@ -6049,6 +6229,27 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Page offset to fetch. Beginning February 28, 2023, this endpoint
+          will return paginated data even if this query parameter is not provided.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Number of results to return per page. Beginning February 28,
+          2023, a default and maximum limit of 100 will be imposed and this endpoint
+          will return paginated data even if this query parameter is not provided.
+        explode: true
+        in: query
+        name: per_page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
       responses:
         "200":
           content:
@@ -6341,6 +6542,157 @@ paths:
             -d "status_embed_config[position]=string" \
             -d "status_embed_config[incident_background_color]=string" \
             -d "status_embed_config[maintenance_text_color]=string"
+  /organizations/{organization_id}/permissions/{user_id}:
+    get:
+      description: Get a user's permissions
+      operationId: getOrganizationsOrganizationIdPermissionsUserId
+      parameters:
+      - description: Organization Identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: User identifier
+        explode: false
+        in: path
+        name: user_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                response:
+                  value:
+                    user_id: 8tmgnp4ys67h
+                    pages:
+                    - page_id: 7gzlwkxrvchy
+                      page_configuration: false
+                      incident_manager: true
+                      maintenance_manager: true
+                    - page_id: wgrkpldpp5m9
+                      page_configuration: false
+                      incident_manager: true
+                      maintenance_manager: true
+              schema:
+                $ref: '#/components/schemas/Permissions'
+          description: Get a user's permissions
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEntity'
+          description: Could not authenticate
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEntity'
+          description: The requested resource could not be found.
+      summary: Get a user's permissions
+      tags:
+      - users
+      - permissions
+      x-code-samples:
+      - lang: Curl
+        source: |
+          curl https://api.statuspage.io/v1/organizations/{organization_id}/permissions/{user_id} \
+            -H "Authorization: OAuth your-api-key-goes-here" \
+            -X GET
+    put:
+      description: |-
+        Update a user's role permissions. Payload should contain a mapping of pages to a set of the desired roles,
+                          if the page has Role Based Access Control. Otherwise, the pages should map to an empty hash.
+                          User will lose access to any pages omitted from the payload.
+      operationId: putOrganizationsOrganizationIdPermissionsUserId
+      parameters:
+      - description: Organization Identifier
+        explode: false
+        in: path
+        name: organization_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: User identifier
+        explode: false
+        in: path
+        name: user_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/putOrganizationsOrganizationIdPermissions'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                response:
+                  value:
+                    user_id: ldkpyg4lj0dy
+                    pages:
+                    - page_id: kf94ym2nz6bg
+                      page_configuration: false
+                      incident_manager: true
+                      maintenance_manager: true
+                    - page_id: m7nfhv4t6kq4
+                      page_configuration: false
+                      incident_manager: true
+                      maintenance_manager: true
+              schema:
+                $ref: '#/components/schemas/Permissions'
+          description: |-
+            Update a user's role permissions. Payload should contain a mapping of pages to a set of the desired roles,
+                              if the page has Role Based Access Control. Otherwise, the pages should map to an empty hash.
+                              User will lose access to any pages omitted from the payload.
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEntity'
+          description: Bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEntity'
+          description: Could not authenticate
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEntity'
+          description: You are not authorized to access this resource.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEntity'
+          description: The requested resource could not be found.
+      summary: Update a user's role permissions
+      tags:
+      - permissions
+      x-code-samples:
+      - lang: Curl
+        source: |-
+          curl https://api.statuspage.io/v1/organizations/{organization_id}/permissions/{user_id} \
+            -H "Authorization: OAuth your-api-key-goes-here" \
+            -X PUT \
+            -d "pages[page_id][page_configuration]=true" \
+            -d "pages[page_id][incident_manager]=true" \
+            -d "pages[page_id][maintenance_manager]=true"
   /organizations/{organization_id}/users/{user_id}:
     delete:
       description: Delete a user
@@ -6409,6 +6761,27 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Page offset to fetch. Beginning February 28, 2023, this endpoint
+          will return paginated data even if this query parameter is not provided.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Number of results to return per page. Beginning February 28,
+          2023, a default and maximum limit of 100 will be imposed and this endpoint
+          will return paginated data even if this query parameter is not provided.
+        explode: true
+        in: query
+        name: per_page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
       responses:
         "200":
           content:
@@ -6494,19 +6867,11 @@ paths:
             -d "user[email]=string"
 components:
   requestBodies:
-    patchPagesPageIdPageAccessUsersPageAccessUserIdComponents:
+    inline_object:
       content:
         application/x-www-form-urlencoded:
           schema:
-            properties:
-              component_ids:
-                description: List of component codes to allow access to
-                items:
-                  type: string
-                type: array
-            required:
-            - component_ids
-            type: object
+            $ref: '#/components/schemas/inline_object'
   schemas:
     Page:
       description: Get a page
@@ -6532,7 +6897,7 @@ components:
         updated_at: 2000-01-23T04:56:07.000+00:00
         notifications_email_footer: notifications_email_footer
         allow_incident_subscribers: true
-        id: gc9z31sm8jbj
+        id: m2b91t7vwhzx
         notifications_from_email: no-reply@status.mycompany.com
         state: state
         headline: headline
@@ -6559,7 +6924,7 @@ components:
       properties:
         id:
           description: Page identifier
-          example: gc9z31sm8jbj
+          example: m2b91t7vwhzx
           type: string
         created_at:
           description: Timestamp the record was created
@@ -6612,6 +6977,7 @@ components:
           type: boolean
         allow_rss_atom_feeds:
           description: Can your users choose to access incident feeds via RSS/Atom
+            (not functional on Audience-Specific pages)
           type: boolean
         allow_webhook_subscribers:
           description: Can your users choose to receive notifications via Webhooks
@@ -6723,13 +7089,13 @@ components:
         updated_at: 2000-01-23T04:56:07.000+00:00
         created_at: 2000-01-23T04:56:07.000+00:00
         page_access_group_id: page_access_group_id
-        id: q84skbxr4hv3
+        id: s1p7np39jb75
         email: user@example.com
-        page_access_group_ids: []
+        page_access_group_ids: '[]'
       properties:
         id:
           description: Page Access User Identifier
-          example: q84skbxr4hv3
+          example: s1p7np39jb75
           type: string
         page_id:
           type: string
@@ -6742,16 +7108,57 @@ components:
         page_access_group_id:
           type: string
         page_access_group_ids:
-          example: []
-          items:
-            type: string
-          type: array
+          example: '[]'
+          type: string
         created_at:
           format: date-time
           type: string
         updated_at:
           format: date-time
           type: string
+      type: object
+    patchPagesPageIdPageAccessUsersPageAccessUserIdComponents:
+      description: Add components for page access user
+      properties:
+        component_ids:
+          description: List of component codes to allow access to
+          items:
+            type: string
+          type: array
+      required:
+      - component_ids
+      type: object
+    putPagesPageIdPageAccessUsersPageAccessUserIdComponents:
+      description: Add components for page access user
+      properties:
+        component_ids:
+          description: List of component codes to allow access to
+          items:
+            type: string
+          type: array
+      required:
+      - component_ids
+      type: object
+    postPagesPageIdPageAccessUsersPageAccessUserIdComponents:
+      description: Replace components for page access user
+      properties:
+        component_ids:
+          description: List of component codes to allow access to
+          items:
+            type: string
+          type: array
+      required:
+      - component_ids
+      type: object
+    deletePagesPageIdPageAccessUsersPageAccessUserIdComponents:
+      description: Remove components for page access user
+      properties:
+        component_ids:
+          description: List of components codes to remove.  If omitted, all components
+            will be removed.
+          items:
+            type: string
+          type: array
       type: object
     Component:
       description: Add page access groups to a component
@@ -6948,20 +7355,20 @@ components:
         updated_at: 2000-01-23T04:56:07.000+00:00
         name: name
         metric_ids:
-        - jf7xfklpvn8h
-        - jf7xfklpvn8h
+        - wyzy9k6g3v91
+        - wyzy9k6g3v91
         created_at: 2000-01-23T04:56:07.000+00:00
-        id: gw1mxw77m35s
+        id: yk8z399hgfxm
         component_ids:
-        - vv9glqpx95w1
-        - vv9glqpx95w1
+        - dg8fb9vf8jtr
+        - dg8fb9vf8jtr
         page_access_user_ids:
-        - tyvg1szxsjyr
-        - tyvg1szxsjyr
+        - w1cq8359wjkn
+        - w1cq8359wjkn
       properties:
         id:
           description: Page Access Group Identifier
-          example: gw1mxw77m35s
+          example: yk8z399hgfxm
           type: string
         page_id:
           description: Page Identifier.
@@ -6971,7 +7378,7 @@ components:
           type: string
         page_access_user_ids:
           items:
-            example: tyvg1szxsjyr
+            example: w1cq8359wjkn
             type: string
           type: array
         external_identifier:
@@ -6979,12 +7386,12 @@ components:
           type: string
         metric_ids:
           items:
-            example: jf7xfklpvn8h
+            example: wyzy9k6g3v91
             type: string
           type: array
         component_ids:
           items:
-            example: vv9glqpx95w1
+            example: dg8fb9vf8jtr
             type: string
           type: array
         created_at:
@@ -7211,24 +7618,24 @@ components:
       description: Get an incident subscriber
       example:
         obfuscated_channel_name: '#*******an'
-        components: '["r3hqgqlgmkxh"]'
+        components: '["l1mr4jcmzgkr"]'
         display_phone_number: +1 (202) 555-0105
         quarantined_at: 2000-01-23T04:56:07.000+00:00
         created_at: 2000-01-23T04:56:07.000+00:00
         skip_confirmation_notification: true
-        page_access_user_id: h14sddhbb22k
+        page_access_user_id: rfwh2j95244n
         mode: email
         endpoint: http://example.com/
         purge_at: 2000-01-23T04:56:07.000+00:00
         phone_country: US
         phone_number: 202-555-0105
-        id: nslv0flftbkr
+        id: q3k6cm9phfws
         email: foo@example2.com
         workspace_name: Atlassian
       properties:
         id:
           description: Subscriber Identifier
-          example: nslv0flftbkr
+          example: q3k6cm9phfws
           type: string
         skip_confirmation_notification:
           description: If this is true, do not notify the user with changes to their
@@ -7282,12 +7689,12 @@ components:
         components:
           description: The components for which the subscriber has elected to receive
             updates.
-          example: '["r3hqgqlgmkxh"]'
+          example: '["l1mr4jcmzgkr"]'
           type: string
         page_access_user_id:
           description: The Page Access user this subscriber belongs to (only for audience-specific
             pages).
-          example: h14sddhbb22k
+          example: rfwh2j95244n
           type: string
         created_at:
           format: date-time
@@ -7351,9 +7758,9 @@ components:
           status: operational
           start_date: 2000-01-23
         update_status: investigating
-        group_id: vvzxxy3bg9bh
+        group_id: xc0hhyyys2dw
         name: name
-        id: 5k17z009lxd6
+        id: gs825f4qmx9y
         title: title
         body: body
         should_tweet: true
@@ -7361,7 +7768,7 @@ components:
       properties:
         id:
           description: Incident Template Identifier
-          example: 5k17z009lxd6
+          example: gs825f4qmx9y
           type: string
         components:
           description: Affected components
@@ -7382,7 +7789,7 @@ components:
           type: string
         group_id:
           description: Identifier of Template Group this template belongs to
-          example: vvzxxy3bg9bh
+          example: xc0hhyyys2dw
           type: string
         update_status:
           description: The status the incident or maintenance should transition to
@@ -7450,12 +7857,14 @@ components:
           jira:
             issue_id: value
         created_at: 2000-01-23T04:56:07.000+00:00
-        scheduled_for: 2000-01-23T04:56:07.000+00:00
+        scheduled_for: 2013-05-07T03:00:00.007Z
         postmortem_published_at: true
         page_id: page_id
         updated_at: 2000-01-23T04:56:07.000+00:00
-        id: pgwm2qmd8b2m
+        auto_transition_to_maintenance_state: true
+        id: p31zjtct2jer
         scheduled_auto_completed: true
+        auto_transition_deliver_notifications_at_start: true
         shortlink: http://stspg.io/803310a12
         impact_override: minor
         scheduled_remind_prior: true
@@ -7478,6 +7887,7 @@ components:
           the migration will be performed in the coming weeks. We will notify our clients of the scheduled downtime via an
           incident on this status site, and via a blog post.
         postmortem_body_last_updated_at: 2000-01-23T04:56:07.000+00:00
+        auto_transition_to_operational_state: true
         postmortem_notified_twitter: true
         postmortem_notified_subscribers: true
         resolved_at: 2000-01-23T04:56:07.000+00:00
@@ -7526,13 +7936,14 @@ components:
           id: id
           twitter_updated_at: 2000-01-23T04:56:07.000+00:00
           status: investigating
-        scheduled_until: 2000-01-23T04:56:07.000+00:00
+        auto_transition_deliver_notifications_at_end: true
+        scheduled_until: 2013-05-07T06:00:00.007Z
         scheduled_reminded_at: 2000-01-23T04:56:07.000+00:00
         status: scheduled
       properties:
         id:
           description: Incident Identifier
-          example: pgwm2qmd8b2m
+          example: p31zjtct2jer
           type: string
         components:
           description: Incident components
@@ -7545,10 +7956,22 @@ components:
           type: string
         impact:
           description: The impact of the incident.
+          enum:
+          - none
+          - maintenance
+          - minor
+          - major
+          - critical
           example: critical
           type: string
         impact_override:
           description: value to override calculated impact value
+          enum:
+          - none
+          - maintenance
+          - minor
+          - major
+          - critical
           example: minor
           type: string
         incident_updates:
@@ -7562,13 +7985,13 @@ components:
           example:
             jira:
               issue_id: value
-          type: object
+          type: Object
         monitoring_at:
           description: The timestamp when incident entered monitoring state.
           format: date-time
           type: string
         name:
-          description: Incident Name
+          description: Incident Name. There is a maximum limit of 255 characters.
           example: Data Layer Migration
           type: string
         page_id:
@@ -7625,8 +8048,25 @@ components:
           type: boolean
         scheduled_for:
           description: The timestamp the incident is scheduled for.
+          example: 2013-05-07T03:00:00.007Z
           format: date-time
           type: string
+        auto_transition_deliver_notifications_at_end:
+          description: Controls whether send notification when scheduled maintenances
+            auto transition to completed.
+          type: boolean
+        auto_transition_deliver_notifications_at_start:
+          description: Controls whether send notification when scheduled maintenances
+            auto transition to started.
+          type: boolean
+        auto_transition_to_maintenance_state:
+          description: Controls whether change components status to under_maintenance
+            once scheduled maintenance is in progress.
+          type: boolean
+        auto_transition_to_operational_state:
+          description: Controls whether change components status to operational once
+            scheduled maintenance completes.
+          type: boolean
         scheduled_remind_prior:
           description: Controls whether to remind subscribers prior to scheduled incidents.
           type: boolean
@@ -7637,6 +8077,7 @@ components:
           type: string
         scheduled_until:
           description: The timestamp the incident is scheduled until.
+          example: 2013-05-07T06:00:00.007Z
           format: date-time
           type: string
         shortlink:
@@ -7916,6 +8357,9 @@ components:
     postPagesPageIdComponentGroups:
       description: Create a component group
       properties:
+        description:
+          description: Description of the component group.
+          type: string
         component_group:
           $ref: '#/components/schemas/postPagesPageIdComponentGroups_component_group'
       type: object
@@ -7928,12 +8372,12 @@ components:
         name: API Components
         description: description
         created_at: 2000-01-23T04:56:07.000+00:00
-        id: vrsym7gr0rj6
+        id: j6r0t80d2psz
         position: position
       properties:
         id:
           description: Component Group Identifier
-          example: vrsym7gr0rj6
+          example: j6r0t80d2psz
           type: string
         page_id:
           type: string
@@ -7944,12 +8388,9 @@ components:
           type: string
         components:
           example: '["abc123","abc124"]'
-          items:
-            type: string
-          type: array
+          type: string
         position:
-          format: int32
-          type: integer
+          type: string
         created_at:
           format: date-time
           type: string
@@ -8116,8 +8557,8 @@ components:
           format: date-time
           type: string
         page_id:
-          format: string
-          type: string
+          format: int32
+          type: integer
       type: object
     postPagesPageIdMetricsProviders:
       description: Create a metric provider
@@ -8184,6 +8625,29 @@ components:
         status_embed_config:
           $ref: '#/components/schemas/patchPagesPageIdStatusEmbedConfig_status_embed_config'
       type: object
+    putOrganizationsOrganizationIdPermissions:
+      description: |-
+        Update a user's role permissions. Payload should contain a mapping of pages to a set of the desired roles,
+                          if the page has Role Based Access Control. Otherwise, the pages should map to an empty hash.
+                          User will lose access to any pages omitted from the payload.
+      properties:
+        pages:
+          $ref: '#/components/schemas/putOrganizationsOrganizationIdPermissions_pages'
+      type: object
+    Permissions:
+      description: Get a user's permissions
+      example:
+        data:
+          pages:
+            page_id: page_id
+            page_configuration: true
+            incident_manager: true
+            maintenance_manager: true
+          user_id: user_id
+      properties:
+        data:
+          $ref: '#/components/schemas/Permissions_data'
+      type: object
     User:
       description: Get a list of users
       example:
@@ -8223,16 +8687,7 @@ components:
       required:
       - user
       type: object
-    body:
-      properties:
-        component_ids:
-          description: List of components codes to remove.  If omitted, all components
-            will be removed.
-          items:
-            type: string
-          type: array
-      type: object
-    body_1:
+    inline_object:
       properties:
         page_access_user_ids:
           description: List of page access users to add to component
@@ -8318,6 +8773,7 @@ components:
           type: boolean
         allow_rss_atom_feeds:
           description: Can your users choose to access incident feeds via RSS/Atom
+            (not functional on Audience-Specific pages)
           type: boolean
         allow_webhook_subscribers:
           description: Can your users choose to receive notifications via Webhooks
@@ -8333,6 +8789,7 @@ components:
           description: Allows you to customize the footer appearing on your notification
             emails.  Accepts Markdown for formatting
           type: string
+      type: object
     postPagesPageIdPageAccessUsers_page_access_user:
       properties:
         external_login:
@@ -8346,6 +8803,7 @@ components:
           type: array
         subscribe_to_components:
           type: boolean
+      type: object
     postPagesPageIdPageAccessGroups_page_access_group:
       properties:
         name:
@@ -8366,6 +8824,7 @@ components:
           items:
             type: string
           type: array
+      type: object
     postPagesPageIdSubscribers_subscriber:
       properties:
         email:
@@ -8399,6 +8858,7 @@ components:
           items:
             type: string
           type: array
+      type: object
     postPagesPageIdIncidentTemplates_template:
       properties:
         name:
@@ -8440,13 +8900,32 @@ components:
         component_ids:
           description: List of component_ids affected by this incident
           items:
-            default: 4mphs8wm6f98
+            default: t0s5rgf538zf
             type: string
           type: array
+      required:
+      - body
+      - name
+      - title
+      type: object
+    postPagesPageIdIncidents_incident_components:
+      description: Map of status changes to apply to affected components
+      properties:
+        component_id:
+          description: Map of status changes to apply to affected components
+          enum:
+          - operational
+          - under_maintenance
+          - degraded_performance
+          - partial_outage
+          - major_outage
+          - ""
+          type: string
+      type: object
     postPagesPageIdIncidents_incident:
       properties:
         name:
-          description: Incident Name
+          description: Incident Name. There is a maximum limit of 255 characters.
           type: string
         status:
           description: The incident status. For realtime incidents, valid values are
@@ -8465,22 +8944,32 @@ components:
         impact_override:
           description: value to override calculated impact value
           enum:
-          - critical
           - none
           - maintenance
-          - major
           - minor
+          - major
+          - critical
           type: string
         scheduled_for:
+          default: 2013-05-07T03:00:00.007Z
           description: The timestamp the incident is scheduled for.
           format: date-time
           type: string
         scheduled_until:
+          default: 2013-05-07T06:00:00.007Z
           description: The timestamp the incident is scheduled until.
           format: date-time
           type: string
         scheduled_remind_prior:
           description: Controls whether to remind subscribers prior to scheduled incidents.
+          type: boolean
+        auto_transition_to_maintenance_state:
+          description: Controls whether change components status to under_maintenance
+            once scheduled maintenance is in progress.
+          type: boolean
+        auto_transition_to_operational_state:
+          description: Controls whether change components status to operational once
+            scheduled maintenance completes.
           type: boolean
         scheduled_auto_in_progress:
           description: Controls whether the incident is scheduled to automatically
@@ -8490,6 +8979,14 @@ components:
           description: Controls whether the incident is scheduled to automatically
             change to complete.
           type: boolean
+        auto_transition_deliver_notifications_at_start:
+          description: Controls whether send notification when scheduled maintenances
+            auto transition to started.
+          type: boolean
+        auto_transition_deliver_notifications_at_end:
+          description: Controls whether send notification when scheduled maintenances
+            auto transition to completed.
+          type: boolean
         metadata:
           description: Attach a json object to the incident. All top-level values
             in the object must also be objects.
@@ -8498,22 +8995,6 @@ components:
           default: true
           description: Deliver notifications to subscribers if this is true. If this
             is false, create an incident without notifying customers.
-          type: boolean
-        auto_transition_deliver_notifications_at_end:
-          description: Controls whether send notification when scheduled maintenances
-            auto transition to completed.
-          type: boolean
-        auto_transition_deliver_notifications_at_start:
-          description: Controls whether send notification when scheduled maintenances
-            auto transition to started.
-          type: boolean
-        auto_transition_to_maintenance_state:
-          description: Controls whether change components status to under_maintenance
-            once scheduled maintenance is in progress.
-          type: boolean
-        auto_transition_to_operational_state:
-          description: Controls whether change components status to operational once
-            scheduled maintenance completes.
           type: boolean
         auto_tweet_at_beginning:
           description: Controls whether tweet automatically when scheduled maintenance
@@ -8540,24 +9021,27 @@ components:
           type: boolean
         body:
           description: The initial message, created as the first incident update.
+            There is a maximum limit of 25000 characters
           type: string
         components:
-          description: Map of status changes to apply to affected components
-          type: object
+          $ref: '#/components/schemas/postPagesPageIdIncidents_incident_components'
         component_ids:
           description: List of component_ids affected by this incident
           items:
-            default: 3j5yrf9ntzq3
+            default: 0frwxtbsbr91
             type: string
           type: array
         scheduled_auto_transition:
           description: Same as :scheduled_auto_transition_in_progress. Controls whether
             the incident is scheduled to automatically change to in progress.
           type: boolean
+      required:
+      - name
+      type: object
     patchPagesPageIdIncidents_incident:
       properties:
         name:
-          description: Incident Name
+          description: Incident Name. There is a maximum limit of 255 characters.
           type: string
         status:
           description: The incident status. For realtime incidents, valid values are
@@ -8576,11 +9060,11 @@ components:
         impact_override:
           description: value to override calculated impact value
           enum:
-          - critical
           - none
           - maintenance
-          - major
           - minor
+          - major
+          - critical
           type: string
         scheduled_for:
           description: The timestamp the incident is scheduled for.
@@ -8593,6 +9077,14 @@ components:
         scheduled_remind_prior:
           description: Controls whether to remind subscribers prior to scheduled incidents.
           type: boolean
+        auto_transition_to_maintenance_state:
+          description: Controls whether change components status to under_maintenance
+            once scheduled maintenance is in progress.
+          type: boolean
+        auto_transition_to_operational_state:
+          description: Controls whether change components status to operational once
+            scheduled maintenance completes.
+          type: boolean
         scheduled_auto_in_progress:
           description: Controls whether the incident is scheduled to automatically
             change to in progress.
@@ -8600,6 +9092,14 @@ components:
         scheduled_auto_completed:
           description: Controls whether the incident is scheduled to automatically
             change to complete.
+          type: boolean
+        auto_transition_deliver_notifications_at_start:
+          description: Controls whether send notification when scheduled maintenances
+            auto transition to started.
+          type: boolean
+        auto_transition_deliver_notifications_at_end:
+          description: Controls whether send notification when scheduled maintenances
+            auto transition to completed.
           type: boolean
         metadata:
           description: Attach a json object to the incident. All top-level values
@@ -8609,22 +9109,6 @@ components:
           default: true
           description: Deliver notifications to subscribers if this is true. If this
             is false, create an incident without notifying customers.
-          type: boolean
-        auto_transition_deliver_notifications_at_end:
-          description: Controls whether send notification when scheduled maintenances
-            auto transition to completed.
-          type: boolean
-        auto_transition_deliver_notifications_at_start:
-          description: Controls whether send notification when scheduled maintenances
-            auto transition to started.
-          type: boolean
-        auto_transition_to_maintenance_state:
-          description: Controls whether change components status to under_maintenance
-            once scheduled maintenance is in progress.
-          type: boolean
-        auto_transition_to_operational_state:
-          description: Controls whether change components status to operational once
-            scheduled maintenance completes.
           type: boolean
         auto_tweet_at_beginning:
           description: Controls whether tweet automatically when scheduled maintenance
@@ -8651,20 +9135,21 @@ components:
           type: boolean
         body:
           description: The initial message, created as the first incident update.
+            There is a maximum limit of 25000 characters
           type: string
         components:
-          description: Map of status changes to apply to affected components
-          type: object
+          $ref: '#/components/schemas/postPagesPageIdIncidents_incident_components'
         component_ids:
           description: List of component_ids affected by this incident
           items:
-            default: ny8m3m1c279r
+            default: xnkj99tp4jzc
             type: string
           type: array
         scheduled_auto_transition:
           description: Same as :scheduled_auto_transition_in_progress. Controls whether
             the incident is scheduled to automatically change to in progress.
           type: boolean
+      type: object
     patchPagesPageIdIncidentsIncidentIdIncidentUpdates_incident_update:
       properties:
         wants_twitter_update:
@@ -8680,6 +9165,7 @@ components:
         deliver_notifications:
           description: Controls whether to delivery notifications.
           type: boolean
+      type: object
     postPagesPageIdIncidentsIncidentIdSubscribers_subscriber:
       properties:
         email:
@@ -8699,11 +9185,15 @@ components:
             will be automatically opted in. This option is only available for paid
             pages. This option has no effect for trial customers.
           type: boolean
+      type: object
     putPagesPageIdIncidentsIncidentIdPostmortem_postmortem:
       properties:
         body_draft:
           description: Body of Postmortem to create.
           type: string
+      required:
+      - body_draft
+      type: object
     putPagesPageIdIncidentsIncidentIdPostmortemPublish_postmortem:
       properties:
         notify_twitter:
@@ -8715,6 +9205,7 @@ components:
         custom_tweet:
           description: Custom postmortem tweet to publish
           type: string
+      type: object
     postPagesPageIdComponents_component:
       properties:
         description:
@@ -8746,6 +9237,7 @@ components:
           description: The date this component started being used
           format: date
           type: string
+      type: object
     ComponentUptime_related_events:
       description: Related incidents
       example:
@@ -8754,6 +9246,7 @@ components:
         id:
           description: Incident identifier
           type: string
+      type: object
     postPagesPageIdComponentGroups_component_group:
       properties:
         components:
@@ -8762,9 +9255,10 @@ components:
           type: array
         name:
           type: string
-        description:
-          description: Description of the component group.
-          type: string
+      required:
+      - components
+      - name
+      type: object
     ComponentGroupUptime_related_events:
       description: Related incidents by component
       example:
@@ -8777,6 +9271,7 @@ components:
           type: string
         incidents:
           $ref: '#/components/schemas/ComponentUptime_related_events'
+      type: object
     MetricAddResponse_metric_id:
       example:
         value: 6.0274563
@@ -8788,6 +9283,7 @@ components:
         value:
           format: float
           type: number
+      type: object
     patchPagesPageIdMetrics_metric:
       properties:
         name:
@@ -8797,6 +9293,7 @@ components:
           description: Metric Display identifier used to look up the metric data from
             the provider
           type: string
+      type: object
     postPagesPageIdMetricsMetricIdData_data:
       properties:
         timestamp:
@@ -8806,6 +9303,7 @@ components:
         value:
           format: float
           type: number
+      type: object
     postPagesPageIdMetricsProviders_metrics_provider:
       properties:
         email:
@@ -8828,12 +9326,14 @@ components:
         metric_base_uri:
           description: Required by the Datadog and NewRelic type metrics providers.
           type: string
+      type: object
     patchPagesPageIdMetricsProviders_metrics_provider:
       properties:
         type:
           type: string
         metric_base_uri:
           type: string
+      type: object
     postPagesPageIdMetricsProvidersMetricsProviderIdMetrics_metric:
       properties:
         name:
@@ -8869,6 +9369,7 @@ components:
           type: integer
         tooltip_description:
           type: string
+      type: object
     patchPagesPageIdStatusEmbedConfig_status_embed_config:
       properties:
         position:
@@ -8886,6 +9387,66 @@ components:
         maintenance_text_color:
           description: Color of status embed iframe text when displaying maintenance
           type: string
+      type: object
+    putOrganizationsOrganizationIdPermissions_pages_page_id:
+      properties:
+        page_configuration:
+          description: Whether or not user should have page configuration role. This
+            field will only be present for pages with Role Based Access Control.
+          type: boolean
+        incident_manager:
+          description: Whether or not user should have incident manager role. This
+            field will only be present for pages with Role Based Access Control.
+          type: boolean
+        maintenance_manager:
+          description: Whether or not user should have maintenance manager role. This
+            field will only be present for pages with Role Based Access Control.
+          type: boolean
+      type: object
+    putOrganizationsOrganizationIdPermissions_pages:
+      properties:
+        page_id:
+          $ref: '#/components/schemas/putOrganizationsOrganizationIdPermissions_pages_page_id'
+      type: object
+    Permissions_data_pages:
+      description: Pages accessible by the user.
+      example:
+        page_id: page_id
+        page_configuration: true
+        incident_manager: true
+        maintenance_manager: true
+      properties:
+        page_id:
+          description: Page identifier
+          type: string
+        page_configuration:
+          description: User has page configuration role. This field will only be present
+            if the organization has Role Based Access Control.
+          type: boolean
+        incident_manager:
+          description: User has incident manager role. This field will only be present
+            if the organization has Role Based Access Control.
+          type: boolean
+        maintenance_manager:
+          description: User has maintenance manager role. This field will only be
+            present if the organization has Role Based Access Control.
+          type: boolean
+      type: object
+    Permissions_data:
+      example:
+        pages:
+          page_id: page_id
+          page_configuration: true
+          incident_manager: true
+          maintenance_manager: true
+        user_id: user_id
+      properties:
+        user_id:
+          description: User identifier
+          type: string
+        pages:
+          $ref: '#/components/schemas/Permissions_data_pages'
+      type: object
     postOrganizationsOrganizationIdUsers_user:
       properties:
         email:
@@ -8898,6 +9459,7 @@ components:
           type: string
         last_name:
           type: string
+      type: object
   securitySchemes:
     api_key:
       description: |

@@ -36,7 +36,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.StatusEmbedConfigApi.GetPagesPageIdStatusEmbedConfig(context.Background(), pageId).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `StatusEmbedConfigApi.GetPagesPageIdStatusEmbedConfig``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -107,7 +107,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.StatusEmbedConfigApi.PatchPagesPageIdStatusEmbedConfig(context.Background(), pageId).PatchPagesPageIdStatusEmbedConfig(patchPagesPageIdStatusEmbedConfig).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `StatusEmbedConfigApi.PatchPagesPageIdStatusEmbedConfig``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -179,7 +179,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.StatusEmbedConfigApi.PutPagesPageIdStatusEmbedConfig(context.Background(), pageId).PutPagesPageIdStatusEmbedConfig(putPagesPageIdStatusEmbedConfig).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `StatusEmbedConfigApi.PutPagesPageIdStatusEmbedConfig``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }

@@ -39,7 +39,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.IncidentPostmortemApi.DeletePagesPageIdIncidentsIncidentIdPostmortem(context.Background(), pageId, incidentId).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentPostmortemApi.DeletePagesPageIdIncidentsIncidentIdPostmortem``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -110,7 +110,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.IncidentPostmortemApi.GetPagesPageIdIncidentsIncidentIdPostmortem(context.Background(), pageId, incidentId).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentPostmortemApi.GetPagesPageIdIncidentsIncidentIdPostmortem``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -184,7 +184,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.IncidentPostmortemApi.PutPagesPageIdIncidentsIncidentIdPostmortem(context.Background(), pageId, incidentId).PutPagesPageIdIncidentsIncidentIdPostmortem(putPagesPageIdIncidentsIncidentIdPostmortem).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentPostmortemApi.PutPagesPageIdIncidentsIncidentIdPostmortem``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -259,7 +259,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.IncidentPostmortemApi.PutPagesPageIdIncidentsIncidentIdPostmortemPublish(context.Background(), pageId, incidentId).PutPagesPageIdIncidentsIncidentIdPostmortemPublish(putPagesPageIdIncidentsIncidentIdPostmortemPublish).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentPostmortemApi.PutPagesPageIdIncidentsIncidentIdPostmortemPublish``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -333,7 +333,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.IncidentPostmortemApi.PutPagesPageIdIncidentsIncidentIdPostmortemRevert(context.Background(), pageId, incidentId).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentPostmortemApi.PutPagesPageIdIncidentsIncidentIdPostmortemRevert``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
