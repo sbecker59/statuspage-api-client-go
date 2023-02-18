@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IncidentUpdate** | Pointer to [**PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate**](patchPagesPageIdIncidentsIncidentIdIncidentUpdates_incident_update.md) |  | [optional] 
+**IncidentUpdate** | Pointer to [**PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate**](PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate.md) |  | [optional] 
 
 ## Methods
 

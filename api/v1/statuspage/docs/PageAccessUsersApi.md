@@ -40,7 +40,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.PageAccessUsersApi.DeletePagesPageIdPageAccessUsersPageAccessUserId(context.Background(), pageId, pageAccessUserId).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUsersApi.DeletePagesPageIdPageAccessUsersPageAccessUserId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 ## GetPagesPageIdPageAccessUsers
 
-> []PageAccessUser GetPagesPageIdPageAccessUsers(ctx, pageId).Email(email).Execute()
+> []PageAccessUser GetPagesPageIdPageAccessUsers(ctx, pageId).Email(email).Page(page).PerPage(perPage).Execute()
 
 Get a list of page access users
 
@@ -107,11 +107,13 @@ import (
 func main() {
     pageId := "pageId_example" // string | Page identifier
     email := "email_example" // string | Email address to search for (optional)
+    page := int32(56) // int32 | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. (optional)
+    perPage := int32(56) // int32 | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PageAccessUsersApi.GetPagesPageIdPageAccessUsers(context.Background(), pageId).Email(email).Execute()
-    if err.Error() != "" {
+    resp, r, err := api_client.PageAccessUsersApi.GetPagesPageIdPageAccessUsers(context.Background(), pageId).Email(email).Page(page).PerPage(perPage).Execute()
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUsersApi.GetPagesPageIdPageAccessUsers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -137,6 +139,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **email** | **string** | Email address to search for | 
+ **page** | **int32** | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. | 
+ **perPage** | **int32** | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. | 
 
 ### Return type
 
@@ -183,7 +187,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.PageAccessUsersApi.GetPagesPageIdPageAccessUsersPageAccessUserId(context.Background(), pageId, pageAccessUserId).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUsersApi.GetPagesPageIdPageAccessUsersPageAccessUserId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -256,7 +260,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.PageAccessUsersApi.PatchPagesPageIdPageAccessUsersPageAccessUserId(context.Background(), pageId, pageAccessUserId).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUsersApi.PatchPagesPageIdPageAccessUsersPageAccessUserId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -329,7 +333,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.PageAccessUsersApi.PostPagesPageIdPageAccessUsers(context.Background(), pageId).PostPagesPageIdPageAccessUsers(postPagesPageIdPageAccessUsers).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUsersApi.PostPagesPageIdPageAccessUsers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -401,7 +405,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.PageAccessUsersApi.PutPagesPageIdPageAccessUsersPageAccessUserId(context.Background(), pageId, pageAccessUserId).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUsersApi.PutPagesPageIdPageAccessUsersPageAccessUserId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }

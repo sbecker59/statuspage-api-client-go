@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**MetricAddResponseMetricId**](MetricAddResponse_metric_id.md) |  | [optional] 
+**Data** | Pointer to [**MetricAddResponseMetricId**](MetricAddResponseMetricId.md) |  | [optional] 
 
 ## Methods
 

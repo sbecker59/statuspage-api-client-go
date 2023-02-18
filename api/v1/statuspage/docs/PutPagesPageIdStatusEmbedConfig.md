@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**StatusEmbedConfig** | Pointer to [**PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig**](patchPagesPageIdStatusEmbedConfig_status_embed_config.md) |  | [optional] 
+**StatusEmbedConfig** | Pointer to [**PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig**](PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig.md) |  | [optional] 
 
 ## Methods
 

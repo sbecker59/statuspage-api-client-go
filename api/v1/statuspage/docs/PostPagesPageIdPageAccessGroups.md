@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PageAccessGroup** | Pointer to [**PostPagesPageIdPageAccessGroupsPageAccessGroup**](postPagesPageIdPageAccessGroups_page_access_group.md) |  | [optional] 
+**PageAccessGroup** | Pointer to [**PostPagesPageIdPageAccessGroupsPageAccessGroup**](PostPagesPageIdPageAccessGroupsPageAccessGroup.md) |  | [optional] 
 
 ## Methods
 

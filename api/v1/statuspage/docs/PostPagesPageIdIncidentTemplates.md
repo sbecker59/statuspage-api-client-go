@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Template** | Pointer to [**PostPagesPageIdIncidentTemplatesTemplate**](postPagesPageIdIncidentTemplates_template.md) |  | [optional] 
+**Template** | Pointer to [**PostPagesPageIdIncidentTemplatesTemplate**](PostPagesPageIdIncidentTemplatesTemplate.md) |  | [optional] 
 
 ## Methods
 

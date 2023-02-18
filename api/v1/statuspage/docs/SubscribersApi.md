@@ -47,7 +47,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.SubscribersApi.DeletePagesPageIdSubscribersSubscriberId(context.Background(), pageId, subscriberId).SkipUnsubscriptionNotification(skipUnsubscriptionNotification).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscribersApi.DeletePagesPageIdSubscribersSubscriberId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -119,15 +119,15 @@ func main() {
     q := "q_example" // string | If this is specified, search the contact information (email, endpoint, or phone number) for the provided value. This parameter doesn’t support searching for Slack subscribers. (optional)
     type_ := "type__example" // string | If specified, only return subscribers of the indicated type. (optional)
     state := "state_example" // string | If this is present, only return subscribers in this state. Specify state \"all\" to find subscribers in any states. (optional) (default to "active")
-    limit := int32(56) // int32 | The maximum number of rows to return. If a text query string is specified (q=), the default and maximum limit is 100. If the text query string is not specified, the default and maximum limit are not set, and not providing a limit will return all the subscribers. (optional)
-    page := int32(56) // int32 | The page offset of subscribers. The first page is page 0, the second page 1, etc. This skips page * limit subscribers. (optional) (default to 0)
+    limit := int32(56) // int32 | The maximum number of rows to return. If a text query string is specified (q=), the default and maximum limit is 100. If the text query string is not specified, the default and maximum limit are not set, and not providing a limit will return all the subscribers. Beginning February 28, 2023, a default limit of 100 will be imposed and this endpoint will return paginated data (i.e. will no longer return all subscribers) even if this query parameter is not provided. (optional)
+    page := int32(56) // int32 | The page offset of subscribers. The first page is page 0, the second page 1, etc. This skips page * limit subscribers. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. (optional) (default to 0)
     sortField := "sortField_example" // string | The field on which to sort: 'primary' to indicate sorting by the identifying field, 'created_at' for sorting by creation timestamp, 'quarantined_at' for sorting by quarantine timestamp, and 'relevance' which sorts by the relevancy of the search text. 'relevance' is not a valid parameter if no search text is supplied. (optional) (default to "primary")
     sortDirection := "sortDirection_example" // string | The sort direction of the listing. (optional) (default to "asc")
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.SubscribersApi.GetPagesPageIdSubscribers(context.Background(), pageId).Q(q).Type_(type_).State(state).Limit(limit).Page(page).SortField(sortField).SortDirection(sortDirection).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscribersApi.GetPagesPageIdSubscribers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -155,8 +155,8 @@ Name | Type | Description  | Notes
  **q** | **string** | If this is specified, search the contact information (email, endpoint, or phone number) for the provided value. This parameter doesn’t support searching for Slack subscribers. | 
  **type_** | **string** | If specified, only return subscribers of the indicated type. | 
  **state** | **string** | If this is present, only return subscribers in this state. Specify state \&quot;all\&quot; to find subscribers in any states. | [default to &quot;active&quot;]
- **limit** | **int32** | The maximum number of rows to return. If a text query string is specified (q&#x3D;), the default and maximum limit is 100. If the text query string is not specified, the default and maximum limit are not set, and not providing a limit will return all the subscribers. | 
- **page** | **int32** | The page offset of subscribers. The first page is page 0, the second page 1, etc. This skips page * limit subscribers. | [default to 0]
+ **limit** | **int32** | The maximum number of rows to return. If a text query string is specified (q&#x3D;), the default and maximum limit is 100. If the text query string is not specified, the default and maximum limit are not set, and not providing a limit will return all the subscribers. Beginning February 28, 2023, a default limit of 100 will be imposed and this endpoint will return paginated data (i.e. will no longer return all subscribers) even if this query parameter is not provided. | 
+ **page** | **int32** | The page offset of subscribers. The first page is page 0, the second page 1, etc. This skips page * limit subscribers. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. | [default to 0]
  **sortField** | **string** | The field on which to sort: &#39;primary&#39; to indicate sorting by the identifying field, &#39;created_at&#39; for sorting by creation timestamp, &#39;quarantined_at&#39; for sorting by quarantine timestamp, and &#39;relevance&#39; which sorts by the relevancy of the search text. &#39;relevance&#39; is not a valid parameter if no search text is supplied. | [default to &quot;primary&quot;]
  **sortDirection** | **string** | The sort direction of the listing. | [default to &quot;asc&quot;]
 
@@ -206,7 +206,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.SubscribersApi.GetPagesPageIdSubscribersCount(context.Background(), pageId).Type_(type_).State(state).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscribersApi.GetPagesPageIdSubscribersCount``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -278,7 +278,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.SubscribersApi.GetPagesPageIdSubscribersHistogramByState(context.Background(), pageId).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscribersApi.GetPagesPageIdSubscribersHistogramByState``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -349,7 +349,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.SubscribersApi.GetPagesPageIdSubscribersSubscriberId(context.Background(), pageId, subscriberId).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscribersApi.GetPagesPageIdSubscribersSubscriberId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -397,7 +397,7 @@ Name | Type | Description  | Notes
 
 ## GetPagesPageIdSubscribersUnsubscribed
 
-> []Subscriber GetPagesPageIdSubscribersUnsubscribed(ctx, pageId).Execute()
+> []Subscriber GetPagesPageIdSubscribersUnsubscribed(ctx, pageId).Page(page).PerPage(perPage).Execute()
 
 Get a list of unsubscribed subscribers
 
@@ -417,11 +417,13 @@ import (
 
 func main() {
     pageId := "pageId_example" // string | Page identifier
+    page := int32(56) // int32 | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. (optional)
+    perPage := int32(56) // int32 | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscribersApi.GetPagesPageIdSubscribersUnsubscribed(context.Background(), pageId).Execute()
-    if err.Error() != "" {
+    resp, r, err := api_client.SubscribersApi.GetPagesPageIdSubscribersUnsubscribed(context.Background(), pageId).Page(page).PerPage(perPage).Execute()
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscribersApi.GetPagesPageIdSubscribersUnsubscribed``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -446,6 +448,8 @@ Other parameters are passed through a pointer to a apiGetPagesPageIdSubscribersU
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **page** | **int32** | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. | 
+ **perPage** | **int32** | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. | 
 
 ### Return type
 
@@ -493,7 +497,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.SubscribersApi.PatchPagesPageIdSubscribersSubscriberId(context.Background(), pageId, subscriberId).PatchPagesPageIdSubscribers(patchPagesPageIdSubscribers).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscribersApi.PatchPagesPageIdSubscribersSubscriberId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -567,7 +571,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.SubscribersApi.PostPagesPageIdSubscribers(context.Background(), pageId).PostPagesPageIdSubscribers(postPagesPageIdSubscribers).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscribersApi.PostPagesPageIdSubscribers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -639,7 +643,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.SubscribersApi.PostPagesPageIdSubscribersReactivate(context.Background(), pageId).PostPagesPageIdSubscribersReactivate(postPagesPageIdSubscribersReactivate).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscribersApi.PostPagesPageIdSubscribersReactivate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -709,7 +713,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.SubscribersApi.PostPagesPageIdSubscribersResendConfirmation(context.Background(), pageId).PostPagesPageIdSubscribersResendConfirmation(postPagesPageIdSubscribersResendConfirmation).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscribersApi.PostPagesPageIdSubscribersResendConfirmation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -779,7 +783,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.SubscribersApi.PostPagesPageIdSubscribersSubscriberIdResendConfirmation(context.Background(), pageId, subscriberId).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscribersApi.PostPagesPageIdSubscribersSubscriberIdResendConfirmation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -850,7 +854,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.SubscribersApi.PostPagesPageIdSubscribersUnsubscribe(context.Background(), pageId).PostPagesPageIdSubscribersUnsubscribe(postPagesPageIdSubscribersUnsubscribe).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SubscribersApi.PostPagesPageIdSubscribersUnsubscribe``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }

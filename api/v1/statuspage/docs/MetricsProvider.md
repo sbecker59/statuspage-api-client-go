@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **LastRevalidatedAt** | Pointer to **time.Time** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
-**PageId** | Pointer to **string** |  | [optional] 
+**PageId** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
@@ -209,20 +209,20 @@ HasUpdatedAt returns a boolean if a field has been set.
 
 ### GetPageId
 
-`func (o *MetricsProvider) GetPageId() string`
+`func (o *MetricsProvider) GetPageId() int32`
 
 GetPageId returns the PageId field if non-nil, zero value otherwise.
 
 ### GetPageIdOk
 
-`func (o *MetricsProvider) GetPageIdOk() (*string, bool)`
+`func (o *MetricsProvider) GetPageIdOk() (*int32, bool)`
 
 GetPageIdOk returns a tuple with the PageId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPageId
 
-`func (o *MetricsProvider) SetPageId(v string)`
+`func (o *MetricsProvider) SetPageId(v int32)`
 
 SetPageId sets PageId field to given value.
 

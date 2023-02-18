@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Warnings** | Pointer to **string** | Warning messages related to the uptime query that may occur | [optional] 
 **Id** | Pointer to **string** | Component identifier | [optional] 
 **Name** | Pointer to **string** | Component display name | [optional] 
-**RelatedEvents** | Pointer to [**ComponentUptimeRelatedEvents**](ComponentUptime_related_events.md) |  | [optional] 
+**RelatedEvents** | Pointer to [**ComponentUptimeRelatedEvents**](ComponentUptimeRelatedEvents.md) |  | [optional] 
 
 ## Methods
 

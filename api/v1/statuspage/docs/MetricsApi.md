@@ -44,7 +44,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.MetricsApi.DeletePagesPageIdMetricsMetricId(context.Background(), pageId, metricId).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.DeletePagesPageIdMetricsMetricId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -117,7 +117,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.MetricsApi.DeletePagesPageIdMetricsMetricIdData(context.Background(), pageId, metricId).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.DeletePagesPageIdMetricsMetricIdData``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -165,7 +165,7 @@ Name | Type | Description  | Notes
 
 ## GetPagesPageIdMetrics
 
-> Metric GetPagesPageIdMetrics(ctx, pageId).Execute()
+> Metric GetPagesPageIdMetrics(ctx, pageId).Page(page).PerPage(perPage).Execute()
 
 Get a list of metrics
 
@@ -185,11 +185,13 @@ import (
 
 func main() {
     pageId := "pageId_example" // string | Page identifier
+    page := int32(56) // int32 | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. (optional)
+    perPage := int32(56) // int32 | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.GetPagesPageIdMetrics(context.Background(), pageId).Execute()
-    if err.Error() != "" {
+    resp, r, err := api_client.MetricsApi.GetPagesPageIdMetrics(context.Background(), pageId).Page(page).PerPage(perPage).Execute()
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.GetPagesPageIdMetrics``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -214,6 +216,8 @@ Other parameters are passed through a pointer to a apiGetPagesPageIdMetricsReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **page** | **int32** | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. | 
+ **perPage** | **int32** | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. | 
 
 ### Return type
 
@@ -260,7 +264,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.MetricsApi.GetPagesPageIdMetricsMetricId(context.Background(), pageId, metricId).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.GetPagesPageIdMetricsMetricId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -308,7 +312,7 @@ Name | Type | Description  | Notes
 
 ## GetPagesPageIdMetricsProvidersMetricsProviderIdMetrics
 
-> Metric GetPagesPageIdMetricsProvidersMetricsProviderIdMetrics(ctx, pageId, metricsProviderId).Execute()
+> Metric GetPagesPageIdMetricsProvidersMetricsProviderIdMetrics(ctx, pageId, metricsProviderId).Page(page).PerPage(perPage).Execute()
 
 List metrics for a metric provider
 
@@ -329,11 +333,13 @@ import (
 func main() {
     pageId := "pageId_example" // string | Page identifier
     metricsProviderId := "metricsProviderId_example" // string | Metric Provider Identifier
+    page := int32(56) // int32 | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. (optional)
+    perPage := int32(56) // int32 | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.GetPagesPageIdMetricsProvidersMetricsProviderIdMetrics(context.Background(), pageId, metricsProviderId).Execute()
-    if err.Error() != "" {
+    resp, r, err := api_client.MetricsApi.GetPagesPageIdMetricsProvidersMetricsProviderIdMetrics(context.Background(), pageId, metricsProviderId).Page(page).PerPage(perPage).Execute()
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.GetPagesPageIdMetricsProvidersMetricsProviderIdMetrics``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -360,6 +366,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **page** | **int32** | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. | 
+ **perPage** | **int32** | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. | 
 
 ### Return type
 
@@ -407,7 +415,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.MetricsApi.PatchPagesPageIdMetricsMetricId(context.Background(), pageId, metricId).PatchPagesPageIdMetrics(patchPagesPageIdMetrics).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.PatchPagesPageIdMetricsMetricId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -481,7 +489,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.MetricsApi.PostPagesPageIdMetricsData(context.Background(), pageId).PostPagesPageIdMetricsData(postPagesPageIdMetricsData).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.PostPagesPageIdMetricsData``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -554,7 +562,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.MetricsApi.PostPagesPageIdMetricsMetricIdData(context.Background(), pageId, metricId).PostPagesPageIdMetricsMetricIdData(postPagesPageIdMetricsMetricIdData).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.PostPagesPageIdMetricsMetricIdData``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -629,7 +637,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.MetricsApi.PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics(context.Background(), pageId, metricsProviderId).PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics(postPagesPageIdMetricsProvidersMetricsProviderIdMetrics).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -704,7 +712,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.MetricsApi.PutPagesPageIdMetricsMetricId(context.Background(), pageId, metricId).PutPagesPageIdMetrics(putPagesPageIdMetrics).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.PutPagesPageIdMetricsMetricId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }

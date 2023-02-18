@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Metric** | Pointer to [**PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric**](postPagesPageIdMetricsProvidersMetricsProviderIdMetrics_metric.md) |  | [optional] 
+**Metric** | Pointer to [**PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric**](PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric.md) |  | [optional] 
 
 ## Methods
 

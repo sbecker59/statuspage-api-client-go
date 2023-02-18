@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MetricsProvider** | Pointer to [**PatchPagesPageIdMetricsProvidersMetricsProvider**](patchPagesPageIdMetricsProviders_metrics_provider.md) |  | [optional] 
+**MetricsProvider** | Pointer to [**PatchPagesPageIdMetricsProvidersMetricsProvider**](PatchPagesPageIdMetricsProvidersMetricsProvider.md) |  | [optional] 
 
 ## Methods
 

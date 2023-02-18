@@ -40,7 +40,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.IncidentSubscribersApi.DeletePagesPageIdIncidentsIncidentIdSubscribersSubscriberId(context.Background(), pageId, incidentId, subscriberId).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentSubscribersApi.DeletePagesPageIdIncidentsIncidentIdSubscribersSubscriberId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 
 ## GetPagesPageIdIncidentsIncidentIdSubscribers
 
-> []Subscriber GetPagesPageIdIncidentsIncidentIdSubscribers(ctx, pageId, incidentId).Execute()
+> []Subscriber GetPagesPageIdIncidentsIncidentIdSubscribers(ctx, pageId, incidentId).Page(page).PerPage(perPage).Execute()
 
 Get a list of incident subscribers
 
@@ -111,11 +111,13 @@ import (
 func main() {
     pageId := "pageId_example" // string | Page identifier
     incidentId := "incidentId_example" // string | Incident Identifier
+    page := int32(56) // int32 | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. (optional)
+    perPage := int32(56) // int32 | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentSubscribersApi.GetPagesPageIdIncidentsIncidentIdSubscribers(context.Background(), pageId, incidentId).Execute()
-    if err.Error() != "" {
+    resp, r, err := api_client.IncidentSubscribersApi.GetPagesPageIdIncidentsIncidentIdSubscribers(context.Background(), pageId, incidentId).Page(page).PerPage(perPage).Execute()
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentSubscribersApi.GetPagesPageIdIncidentsIncidentIdSubscribers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -142,6 +144,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **page** | **int32** | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. | 
+ **perPage** | **int32** | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. | 
 
 ### Return type
 
@@ -189,7 +193,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.IncidentSubscribersApi.GetPagesPageIdIncidentsIncidentIdSubscribersSubscriberId(context.Background(), pageId, incidentId, subscriberId).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentSubscribersApi.GetPagesPageIdIncidentsIncidentIdSubscribersSubscriberId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -265,7 +269,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.IncidentSubscribersApi.PostPagesPageIdIncidentsIncidentIdSubscribers(context.Background(), pageId, incidentId).PostPagesPageIdIncidentsIncidentIdSubscribers(postPagesPageIdIncidentsIncidentIdSubscribers).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentSubscribersApi.PostPagesPageIdIncidentsIncidentIdSubscribers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -340,7 +344,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.IncidentSubscribersApi.PostPagesPageIdIncidentsIncidentIdSubscribersSubscriberIdResendConfirmation(context.Background(), pageId, incidentId, subscriberId).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentSubscribersApi.PostPagesPageIdIncidentsIncidentIdSubscribersSubscriberIdResendConfirmation``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }

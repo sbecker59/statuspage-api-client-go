@@ -41,7 +41,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.PageAccessGroupComponentsApi.DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents(context.Background(), pageId, pageAccessGroupId).DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents(deletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupComponentsApi.DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -116,7 +116,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.PageAccessGroupComponentsApi.DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponentsComponentId(context.Background(), pageId, pageAccessGroupId, componentId).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupComponentsApi.DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponentsComponentId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -166,7 +166,7 @@ Name | Type | Description  | Notes
 
 ## GetPagesPageIdPageAccessGroupsPageAccessGroupIdComponents
 
-> []Component GetPagesPageIdPageAccessGroupsPageAccessGroupIdComponents(ctx, pageId, pageAccessGroupId).Execute()
+> []Component GetPagesPageIdPageAccessGroupsPageAccessGroupIdComponents(ctx, pageId, pageAccessGroupId).Page(page).PerPage(perPage).Execute()
 
 List components for a page access group
 
@@ -187,11 +187,13 @@ import (
 func main() {
     pageId := "pageId_example" // string | Page identifier
     pageAccessGroupId := "pageAccessGroupId_example" // string | Page Access Group Identifier
+    page := int32(56) // int32 | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. (optional)
+    perPage := int32(56) // int32 | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PageAccessGroupComponentsApi.GetPagesPageIdPageAccessGroupsPageAccessGroupIdComponents(context.Background(), pageId, pageAccessGroupId).Execute()
-    if err.Error() != "" {
+    resp, r, err := api_client.PageAccessGroupComponentsApi.GetPagesPageIdPageAccessGroupsPageAccessGroupIdComponents(context.Background(), pageId, pageAccessGroupId).Page(page).PerPage(perPage).Execute()
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupComponentsApi.GetPagesPageIdPageAccessGroupsPageAccessGroupIdComponents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -218,6 +220,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+ **page** | **int32** | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. | 
+ **perPage** | **int32** | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. | 
 
 ### Return type
 
@@ -265,7 +269,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.PageAccessGroupComponentsApi.PatchPagesPageIdPageAccessGroupsPageAccessGroupIdComponents(context.Background(), pageId, pageAccessGroupId).PatchPagesPageIdPageAccessGroupsPageAccessGroupIdComponents(patchPagesPageIdPageAccessGroupsPageAccessGroupIdComponents).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupComponentsApi.PatchPagesPageIdPageAccessGroupsPageAccessGroupIdComponents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -340,7 +344,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.PageAccessGroupComponentsApi.PostPagesPageIdPageAccessGroupsPageAccessGroupIdComponents(context.Background(), pageId, pageAccessGroupId).PostPagesPageIdPageAccessGroupsPageAccessGroupIdComponents(postPagesPageIdPageAccessGroupsPageAccessGroupIdComponents).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupComponentsApi.PostPagesPageIdPageAccessGroupsPageAccessGroupIdComponents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -415,7 +419,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.PageAccessGroupComponentsApi.PutPagesPageIdPageAccessGroupsPageAccessGroupIdComponents(context.Background(), pageId, pageAccessGroupId).PutPagesPageIdPageAccessGroupsPageAccessGroupIdComponents(putPagesPageIdPageAccessGroupsPageAccessGroupIdComponents).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupComponentsApi.PutPagesPageIdPageAccessGroupsPageAccessGroupIdComponents``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }

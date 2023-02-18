@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Component** | Pointer to [**PostPagesPageIdComponentsComponent**](postPagesPageIdComponents_component.md) |  | [optional] 
+**Component** | Pointer to [**PostPagesPageIdComponentsComponent**](PostPagesPageIdComponentsComponent.md) |  | [optional] 
 
 ## Methods
 

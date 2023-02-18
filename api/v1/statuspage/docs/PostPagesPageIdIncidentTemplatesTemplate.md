@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | Name of the template, as shown in the list on the \&quot;Templates\&quot; tab of the \&quot;Incidents\&quot; page | [optional] 
-**Title** | Pointer to **string** | Title to be applied to the incident or maintenance when selecting this template | [optional] 
-**Body** | Pointer to **string** | The initial message, created as the first incident or maintenance update. | [optional] 
+**Name** | **string** | Name of the template, as shown in the list on the \&quot;Templates\&quot; tab of the \&quot;Incidents\&quot; page | 
+**Title** | **string** | Title to be applied to the incident or maintenance when selecting this template | 
+**Body** | **string** | The initial message, created as the first incident or maintenance update. | 
 **GroupId** | Pointer to **string** | Identifier of Template Group this template belongs to | [optional] 
 **UpdateStatus** | Pointer to **string** | The status the incident or maintenance should transition to when selecting this template | [optional] 
 **ShouldTweet** | Pointer to **bool** | Whether the \&quot;tweet update\&quot; checkbox should be selected when selecting this template | [optional] 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewPostPagesPageIdIncidentTemplatesTemplate
 
-`func NewPostPagesPageIdIncidentTemplatesTemplate() *PostPagesPageIdIncidentTemplatesTemplate`
+`func NewPostPagesPageIdIncidentTemplatesTemplate(name string, title string, body string, ) *PostPagesPageIdIncidentTemplatesTemplate`
 
 NewPostPagesPageIdIncidentTemplatesTemplate instantiates a new PostPagesPageIdIncidentTemplatesTemplate object
 This constructor will assign default values to properties that have it defined,
@@ -51,11 +51,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *PostPagesPageIdIncidentTemplatesTemplate) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### GetTitle
 
@@ -76,11 +71,6 @@ and a boolean to check if the value has been set.
 
 SetTitle sets Title field to given value.
 
-### HasTitle
-
-`func (o *PostPagesPageIdIncidentTemplatesTemplate) HasTitle() bool`
-
-HasTitle returns a boolean if a field has been set.
 
 ### GetBody
 
@@ -101,11 +91,6 @@ and a boolean to check if the value has been set.
 
 SetBody sets Body field to given value.
 
-### HasBody
-
-`func (o *PostPagesPageIdIncidentTemplatesTemplate) HasBody() bool`
-
-HasBody returns a boolean if a field has been set.
 
 ### GetGroupId
 

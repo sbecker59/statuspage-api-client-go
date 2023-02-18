@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Postmortem** | Pointer to [**PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem**](putPagesPageIdIncidentsIncidentIdPostmortemPublish_postmortem.md) |  | [optional] 
+**Postmortem** | Pointer to [**PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem**](PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem.md) |  | [optional] 
 
 ## Methods
 

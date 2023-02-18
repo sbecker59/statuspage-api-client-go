@@ -37,7 +37,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.TemplatesApi.GetPagesPageIdIncidentTemplates(context.Background(), pageId).Page(page).PerPage(perPage).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.GetPagesPageIdIncidentTemplates``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -110,7 +110,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.TemplatesApi.PostPagesPageIdIncidentTemplates(context.Background(), pageId).PostPagesPageIdIncidentTemplates(postPagesPageIdIncidentTemplates).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.PostPagesPageIdIncidentTemplates``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }

@@ -41,7 +41,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.ComponentGroupsApi.DeletePagesPageIdComponentGroupsId(context.Background(), pageId, id).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ComponentGroupsApi.DeletePagesPageIdComponentGroupsId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 
 ## GetPagesPageIdComponentGroups
 
-> []GroupComponent GetPagesPageIdComponentGroups(ctx, pageId).Execute()
+> []GroupComponent GetPagesPageIdComponentGroups(ctx, pageId).Page(page).PerPage(perPage).Execute()
 
 Get a list of component groups
 
@@ -109,11 +109,13 @@ import (
 
 func main() {
     pageId := "pageId_example" // string | Page identifier
+    page := int32(56) // int32 | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. (optional)
+    perPage := int32(56) // int32 | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ComponentGroupsApi.GetPagesPageIdComponentGroups(context.Background(), pageId).Execute()
-    if err.Error() != "" {
+    resp, r, err := api_client.ComponentGroupsApi.GetPagesPageIdComponentGroups(context.Background(), pageId).Page(page).PerPage(perPage).Execute()
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ComponentGroupsApi.GetPagesPageIdComponentGroups``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -138,6 +140,8 @@ Other parameters are passed through a pointer to a apiGetPagesPageIdComponentGro
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **page** | **int32** | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. | 
+ **perPage** | **int32** | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. | 
 
 ### Return type
 
@@ -184,7 +188,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.ComponentGroupsApi.GetPagesPageIdComponentGroupsId(context.Background(), pageId, id).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ComponentGroupsApi.GetPagesPageIdComponentGroupsId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -232,7 +236,7 @@ Name | Type | Description  | Notes
 
 ## GetPagesPageIdComponentGroupsIdUptime
 
-> ComponentGroupUptime GetPagesPageIdComponentGroupsIdUptime(ctx, pageId, id).Start(start).End(end).Execute()
+> ComponentGroupUptime GetPagesPageIdComponentGroupsIdUptime(ctx, pageId, id).Execute()
 
 Get uptime data for a component group
 
@@ -253,13 +257,11 @@ import (
 func main() {
     pageId := "pageId_example" // string | Page identifier
     id := "id_example" // string | Component group identifier
-    start := TODO // PartialStartDate | The start date for uptime calculation (defaults to the date of the component in the group with the earliest start_date, or 90 days ago, whichever is more recent). The maximum supported date range is six calendar months. If the year is given, the date defaults to the first day of the year. If the year and month are given, the start date defaults to the first day of that month. The earliest supported date is January 1, 1970.  (optional)
-    end := TODO // PartialEndDate | The end date for uptime calculation (defaults to today in the page's time zone). The maximum supported date range is six calendar months. If the year is given, the date defaults to the last day of the year. If the year and month are given, the date defaults to the last day of that month. The earliest supported date is January 1, 1970.  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.ComponentGroupsApi.GetPagesPageIdComponentGroupsIdUptime(context.Background(), pageId, id).Start(start).End(end).Execute()
-    if err.Error() != "" {
+    resp, r, err := api_client.ComponentGroupsApi.GetPagesPageIdComponentGroupsIdUptime(context.Background(), pageId, id).Execute()
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ComponentGroupsApi.GetPagesPageIdComponentGroupsIdUptime``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -286,8 +288,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **start** | [**PartialStartDate**](PartialStartDate.md) | The start date for uptime calculation (defaults to the date of the component in the group with the earliest start_date, or 90 days ago, whichever is more recent). The maximum supported date range is six calendar months. If the year is given, the date defaults to the first day of the year. If the year and month are given, the start date defaults to the first day of that month. The earliest supported date is January 1, 1970.  | 
- **end** | [**PartialEndDate**](PartialEndDate.md) | The end date for uptime calculation (defaults to today in the page&#39;s time zone). The maximum supported date range is six calendar months. If the year is given, the date defaults to the last day of the year. If the year and month are given, the date defaults to the last day of that month. The earliest supported date is January 1, 1970.  | 
 
 ### Return type
 
@@ -335,7 +335,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.ComponentGroupsApi.PatchPagesPageIdComponentGroupsId(context.Background(), pageId, id).PatchPagesPageIdComponentGroups(patchPagesPageIdComponentGroups).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ComponentGroupsApi.PatchPagesPageIdComponentGroupsId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -409,7 +409,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.ComponentGroupsApi.PostPagesPageIdComponentGroups(context.Background(), pageId).PostPagesPageIdComponentGroups(postPagesPageIdComponentGroups).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ComponentGroupsApi.PostPagesPageIdComponentGroups``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
@@ -482,7 +482,7 @@ func main() {
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
     resp, r, err := api_client.ComponentGroupsApi.PutPagesPageIdComponentGroupsId(context.Background(), pageId, id).PutPagesPageIdComponentGroups(putPagesPageIdComponentGroups).Execute()
-    if err.Error() != "" {
+    if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ComponentGroupsApi.PutPagesPageIdComponentGroupsId``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
