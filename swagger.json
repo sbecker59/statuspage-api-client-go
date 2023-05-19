@@ -6272,6 +6272,24 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "in": "query",
+            "name": "start",
+            "description": "The start date for uptime calculation (defaults to the component's start_date field or 90 days ago, whichever is more recent).\nThe maximum supported date range is six calendar months. If the year is given, the date defaults to the first day of the year.\nIf the year and month are given, the start date defaults to the first day of that month.\nThe earliest supported date is January 1, 1970.\n",
+            "required": false,
+            "schema": {
+              "type": "PartialStartDate"
+            }
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "description": "The end date for uptime calculation (defaults to today in the page's time zone). The maximum supported date range is six calendar months.\nIf the year is given, the date defaults to the last day of the year. If the year and month are given, the date defaults to the last day of that month.\nThe earliest supported date is January 1, 1970.\n",
+            "required": false,
+            "schema": {
+              "type": "PartialEndDate"
+            }
           }
         ],
         "responses": {
@@ -7128,6 +7146,24 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "in": "query",
+            "name": "start",
+            "description": "The start date for uptime calculation (defaults to the date of the component in the group with the earliest start_date, or 90 days ago, whichever is more recent).\nThe maximum supported date range is six calendar months. If the year is given, the date defaults to the first day of the year.\nIf the year and month are given, the start date defaults to the first day of that month.\nThe earliest supported date is January 1, 1970.\n",
+            "required": false,
+            "schema": {
+              "type": "PartialStartDate"
+            }
+          },
+          {
+            "in": "query",
+            "name": "end",
+            "description": "The end date for uptime calculation (defaults to today in the page's time zone). The maximum supported date range is six calendar months.\nIf the year is given, the date defaults to the last day of the year. If the year and month are given, the date defaults to the last day of that month.\nThe earliest supported date is January 1, 1970.\n",
+            "required": false,
+            "schema": {
+              "type": "PartialEndDate"
+            }
           }
         ],
         "responses": {
@@ -7214,9 +7250,9 @@
                 "examples": {
                   "response": {
                     "value": {
-                      "hnrmmgry6jm0": [
+                      "wb9dlygxz9j2": [
                         {
-                          "timestamp": 1676023991,
+                          "timestamp": 1684474155,
                           "value": 123.456
                         }
                       ]
@@ -8837,16 +8873,16 @@
                 "examples": {
                   "response": {
                     "value": {
-                      "user_id": "ldkpyg4lj0dy",
+                      "user_id": "tmvpzpv9ld27",
                       "pages": [
                         {
-                          "page_id": "kf94ym2nz6bg",
+                          "page_id": "kzx44djctxcc",
                           "page_configuration": false,
                           "incident_manager": true,
                           "maintenance_manager": true
                         },
                         {
-                          "page_id": "m7nfhv4t6kq4",
+                          "page_id": "nsyzvdrxpm2q",
                           "page_configuration": false,
                           "incident_manager": true,
                           "maintenance_manager": true
@@ -8944,16 +8980,16 @@
                 "examples": {
                   "response": {
                     "value": {
-                      "user_id": "8tmgnp4ys67h",
+                      "user_id": "2sf3vbk39trg",
                       "pages": [
                         {
-                          "page_id": "7gzlwkxrvchy",
+                          "page_id": "vp185tgkhhsf",
                           "page_configuration": false,
                           "incident_manager": true,
                           "maintenance_manager": true
                         },
                         {
-                          "page_id": "wgrkpldpp5m9",
+                          "page_id": "mm8m8nwp1mgw",
                           "page_configuration": false,
                           "incident_manager": true,
                           "maintenance_manager": true
@@ -9257,7 +9293,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": "m2b91t7vwhzx",
+            "example": "0hcgwnm74rbf",
             "description": "Page identifier"
           },
           "created_at": {
@@ -9726,7 +9762,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": "s1p7np39jb75",
+            "example": "pk5hc29b9hyk",
             "description": "Page Access User Identifier"
           },
           "page_id": {
@@ -10032,7 +10068,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": "yk8z399hgfxm",
+            "example": "zk8r0w2ctbbw",
             "description": "Page Access Group Identifier"
           },
           "page_id": {
@@ -10047,7 +10083,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "example": "w1cq8359wjkn"
+              "example": "dgwr2snpvhn9"
             }
           },
           "external_identifier": {
@@ -10058,14 +10094,14 @@
             "type": "array",
             "items": {
               "type": "string",
-              "example": "wyzy9k6g3v91"
+              "example": "9qdklydjvv5x"
             }
           },
           "component_ids": {
             "type": "array",
             "items": {
               "type": "string",
-              "example": "dg8fb9vf8jtr"
+              "example": "8t7nqq9bwg60"
             }
           },
           "created_at": {
@@ -10402,7 +10438,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": "q3k6cm9phfws",
+            "example": "3lky3l2hc4cz",
             "description": "Subscriber Identifier"
           },
           "skip_confirmation_notification": {
@@ -10462,13 +10498,13 @@
           "components": {
             "type": "string",
             "example": [
-              "l1mr4jcmzgkr"
+              "tmr93vtncvlb"
             ],
             "description": "The components for which the subscriber has elected to receive updates."
           },
           "page_access_user_id": {
             "type": "string",
-            "example": "rfwh2j95244n",
+            "example": "37yc22pjxkrt",
             "description": "The Page Access user this subscriber belongs to (only for audience-specific pages)."
           },
           "created_at": {
@@ -10582,7 +10618,7 @@
                 "description": "List of component_ids affected by this incident",
                 "items": {
                   "type": "string",
-                  "default": "t0s5rgf538zf"
+                  "default": "ws8pq0w92lw5"
                 }
               }
             },
@@ -10600,7 +10636,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": "gs825f4qmx9y",
+            "example": "s2k9smtdsh2s",
             "description": "Incident Template Identifier"
           },
           "components": {
@@ -10624,7 +10660,7 @@
           },
           "group_id": {
             "type": "string",
-            "example": "xc0hhyyys2dw",
+            "example": "mn0zmj0m5yg1",
             "description": "Identifier of Template Group this template belongs to"
           },
           "update_status": {
@@ -10768,7 +10804,7 @@
                 "type": "object",
                 "description": "Map of status changes to apply to affected components",
                 "properties": {
-                  "component_id": {
+                  "90mh63608t83": {
                     "type": "string",
                     "description": "Map of status changes to apply to affected components",
                     "enum": [
@@ -10787,7 +10823,7 @@
                 "description": "List of component_ids affected by this incident",
                 "items": {
                   "type": "string",
-                  "default": "0frwxtbsbr91"
+                  "default": "l6fkwctt1hw5"
                 }
               },
               "scheduled_auto_transition": {
@@ -11175,7 +11211,7 @@
                 "type": "object",
                 "description": "Map of status changes to apply to affected components",
                 "properties": {
-                  "component_id": {
+                  "g47dz0j6c86w": {
                     "type": "string",
                     "description": "Map of status changes to apply to affected components",
                     "enum": [
@@ -11194,7 +11230,7 @@
                 "description": "List of component_ids affected by this incident",
                 "items": {
                   "type": "string",
-                  "default": "xnkj99tp4jzc"
+                  "default": "ph892w81yprp"
                 }
               },
               "scheduled_auto_transition": {
@@ -11320,7 +11356,7 @@
                 "type": "object",
                 "description": "Map of status changes to apply to affected components",
                 "properties": {
-                  "component_id": {
+                  "g47dz0j6c86w": {
                     "type": "string",
                     "description": "Map of status changes to apply to affected components",
                     "enum": [
@@ -11339,7 +11375,7 @@
                 "description": "List of component_ids affected by this incident",
                 "items": {
                   "type": "string",
-                  "default": "xnkj99tp4jzc"
+                  "default": "ph892w81yprp"
                 }
               },
               "scheduled_auto_transition": {
@@ -11763,7 +11799,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": "j6r0t80d2psz",
+            "example": "0wbzgfmjbccf",
             "description": "Component Group Identifier"
           },
           "page_id": {

@@ -22,8 +22,8 @@ type GroupComponent struct {
 	PageId *string `json:"page_id,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Description *string `json:"description,omitempty"`
-	Components *string `json:"components,omitempty"`
-	Position *string `json:"position,omitempty"`
+	Components *[]string `json:"components,omitempty"`
+	Position *int `json:"position,omitempty"`
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 }
@@ -174,9 +174,9 @@ func (o *GroupComponent) SetDescription(v string) {
 }
 
 // GetComponents returns the Components field value if set, zero value otherwise.
-func (o *GroupComponent) GetComponents() string {
+func (o *GroupComponent) GetComponents() []string {
 	if o == nil || o.Components == nil {
-		var ret string
+		var ret []string
 		return ret
 	}
 	return *o.Components
@@ -184,7 +184,7 @@ func (o *GroupComponent) GetComponents() string {
 
 // GetComponentsOk returns a tuple with the Components field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GroupComponent) GetComponentsOk() (*string, bool) {
+func (o *GroupComponent) GetComponentsOk() (*[]string, bool) {
 	if o == nil || o.Components == nil {
 		return nil, false
 	}
@@ -201,14 +201,14 @@ func (o *GroupComponent) HasComponents() bool {
 }
 
 // SetComponents gets a reference to the given string and assigns it to the Components field.
-func (o *GroupComponent) SetComponents(v string) {
+func (o *GroupComponent) SetComponents(v []string) {
 	o.Components = &v
 }
 
 // GetPosition returns the Position field value if set, zero value otherwise.
-func (o *GroupComponent) GetPosition() string {
+func (o *GroupComponent) GetPosition() int {
 	if o == nil || o.Position == nil {
-		var ret string
+		var ret int
 		return ret
 	}
 	return *o.Position
@@ -216,7 +216,7 @@ func (o *GroupComponent) GetPosition() string {
 
 // GetPositionOk returns a tuple with the Position field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GroupComponent) GetPositionOk() (*string, bool) {
+func (o *GroupComponent) GetPositionOk() (*int, bool) {
 	if o == nil || o.Position == nil {
 		return nil, false
 	}
@@ -233,7 +233,7 @@ func (o *GroupComponent) HasPosition() bool {
 }
 
 // SetPosition gets a reference to the given string and assigns it to the Position field.
-func (o *GroupComponent) SetPosition(v string) {
+func (o *GroupComponent) SetPosition(v int) {
 	o.Position = &v
 }
 
