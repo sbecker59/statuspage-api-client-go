@@ -16,6 +16,7 @@ import (
 
 // PostPagesPageIdComponentGroupsComponentGroup struct for PostPagesPageIdComponentGroupsComponentGroup
 type PostPagesPageIdComponentGroupsComponentGroup struct {
+	Description *string `json:"description,omitempty"`
 	Components []string `json:"components"`
 	Name string `json:"name"`
 }
@@ -24,8 +25,9 @@ type PostPagesPageIdComponentGroupsComponentGroup struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPostPagesPageIdComponentGroupsComponentGroup(components []string, name string) *PostPagesPageIdComponentGroupsComponentGroup {
+func NewPostPagesPageIdComponentGroupsComponentGroup(components []string, name string, description *string) *PostPagesPageIdComponentGroupsComponentGroup {
 	this := PostPagesPageIdComponentGroupsComponentGroup{}
+	this.Description = description
 	this.Components = components
 	this.Name = name
 	return &this
@@ -63,6 +65,39 @@ func (o *PostPagesPageIdComponentGroupsComponentGroup) SetComponents(v []string)
 	o.Components = v
 }
 
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *PostPagesPageIdComponentGroupsComponentGroup) GetDescription() string {
+	if o == nil || o.Description == nil {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PostPagesPageIdComponentGroupsComponentGroup) GetDescriptionOk() (*string, bool) {
+	if o == nil || o.Description == nil {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *PostPagesPageIdComponentGroupsComponentGroup) HasDescription() bool {
+	if o != nil && o.Description != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *PostPagesPageIdComponentGroupsComponentGroup) SetDescription(v string) {
+	o.Description = &v
+}
+
 // GetName returns the Name field value
 func (o *PostPagesPageIdComponentGroupsComponentGroup) GetName() string {
 	if o == nil {
@@ -89,6 +124,9 @@ func (o *PostPagesPageIdComponentGroupsComponentGroup) SetName(v string) {
 
 func (o PostPagesPageIdComponentGroupsComponentGroup) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
 	if true {
 		toSerialize["components"] = o.Components
 	}

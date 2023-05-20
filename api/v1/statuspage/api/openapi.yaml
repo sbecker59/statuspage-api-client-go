@@ -4844,18 +4844,6 @@ paths:
         style: simple
       requestBody:
         $ref: '#/components/requestBodies/inline_object'
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              properties:
-                page_access_user_ids:
-                  description: List of page access users to add to component
-                  items:
-                    type: string
-                  type: array
-              required:
-              - page_access_user_ids
-              type: object
       responses:
         "201":
           content:

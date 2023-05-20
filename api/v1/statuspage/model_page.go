@@ -87,11 +87,11 @@ type Page struct {
 	CssLinkColor *string `json:"css_link_color,omitempty"`
 	// CSS Color
 	CssNoData *string `json:"css_no_data,omitempty"`
-	FaviconLogo *string `json:"favicon_logo,omitempty"`
-	TransactionalLogo *string `json:"transactional_logo,omitempty"`
-	HeroCover *string `json:"hero_cover,omitempty"`
-	EmailLogo *string `json:"email_logo,omitempty"`
-	TwitterLogo *string `json:"twitter_logo,omitempty"`
+	FaviconLogo *interface{} `json:"favicon_logo,omitempty"`
+	TransactionalLogo *interface{} `json:"transactional_logo,omitempty"`
+	HeroCover *interface{} `json:"hero_cover,omitempty"`
+	EmailLogo *interface{} `json:"email_logo,omitempty"`
+	TwitterLogo *interface{} `json:"twitter_logo,omitempty"`
 }
 
 // NewPage instantiates a new Page object
@@ -1392,9 +1392,9 @@ func (o *Page) SetCssNoData(v string) {
 }
 
 // GetFaviconLogo returns the FaviconLogo field value if set, zero value otherwise.
-func (o *Page) GetFaviconLogo() string {
+func (o *Page) GetFaviconLogo() interface{} {
 	if o == nil || o.FaviconLogo == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 	return *o.FaviconLogo
@@ -1402,7 +1402,7 @@ func (o *Page) GetFaviconLogo() string {
 
 // GetFaviconLogoOk returns a tuple with the FaviconLogo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Page) GetFaviconLogoOk() (*string, bool) {
+func (o *Page) GetFaviconLogoOk() (*interface{}, bool) {
 	if o == nil || o.FaviconLogo == nil {
 		return nil, false
 	}
@@ -1419,14 +1419,14 @@ func (o *Page) HasFaviconLogo() bool {
 }
 
 // SetFaviconLogo gets a reference to the given string and assigns it to the FaviconLogo field.
-func (o *Page) SetFaviconLogo(v string) {
+func (o *Page) SetFaviconLogo(v interface{}) {
 	o.FaviconLogo = &v
 }
 
 // GetTransactionalLogo returns the TransactionalLogo field value if set, zero value otherwise.
-func (o *Page) GetTransactionalLogo() string {
+func (o *Page) GetTransactionalLogo() interface{} {
 	if o == nil || o.TransactionalLogo == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 	return *o.TransactionalLogo
@@ -1434,7 +1434,7 @@ func (o *Page) GetTransactionalLogo() string {
 
 // GetTransactionalLogoOk returns a tuple with the TransactionalLogo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Page) GetTransactionalLogoOk() (*string, bool) {
+func (o *Page) GetTransactionalLogoOk() (*interface{}, bool) {
 	if o == nil || o.TransactionalLogo == nil {
 		return nil, false
 	}
@@ -1451,14 +1451,14 @@ func (o *Page) HasTransactionalLogo() bool {
 }
 
 // SetTransactionalLogo gets a reference to the given string and assigns it to the TransactionalLogo field.
-func (o *Page) SetTransactionalLogo(v string) {
+func (o *Page) SetTransactionalLogo(v interface{}) {
 	o.TransactionalLogo = &v
 }
 
 // GetHeroCover returns the HeroCover field value if set, zero value otherwise.
-func (o *Page) GetHeroCover() string {
+func (o *Page) GetHeroCover() interface{} {
 	if o == nil || o.HeroCover == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 	return *o.HeroCover
@@ -1466,7 +1466,7 @@ func (o *Page) GetHeroCover() string {
 
 // GetHeroCoverOk returns a tuple with the HeroCover field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Page) GetHeroCoverOk() (*string, bool) {
+func (o *Page) GetHeroCoverOk() (*interface{}, bool) {
 	if o == nil || o.HeroCover == nil {
 		return nil, false
 	}
@@ -1483,12 +1483,12 @@ func (o *Page) HasHeroCover() bool {
 }
 
 // SetHeroCover gets a reference to the given string and assigns it to the HeroCover field.
-func (o *Page) SetHeroCover(v string) {
+func (o *Page) SetHeroCover(v interface{}) {
 	o.HeroCover = &v
 }
 
 // GetEmailLogo returns the EmailLogo field value if set, zero value otherwise.
-func (o *Page) GetEmailLogo() string {
+func (o *Page) GetEmailLogo() interface{} {
 	if o == nil || o.EmailLogo == nil {
 		var ret string
 		return ret
@@ -1498,7 +1498,7 @@ func (o *Page) GetEmailLogo() string {
 
 // GetEmailLogoOk returns a tuple with the EmailLogo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Page) GetEmailLogoOk() (*string, bool) {
+func (o *Page) GetEmailLogoOk() (*interface{}, bool) {
 	if o == nil || o.EmailLogo == nil {
 		return nil, false
 	}
@@ -1515,14 +1515,14 @@ func (o *Page) HasEmailLogo() bool {
 }
 
 // SetEmailLogo gets a reference to the given string and assigns it to the EmailLogo field.
-func (o *Page) SetEmailLogo(v string) {
+func (o *Page) SetEmailLogo(v interface{}) {
 	o.EmailLogo = &v
 }
 
 // GetTwitterLogo returns the TwitterLogo field value if set, zero value otherwise.
-func (o *Page) GetTwitterLogo() string {
+func (o *Page) GetTwitterLogo() interface{} {
 	if o == nil || o.TwitterLogo == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 	return *o.TwitterLogo
@@ -1530,7 +1530,7 @@ func (o *Page) GetTwitterLogo() string {
 
 // GetTwitterLogoOk returns a tuple with the TwitterLogo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Page) GetTwitterLogoOk() (*string, bool) {
+func (o *Page) GetTwitterLogoOk() (*interface{}, bool) {
 	if o == nil || o.TwitterLogo == nil {
 		return nil, false
 	}
@@ -1547,7 +1547,7 @@ func (o *Page) HasTwitterLogo() bool {
 }
 
 // SetTwitterLogo gets a reference to the given string and assigns it to the TwitterLogo field.
-func (o *Page) SetTwitterLogo(v string) {
+func (o *Page) SetTwitterLogo(v interface{}) {
 	o.TwitterLogo = &v
 }
 
