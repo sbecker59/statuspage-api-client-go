@@ -57,7 +57,7 @@
     {
       "name": "subscribers",
       "x-displayName": "Subscribers",
-      "description": "Subscribers are those that receive notifications via email, sms, Slack, or webhook to incidents\nthat are reported and subsequently updated.\n\nSubscribers can be subscribed to:\n*  a status page, where they get all updates to every incident automatically,\n*  one or more components of a status page, where they get all updates to those\n   components automatically, or\n*  a specific incident, where they will only receive notifications for updates to that\n   incident after they subscribed (not applicable for Slack subscribers).\n\nIf a (page or component) subscriber fails to receive a notification, they will be\n[quarantined](https://help.statuspage.io/knowledge_base/topics/quarantined-subscribers).\nQuarantined subscribers are excluded from API responses and interactions by default.\n"
+      "description": "Subscribers are those that receive notifications via email, sms, Slack, Microsoft Teams or webhook to incidents\nthat are reported and subsequently updated.\n\nSubscribers can be subscribed to:\n*  a status page, where they get all updates to every incident automatically,\n*  one or more components of a status page, where they get all updates to those\n   components automatically, or\n*  a specific incident, where they will only receive notifications for updates to that\n   incident after they subscribed (not applicable for Slack subscribers).\n\nIf a (page or component) subscriber fails to receive a notification, they will be\n[quarantined](https://help.statuspage.io/knowledge_base/topics/quarantined-subscribers).\nQuarantined subscribers are excluded from API responses and interactions by default.\n"
     },
     {
       "name": "templates",
@@ -3351,6 +3351,7 @@
                 "sms",
                 "slack",
                 "webhook",
+                "teams",
                 "integration_partner"
               ]
             }
@@ -3640,6 +3641,7 @@
                 "sms",
                 "webhook",
                 "slack",
+                "teams",
                 "integration_partner"
               ]
             }
@@ -7250,9 +7252,9 @@
                 "examples": {
                   "response": {
                     "value": {
-                      "wb9dlygxz9j2": [
+                      "68twrb0k2zhw": [
                         {
-                          "timestamp": 1684474155,
+                          "timestamp": 1724137288,
                           "value": 123.456
                         }
                       ]
@@ -8873,16 +8875,16 @@
                 "examples": {
                   "response": {
                     "value": {
-                      "user_id": "tmvpzpv9ld27",
+                      "user_id": "g29kx8h7zs74",
                       "pages": [
                         {
-                          "page_id": "kzx44djctxcc",
+                          "page_id": "3gffm23gp2l5",
                           "page_configuration": false,
                           "incident_manager": true,
                           "maintenance_manager": true
                         },
                         {
-                          "page_id": "nsyzvdrxpm2q",
+                          "page_id": "6q7n146zxmn7",
                           "page_configuration": false,
                           "incident_manager": true,
                           "maintenance_manager": true
@@ -8980,16 +8982,16 @@
                 "examples": {
                   "response": {
                     "value": {
-                      "user_id": "2sf3vbk39trg",
+                      "user_id": "sgcfk9q5t7rd",
                       "pages": [
                         {
-                          "page_id": "vp185tgkhhsf",
+                          "page_id": "t9tp4vzn45wj",
                           "page_configuration": false,
                           "incident_manager": true,
                           "maintenance_manager": true
                         },
                         {
-                          "page_id": "mm8m8nwp1mgw",
+                          "page_id": "mwg7p9kpwl11",
                           "page_configuration": false,
                           "incident_manager": true,
                           "maintenance_manager": true
@@ -9293,7 +9295,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": "0hcgwnm74rbf",
+            "example": "2vp47kp8vp10",
             "description": "Page identifier"
           },
           "created_at": {
@@ -9762,7 +9764,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": "pk5hc29b9hyk",
+            "example": "j8l065dx1jhl",
             "description": "Page Access User Identifier"
           },
           "page_id": {
@@ -10068,7 +10070,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": "zk8r0w2ctbbw",
+            "example": "2z66jqcchrs9",
             "description": "Page Access Group Identifier"
           },
           "page_id": {
@@ -10083,7 +10085,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "example": "dgwr2snpvhn9"
+              "example": "9w65kl43xpbw"
             }
           },
           "external_identifier": {
@@ -10094,14 +10096,14 @@
             "type": "array",
             "items": {
               "type": "string",
-              "example": "9qdklydjvv5x"
+              "example": "g1jdj5wr275p"
             }
           },
           "component_ids": {
             "type": "array",
             "items": {
               "type": "string",
-              "example": "8t7nqq9bwg60"
+              "example": "zk8kjfrzsxj8"
             }
           },
           "created_at": {
@@ -10308,6 +10310,7 @@
               "sms",
               "slack",
               "webhook",
+              "teams",
               "integration_partner"
             ]
           },
@@ -10373,6 +10376,9 @@
           },
           "slack": {
             "$ref": "#/components/schemas/SubscriberCountByState"
+          },
+          "teams": {
+            "$ref": "#/components/schemas/SubscriberCountByState"
           }
         },
         "description": "Get a histogram of subscribers by type and then state"
@@ -10429,6 +10435,11 @@
             "type": "integer",
             "format": "int32",
             "description": "The number of Slack subscribers found by the query."
+          },
+          "teams": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The number of MS teams subscribers found by the query."
           }
         },
         "description": "Get a count of subscribers by type"
@@ -10438,7 +10449,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": "3lky3l2hc4cz",
+            "example": "fw1r7z73crqm",
             "description": "Subscriber Identifier"
           },
           "skip_confirmation_notification": {
@@ -10498,13 +10509,13 @@
           "components": {
             "type": "string",
             "example": [
-              "tmr93vtncvlb"
+              "xbdxnfp05hby"
             ],
             "description": "The components for which the subscriber has elected to receive updates."
           },
           "page_access_user_id": {
             "type": "string",
-            "example": "37yc22pjxkrt",
+            "example": "p09yv4zzpsk9",
             "description": "The Page Access user this subscriber belongs to (only for audience-specific pages)."
           },
           "created_at": {
@@ -10618,7 +10629,7 @@
                 "description": "List of component_ids affected by this incident",
                 "items": {
                   "type": "string",
-                  "default": "ws8pq0w92lw5"
+                  "default": "lmfg605km1bt"
                 }
               }
             },
@@ -10636,7 +10647,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": "s2k9smtdsh2s",
+            "example": "889lrjyq1thj",
             "description": "Incident Template Identifier"
           },
           "components": {
@@ -10660,7 +10671,7 @@
           },
           "group_id": {
             "type": "string",
-            "example": "mn0zmj0m5yg1",
+            "example": "d0b1h76v33xk",
             "description": "Identifier of Template Group this template belongs to"
           },
           "update_status": {
@@ -10763,6 +10774,10 @@
                 "type": "boolean",
                 "description": "Controls whether send notification when scheduled maintenances auto transition to completed."
               },
+              "reminder_intervals": {
+                "type": "string",
+                "description": "Custom reminder intervals for unresolved/open incidents. Not applicable for <strong>Scheduled maintenance</strong><br>There are 4 possible states for reminder_intervals:<br><strong>DEFAULT:</strong> NULL, representing a default behavior with intervals [3, 6, 12, 24].<br><strong>AFTER:</strong> A serialized array of strictly increasing intervals, each integer ranges from [1-24] (inclusive). Ex \"[1, 5, 7, 10]\"<br><strong>EVERY:</strong> An integer in the range [1-24] as a string, representing equal intervals. Ex \"4\" for [4, 8, 12, 16, 20, 24]<br><strong>OFF:</strong> A serialized empty array, for example, \"[]\", meaning no reminder notifications will be sent."
+              },
               "metadata": {
                 "type": "object",
                 "description": "Attach a json object to the incident. All top-level values in the object must also be objects."
@@ -10804,7 +10819,7 @@
                 "type": "object",
                 "description": "Map of status changes to apply to affected components",
                 "properties": {
-                  "90mh63608t83": {
+                  "gcvfrw2r8w36": {
                     "type": "string",
                     "description": "Map of status changes to apply to affected components",
                     "enum": [
@@ -10823,7 +10838,7 @@
                 "description": "List of component_ids affected by this incident",
                 "items": {
                   "type": "string",
-                  "default": "l6fkwctt1hw5"
+                  "default": "hhgf5wl0n69v"
                 }
               },
               "scheduled_auto_transition": {
@@ -11012,6 +11027,11 @@
             "type": "string",
             "format": "date-time",
             "description": "The timestamp when the incident was updated at."
+          },
+          "reminder_intervals": {
+            "type": "string",
+            "example": "[3, 6, 12, 24]",
+            "description": "Custom reminder intervals for unresolved/open incidents. Not applicable for <strong>Scheduled maintenance</strong><br>There are 4 possible states for reminder_intervals:<br><strong>DEFAULT:</strong> NULL, representing a default behavior with intervals [3, 6, 12, 24].<br><strong>AFTER:</strong> A serialized array of strictly increasing intervals, each integer ranges from [1-24] (inclusive). Ex \"[1, 5, 7, 10]\"<br><strong>EVERY:</strong> An integer in the range [1-24] as a string, representing equal intervals. Ex \"4\" for [4, 8, 12, 16, 20, 24]<br><strong>OFF:</strong> A serialized empty array, for example, \"[]\", meaning no reminder notifications will be sent."
           }
         },
         "description": "Get an incident"
@@ -11170,6 +11190,10 @@
                 "type": "boolean",
                 "description": "Controls whether send notification when scheduled maintenances auto transition to completed."
               },
+              "reminder_intervals": {
+                "type": "string",
+                "description": "Custom reminder intervals for unresolved/open incidents. Not applicable for <strong>Scheduled maintenance</strong><br>There are 4 possible states for reminder_intervals:<br><strong>DEFAULT:</strong> NULL, representing a default behavior with intervals [3, 6, 12, 24].<br><strong>AFTER:</strong> A serialized array of strictly increasing intervals, each integer ranges from [1-24] (inclusive). Ex \"[1, 5, 7, 10]\"<br><strong>EVERY:</strong> An integer in the range [1-24] as a string, representing equal intervals. Ex \"4\" for [4, 8, 12, 16, 20, 24]<br><strong>OFF:</strong> A serialized empty array, for example, \"[]\", meaning no reminder notifications will be sent."
+              },
               "metadata": {
                 "type": "object",
                 "description": "Attach a json object to the incident. All top-level values in the object must also be objects."
@@ -11211,7 +11235,7 @@
                 "type": "object",
                 "description": "Map of status changes to apply to affected components",
                 "properties": {
-                  "g47dz0j6c86w": {
+                  "6p7x5zn55x73": {
                     "type": "string",
                     "description": "Map of status changes to apply to affected components",
                     "enum": [
@@ -11230,7 +11254,7 @@
                 "description": "List of component_ids affected by this incident",
                 "items": {
                   "type": "string",
-                  "default": "ph892w81yprp"
+                  "default": "850j0x9zjxlj"
                 }
               },
               "scheduled_auto_transition": {
@@ -11315,6 +11339,10 @@
                 "type": "boolean",
                 "description": "Controls whether send notification when scheduled maintenances auto transition to completed."
               },
+              "reminder_intervals": {
+                "type": "string",
+                "description": "Custom reminder intervals for unresolved/open incidents. Not applicable for <strong>Scheduled maintenance</strong><br>There are 4 possible states for reminder_intervals:<br><strong>DEFAULT:</strong> NULL, representing a default behavior with intervals [3, 6, 12, 24].<br><strong>AFTER:</strong> A serialized array of strictly increasing intervals, each integer ranges from [1-24] (inclusive). Ex \"[1, 5, 7, 10]\"<br><strong>EVERY:</strong> An integer in the range [1-24] as a string, representing equal intervals. Ex \"4\" for [4, 8, 12, 16, 20, 24]<br><strong>OFF:</strong> A serialized empty array, for example, \"[]\", meaning no reminder notifications will be sent."
+              },
               "metadata": {
                 "type": "object",
                 "description": "Attach a json object to the incident. All top-level values in the object must also be objects."
@@ -11356,7 +11384,7 @@
                 "type": "object",
                 "description": "Map of status changes to apply to affected components",
                 "properties": {
-                  "g47dz0j6c86w": {
+                  "6p7x5zn55x73": {
                     "type": "string",
                     "description": "Map of status changes to apply to affected components",
                     "enum": [
@@ -11375,7 +11403,7 @@
                 "description": "List of component_ids affected by this incident",
                 "items": {
                   "type": "string",
-                  "default": "ph892w81yprp"
+                  "default": "850j0x9zjxlj"
                 }
               },
               "scheduled_auto_transition": {
@@ -11799,7 +11827,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": "0wbzgfmjbccf",
+            "example": "34wb21n3n3mr",
             "description": "Component Group Identifier"
           },
           "page_id": {
@@ -12199,6 +12227,10 @@
               "transform": {
                 "type": "string",
                 "description": "The transform to apply to metric before pulling into Statuspage. One of: \"average\", \"count\", \"max\", \"min\", or \"sum\""
+              },
+              "application_id": {
+                "type": "string",
+                "description": "The Identifier for new relic application. Required in the case of NewRelic only"
               },
               "suffix": {
                 "type": "string",
