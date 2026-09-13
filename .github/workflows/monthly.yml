@@ -103,6 +103,7 @@ jobs:
           client-payload: |
             {
               "branch": "${{ steps.cpr.outputs.pull-request-branch }}",
+              "sha": "${{ steps.cpr.outputs.pull-request-head-sha }}",
               "pr_number": "${{ steps.cpr.outputs.pull-request-number }}",
               "repository": "${{ github.repository }}"
             }
