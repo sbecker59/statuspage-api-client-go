@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Webhook** | Pointer to **int32** | The number of SMS subscribers found by the query. | [optional] 
 **IntegrationPartner** | Pointer to **int32** | The number of integration partners found by the query. | [optional] 
 **Slack** | Pointer to **int32** | The number of Slack subscribers found by the query. | [optional] 
+**Teams** | Pointer to **int32** | The number of MS teams subscribers found by the query. | [optional] 
 
 ## Methods
 
@@ -153,6 +154,31 @@ SetSlack sets Slack field to given value.
 `func (o *SubscriberCountByType) HasSlack() bool`
 
 HasSlack returns a boolean if a field has been set.
+
+### GetTeams
+
+`func (o *SubscriberCountByType) GetTeams() int32`
+
+GetTeams returns the Teams field if non-nil, zero value otherwise.
+
+### GetTeamsOk
+
+`func (o *SubscriberCountByType) GetTeamsOk() (*int32, bool)`
+
+GetTeamsOk returns a tuple with the Teams field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTeams
+
+`func (o *SubscriberCountByType) SetTeams(v int32)`
+
+SetTeams sets Teams field to given value.
+
+### HasTeams
+
+`func (o *SubscriberCountByType) HasTeams() bool`
+
+HasTeams returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

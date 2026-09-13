@@ -14,11 +14,14 @@ import (
 	"encoding/json"
 )
 
+// checks if the ComponentGroupUptimeRelatedEvents type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ComponentGroupUptimeRelatedEvents{}
+
 // ComponentGroupUptimeRelatedEvents Related incidents by component
 type ComponentGroupUptimeRelatedEvents struct {
 	// Component identifier
-	ComponentId *string `json:"component_id,omitempty"`
-	Incidents *ComponentUptimeRelatedEvents `json:"incidents,omitempty"`
+	ComponentId *string                       `json:"component_id,omitempty"`
+	Incidents   *ComponentUptimeRelatedEvents `json:"incidents,omitempty"`
 }
 
 // NewComponentGroupUptimeRelatedEvents instantiates a new ComponentGroupUptimeRelatedEvents object
@@ -40,7 +43,7 @@ func NewComponentGroupUptimeRelatedEventsWithDefaults() *ComponentGroupUptimeRel
 
 // GetComponentId returns the ComponentId field value if set, zero value otherwise.
 func (o *ComponentGroupUptimeRelatedEvents) GetComponentId() string {
-	if o == nil || o.ComponentId == nil {
+	if o == nil || IsNil(o.ComponentId) {
 		var ret string
 		return ret
 	}
@@ -50,7 +53,7 @@ func (o *ComponentGroupUptimeRelatedEvents) GetComponentId() string {
 // GetComponentIdOk returns a tuple with the ComponentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ComponentGroupUptimeRelatedEvents) GetComponentIdOk() (*string, bool) {
-	if o == nil || o.ComponentId == nil {
+	if o == nil || IsNil(o.ComponentId) {
 		return nil, false
 	}
 	return o.ComponentId, true
@@ -58,7 +61,7 @@ func (o *ComponentGroupUptimeRelatedEvents) GetComponentIdOk() (*string, bool) {
 
 // HasComponentId returns a boolean if a field has been set.
 func (o *ComponentGroupUptimeRelatedEvents) HasComponentId() bool {
-	if o != nil && o.ComponentId != nil {
+	if o != nil && !IsNil(o.ComponentId) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *ComponentGroupUptimeRelatedEvents) SetComponentId(v string) {
 
 // GetIncidents returns the Incidents field value if set, zero value otherwise.
 func (o *ComponentGroupUptimeRelatedEvents) GetIncidents() ComponentUptimeRelatedEvents {
-	if o == nil || o.Incidents == nil {
+	if o == nil || IsNil(o.Incidents) {
 		var ret ComponentUptimeRelatedEvents
 		return ret
 	}
@@ -82,7 +85,7 @@ func (o *ComponentGroupUptimeRelatedEvents) GetIncidents() ComponentUptimeRelate
 // GetIncidentsOk returns a tuple with the Incidents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ComponentGroupUptimeRelatedEvents) GetIncidentsOk() (*ComponentUptimeRelatedEvents, bool) {
-	if o == nil || o.Incidents == nil {
+	if o == nil || IsNil(o.Incidents) {
 		return nil, false
 	}
 	return o.Incidents, true
@@ -90,7 +93,7 @@ func (o *ComponentGroupUptimeRelatedEvents) GetIncidentsOk() (*ComponentUptimeRe
 
 // HasIncidents returns a boolean if a field has been set.
 func (o *ComponentGroupUptimeRelatedEvents) HasIncidents() bool {
-	if o != nil && o.Incidents != nil {
+	if o != nil && !IsNil(o.Incidents) {
 		return true
 	}
 
@@ -103,14 +106,22 @@ func (o *ComponentGroupUptimeRelatedEvents) SetIncidents(v ComponentUptimeRelate
 }
 
 func (o ComponentGroupUptimeRelatedEvents) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ComponentId != nil {
-		toSerialize["component_id"] = o.ComponentId
-	}
-	if o.Incidents != nil {
-		toSerialize["incidents"] = o.Incidents
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ComponentGroupUptimeRelatedEvents) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ComponentId) {
+		toSerialize["component_id"] = o.ComponentId
+	}
+	if !IsNil(o.Incidents) {
+		toSerialize["incidents"] = o.Incidents
+	}
+	return toSerialize, nil
 }
 
 type NullableComponentGroupUptimeRelatedEvents struct {
@@ -148,5 +159,3 @@ func (v *NullableComponentGroupUptimeRelatedEvents) UnmarshalJSON(src []byte) er
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

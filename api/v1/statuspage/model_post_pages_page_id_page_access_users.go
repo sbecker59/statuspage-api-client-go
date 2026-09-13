@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PostPagesPageIdPageAccessUsers type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PostPagesPageIdPageAccessUsers{}
+
 // PostPagesPageIdPageAccessUsers Add a page access user
 type PostPagesPageIdPageAccessUsers struct {
 	PageAccessUser *PostPagesPageIdPageAccessUsersPageAccessUser `json:"page_access_user,omitempty"`
@@ -38,7 +41,7 @@ func NewPostPagesPageIdPageAccessUsersWithDefaults() *PostPagesPageIdPageAccessU
 
 // GetPageAccessUser returns the PageAccessUser field value if set, zero value otherwise.
 func (o *PostPagesPageIdPageAccessUsers) GetPageAccessUser() PostPagesPageIdPageAccessUsersPageAccessUser {
-	if o == nil || o.PageAccessUser == nil {
+	if o == nil || IsNil(o.PageAccessUser) {
 		var ret PostPagesPageIdPageAccessUsersPageAccessUser
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *PostPagesPageIdPageAccessUsers) GetPageAccessUser() PostPagesPageIdPage
 // GetPageAccessUserOk returns a tuple with the PageAccessUser field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdPageAccessUsers) GetPageAccessUserOk() (*PostPagesPageIdPageAccessUsersPageAccessUser, bool) {
-	if o == nil || o.PageAccessUser == nil {
+	if o == nil || IsNil(o.PageAccessUser) {
 		return nil, false
 	}
 	return o.PageAccessUser, true
@@ -56,7 +59,7 @@ func (o *PostPagesPageIdPageAccessUsers) GetPageAccessUserOk() (*PostPagesPageId
 
 // HasPageAccessUser returns a boolean if a field has been set.
 func (o *PostPagesPageIdPageAccessUsers) HasPageAccessUser() bool {
-	if o != nil && o.PageAccessUser != nil {
+	if o != nil && !IsNil(o.PageAccessUser) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *PostPagesPageIdPageAccessUsers) SetPageAccessUser(v PostPagesPageIdPage
 }
 
 func (o PostPagesPageIdPageAccessUsers) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.PageAccessUser != nil {
-		toSerialize["page_access_user"] = o.PageAccessUser
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PostPagesPageIdPageAccessUsers) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.PageAccessUser) {
+		toSerialize["page_access_user"] = o.PageAccessUser
+	}
+	return toSerialize, nil
 }
 
 type NullablePostPagesPageIdPageAccessUsers struct {
@@ -111,5 +122,3 @@ func (v *NullablePostPagesPageIdPageAccessUsers) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

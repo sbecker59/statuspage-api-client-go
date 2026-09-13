@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PutPagesPageIdIncidentsIncidentIdIncidentUpdates type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PutPagesPageIdIncidentsIncidentIdIncidentUpdates{}
+
 // PutPagesPageIdIncidentsIncidentIdIncidentUpdates Update a previous incident update
 type PutPagesPageIdIncidentsIncidentIdIncidentUpdates struct {
 	IncidentUpdate *PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate `json:"incident_update,omitempty"`
@@ -38,7 +41,7 @@ func NewPutPagesPageIdIncidentsIncidentIdIncidentUpdatesWithDefaults() *PutPages
 
 // GetIncidentUpdate returns the IncidentUpdate field value if set, zero value otherwise.
 func (o *PutPagesPageIdIncidentsIncidentIdIncidentUpdates) GetIncidentUpdate() PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate {
-	if o == nil || o.IncidentUpdate == nil {
+	if o == nil || IsNil(o.IncidentUpdate) {
 		var ret PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *PutPagesPageIdIncidentsIncidentIdIncidentUpdates) GetIncidentUpdate() P
 // GetIncidentUpdateOk returns a tuple with the IncidentUpdate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PutPagesPageIdIncidentsIncidentIdIncidentUpdates) GetIncidentUpdateOk() (*PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate, bool) {
-	if o == nil || o.IncidentUpdate == nil {
+	if o == nil || IsNil(o.IncidentUpdate) {
 		return nil, false
 	}
 	return o.IncidentUpdate, true
@@ -56,7 +59,7 @@ func (o *PutPagesPageIdIncidentsIncidentIdIncidentUpdates) GetIncidentUpdateOk()
 
 // HasIncidentUpdate returns a boolean if a field has been set.
 func (o *PutPagesPageIdIncidentsIncidentIdIncidentUpdates) HasIncidentUpdate() bool {
-	if o != nil && o.IncidentUpdate != nil {
+	if o != nil && !IsNil(o.IncidentUpdate) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *PutPagesPageIdIncidentsIncidentIdIncidentUpdates) SetIncidentUpdate(v P
 }
 
 func (o PutPagesPageIdIncidentsIncidentIdIncidentUpdates) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.IncidentUpdate != nil {
-		toSerialize["incident_update"] = o.IncidentUpdate
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PutPagesPageIdIncidentsIncidentIdIncidentUpdates) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.IncidentUpdate) {
+		toSerialize["incident_update"] = o.IncidentUpdate
+	}
+	return toSerialize, nil
 }
 
 type NullablePutPagesPageIdIncidentsIncidentIdIncidentUpdates struct {
@@ -111,5 +122,3 @@ func (v *NullablePutPagesPageIdIncidentsIncidentIdIncidentUpdates) UnmarshalJSON
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SubscriberCountByState type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SubscriberCountByState{}
+
 // SubscriberCountByState struct for SubscriberCountByState
 type SubscriberCountByState struct {
 	// The number of active subscribers found by the query.
@@ -45,7 +48,7 @@ func NewSubscriberCountByStateWithDefaults() *SubscriberCountByState {
 
 // GetActive returns the Active field value if set, zero value otherwise.
 func (o *SubscriberCountByState) GetActive() int32 {
-	if o == nil || o.Active == nil {
+	if o == nil || IsNil(o.Active) {
 		var ret int32
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *SubscriberCountByState) GetActive() int32 {
 // GetActiveOk returns a tuple with the Active field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriberCountByState) GetActiveOk() (*int32, bool) {
-	if o == nil || o.Active == nil {
+	if o == nil || IsNil(o.Active) {
 		return nil, false
 	}
 	return o.Active, true
@@ -63,7 +66,7 @@ func (o *SubscriberCountByState) GetActiveOk() (*int32, bool) {
 
 // HasActive returns a boolean if a field has been set.
 func (o *SubscriberCountByState) HasActive() bool {
-	if o != nil && o.Active != nil {
+	if o != nil && !IsNil(o.Active) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *SubscriberCountByState) SetActive(v int32) {
 
 // GetUnconfirmed returns the Unconfirmed field value if set, zero value otherwise.
 func (o *SubscriberCountByState) GetUnconfirmed() int32 {
-	if o == nil || o.Unconfirmed == nil {
+	if o == nil || IsNil(o.Unconfirmed) {
 		var ret int32
 		return ret
 	}
@@ -87,7 +90,7 @@ func (o *SubscriberCountByState) GetUnconfirmed() int32 {
 // GetUnconfirmedOk returns a tuple with the Unconfirmed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriberCountByState) GetUnconfirmedOk() (*int32, bool) {
-	if o == nil || o.Unconfirmed == nil {
+	if o == nil || IsNil(o.Unconfirmed) {
 		return nil, false
 	}
 	return o.Unconfirmed, true
@@ -95,7 +98,7 @@ func (o *SubscriberCountByState) GetUnconfirmedOk() (*int32, bool) {
 
 // HasUnconfirmed returns a boolean if a field has been set.
 func (o *SubscriberCountByState) HasUnconfirmed() bool {
-	if o != nil && o.Unconfirmed != nil {
+	if o != nil && !IsNil(o.Unconfirmed) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *SubscriberCountByState) SetUnconfirmed(v int32) {
 
 // GetQuarantined returns the Quarantined field value if set, zero value otherwise.
 func (o *SubscriberCountByState) GetQuarantined() int32 {
-	if o == nil || o.Quarantined == nil {
+	if o == nil || IsNil(o.Quarantined) {
 		var ret int32
 		return ret
 	}
@@ -119,7 +122,7 @@ func (o *SubscriberCountByState) GetQuarantined() int32 {
 // GetQuarantinedOk returns a tuple with the Quarantined field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriberCountByState) GetQuarantinedOk() (*int32, bool) {
-	if o == nil || o.Quarantined == nil {
+	if o == nil || IsNil(o.Quarantined) {
 		return nil, false
 	}
 	return o.Quarantined, true
@@ -127,7 +130,7 @@ func (o *SubscriberCountByState) GetQuarantinedOk() (*int32, bool) {
 
 // HasQuarantined returns a boolean if a field has been set.
 func (o *SubscriberCountByState) HasQuarantined() bool {
-	if o != nil && o.Quarantined != nil {
+	if o != nil && !IsNil(o.Quarantined) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *SubscriberCountByState) SetQuarantined(v int32) {
 
 // GetTotal returns the Total field value if set, zero value otherwise.
 func (o *SubscriberCountByState) GetTotal() int32 {
-	if o == nil || o.Total == nil {
+	if o == nil || IsNil(o.Total) {
 		var ret int32
 		return ret
 	}
@@ -151,7 +154,7 @@ func (o *SubscriberCountByState) GetTotal() int32 {
 // GetTotalOk returns a tuple with the Total field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriberCountByState) GetTotalOk() (*int32, bool) {
-	if o == nil || o.Total == nil {
+	if o == nil || IsNil(o.Total) {
 		return nil, false
 	}
 	return o.Total, true
@@ -159,7 +162,7 @@ func (o *SubscriberCountByState) GetTotalOk() (*int32, bool) {
 
 // HasTotal returns a boolean if a field has been set.
 func (o *SubscriberCountByState) HasTotal() bool {
-	if o != nil && o.Total != nil {
+	if o != nil && !IsNil(o.Total) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *SubscriberCountByState) SetTotal(v int32) {
 }
 
 func (o SubscriberCountByState) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Active != nil {
-		toSerialize["active"] = o.Active
-	}
-	if o.Unconfirmed != nil {
-		toSerialize["unconfirmed"] = o.Unconfirmed
-	}
-	if o.Quarantined != nil {
-		toSerialize["quarantined"] = o.Quarantined
-	}
-	if o.Total != nil {
-		toSerialize["total"] = o.Total
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o SubscriberCountByState) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Active) {
+		toSerialize["active"] = o.Active
+	}
+	if !IsNil(o.Unconfirmed) {
+		toSerialize["unconfirmed"] = o.Unconfirmed
+	}
+	if !IsNil(o.Quarantined) {
+		toSerialize["quarantined"] = o.Quarantined
+	}
+	if !IsNil(o.Total) {
+		toSerialize["total"] = o.Total
+	}
+	return toSerialize, nil
 }
 
 type NullableSubscriberCountByState struct {
@@ -223,5 +234,3 @@ func (v *NullableSubscriberCountByState) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

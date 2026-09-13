@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics{}
+
 // PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics Create a metric for a metric provider
 type PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics struct {
 	Metric *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric `json:"metric,omitempty"`
@@ -38,7 +41,7 @@ func NewPostPagesPageIdMetricsProvidersMetricsProviderIdMetricsWithDefaults() *P
 
 // GetMetric returns the Metric field value if set, zero value otherwise.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics) GetMetric() PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric {
-	if o == nil || o.Metric == nil {
+	if o == nil || IsNil(o.Metric) {
 		var ret PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics) GetMetric() Po
 // GetMetricOk returns a tuple with the Metric field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics) GetMetricOk() (*PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric, bool) {
-	if o == nil || o.Metric == nil {
+	if o == nil || IsNil(o.Metric) {
 		return nil, false
 	}
 	return o.Metric, true
@@ -56,7 +59,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics) GetMetricOk() 
 
 // HasMetric returns a boolean if a field has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics) HasMetric() bool {
-	if o != nil && o.Metric != nil {
+	if o != nil && !IsNil(o.Metric) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics) SetMetric(v Po
 }
 
 func (o PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Metric != nil {
-		toSerialize["metric"] = o.Metric
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Metric) {
+		toSerialize["metric"] = o.Metric
+	}
+	return toSerialize, nil
 }
 
 type NullablePostPagesPageIdMetricsProvidersMetricsProviderIdMetrics struct {
@@ -111,5 +122,3 @@ func (v *NullablePostPagesPageIdMetricsProvidersMetricsProviderIdMetrics) Unmars
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

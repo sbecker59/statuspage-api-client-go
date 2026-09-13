@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PutPagesPageIdStatusEmbedConfig type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PutPagesPageIdStatusEmbedConfig{}
+
 // PutPagesPageIdStatusEmbedConfig Update status embed config settings
 type PutPagesPageIdStatusEmbedConfig struct {
 	StatusEmbedConfig *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig `json:"status_embed_config,omitempty"`
@@ -38,7 +41,7 @@ func NewPutPagesPageIdStatusEmbedConfigWithDefaults() *PutPagesPageIdStatusEmbed
 
 // GetStatusEmbedConfig returns the StatusEmbedConfig field value if set, zero value otherwise.
 func (o *PutPagesPageIdStatusEmbedConfig) GetStatusEmbedConfig() PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig {
-	if o == nil || o.StatusEmbedConfig == nil {
+	if o == nil || IsNil(o.StatusEmbedConfig) {
 		var ret PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *PutPagesPageIdStatusEmbedConfig) GetStatusEmbedConfig() PatchPagesPageI
 // GetStatusEmbedConfigOk returns a tuple with the StatusEmbedConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PutPagesPageIdStatusEmbedConfig) GetStatusEmbedConfigOk() (*PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig, bool) {
-	if o == nil || o.StatusEmbedConfig == nil {
+	if o == nil || IsNil(o.StatusEmbedConfig) {
 		return nil, false
 	}
 	return o.StatusEmbedConfig, true
@@ -56,7 +59,7 @@ func (o *PutPagesPageIdStatusEmbedConfig) GetStatusEmbedConfigOk() (*PatchPagesP
 
 // HasStatusEmbedConfig returns a boolean if a field has been set.
 func (o *PutPagesPageIdStatusEmbedConfig) HasStatusEmbedConfig() bool {
-	if o != nil && o.StatusEmbedConfig != nil {
+	if o != nil && !IsNil(o.StatusEmbedConfig) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *PutPagesPageIdStatusEmbedConfig) SetStatusEmbedConfig(v PatchPagesPageI
 }
 
 func (o PutPagesPageIdStatusEmbedConfig) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.StatusEmbedConfig != nil {
-		toSerialize["status_embed_config"] = o.StatusEmbedConfig
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PutPagesPageIdStatusEmbedConfig) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.StatusEmbedConfig) {
+		toSerialize["status_embed_config"] = o.StatusEmbedConfig
+	}
+	return toSerialize, nil
 }
 
 type NullablePutPagesPageIdStatusEmbedConfig struct {
@@ -111,5 +122,3 @@ func (v *NullablePutPagesPageIdStatusEmbedConfig) UnmarshalJSON(src []byte) erro
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

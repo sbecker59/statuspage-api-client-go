@@ -11,8 +11,13 @@ API version: 1.0.0
 package openapi
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the PostPagesPageIdSubscribersUnsubscribe type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PostPagesPageIdSubscribersUnsubscribe{}
 
 // PostPagesPageIdSubscribersUnsubscribe Unsubscribe a list of subscribers
 type PostPagesPageIdSubscribersUnsubscribe struct {
@@ -25,6 +30,8 @@ type PostPagesPageIdSubscribersUnsubscribe struct {
 	// If skip_unsubscription_notification is true, the subscribers do not receive any notifications when they are unsubscribed.
 	SkipUnsubscriptionNotification *bool `json:"skip_unsubscription_notification,omitempty"`
 }
+
+type _PostPagesPageIdSubscribersUnsubscribe PostPagesPageIdSubscribersUnsubscribe
 
 // NewPostPagesPageIdSubscribersUnsubscribe instantiates a new PostPagesPageIdSubscribersUnsubscribe object
 // This constructor will assign default values to properties that have it defined,
@@ -61,7 +68,7 @@ func (o *PostPagesPageIdSubscribersUnsubscribe) GetSubscribers() string {
 // GetSubscribersOk returns a tuple with the Subscribers field value
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdSubscribersUnsubscribe) GetSubscribersOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Subscribers, true
@@ -74,7 +81,7 @@ func (o *PostPagesPageIdSubscribersUnsubscribe) SetSubscribers(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *PostPagesPageIdSubscribersUnsubscribe) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -84,7 +91,7 @@ func (o *PostPagesPageIdSubscribersUnsubscribe) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdSubscribersUnsubscribe) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -92,7 +99,7 @@ func (o *PostPagesPageIdSubscribersUnsubscribe) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *PostPagesPageIdSubscribersUnsubscribe) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -106,7 +113,7 @@ func (o *PostPagesPageIdSubscribersUnsubscribe) SetType(v string) {
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *PostPagesPageIdSubscribersUnsubscribe) GetState() string {
-	if o == nil || o.State == nil {
+	if o == nil || IsNil(o.State) {
 		var ret string
 		return ret
 	}
@@ -116,7 +123,7 @@ func (o *PostPagesPageIdSubscribersUnsubscribe) GetState() string {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdSubscribersUnsubscribe) GetStateOk() (*string, bool) {
-	if o == nil || o.State == nil {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
 	return o.State, true
@@ -124,7 +131,7 @@ func (o *PostPagesPageIdSubscribersUnsubscribe) GetStateOk() (*string, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *PostPagesPageIdSubscribersUnsubscribe) HasState() bool {
-	if o != nil && o.State != nil {
+	if o != nil && !IsNil(o.State) {
 		return true
 	}
 
@@ -138,7 +145,7 @@ func (o *PostPagesPageIdSubscribersUnsubscribe) SetState(v string) {
 
 // GetSkipUnsubscriptionNotification returns the SkipUnsubscriptionNotification field value if set, zero value otherwise.
 func (o *PostPagesPageIdSubscribersUnsubscribe) GetSkipUnsubscriptionNotification() bool {
-	if o == nil || o.SkipUnsubscriptionNotification == nil {
+	if o == nil || IsNil(o.SkipUnsubscriptionNotification) {
 		var ret bool
 		return ret
 	}
@@ -148,7 +155,7 @@ func (o *PostPagesPageIdSubscribersUnsubscribe) GetSkipUnsubscriptionNotificatio
 // GetSkipUnsubscriptionNotificationOk returns a tuple with the SkipUnsubscriptionNotification field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdSubscribersUnsubscribe) GetSkipUnsubscriptionNotificationOk() (*bool, bool) {
-	if o == nil || o.SkipUnsubscriptionNotification == nil {
+	if o == nil || IsNil(o.SkipUnsubscriptionNotification) {
 		return nil, false
 	}
 	return o.SkipUnsubscriptionNotification, true
@@ -156,7 +163,7 @@ func (o *PostPagesPageIdSubscribersUnsubscribe) GetSkipUnsubscriptionNotificatio
 
 // HasSkipUnsubscriptionNotification returns a boolean if a field has been set.
 func (o *PostPagesPageIdSubscribersUnsubscribe) HasSkipUnsubscriptionNotification() bool {
-	if o != nil && o.SkipUnsubscriptionNotification != nil {
+	if o != nil && !IsNil(o.SkipUnsubscriptionNotification) {
 		return true
 	}
 
@@ -169,20 +176,63 @@ func (o *PostPagesPageIdSubscribersUnsubscribe) SetSkipUnsubscriptionNotificatio
 }
 
 func (o PostPagesPageIdSubscribersUnsubscribe) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["subscribers"] = o.Subscribers
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
-	if o.State != nil {
-		toSerialize["state"] = o.State
-	}
-	if o.SkipUnsubscriptionNotification != nil {
-		toSerialize["skip_unsubscription_notification"] = o.SkipUnsubscriptionNotification
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PostPagesPageIdSubscribersUnsubscribe) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["subscribers"] = o.Subscribers
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.State) {
+		toSerialize["state"] = o.State
+	}
+	if !IsNil(o.SkipUnsubscriptionNotification) {
+		toSerialize["skip_unsubscription_notification"] = o.SkipUnsubscriptionNotification
+	}
+	return toSerialize, nil
+}
+
+func (o *PostPagesPageIdSubscribersUnsubscribe) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"subscribers",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPostPagesPageIdSubscribersUnsubscribe := _PostPagesPageIdSubscribersUnsubscribe{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varPostPagesPageIdSubscribersUnsubscribe)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PostPagesPageIdSubscribersUnsubscribe(varPostPagesPageIdSubscribersUnsubscribe)
+
+	return err
 }
 
 type NullablePostPagesPageIdSubscribersUnsubscribe struct {
@@ -220,5 +270,3 @@ func (v *NullablePostPagesPageIdSubscribersUnsubscribe) UnmarshalJSON(src []byte
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

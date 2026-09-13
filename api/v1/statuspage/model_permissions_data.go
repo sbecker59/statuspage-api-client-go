@@ -14,11 +14,14 @@ import (
 	"encoding/json"
 )
 
+// checks if the PermissionsData type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PermissionsData{}
+
 // PermissionsData struct for PermissionsData
 type PermissionsData struct {
 	// User identifier
-	UserId *string `json:"user_id,omitempty"`
-	Pages *PermissionsDataPages `json:"pages,omitempty"`
+	UserId *string               `json:"user_id,omitempty"`
+	Pages  *PermissionsDataPages `json:"pages,omitempty"`
 }
 
 // NewPermissionsData instantiates a new PermissionsData object
@@ -40,7 +43,7 @@ func NewPermissionsDataWithDefaults() *PermissionsData {
 
 // GetUserId returns the UserId field value if set, zero value otherwise.
 func (o *PermissionsData) GetUserId() string {
-	if o == nil || o.UserId == nil {
+	if o == nil || IsNil(o.UserId) {
 		var ret string
 		return ret
 	}
@@ -50,7 +53,7 @@ func (o *PermissionsData) GetUserId() string {
 // GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PermissionsData) GetUserIdOk() (*string, bool) {
-	if o == nil || o.UserId == nil {
+	if o == nil || IsNil(o.UserId) {
 		return nil, false
 	}
 	return o.UserId, true
@@ -58,7 +61,7 @@ func (o *PermissionsData) GetUserIdOk() (*string, bool) {
 
 // HasUserId returns a boolean if a field has been set.
 func (o *PermissionsData) HasUserId() bool {
-	if o != nil && o.UserId != nil {
+	if o != nil && !IsNil(o.UserId) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *PermissionsData) SetUserId(v string) {
 
 // GetPages returns the Pages field value if set, zero value otherwise.
 func (o *PermissionsData) GetPages() PermissionsDataPages {
-	if o == nil || o.Pages == nil {
+	if o == nil || IsNil(o.Pages) {
 		var ret PermissionsDataPages
 		return ret
 	}
@@ -82,7 +85,7 @@ func (o *PermissionsData) GetPages() PermissionsDataPages {
 // GetPagesOk returns a tuple with the Pages field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PermissionsData) GetPagesOk() (*PermissionsDataPages, bool) {
-	if o == nil || o.Pages == nil {
+	if o == nil || IsNil(o.Pages) {
 		return nil, false
 	}
 	return o.Pages, true
@@ -90,7 +93,7 @@ func (o *PermissionsData) GetPagesOk() (*PermissionsDataPages, bool) {
 
 // HasPages returns a boolean if a field has been set.
 func (o *PermissionsData) HasPages() bool {
-	if o != nil && o.Pages != nil {
+	if o != nil && !IsNil(o.Pages) {
 		return true
 	}
 
@@ -103,14 +106,22 @@ func (o *PermissionsData) SetPages(v PermissionsDataPages) {
 }
 
 func (o PermissionsData) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.UserId != nil {
-		toSerialize["user_id"] = o.UserId
-	}
-	if o.Pages != nil {
-		toSerialize["pages"] = o.Pages
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PermissionsData) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.UserId) {
+		toSerialize["user_id"] = o.UserId
+	}
+	if !IsNil(o.Pages) {
+		toSerialize["pages"] = o.Pages
+	}
+	return toSerialize, nil
 }
 
 type NullablePermissionsData struct {
@@ -148,5 +159,3 @@ func (v *NullablePermissionsData) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

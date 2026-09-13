@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric{}
+
 // PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric struct for PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric
 type PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric struct {
 	// Name of metric
@@ -22,6 +25,8 @@ type PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric struct {
 	MetricIdentifier *string `json:"metric_identifier,omitempty"`
 	// The transform to apply to metric before pulling into Statuspage. One of: \"average\", \"count\", \"max\", \"min\", or \"sum\"
 	Transform *string `json:"transform,omitempty"`
+	// The Identifier for new relic application. Required in the case of NewRelic only
+	ApplicationId *string `json:"application_id,omitempty"`
 	// Suffix to describe the units on the graph
 	Suffix *string `json:"suffix,omitempty"`
 	// The lower bound of the y axis
@@ -33,7 +38,7 @@ type PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric struct {
 	// Should the metric be displayed
 	Display *bool `json:"display,omitempty"`
 	// How many decimal places to render on the graph
-	DecimalPlaces *int32 `json:"decimal_places,omitempty"`
+	DecimalPlaces      *int32  `json:"decimal_places,omitempty"`
 	TooltipDescription *string `json:"tooltip_description,omitempty"`
 }
 
@@ -56,7 +61,7 @@ func NewPostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetricWithDefault
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -66,7 +71,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetName(
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -74,7 +79,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetNameO
 
 // HasName returns a boolean if a field has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -88,7 +93,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) SetName(
 
 // GetMetricIdentifier returns the MetricIdentifier field value if set, zero value otherwise.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetMetricIdentifier() string {
-	if o == nil || o.MetricIdentifier == nil {
+	if o == nil || IsNil(o.MetricIdentifier) {
 		var ret string
 		return ret
 	}
@@ -98,7 +103,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetMetri
 // GetMetricIdentifierOk returns a tuple with the MetricIdentifier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetMetricIdentifierOk() (*string, bool) {
-	if o == nil || o.MetricIdentifier == nil {
+	if o == nil || IsNil(o.MetricIdentifier) {
 		return nil, false
 	}
 	return o.MetricIdentifier, true
@@ -106,7 +111,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetMetri
 
 // HasMetricIdentifier returns a boolean if a field has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) HasMetricIdentifier() bool {
-	if o != nil && o.MetricIdentifier != nil {
+	if o != nil && !IsNil(o.MetricIdentifier) {
 		return true
 	}
 
@@ -120,7 +125,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) SetMetri
 
 // GetTransform returns the Transform field value if set, zero value otherwise.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetTransform() string {
-	if o == nil || o.Transform == nil {
+	if o == nil || IsNil(o.Transform) {
 		var ret string
 		return ret
 	}
@@ -130,7 +135,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetTrans
 // GetTransformOk returns a tuple with the Transform field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetTransformOk() (*string, bool) {
-	if o == nil || o.Transform == nil {
+	if o == nil || IsNil(o.Transform) {
 		return nil, false
 	}
 	return o.Transform, true
@@ -138,7 +143,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetTrans
 
 // HasTransform returns a boolean if a field has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) HasTransform() bool {
-	if o != nil && o.Transform != nil {
+	if o != nil && !IsNil(o.Transform) {
 		return true
 	}
 
@@ -150,9 +155,41 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) SetTrans
 	o.Transform = &v
 }
 
+// GetApplicationId returns the ApplicationId field value if set, zero value otherwise.
+func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetApplicationId() string {
+	if o == nil || IsNil(o.ApplicationId) {
+		var ret string
+		return ret
+	}
+	return *o.ApplicationId
+}
+
+// GetApplicationIdOk returns a tuple with the ApplicationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetApplicationIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ApplicationId) {
+		return nil, false
+	}
+	return o.ApplicationId, true
+}
+
+// HasApplicationId returns a boolean if a field has been set.
+func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) HasApplicationId() bool {
+	if o != nil && !IsNil(o.ApplicationId) {
+		return true
+	}
+
+	return false
+}
+
+// SetApplicationId gets a reference to the given string and assigns it to the ApplicationId field.
+func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) SetApplicationId(v string) {
+	o.ApplicationId = &v
+}
+
 // GetSuffix returns the Suffix field value if set, zero value otherwise.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetSuffix() string {
-	if o == nil || o.Suffix == nil {
+	if o == nil || IsNil(o.Suffix) {
 		var ret string
 		return ret
 	}
@@ -162,7 +199,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetSuffi
 // GetSuffixOk returns a tuple with the Suffix field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetSuffixOk() (*string, bool) {
-	if o == nil || o.Suffix == nil {
+	if o == nil || IsNil(o.Suffix) {
 		return nil, false
 	}
 	return o.Suffix, true
@@ -170,7 +207,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetSuffi
 
 // HasSuffix returns a boolean if a field has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) HasSuffix() bool {
-	if o != nil && o.Suffix != nil {
+	if o != nil && !IsNil(o.Suffix) {
 		return true
 	}
 
@@ -184,7 +221,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) SetSuffi
 
 // GetYAxisMin returns the YAxisMin field value if set, zero value otherwise.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetYAxisMin() int32 {
-	if o == nil || o.YAxisMin == nil {
+	if o == nil || IsNil(o.YAxisMin) {
 		var ret int32
 		return ret
 	}
@@ -194,7 +231,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetYAxis
 // GetYAxisMinOk returns a tuple with the YAxisMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetYAxisMinOk() (*int32, bool) {
-	if o == nil || o.YAxisMin == nil {
+	if o == nil || IsNil(o.YAxisMin) {
 		return nil, false
 	}
 	return o.YAxisMin, true
@@ -202,7 +239,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetYAxis
 
 // HasYAxisMin returns a boolean if a field has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) HasYAxisMin() bool {
-	if o != nil && o.YAxisMin != nil {
+	if o != nil && !IsNil(o.YAxisMin) {
 		return true
 	}
 
@@ -216,7 +253,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) SetYAxis
 
 // GetYAxisMax returns the YAxisMax field value if set, zero value otherwise.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetYAxisMax() int32 {
-	if o == nil || o.YAxisMax == nil {
+	if o == nil || IsNil(o.YAxisMax) {
 		var ret int32
 		return ret
 	}
@@ -226,7 +263,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetYAxis
 // GetYAxisMaxOk returns a tuple with the YAxisMax field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetYAxisMaxOk() (*int32, bool) {
-	if o == nil || o.YAxisMax == nil {
+	if o == nil || IsNil(o.YAxisMax) {
 		return nil, false
 	}
 	return o.YAxisMax, true
@@ -234,7 +271,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetYAxis
 
 // HasYAxisMax returns a boolean if a field has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) HasYAxisMax() bool {
-	if o != nil && o.YAxisMax != nil {
+	if o != nil && !IsNil(o.YAxisMax) {
 		return true
 	}
 
@@ -248,7 +285,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) SetYAxis
 
 // GetYAxisHidden returns the YAxisHidden field value if set, zero value otherwise.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetYAxisHidden() bool {
-	if o == nil || o.YAxisHidden == nil {
+	if o == nil || IsNil(o.YAxisHidden) {
 		var ret bool
 		return ret
 	}
@@ -258,7 +295,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetYAxis
 // GetYAxisHiddenOk returns a tuple with the YAxisHidden field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetYAxisHiddenOk() (*bool, bool) {
-	if o == nil || o.YAxisHidden == nil {
+	if o == nil || IsNil(o.YAxisHidden) {
 		return nil, false
 	}
 	return o.YAxisHidden, true
@@ -266,7 +303,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetYAxis
 
 // HasYAxisHidden returns a boolean if a field has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) HasYAxisHidden() bool {
-	if o != nil && o.YAxisHidden != nil {
+	if o != nil && !IsNil(o.YAxisHidden) {
 		return true
 	}
 
@@ -280,7 +317,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) SetYAxis
 
 // GetDisplay returns the Display field value if set, zero value otherwise.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetDisplay() bool {
-	if o == nil || o.Display == nil {
+	if o == nil || IsNil(o.Display) {
 		var ret bool
 		return ret
 	}
@@ -290,7 +327,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetDispl
 // GetDisplayOk returns a tuple with the Display field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetDisplayOk() (*bool, bool) {
-	if o == nil || o.Display == nil {
+	if o == nil || IsNil(o.Display) {
 		return nil, false
 	}
 	return o.Display, true
@@ -298,7 +335,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetDispl
 
 // HasDisplay returns a boolean if a field has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) HasDisplay() bool {
-	if o != nil && o.Display != nil {
+	if o != nil && !IsNil(o.Display) {
 		return true
 	}
 
@@ -312,7 +349,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) SetDispl
 
 // GetDecimalPlaces returns the DecimalPlaces field value if set, zero value otherwise.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetDecimalPlaces() int32 {
-	if o == nil || o.DecimalPlaces == nil {
+	if o == nil || IsNil(o.DecimalPlaces) {
 		var ret int32
 		return ret
 	}
@@ -322,7 +359,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetDecim
 // GetDecimalPlacesOk returns a tuple with the DecimalPlaces field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetDecimalPlacesOk() (*int32, bool) {
-	if o == nil || o.DecimalPlaces == nil {
+	if o == nil || IsNil(o.DecimalPlaces) {
 		return nil, false
 	}
 	return o.DecimalPlaces, true
@@ -330,7 +367,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetDecim
 
 // HasDecimalPlaces returns a boolean if a field has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) HasDecimalPlaces() bool {
-	if o != nil && o.DecimalPlaces != nil {
+	if o != nil && !IsNil(o.DecimalPlaces) {
 		return true
 	}
 
@@ -344,7 +381,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) SetDecim
 
 // GetTooltipDescription returns the TooltipDescription field value if set, zero value otherwise.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetTooltipDescription() string {
-	if o == nil || o.TooltipDescription == nil {
+	if o == nil || IsNil(o.TooltipDescription) {
 		var ret string
 		return ret
 	}
@@ -354,7 +391,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetToolt
 // GetTooltipDescriptionOk returns a tuple with the TooltipDescription field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetTooltipDescriptionOk() (*string, bool) {
-	if o == nil || o.TooltipDescription == nil {
+	if o == nil || IsNil(o.TooltipDescription) {
 		return nil, false
 	}
 	return o.TooltipDescription, true
@@ -362,7 +399,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetToolt
 
 // HasTooltipDescription returns a boolean if a field has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) HasTooltipDescription() bool {
-	if o != nil && o.TooltipDescription != nil {
+	if o != nil && !IsNil(o.TooltipDescription) {
 		return true
 	}
 
@@ -375,38 +412,49 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) SetToolt
 }
 
 func (o PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.MetricIdentifier != nil {
-		toSerialize["metric_identifier"] = o.MetricIdentifier
-	}
-	if o.Transform != nil {
-		toSerialize["transform"] = o.Transform
-	}
-	if o.Suffix != nil {
-		toSerialize["suffix"] = o.Suffix
-	}
-	if o.YAxisMin != nil {
-		toSerialize["y_axis_min"] = o.YAxisMin
-	}
-	if o.YAxisMax != nil {
-		toSerialize["y_axis_max"] = o.YAxisMax
-	}
-	if o.YAxisHidden != nil {
-		toSerialize["y_axis_hidden"] = o.YAxisHidden
-	}
-	if o.Display != nil {
-		toSerialize["display"] = o.Display
-	}
-	if o.DecimalPlaces != nil {
-		toSerialize["decimal_places"] = o.DecimalPlaces
-	}
-	if o.TooltipDescription != nil {
-		toSerialize["tooltip_description"] = o.TooltipDescription
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.MetricIdentifier) {
+		toSerialize["metric_identifier"] = o.MetricIdentifier
+	}
+	if !IsNil(o.Transform) {
+		toSerialize["transform"] = o.Transform
+	}
+	if !IsNil(o.ApplicationId) {
+		toSerialize["application_id"] = o.ApplicationId
+	}
+	if !IsNil(o.Suffix) {
+		toSerialize["suffix"] = o.Suffix
+	}
+	if !IsNil(o.YAxisMin) {
+		toSerialize["y_axis_min"] = o.YAxisMin
+	}
+	if !IsNil(o.YAxisMax) {
+		toSerialize["y_axis_max"] = o.YAxisMax
+	}
+	if !IsNil(o.YAxisHidden) {
+		toSerialize["y_axis_hidden"] = o.YAxisHidden
+	}
+	if !IsNil(o.Display) {
+		toSerialize["display"] = o.Display
+	}
+	if !IsNil(o.DecimalPlaces) {
+		toSerialize["decimal_places"] = o.DecimalPlaces
+	}
+	if !IsNil(o.TooltipDescription) {
+		toSerialize["tooltip_description"] = o.TooltipDescription
+	}
+	return toSerialize, nil
 }
 
 type NullablePostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric struct {
@@ -444,5 +492,3 @@ func (v *NullablePostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

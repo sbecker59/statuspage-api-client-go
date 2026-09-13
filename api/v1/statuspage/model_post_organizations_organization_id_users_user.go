@@ -14,14 +14,17 @@ import (
 	"encoding/json"
 )
 
+// checks if the PostOrganizationsOrganizationIdUsersUser type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PostOrganizationsOrganizationIdUsersUser{}
+
 // PostOrganizationsOrganizationIdUsersUser struct for PostOrganizationsOrganizationIdUsersUser
 type PostOrganizationsOrganizationIdUsersUser struct {
 	// Email address for the team member
 	Email *string `json:"email,omitempty"`
 	// Password the team member uses to access the site
-	Password *string `json:"password,omitempty"`
+	Password  *string `json:"password,omitempty"`
 	FirstName *string `json:"first_name,omitempty"`
-	LastName *string `json:"last_name,omitempty"`
+	LastName  *string `json:"last_name,omitempty"`
 }
 
 // NewPostOrganizationsOrganizationIdUsersUser instantiates a new PostOrganizationsOrganizationIdUsersUser object
@@ -43,7 +46,7 @@ func NewPostOrganizationsOrganizationIdUsersUserWithDefaults() *PostOrganization
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *PostOrganizationsOrganizationIdUsersUser) GetEmail() string {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *PostOrganizationsOrganizationIdUsersUser) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostOrganizationsOrganizationIdUsersUser) GetEmailOk() (*string, bool) {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		return nil, false
 	}
 	return o.Email, true
@@ -61,7 +64,7 @@ func (o *PostOrganizationsOrganizationIdUsersUser) GetEmailOk() (*string, bool) 
 
 // HasEmail returns a boolean if a field has been set.
 func (o *PostOrganizationsOrganizationIdUsersUser) HasEmail() bool {
-	if o != nil && o.Email != nil {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *PostOrganizationsOrganizationIdUsersUser) SetEmail(v string) {
 
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *PostOrganizationsOrganizationIdUsersUser) GetPassword() string {
-	if o == nil || o.Password == nil {
+	if o == nil || IsNil(o.Password) {
 		var ret string
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *PostOrganizationsOrganizationIdUsersUser) GetPassword() string {
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostOrganizationsOrganizationIdUsersUser) GetPasswordOk() (*string, bool) {
-	if o == nil || o.Password == nil {
+	if o == nil || IsNil(o.Password) {
 		return nil, false
 	}
 	return o.Password, true
@@ -93,7 +96,7 @@ func (o *PostOrganizationsOrganizationIdUsersUser) GetPasswordOk() (*string, boo
 
 // HasPassword returns a boolean if a field has been set.
 func (o *PostOrganizationsOrganizationIdUsersUser) HasPassword() bool {
-	if o != nil && o.Password != nil {
+	if o != nil && !IsNil(o.Password) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *PostOrganizationsOrganizationIdUsersUser) SetPassword(v string) {
 
 // GetFirstName returns the FirstName field value if set, zero value otherwise.
 func (o *PostOrganizationsOrganizationIdUsersUser) GetFirstName() string {
-	if o == nil || o.FirstName == nil {
+	if o == nil || IsNil(o.FirstName) {
 		var ret string
 		return ret
 	}
@@ -117,7 +120,7 @@ func (o *PostOrganizationsOrganizationIdUsersUser) GetFirstName() string {
 // GetFirstNameOk returns a tuple with the FirstName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostOrganizationsOrganizationIdUsersUser) GetFirstNameOk() (*string, bool) {
-	if o == nil || o.FirstName == nil {
+	if o == nil || IsNil(o.FirstName) {
 		return nil, false
 	}
 	return o.FirstName, true
@@ -125,7 +128,7 @@ func (o *PostOrganizationsOrganizationIdUsersUser) GetFirstNameOk() (*string, bo
 
 // HasFirstName returns a boolean if a field has been set.
 func (o *PostOrganizationsOrganizationIdUsersUser) HasFirstName() bool {
-	if o != nil && o.FirstName != nil {
+	if o != nil && !IsNil(o.FirstName) {
 		return true
 	}
 
@@ -139,7 +142,7 @@ func (o *PostOrganizationsOrganizationIdUsersUser) SetFirstName(v string) {
 
 // GetLastName returns the LastName field value if set, zero value otherwise.
 func (o *PostOrganizationsOrganizationIdUsersUser) GetLastName() string {
-	if o == nil || o.LastName == nil {
+	if o == nil || IsNil(o.LastName) {
 		var ret string
 		return ret
 	}
@@ -149,7 +152,7 @@ func (o *PostOrganizationsOrganizationIdUsersUser) GetLastName() string {
 // GetLastNameOk returns a tuple with the LastName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostOrganizationsOrganizationIdUsersUser) GetLastNameOk() (*string, bool) {
-	if o == nil || o.LastName == nil {
+	if o == nil || IsNil(o.LastName) {
 		return nil, false
 	}
 	return o.LastName, true
@@ -157,7 +160,7 @@ func (o *PostOrganizationsOrganizationIdUsersUser) GetLastNameOk() (*string, boo
 
 // HasLastName returns a boolean if a field has been set.
 func (o *PostOrganizationsOrganizationIdUsersUser) HasLastName() bool {
-	if o != nil && o.LastName != nil {
+	if o != nil && !IsNil(o.LastName) {
 		return true
 	}
 
@@ -170,20 +173,28 @@ func (o *PostOrganizationsOrganizationIdUsersUser) SetLastName(v string) {
 }
 
 func (o PostOrganizationsOrganizationIdUsersUser) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Email != nil {
-		toSerialize["email"] = o.Email
-	}
-	if o.Password != nil {
-		toSerialize["password"] = o.Password
-	}
-	if o.FirstName != nil {
-		toSerialize["first_name"] = o.FirstName
-	}
-	if o.LastName != nil {
-		toSerialize["last_name"] = o.LastName
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PostOrganizationsOrganizationIdUsersUser) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
+	}
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
+	}
+	if !IsNil(o.FirstName) {
+		toSerialize["first_name"] = o.FirstName
+	}
+	if !IsNil(o.LastName) {
+		toSerialize["last_name"] = o.LastName
+	}
+	return toSerialize, nil
 }
 
 type NullablePostOrganizationsOrganizationIdUsersUser struct {
@@ -221,5 +232,3 @@ func (v *NullablePostOrganizationsOrganizationIdUsersUser) UnmarshalJSON(src []b
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

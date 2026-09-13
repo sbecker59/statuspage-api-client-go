@@ -11,8 +11,13 @@ API version: 1.0.0
 package openapi
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the PostPagesPageIdSubscribersReactivate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PostPagesPageIdSubscribersReactivate{}
 
 // PostPagesPageIdSubscribersReactivate Reactivate a list of quarantined subscribers
 type PostPagesPageIdSubscribersReactivate struct {
@@ -21,6 +26,8 @@ type PostPagesPageIdSubscribersReactivate struct {
 	// If this is present, only reactivate subscribers of this type.
 	Type *string `json:"type,omitempty"`
 }
+
+type _PostPagesPageIdSubscribersReactivate PostPagesPageIdSubscribersReactivate
 
 // NewPostPagesPageIdSubscribersReactivate instantiates a new PostPagesPageIdSubscribersReactivate object
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +60,7 @@ func (o *PostPagesPageIdSubscribersReactivate) GetSubscribers() string {
 // GetSubscribersOk returns a tuple with the Subscribers field value
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdSubscribersReactivate) GetSubscribersOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Subscribers, true
@@ -66,7 +73,7 @@ func (o *PostPagesPageIdSubscribersReactivate) SetSubscribers(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *PostPagesPageIdSubscribersReactivate) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -76,7 +83,7 @@ func (o *PostPagesPageIdSubscribersReactivate) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdSubscribersReactivate) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -84,7 +91,7 @@ func (o *PostPagesPageIdSubscribersReactivate) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *PostPagesPageIdSubscribersReactivate) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -97,14 +104,57 @@ func (o *PostPagesPageIdSubscribersReactivate) SetType(v string) {
 }
 
 func (o PostPagesPageIdSubscribersReactivate) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["subscribers"] = o.Subscribers
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PostPagesPageIdSubscribersReactivate) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["subscribers"] = o.Subscribers
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	return toSerialize, nil
+}
+
+func (o *PostPagesPageIdSubscribersReactivate) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"subscribers",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPostPagesPageIdSubscribersReactivate := _PostPagesPageIdSubscribersReactivate{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varPostPagesPageIdSubscribersReactivate)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PostPagesPageIdSubscribersReactivate(varPostPagesPageIdSubscribersReactivate)
+
+	return err
 }
 
 type NullablePostPagesPageIdSubscribersReactivate struct {
@@ -142,5 +192,3 @@ func (v *NullablePostPagesPageIdSubscribersReactivate) UnmarshalJSON(src []byte)
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

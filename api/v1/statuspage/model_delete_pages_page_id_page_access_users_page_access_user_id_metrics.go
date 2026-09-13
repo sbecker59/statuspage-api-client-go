@@ -14,10 +14,13 @@ import (
 	"encoding/json"
 )
 
+// checks if the DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics{}
+
 // DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics Delete metrics for page access user
 type DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics struct {
 	// List of metrics to remove
-	MetricIds *[]string `json:"metric_ids,omitempty"`
+	MetricIds []string `json:"metric_ids,omitempty"`
 }
 
 // NewDeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics instantiates a new DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics object
@@ -39,17 +42,17 @@ func NewDeletePagesPageIdPageAccessUsersPageAccessUserIdMetricsWithDefaults() *D
 
 // GetMetricIds returns the MetricIds field value if set, zero value otherwise.
 func (o *DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics) GetMetricIds() []string {
-	if o == nil || o.MetricIds == nil {
+	if o == nil || IsNil(o.MetricIds) {
 		var ret []string
 		return ret
 	}
-	return *o.MetricIds
+	return o.MetricIds
 }
 
 // GetMetricIdsOk returns a tuple with the MetricIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics) GetMetricIdsOk() (*[]string, bool) {
-	if o == nil || o.MetricIds == nil {
+func (o *DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics) GetMetricIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.MetricIds) {
 		return nil, false
 	}
 	return o.MetricIds, true
@@ -57,7 +60,7 @@ func (o *DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics) GetMetricIdsOk
 
 // HasMetricIds returns a boolean if a field has been set.
 func (o *DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics) HasMetricIds() bool {
-	if o != nil && o.MetricIds != nil {
+	if o != nil && !IsNil(o.MetricIds) {
 		return true
 	}
 
@@ -66,15 +69,23 @@ func (o *DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics) HasMetricIds()
 
 // SetMetricIds gets a reference to the given []string and assigns it to the MetricIds field.
 func (o *DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics) SetMetricIds(v []string) {
-	o.MetricIds = &v
+	o.MetricIds = v
 }
 
 func (o DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.MetricIds != nil {
-		toSerialize["metric_ids"] = o.MetricIds
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.MetricIds) {
+		toSerialize["metric_ids"] = o.MetricIds
+	}
+	return toSerialize, nil
 }
 
 type NullableDeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics struct {
@@ -112,5 +123,3 @@ func (v *NullableDeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics) Unmars
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

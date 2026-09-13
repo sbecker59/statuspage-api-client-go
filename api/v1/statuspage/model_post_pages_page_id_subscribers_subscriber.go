@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PostPagesPageIdSubscribersSubscriber type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PostPagesPageIdSubscribersSubscriber{}
+
 // PostPagesPageIdSubscribersSubscriber struct for PostPagesPageIdSubscribersSubscriber
 type PostPagesPageIdSubscribersSubscriber struct {
 	// The email address for creating Email and Webhook subscribers.
@@ -29,7 +32,7 @@ type PostPagesPageIdSubscribersSubscriber struct {
 	// The code of the page access user to which the subscriber belongs.
 	PageAccessUser *string `json:"page_access_user,omitempty"`
 	// A list of component ids for which the subscriber should recieve updates for. Components must be an array with at least one element if it is passed at all. Each component must belong to the page indicated in the path.
-	ComponentIds *[]string `json:"component_ids,omitempty"`
+	ComponentIds []string `json:"component_ids,omitempty"`
 }
 
 // NewPostPagesPageIdSubscribersSubscriber instantiates a new PostPagesPageIdSubscribersSubscriber object
@@ -51,7 +54,7 @@ func NewPostPagesPageIdSubscribersSubscriberWithDefaults() *PostPagesPageIdSubsc
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *PostPagesPageIdSubscribersSubscriber) GetEmail() string {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -61,7 +64,7 @@ func (o *PostPagesPageIdSubscribersSubscriber) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdSubscribersSubscriber) GetEmailOk() (*string, bool) {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		return nil, false
 	}
 	return o.Email, true
@@ -69,7 +72,7 @@ func (o *PostPagesPageIdSubscribersSubscriber) GetEmailOk() (*string, bool) {
 
 // HasEmail returns a boolean if a field has been set.
 func (o *PostPagesPageIdSubscribersSubscriber) HasEmail() bool {
-	if o != nil && o.Email != nil {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *PostPagesPageIdSubscribersSubscriber) SetEmail(v string) {
 
 // GetEndpoint returns the Endpoint field value if set, zero value otherwise.
 func (o *PostPagesPageIdSubscribersSubscriber) GetEndpoint() string {
-	if o == nil || o.Endpoint == nil {
+	if o == nil || IsNil(o.Endpoint) {
 		var ret string
 		return ret
 	}
@@ -93,7 +96,7 @@ func (o *PostPagesPageIdSubscribersSubscriber) GetEndpoint() string {
 // GetEndpointOk returns a tuple with the Endpoint field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdSubscribersSubscriber) GetEndpointOk() (*string, bool) {
-	if o == nil || o.Endpoint == nil {
+	if o == nil || IsNil(o.Endpoint) {
 		return nil, false
 	}
 	return o.Endpoint, true
@@ -101,7 +104,7 @@ func (o *PostPagesPageIdSubscribersSubscriber) GetEndpointOk() (*string, bool) {
 
 // HasEndpoint returns a boolean if a field has been set.
 func (o *PostPagesPageIdSubscribersSubscriber) HasEndpoint() bool {
-	if o != nil && o.Endpoint != nil {
+	if o != nil && !IsNil(o.Endpoint) {
 		return true
 	}
 
@@ -115,7 +118,7 @@ func (o *PostPagesPageIdSubscribersSubscriber) SetEndpoint(v string) {
 
 // GetPhoneCountry returns the PhoneCountry field value if set, zero value otherwise.
 func (o *PostPagesPageIdSubscribersSubscriber) GetPhoneCountry() string {
-	if o == nil || o.PhoneCountry == nil {
+	if o == nil || IsNil(o.PhoneCountry) {
 		var ret string
 		return ret
 	}
@@ -125,7 +128,7 @@ func (o *PostPagesPageIdSubscribersSubscriber) GetPhoneCountry() string {
 // GetPhoneCountryOk returns a tuple with the PhoneCountry field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdSubscribersSubscriber) GetPhoneCountryOk() (*string, bool) {
-	if o == nil || o.PhoneCountry == nil {
+	if o == nil || IsNil(o.PhoneCountry) {
 		return nil, false
 	}
 	return o.PhoneCountry, true
@@ -133,7 +136,7 @@ func (o *PostPagesPageIdSubscribersSubscriber) GetPhoneCountryOk() (*string, boo
 
 // HasPhoneCountry returns a boolean if a field has been set.
 func (o *PostPagesPageIdSubscribersSubscriber) HasPhoneCountry() bool {
-	if o != nil && o.PhoneCountry != nil {
+	if o != nil && !IsNil(o.PhoneCountry) {
 		return true
 	}
 
@@ -147,7 +150,7 @@ func (o *PostPagesPageIdSubscribersSubscriber) SetPhoneCountry(v string) {
 
 // GetPhoneNumber returns the PhoneNumber field value if set, zero value otherwise.
 func (o *PostPagesPageIdSubscribersSubscriber) GetPhoneNumber() string {
-	if o == nil || o.PhoneNumber == nil {
+	if o == nil || IsNil(o.PhoneNumber) {
 		var ret string
 		return ret
 	}
@@ -157,7 +160,7 @@ func (o *PostPagesPageIdSubscribersSubscriber) GetPhoneNumber() string {
 // GetPhoneNumberOk returns a tuple with the PhoneNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdSubscribersSubscriber) GetPhoneNumberOk() (*string, bool) {
-	if o == nil || o.PhoneNumber == nil {
+	if o == nil || IsNil(o.PhoneNumber) {
 		return nil, false
 	}
 	return o.PhoneNumber, true
@@ -165,7 +168,7 @@ func (o *PostPagesPageIdSubscribersSubscriber) GetPhoneNumberOk() (*string, bool
 
 // HasPhoneNumber returns a boolean if a field has been set.
 func (o *PostPagesPageIdSubscribersSubscriber) HasPhoneNumber() bool {
-	if o != nil && o.PhoneNumber != nil {
+	if o != nil && !IsNil(o.PhoneNumber) {
 		return true
 	}
 
@@ -179,7 +182,7 @@ func (o *PostPagesPageIdSubscribersSubscriber) SetPhoneNumber(v string) {
 
 // GetSkipConfirmationNotification returns the SkipConfirmationNotification field value if set, zero value otherwise.
 func (o *PostPagesPageIdSubscribersSubscriber) GetSkipConfirmationNotification() bool {
-	if o == nil || o.SkipConfirmationNotification == nil {
+	if o == nil || IsNil(o.SkipConfirmationNotification) {
 		var ret bool
 		return ret
 	}
@@ -189,7 +192,7 @@ func (o *PostPagesPageIdSubscribersSubscriber) GetSkipConfirmationNotification()
 // GetSkipConfirmationNotificationOk returns a tuple with the SkipConfirmationNotification field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdSubscribersSubscriber) GetSkipConfirmationNotificationOk() (*bool, bool) {
-	if o == nil || o.SkipConfirmationNotification == nil {
+	if o == nil || IsNil(o.SkipConfirmationNotification) {
 		return nil, false
 	}
 	return o.SkipConfirmationNotification, true
@@ -197,7 +200,7 @@ func (o *PostPagesPageIdSubscribersSubscriber) GetSkipConfirmationNotificationOk
 
 // HasSkipConfirmationNotification returns a boolean if a field has been set.
 func (o *PostPagesPageIdSubscribersSubscriber) HasSkipConfirmationNotification() bool {
-	if o != nil && o.SkipConfirmationNotification != nil {
+	if o != nil && !IsNil(o.SkipConfirmationNotification) {
 		return true
 	}
 
@@ -211,7 +214,7 @@ func (o *PostPagesPageIdSubscribersSubscriber) SetSkipConfirmationNotification(v
 
 // GetPageAccessUser returns the PageAccessUser field value if set, zero value otherwise.
 func (o *PostPagesPageIdSubscribersSubscriber) GetPageAccessUser() string {
-	if o == nil || o.PageAccessUser == nil {
+	if o == nil || IsNil(o.PageAccessUser) {
 		var ret string
 		return ret
 	}
@@ -221,7 +224,7 @@ func (o *PostPagesPageIdSubscribersSubscriber) GetPageAccessUser() string {
 // GetPageAccessUserOk returns a tuple with the PageAccessUser field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdSubscribersSubscriber) GetPageAccessUserOk() (*string, bool) {
-	if o == nil || o.PageAccessUser == nil {
+	if o == nil || IsNil(o.PageAccessUser) {
 		return nil, false
 	}
 	return o.PageAccessUser, true
@@ -229,7 +232,7 @@ func (o *PostPagesPageIdSubscribersSubscriber) GetPageAccessUserOk() (*string, b
 
 // HasPageAccessUser returns a boolean if a field has been set.
 func (o *PostPagesPageIdSubscribersSubscriber) HasPageAccessUser() bool {
-	if o != nil && o.PageAccessUser != nil {
+	if o != nil && !IsNil(o.PageAccessUser) {
 		return true
 	}
 
@@ -243,17 +246,17 @@ func (o *PostPagesPageIdSubscribersSubscriber) SetPageAccessUser(v string) {
 
 // GetComponentIds returns the ComponentIds field value if set, zero value otherwise.
 func (o *PostPagesPageIdSubscribersSubscriber) GetComponentIds() []string {
-	if o == nil || o.ComponentIds == nil {
+	if o == nil || IsNil(o.ComponentIds) {
 		var ret []string
 		return ret
 	}
-	return *o.ComponentIds
+	return o.ComponentIds
 }
 
 // GetComponentIdsOk returns a tuple with the ComponentIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostPagesPageIdSubscribersSubscriber) GetComponentIdsOk() (*[]string, bool) {
-	if o == nil || o.ComponentIds == nil {
+func (o *PostPagesPageIdSubscribersSubscriber) GetComponentIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.ComponentIds) {
 		return nil, false
 	}
 	return o.ComponentIds, true
@@ -261,7 +264,7 @@ func (o *PostPagesPageIdSubscribersSubscriber) GetComponentIdsOk() (*[]string, b
 
 // HasComponentIds returns a boolean if a field has been set.
 func (o *PostPagesPageIdSubscribersSubscriber) HasComponentIds() bool {
-	if o != nil && o.ComponentIds != nil {
+	if o != nil && !IsNil(o.ComponentIds) {
 		return true
 	}
 
@@ -270,33 +273,41 @@ func (o *PostPagesPageIdSubscribersSubscriber) HasComponentIds() bool {
 
 // SetComponentIds gets a reference to the given []string and assigns it to the ComponentIds field.
 func (o *PostPagesPageIdSubscribersSubscriber) SetComponentIds(v []string) {
-	o.ComponentIds = &v
+	o.ComponentIds = v
 }
 
 func (o PostPagesPageIdSubscribersSubscriber) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Email != nil {
-		toSerialize["email"] = o.Email
-	}
-	if o.Endpoint != nil {
-		toSerialize["endpoint"] = o.Endpoint
-	}
-	if o.PhoneCountry != nil {
-		toSerialize["phone_country"] = o.PhoneCountry
-	}
-	if o.PhoneNumber != nil {
-		toSerialize["phone_number"] = o.PhoneNumber
-	}
-	if o.SkipConfirmationNotification != nil {
-		toSerialize["skip_confirmation_notification"] = o.SkipConfirmationNotification
-	}
-	if o.PageAccessUser != nil {
-		toSerialize["page_access_user"] = o.PageAccessUser
-	}
-	if o.ComponentIds != nil {
-		toSerialize["component_ids"] = o.ComponentIds
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PostPagesPageIdSubscribersSubscriber) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
+	}
+	if !IsNil(o.Endpoint) {
+		toSerialize["endpoint"] = o.Endpoint
+	}
+	if !IsNil(o.PhoneCountry) {
+		toSerialize["phone_country"] = o.PhoneCountry
+	}
+	if !IsNil(o.PhoneNumber) {
+		toSerialize["phone_number"] = o.PhoneNumber
+	}
+	if !IsNil(o.SkipConfirmationNotification) {
+		toSerialize["skip_confirmation_notification"] = o.SkipConfirmationNotification
+	}
+	if !IsNil(o.PageAccessUser) {
+		toSerialize["page_access_user"] = o.PageAccessUser
+	}
+	if !IsNil(o.ComponentIds) {
+		toSerialize["component_ids"] = o.ComponentIds
+	}
+	return toSerialize, nil
 }
 
 type NullablePostPagesPageIdSubscribersSubscriber struct {
@@ -334,5 +345,3 @@ func (v *NullablePostPagesPageIdSubscribersSubscriber) UnmarshalJSON(src []byte)
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

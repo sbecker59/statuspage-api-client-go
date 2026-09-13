@@ -14,15 +14,18 @@ import (
 	"encoding/json"
 )
 
+// checks if the PostPagesPageIdPageAccessGroupsPageAccessGroup type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PostPagesPageIdPageAccessGroupsPageAccessGroup{}
+
 // PostPagesPageIdPageAccessGroupsPageAccessGroup struct for PostPagesPageIdPageAccessGroupsPageAccessGroup
 type PostPagesPageIdPageAccessGroupsPageAccessGroup struct {
 	// Name for this Group.
 	Name *string `json:"name,omitempty"`
 	// Associates group with external group.
-	ExternalIdentifier *string `json:"external_identifier,omitempty"`
-	ComponentIds *[]string `json:"component_ids,omitempty"`
-	MetricIds *[]string `json:"metric_ids,omitempty"`
-	PageAccessUserIds *[]string `json:"page_access_user_ids,omitempty"`
+	ExternalIdentifier *string  `json:"external_identifier,omitempty"`
+	ComponentIds       []string `json:"component_ids,omitempty"`
+	MetricIds          []string `json:"metric_ids,omitempty"`
+	PageAccessUserIds  []string `json:"page_access_user_ids,omitempty"`
 }
 
 // NewPostPagesPageIdPageAccessGroupsPageAccessGroup instantiates a new PostPagesPageIdPageAccessGroupsPageAccessGroup object
@@ -44,7 +47,7 @@ func NewPostPagesPageIdPageAccessGroupsPageAccessGroupWithDefaults() *PostPagesP
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -54,7 +57,7 @@ func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -62,7 +65,7 @@ func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) GetNameOk() (*string, b
 
 // HasName returns a boolean if a field has been set.
 func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) SetName(v string) {
 
 // GetExternalIdentifier returns the ExternalIdentifier field value if set, zero value otherwise.
 func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) GetExternalIdentifier() string {
-	if o == nil || o.ExternalIdentifier == nil {
+	if o == nil || IsNil(o.ExternalIdentifier) {
 		var ret string
 		return ret
 	}
@@ -86,7 +89,7 @@ func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) GetExternalIdentifier()
 // GetExternalIdentifierOk returns a tuple with the ExternalIdentifier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) GetExternalIdentifierOk() (*string, bool) {
-	if o == nil || o.ExternalIdentifier == nil {
+	if o == nil || IsNil(o.ExternalIdentifier) {
 		return nil, false
 	}
 	return o.ExternalIdentifier, true
@@ -94,7 +97,7 @@ func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) GetExternalIdentifierOk
 
 // HasExternalIdentifier returns a boolean if a field has been set.
 func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) HasExternalIdentifier() bool {
-	if o != nil && o.ExternalIdentifier != nil {
+	if o != nil && !IsNil(o.ExternalIdentifier) {
 		return true
 	}
 
@@ -108,17 +111,17 @@ func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) SetExternalIdentifier(v
 
 // GetComponentIds returns the ComponentIds field value if set, zero value otherwise.
 func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) GetComponentIds() []string {
-	if o == nil || o.ComponentIds == nil {
+	if o == nil || IsNil(o.ComponentIds) {
 		var ret []string
 		return ret
 	}
-	return *o.ComponentIds
+	return o.ComponentIds
 }
 
 // GetComponentIdsOk returns a tuple with the ComponentIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) GetComponentIdsOk() (*[]string, bool) {
-	if o == nil || o.ComponentIds == nil {
+func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) GetComponentIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.ComponentIds) {
 		return nil, false
 	}
 	return o.ComponentIds, true
@@ -126,7 +129,7 @@ func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) GetComponentIdsOk() (*[
 
 // HasComponentIds returns a boolean if a field has been set.
 func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) HasComponentIds() bool {
-	if o != nil && o.ComponentIds != nil {
+	if o != nil && !IsNil(o.ComponentIds) {
 		return true
 	}
 
@@ -135,22 +138,22 @@ func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) HasComponentIds() bool 
 
 // SetComponentIds gets a reference to the given []string and assigns it to the ComponentIds field.
 func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) SetComponentIds(v []string) {
-	o.ComponentIds = &v
+	o.ComponentIds = v
 }
 
 // GetMetricIds returns the MetricIds field value if set, zero value otherwise.
 func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) GetMetricIds() []string {
-	if o == nil || o.MetricIds == nil {
+	if o == nil || IsNil(o.MetricIds) {
 		var ret []string
 		return ret
 	}
-	return *o.MetricIds
+	return o.MetricIds
 }
 
 // GetMetricIdsOk returns a tuple with the MetricIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) GetMetricIdsOk() (*[]string, bool) {
-	if o == nil || o.MetricIds == nil {
+func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) GetMetricIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.MetricIds) {
 		return nil, false
 	}
 	return o.MetricIds, true
@@ -158,7 +161,7 @@ func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) GetMetricIdsOk() (*[]st
 
 // HasMetricIds returns a boolean if a field has been set.
 func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) HasMetricIds() bool {
-	if o != nil && o.MetricIds != nil {
+	if o != nil && !IsNil(o.MetricIds) {
 		return true
 	}
 
@@ -167,22 +170,22 @@ func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) HasMetricIds() bool {
 
 // SetMetricIds gets a reference to the given []string and assigns it to the MetricIds field.
 func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) SetMetricIds(v []string) {
-	o.MetricIds = &v
+	o.MetricIds = v
 }
 
 // GetPageAccessUserIds returns the PageAccessUserIds field value if set, zero value otherwise.
 func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) GetPageAccessUserIds() []string {
-	if o == nil || o.PageAccessUserIds == nil {
+	if o == nil || IsNil(o.PageAccessUserIds) {
 		var ret []string
 		return ret
 	}
-	return *o.PageAccessUserIds
+	return o.PageAccessUserIds
 }
 
 // GetPageAccessUserIdsOk returns a tuple with the PageAccessUserIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) GetPageAccessUserIdsOk() (*[]string, bool) {
-	if o == nil || o.PageAccessUserIds == nil {
+func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) GetPageAccessUserIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.PageAccessUserIds) {
 		return nil, false
 	}
 	return o.PageAccessUserIds, true
@@ -190,7 +193,7 @@ func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) GetPageAccessUserIdsOk(
 
 // HasPageAccessUserIds returns a boolean if a field has been set.
 func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) HasPageAccessUserIds() bool {
-	if o != nil && o.PageAccessUserIds != nil {
+	if o != nil && !IsNil(o.PageAccessUserIds) {
 		return true
 	}
 
@@ -199,27 +202,35 @@ func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) HasPageAccessUserIds() 
 
 // SetPageAccessUserIds gets a reference to the given []string and assigns it to the PageAccessUserIds field.
 func (o *PostPagesPageIdPageAccessGroupsPageAccessGroup) SetPageAccessUserIds(v []string) {
-	o.PageAccessUserIds = &v
+	o.PageAccessUserIds = v
 }
 
 func (o PostPagesPageIdPageAccessGroupsPageAccessGroup) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.ExternalIdentifier != nil {
-		toSerialize["external_identifier"] = o.ExternalIdentifier
-	}
-	if o.ComponentIds != nil {
-		toSerialize["component_ids"] = o.ComponentIds
-	}
-	if o.MetricIds != nil {
-		toSerialize["metric_ids"] = o.MetricIds
-	}
-	if o.PageAccessUserIds != nil {
-		toSerialize["page_access_user_ids"] = o.PageAccessUserIds
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PostPagesPageIdPageAccessGroupsPageAccessGroup) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.ExternalIdentifier) {
+		toSerialize["external_identifier"] = o.ExternalIdentifier
+	}
+	if !IsNil(o.ComponentIds) {
+		toSerialize["component_ids"] = o.ComponentIds
+	}
+	if !IsNil(o.MetricIds) {
+		toSerialize["metric_ids"] = o.MetricIds
+	}
+	if !IsNil(o.PageAccessUserIds) {
+		toSerialize["page_access_user_ids"] = o.PageAccessUserIds
+	}
+	return toSerialize, nil
 }
 
 type NullablePostPagesPageIdPageAccessGroupsPageAccessGroup struct {
@@ -257,5 +268,3 @@ func (v *NullablePostPagesPageIdPageAccessGroupsPageAccessGroup) UnmarshalJSON(s
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

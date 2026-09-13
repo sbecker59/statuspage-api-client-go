@@ -14,12 +14,15 @@ import (
 	"encoding/json"
 )
 
+// checks if the IncidentTemplate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IncidentTemplate{}
+
 // IncidentTemplate Get a list of templates
 type IncidentTemplate struct {
 	// Incident Template Identifier
 	Id *string `json:"id,omitempty"`
 	// Affected components
-	Components *[]Component `json:"components,omitempty"`
+	Components []Component `json:"components,omitempty"`
 	// Name of the template, as shown in the list on the \"Templates\" tab of the \"Incidents\" page
 	Name *string `json:"name,omitempty"`
 	// Title to be applied to the incident or maintenance when selecting this template
@@ -55,7 +58,7 @@ func NewIncidentTemplateWithDefaults() *IncidentTemplate {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *IncidentTemplate) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -65,7 +68,7 @@ func (o *IncidentTemplate) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IncidentTemplate) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -73,7 +76,7 @@ func (o *IncidentTemplate) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *IncidentTemplate) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -87,17 +90,17 @@ func (o *IncidentTemplate) SetId(v string) {
 
 // GetComponents returns the Components field value if set, zero value otherwise.
 func (o *IncidentTemplate) GetComponents() []Component {
-	if o == nil || o.Components == nil {
+	if o == nil || IsNil(o.Components) {
 		var ret []Component
 		return ret
 	}
-	return *o.Components
+	return o.Components
 }
 
 // GetComponentsOk returns a tuple with the Components field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IncidentTemplate) GetComponentsOk() (*[]Component, bool) {
-	if o == nil || o.Components == nil {
+func (o *IncidentTemplate) GetComponentsOk() ([]Component, bool) {
+	if o == nil || IsNil(o.Components) {
 		return nil, false
 	}
 	return o.Components, true
@@ -105,7 +108,7 @@ func (o *IncidentTemplate) GetComponentsOk() (*[]Component, bool) {
 
 // HasComponents returns a boolean if a field has been set.
 func (o *IncidentTemplate) HasComponents() bool {
-	if o != nil && o.Components != nil {
+	if o != nil && !IsNil(o.Components) {
 		return true
 	}
 
@@ -114,12 +117,12 @@ func (o *IncidentTemplate) HasComponents() bool {
 
 // SetComponents gets a reference to the given []Component and assigns it to the Components field.
 func (o *IncidentTemplate) SetComponents(v []Component) {
-	o.Components = &v
+	o.Components = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *IncidentTemplate) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -129,7 +132,7 @@ func (o *IncidentTemplate) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IncidentTemplate) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -137,7 +140,7 @@ func (o *IncidentTemplate) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *IncidentTemplate) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -151,7 +154,7 @@ func (o *IncidentTemplate) SetName(v string) {
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *IncidentTemplate) GetTitle() string {
-	if o == nil || o.Title == nil {
+	if o == nil || IsNil(o.Title) {
 		var ret string
 		return ret
 	}
@@ -161,7 +164,7 @@ func (o *IncidentTemplate) GetTitle() string {
 // GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IncidentTemplate) GetTitleOk() (*string, bool) {
-	if o == nil || o.Title == nil {
+	if o == nil || IsNil(o.Title) {
 		return nil, false
 	}
 	return o.Title, true
@@ -169,7 +172,7 @@ func (o *IncidentTemplate) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *IncidentTemplate) HasTitle() bool {
-	if o != nil && o.Title != nil {
+	if o != nil && !IsNil(o.Title) {
 		return true
 	}
 
@@ -183,7 +186,7 @@ func (o *IncidentTemplate) SetTitle(v string) {
 
 // GetBody returns the Body field value if set, zero value otherwise.
 func (o *IncidentTemplate) GetBody() string {
-	if o == nil || o.Body == nil {
+	if o == nil || IsNil(o.Body) {
 		var ret string
 		return ret
 	}
@@ -193,7 +196,7 @@ func (o *IncidentTemplate) GetBody() string {
 // GetBodyOk returns a tuple with the Body field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IncidentTemplate) GetBodyOk() (*string, bool) {
-	if o == nil || o.Body == nil {
+	if o == nil || IsNil(o.Body) {
 		return nil, false
 	}
 	return o.Body, true
@@ -201,7 +204,7 @@ func (o *IncidentTemplate) GetBodyOk() (*string, bool) {
 
 // HasBody returns a boolean if a field has been set.
 func (o *IncidentTemplate) HasBody() bool {
-	if o != nil && o.Body != nil {
+	if o != nil && !IsNil(o.Body) {
 		return true
 	}
 
@@ -215,7 +218,7 @@ func (o *IncidentTemplate) SetBody(v string) {
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *IncidentTemplate) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -225,7 +228,7 @@ func (o *IncidentTemplate) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IncidentTemplate) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -233,7 +236,7 @@ func (o *IncidentTemplate) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *IncidentTemplate) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -247,7 +250,7 @@ func (o *IncidentTemplate) SetGroupId(v string) {
 
 // GetUpdateStatus returns the UpdateStatus field value if set, zero value otherwise.
 func (o *IncidentTemplate) GetUpdateStatus() string {
-	if o == nil || o.UpdateStatus == nil {
+	if o == nil || IsNil(o.UpdateStatus) {
 		var ret string
 		return ret
 	}
@@ -257,7 +260,7 @@ func (o *IncidentTemplate) GetUpdateStatus() string {
 // GetUpdateStatusOk returns a tuple with the UpdateStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IncidentTemplate) GetUpdateStatusOk() (*string, bool) {
-	if o == nil || o.UpdateStatus == nil {
+	if o == nil || IsNil(o.UpdateStatus) {
 		return nil, false
 	}
 	return o.UpdateStatus, true
@@ -265,7 +268,7 @@ func (o *IncidentTemplate) GetUpdateStatusOk() (*string, bool) {
 
 // HasUpdateStatus returns a boolean if a field has been set.
 func (o *IncidentTemplate) HasUpdateStatus() bool {
-	if o != nil && o.UpdateStatus != nil {
+	if o != nil && !IsNil(o.UpdateStatus) {
 		return true
 	}
 
@@ -279,7 +282,7 @@ func (o *IncidentTemplate) SetUpdateStatus(v string) {
 
 // GetShouldTweet returns the ShouldTweet field value if set, zero value otherwise.
 func (o *IncidentTemplate) GetShouldTweet() bool {
-	if o == nil || o.ShouldTweet == nil {
+	if o == nil || IsNil(o.ShouldTweet) {
 		var ret bool
 		return ret
 	}
@@ -289,7 +292,7 @@ func (o *IncidentTemplate) GetShouldTweet() bool {
 // GetShouldTweetOk returns a tuple with the ShouldTweet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IncidentTemplate) GetShouldTweetOk() (*bool, bool) {
-	if o == nil || o.ShouldTweet == nil {
+	if o == nil || IsNil(o.ShouldTweet) {
 		return nil, false
 	}
 	return o.ShouldTweet, true
@@ -297,7 +300,7 @@ func (o *IncidentTemplate) GetShouldTweetOk() (*bool, bool) {
 
 // HasShouldTweet returns a boolean if a field has been set.
 func (o *IncidentTemplate) HasShouldTweet() bool {
-	if o != nil && o.ShouldTweet != nil {
+	if o != nil && !IsNil(o.ShouldTweet) {
 		return true
 	}
 
@@ -311,7 +314,7 @@ func (o *IncidentTemplate) SetShouldTweet(v bool) {
 
 // GetShouldSendNotifications returns the ShouldSendNotifications field value if set, zero value otherwise.
 func (o *IncidentTemplate) GetShouldSendNotifications() bool {
-	if o == nil || o.ShouldSendNotifications == nil {
+	if o == nil || IsNil(o.ShouldSendNotifications) {
 		var ret bool
 		return ret
 	}
@@ -321,7 +324,7 @@ func (o *IncidentTemplate) GetShouldSendNotifications() bool {
 // GetShouldSendNotificationsOk returns a tuple with the ShouldSendNotifications field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IncidentTemplate) GetShouldSendNotificationsOk() (*bool, bool) {
-	if o == nil || o.ShouldSendNotifications == nil {
+	if o == nil || IsNil(o.ShouldSendNotifications) {
 		return nil, false
 	}
 	return o.ShouldSendNotifications, true
@@ -329,7 +332,7 @@ func (o *IncidentTemplate) GetShouldSendNotificationsOk() (*bool, bool) {
 
 // HasShouldSendNotifications returns a boolean if a field has been set.
 func (o *IncidentTemplate) HasShouldSendNotifications() bool {
-	if o != nil && o.ShouldSendNotifications != nil {
+	if o != nil && !IsNil(o.ShouldSendNotifications) {
 		return true
 	}
 
@@ -342,35 +345,43 @@ func (o *IncidentTemplate) SetShouldSendNotifications(v bool) {
 }
 
 func (o IncidentTemplate) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Components != nil {
-		toSerialize["components"] = o.Components
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.Title != nil {
-		toSerialize["title"] = o.Title
-	}
-	if o.Body != nil {
-		toSerialize["body"] = o.Body
-	}
-	if o.GroupId != nil {
-		toSerialize["group_id"] = o.GroupId
-	}
-	if o.UpdateStatus != nil {
-		toSerialize["update_status"] = o.UpdateStatus
-	}
-	if o.ShouldTweet != nil {
-		toSerialize["should_tweet"] = o.ShouldTweet
-	}
-	if o.ShouldSendNotifications != nil {
-		toSerialize["should_send_notifications"] = o.ShouldSendNotifications
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o IncidentTemplate) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Components) {
+		toSerialize["components"] = o.Components
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Title) {
+		toSerialize["title"] = o.Title
+	}
+	if !IsNil(o.Body) {
+		toSerialize["body"] = o.Body
+	}
+	if !IsNil(o.GroupId) {
+		toSerialize["group_id"] = o.GroupId
+	}
+	if !IsNil(o.UpdateStatus) {
+		toSerialize["update_status"] = o.UpdateStatus
+	}
+	if !IsNil(o.ShouldTweet) {
+		toSerialize["should_tweet"] = o.ShouldTweet
+	}
+	if !IsNil(o.ShouldSendNotifications) {
+		toSerialize["should_send_notifications"] = o.ShouldSendNotifications
+	}
+	return toSerialize, nil
 }
 
 type NullableIncidentTemplate struct {
@@ -408,5 +419,3 @@ func (v *NullableIncidentTemplate) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

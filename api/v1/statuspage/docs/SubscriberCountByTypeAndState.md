@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Webhook** | Pointer to [**SubscriberCountByState**](SubscriberCountByState.md) |  | [optional] 
 **IntegrationPartner** | Pointer to [**SubscriberCountByState**](SubscriberCountByState.md) |  | [optional] 
 **Slack** | Pointer to [**SubscriberCountByState**](SubscriberCountByState.md) |  | [optional] 
+**Teams** | Pointer to [**SubscriberCountByState**](SubscriberCountByState.md) |  | [optional] 
 
 ## Methods
 
@@ -153,6 +154,31 @@ SetSlack sets Slack field to given value.
 `func (o *SubscriberCountByTypeAndState) HasSlack() bool`
 
 HasSlack returns a boolean if a field has been set.
+
+### GetTeams
+
+`func (o *SubscriberCountByTypeAndState) GetTeams() SubscriberCountByState`
+
+GetTeams returns the Teams field if non-nil, zero value otherwise.
+
+### GetTeamsOk
+
+`func (o *SubscriberCountByTypeAndState) GetTeamsOk() (*SubscriberCountByState, bool)`
+
+GetTeamsOk returns a tuple with the Teams field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTeams
+
+`func (o *SubscriberCountByTypeAndState) SetTeams(v SubscriberCountByState)`
+
+SetTeams sets Teams field to given value.
+
+### HasTeams
+
+`func (o *SubscriberCountByTypeAndState) HasTeams() bool`
+
+HasTeams returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
