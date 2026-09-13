@@ -45,6 +45,10 @@ jobs:
         working-directory: scripts
         run: node extract-spec.js
 
+      - name: Fix known upstream spec issues
+        working-directory: scripts
+        run: node fix-spec.js
+
       - name: Remove previous generated client
         run: rm -rf api/v1/statuspage
 
