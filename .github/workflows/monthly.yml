@@ -82,3 +82,27 @@ jobs:
         run: |
           echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
           echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
+
+      - name: Generate GitHub App token
+        if: steps.cpr.outputs.pull-request-number
+        id: app-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.CROSS_REPO_APP_ID }}
+          private-key: ${{ secrets.CROSS_REPO_APP_PRIVATE_KEY }}
+          owner: sbecker59
+          repositories: terraform-provider-statuspage
+
+      - name: Trigger regression tests on terraform-provider-statuspage
+        if: steps.cpr.outputs.pull-request-number
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          repository: sbecker59/terraform-provider-statuspage
+          event-type: client-updated
+          client-payload: |
+            {
+              "branch": "${{ steps.cpr.outputs.pull-request-branch }}",
+              "pr_number": "${{ steps.cpr.outputs.pull-request-number }}",
+              "repository": "${{ github.repository }}"
+            }
