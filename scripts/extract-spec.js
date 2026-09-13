@@ -14,7 +14,7 @@ const fs = require('fs');
                 const text = await res.text();
                 if (text && text.trim().startsWith('{')) jsonSpec = text;
             }
-        } catch (e) {}
+        } catch (e) { }
     });
 
     await page.goto('https://developer.statuspage.io/', { waitUntil: 'networkidle2' });
