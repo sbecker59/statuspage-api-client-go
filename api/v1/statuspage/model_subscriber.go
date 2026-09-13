@@ -45,7 +45,7 @@ type Subscriber struct {
 	// The timestamp when a quarantined subscriber will be purged (unsubscribed).
 	PurgeAt *time.Time `json:"purge_at,omitempty"`
 	// The components for which the subscriber has elected to receive updates.
-	Components *string `json:"components,omitempty"`
+	Components []string `json:"components,omitempty"`
 	// The Page Access user this subscriber belongs to (only for audience-specific pages).
 	PageAccessUserId *string    `json:"page_access_user_id,omitempty"`
 	CreatedAt        *time.Time `json:"created_at,omitempty"`
@@ -453,17 +453,17 @@ func (o *Subscriber) SetPurgeAt(v time.Time) {
 }
 
 // GetComponents returns the Components field value if set, zero value otherwise.
-func (o *Subscriber) GetComponents() string {
+func (o *Subscriber) GetComponents() []string {
 	if o == nil || IsNil(o.Components) {
-		var ret string
+		var ret []string
 		return ret
 	}
-	return *o.Components
+	return o.Components
 }
 
 // GetComponentsOk returns a tuple with the Components field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Subscriber) GetComponentsOk() (*string, bool) {
+func (o *Subscriber) GetComponentsOk() ([]string, bool) {
 	if o == nil || IsNil(o.Components) {
 		return nil, false
 	}
@@ -479,9 +479,9 @@ func (o *Subscriber) HasComponents() bool {
 	return false
 }
 
-// SetComponents gets a reference to the given string and assigns it to the Components field.
-func (o *Subscriber) SetComponents(v string) {
-	o.Components = &v
+// SetComponents gets a reference to the given []string and assigns it to the Components field.
+func (o *Subscriber) SetComponents(v []string) {
+	o.Components = v
 }
 
 // GetPageAccessUserId returns the PageAccessUserId field value if set, zero value otherwise.

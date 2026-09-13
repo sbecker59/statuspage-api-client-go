@@ -89,12 +89,12 @@ type Page struct {
 	// CSS Color
 	CssLinkColor *string `json:"css_link_color,omitempty"`
 	// CSS Color
-	CssNoData         *string `json:"css_no_data,omitempty"`
-	FaviconLogo       *string `json:"favicon_logo,omitempty"`
-	TransactionalLogo *string `json:"transactional_logo,omitempty"`
-	HeroCover         *string `json:"hero_cover,omitempty"`
-	EmailLogo         *string `json:"email_logo,omitempty"`
-	TwitterLogo       *string `json:"twitter_logo,omitempty"`
+	CssNoData         *string     `json:"css_no_data,omitempty"`
+	FaviconLogo       interface{} `json:"favicon_logo,omitempty"`
+	TransactionalLogo interface{} `json:"transactional_logo,omitempty"`
+	HeroCover         interface{} `json:"hero_cover,omitempty"`
+	EmailLogo         interface{} `json:"email_logo,omitempty"`
+	TwitterLogo       interface{} `json:"twitter_logo,omitempty"`
 }
 
 // NewPage instantiates a new Page object
@@ -1394,22 +1394,23 @@ func (o *Page) SetCssNoData(v string) {
 	o.CssNoData = &v
 }
 
-// GetFaviconLogo returns the FaviconLogo field value if set, zero value otherwise.
-func (o *Page) GetFaviconLogo() string {
-	if o == nil || IsNil(o.FaviconLogo) {
-		var ret string
+// GetFaviconLogo returns the FaviconLogo field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Page) GetFaviconLogo() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.FaviconLogo
+	return o.FaviconLogo
 }
 
 // GetFaviconLogoOk returns a tuple with the FaviconLogo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Page) GetFaviconLogoOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Page) GetFaviconLogoOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.FaviconLogo) {
 		return nil, false
 	}
-	return o.FaviconLogo, true
+	return &o.FaviconLogo, true
 }
 
 // HasFaviconLogo returns a boolean if a field has been set.
@@ -1421,27 +1422,28 @@ func (o *Page) HasFaviconLogo() bool {
 	return false
 }
 
-// SetFaviconLogo gets a reference to the given string and assigns it to the FaviconLogo field.
-func (o *Page) SetFaviconLogo(v string) {
-	o.FaviconLogo = &v
+// SetFaviconLogo gets a reference to the given interface{} and assigns it to the FaviconLogo field.
+func (o *Page) SetFaviconLogo(v interface{}) {
+	o.FaviconLogo = v
 }
 
-// GetTransactionalLogo returns the TransactionalLogo field value if set, zero value otherwise.
-func (o *Page) GetTransactionalLogo() string {
-	if o == nil || IsNil(o.TransactionalLogo) {
-		var ret string
+// GetTransactionalLogo returns the TransactionalLogo field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Page) GetTransactionalLogo() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.TransactionalLogo
+	return o.TransactionalLogo
 }
 
 // GetTransactionalLogoOk returns a tuple with the TransactionalLogo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Page) GetTransactionalLogoOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Page) GetTransactionalLogoOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.TransactionalLogo) {
 		return nil, false
 	}
-	return o.TransactionalLogo, true
+	return &o.TransactionalLogo, true
 }
 
 // HasTransactionalLogo returns a boolean if a field has been set.
@@ -1453,27 +1455,28 @@ func (o *Page) HasTransactionalLogo() bool {
 	return false
 }
 
-// SetTransactionalLogo gets a reference to the given string and assigns it to the TransactionalLogo field.
-func (o *Page) SetTransactionalLogo(v string) {
-	o.TransactionalLogo = &v
+// SetTransactionalLogo gets a reference to the given interface{} and assigns it to the TransactionalLogo field.
+func (o *Page) SetTransactionalLogo(v interface{}) {
+	o.TransactionalLogo = v
 }
 
-// GetHeroCover returns the HeroCover field value if set, zero value otherwise.
-func (o *Page) GetHeroCover() string {
-	if o == nil || IsNil(o.HeroCover) {
-		var ret string
+// GetHeroCover returns the HeroCover field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Page) GetHeroCover() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.HeroCover
+	return o.HeroCover
 }
 
 // GetHeroCoverOk returns a tuple with the HeroCover field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Page) GetHeroCoverOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Page) GetHeroCoverOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.HeroCover) {
 		return nil, false
 	}
-	return o.HeroCover, true
+	return &o.HeroCover, true
 }
 
 // HasHeroCover returns a boolean if a field has been set.
@@ -1485,27 +1488,28 @@ func (o *Page) HasHeroCover() bool {
 	return false
 }
 
-// SetHeroCover gets a reference to the given string and assigns it to the HeroCover field.
-func (o *Page) SetHeroCover(v string) {
-	o.HeroCover = &v
+// SetHeroCover gets a reference to the given interface{} and assigns it to the HeroCover field.
+func (o *Page) SetHeroCover(v interface{}) {
+	o.HeroCover = v
 }
 
-// GetEmailLogo returns the EmailLogo field value if set, zero value otherwise.
-func (o *Page) GetEmailLogo() string {
-	if o == nil || IsNil(o.EmailLogo) {
-		var ret string
+// GetEmailLogo returns the EmailLogo field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Page) GetEmailLogo() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.EmailLogo
+	return o.EmailLogo
 }
 
 // GetEmailLogoOk returns a tuple with the EmailLogo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Page) GetEmailLogoOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Page) GetEmailLogoOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.EmailLogo) {
 		return nil, false
 	}
-	return o.EmailLogo, true
+	return &o.EmailLogo, true
 }
 
 // HasEmailLogo returns a boolean if a field has been set.
@@ -1517,27 +1521,28 @@ func (o *Page) HasEmailLogo() bool {
 	return false
 }
 
-// SetEmailLogo gets a reference to the given string and assigns it to the EmailLogo field.
-func (o *Page) SetEmailLogo(v string) {
-	o.EmailLogo = &v
+// SetEmailLogo gets a reference to the given interface{} and assigns it to the EmailLogo field.
+func (o *Page) SetEmailLogo(v interface{}) {
+	o.EmailLogo = v
 }
 
-// GetTwitterLogo returns the TwitterLogo field value if set, zero value otherwise.
-func (o *Page) GetTwitterLogo() string {
-	if o == nil || IsNil(o.TwitterLogo) {
-		var ret string
+// GetTwitterLogo returns the TwitterLogo field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Page) GetTwitterLogo() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.TwitterLogo
+	return o.TwitterLogo
 }
 
 // GetTwitterLogoOk returns a tuple with the TwitterLogo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Page) GetTwitterLogoOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Page) GetTwitterLogoOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.TwitterLogo) {
 		return nil, false
 	}
-	return o.TwitterLogo, true
+	return &o.TwitterLogo, true
 }
 
 // HasTwitterLogo returns a boolean if a field has been set.
@@ -1549,9 +1554,9 @@ func (o *Page) HasTwitterLogo() bool {
 	return false
 }
 
-// SetTwitterLogo gets a reference to the given string and assigns it to the TwitterLogo field.
-func (o *Page) SetTwitterLogo(v string) {
-	o.TwitterLogo = &v
+// SetTwitterLogo gets a reference to the given interface{} and assigns it to the TwitterLogo field.
+func (o *Page) SetTwitterLogo(v interface{}) {
+	o.TwitterLogo = v
 }
 
 func (o Page) MarshalJSON() ([]byte, error) {
@@ -1684,19 +1689,19 @@ func (o Page) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CssNoData) {
 		toSerialize["css_no_data"] = o.CssNoData
 	}
-	if !IsNil(o.FaviconLogo) {
+	if o.FaviconLogo != nil {
 		toSerialize["favicon_logo"] = o.FaviconLogo
 	}
-	if !IsNil(o.TransactionalLogo) {
+	if o.TransactionalLogo != nil {
 		toSerialize["transactional_logo"] = o.TransactionalLogo
 	}
-	if !IsNil(o.HeroCover) {
+	if o.HeroCover != nil {
 		toSerialize["hero_cover"] = o.HeroCover
 	}
-	if !IsNil(o.EmailLogo) {
+	if o.EmailLogo != nil {
 		toSerialize["email_logo"] = o.EmailLogo
 	}
-	if !IsNil(o.TwitterLogo) {
+	if o.TwitterLogo != nil {
 		toSerialize["twitter_logo"] = o.TwitterLogo
 	}
 	return toSerialize, nil

@@ -62,6 +62,7 @@ docs/PagesAPI.md
 docs/PatchPages.md
 docs/PatchPagesPage.md
 docs/PatchPagesPageIdComponentGroups.md
+docs/PatchPagesPageIdComponentGroupsComponentGroup.md
 docs/PatchPagesPageIdComponents.md
 docs/PatchPagesPageIdIncidents.md
 docs/PatchPagesPageIdIncidentsIncident.md
@@ -171,6 +172,7 @@ model_page_access_user.go
 model_patch_pages.go
 model_patch_pages_page.go
 model_patch_pages_page_id_component_groups.go
+model_patch_pages_page_id_component_groups_component_group.go
 model_patch_pages_page_id_components.go
 model_patch_pages_page_id_incidents.go
 model_patch_pages_page_id_incidents_incident.go

@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **WorkspaceName** | Pointer to **string** | The workspace name of the slack subscriber. | [optional] 
 **QuarantinedAt** | Pointer to **time.Time** | The timestamp when the subscriber was quarantined due to an issue reaching them. | [optional] 
 **PurgeAt** | Pointer to **time.Time** | The timestamp when a quarantined subscriber will be purged (unsubscribed). | [optional] 
-**Components** | Pointer to **string** | The components for which the subscriber has elected to receive updates. | [optional] 
+**Components** | Pointer to **[]string** | The components for which the subscriber has elected to receive updates. | [optional] 
 **PageAccessUserId** | Pointer to **string** | The Page Access user this subscriber belongs to (only for audience-specific pages). | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 
@@ -341,20 +341,20 @@ HasPurgeAt returns a boolean if a field has been set.
 
 ### GetComponents
 
-`func (o *Subscriber) GetComponents() string`
+`func (o *Subscriber) GetComponents() []string`
 
 GetComponents returns the Components field if non-nil, zero value otherwise.
 
 ### GetComponentsOk
 
-`func (o *Subscriber) GetComponentsOk() (*string, bool)`
+`func (o *Subscriber) GetComponentsOk() (*[]string, bool)`
 
 GetComponentsOk returns a tuple with the Components field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetComponents
 
-`func (o *Subscriber) SetComponents(v string)`
+`func (o *Subscriber) SetComponents(v []string)`
 
 SetComponents sets Components field to given value.
 

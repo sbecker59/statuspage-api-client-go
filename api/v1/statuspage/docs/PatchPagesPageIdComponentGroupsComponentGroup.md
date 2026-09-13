@@ -1,4 +1,4 @@
-# PostPagesPageIdComponentGroupsComponentGroup
+# PatchPagesPageIdComponentGroupsComponentGroup
 
 ## Properties
 
@@ -6,89 +6,89 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Components** | **[]string** |  | 
 **Name** | **string** |  | 
-**Description** | Pointer to **string** | Description of the component group. | [optional] 
+**Description** | Pointer to **string** | Updated description of the component group. | [optional] 
 
 ## Methods
 
-### NewPostPagesPageIdComponentGroupsComponentGroup
+### NewPatchPagesPageIdComponentGroupsComponentGroup
 
-`func NewPostPagesPageIdComponentGroupsComponentGroup(components []string, name string, ) *PostPagesPageIdComponentGroupsComponentGroup`
+`func NewPatchPagesPageIdComponentGroupsComponentGroup(components []string, name string, ) *PatchPagesPageIdComponentGroupsComponentGroup`
 
-NewPostPagesPageIdComponentGroupsComponentGroup instantiates a new PostPagesPageIdComponentGroupsComponentGroup object
+NewPatchPagesPageIdComponentGroupsComponentGroup instantiates a new PatchPagesPageIdComponentGroupsComponentGroup object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewPostPagesPageIdComponentGroupsComponentGroupWithDefaults
+### NewPatchPagesPageIdComponentGroupsComponentGroupWithDefaults
 
-`func NewPostPagesPageIdComponentGroupsComponentGroupWithDefaults() *PostPagesPageIdComponentGroupsComponentGroup`
+`func NewPatchPagesPageIdComponentGroupsComponentGroupWithDefaults() *PatchPagesPageIdComponentGroupsComponentGroup`
 
-NewPostPagesPageIdComponentGroupsComponentGroupWithDefaults instantiates a new PostPagesPageIdComponentGroupsComponentGroup object
+NewPatchPagesPageIdComponentGroupsComponentGroupWithDefaults instantiates a new PatchPagesPageIdComponentGroupsComponentGroup object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetComponents
 
-`func (o *PostPagesPageIdComponentGroupsComponentGroup) GetComponents() []string`
+`func (o *PatchPagesPageIdComponentGroupsComponentGroup) GetComponents() []string`
 
 GetComponents returns the Components field if non-nil, zero value otherwise.
 
 ### GetComponentsOk
 
-`func (o *PostPagesPageIdComponentGroupsComponentGroup) GetComponentsOk() (*[]string, bool)`
+`func (o *PatchPagesPageIdComponentGroupsComponentGroup) GetComponentsOk() (*[]string, bool)`
 
 GetComponentsOk returns a tuple with the Components field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetComponents
 
-`func (o *PostPagesPageIdComponentGroupsComponentGroup) SetComponents(v []string)`
+`func (o *PatchPagesPageIdComponentGroupsComponentGroup) SetComponents(v []string)`
 
 SetComponents sets Components field to given value.
 
 
 ### GetName
 
-`func (o *PostPagesPageIdComponentGroupsComponentGroup) GetName() string`
+`func (o *PatchPagesPageIdComponentGroupsComponentGroup) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *PostPagesPageIdComponentGroupsComponentGroup) GetNameOk() (*string, bool)`
+`func (o *PatchPagesPageIdComponentGroupsComponentGroup) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetName
 
-`func (o *PostPagesPageIdComponentGroupsComponentGroup) SetName(v string)`
+`func (o *PatchPagesPageIdComponentGroupsComponentGroup) SetName(v string)`
 
 SetName sets Name field to given value.
 
 
 ### GetDescription
 
-`func (o *PostPagesPageIdComponentGroupsComponentGroup) GetDescription() string`
+`func (o *PatchPagesPageIdComponentGroupsComponentGroup) GetDescription() string`
 
 GetDescription returns the Description field if non-nil, zero value otherwise.
 
 ### GetDescriptionOk
 
-`func (o *PostPagesPageIdComponentGroupsComponentGroup) GetDescriptionOk() (*string, bool)`
+`func (o *PatchPagesPageIdComponentGroupsComponentGroup) GetDescriptionOk() (*string, bool)`
 
 GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDescription
 
-`func (o *PostPagesPageIdComponentGroupsComponentGroup) SetDescription(v string)`
+`func (o *PatchPagesPageIdComponentGroupsComponentGroup) SetDescription(v string)`
 
 SetDescription sets Description field to given value.
 
 ### HasDescription
 
-`func (o *PostPagesPageIdComponentGroupsComponentGroup) HasDescription() bool`
+`func (o *PatchPagesPageIdComponentGroupsComponentGroup) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
 

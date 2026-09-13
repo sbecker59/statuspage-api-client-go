@@ -31,7 +31,7 @@ type ComponentUptime struct {
 	// Seconds of partial outage
 	PartialOutage *int32 `json:"partial_outage,omitempty"`
 	// Warning messages related to the uptime query that may occur
-	Warnings *string `json:"warnings,omitempty"`
+	Warnings []string `json:"warnings,omitempty"`
 	// Component identifier
 	Id *string `json:"id,omitempty"`
 	// Component display name
@@ -217,17 +217,17 @@ func (o *ComponentUptime) SetPartialOutage(v int32) {
 }
 
 // GetWarnings returns the Warnings field value if set, zero value otherwise.
-func (o *ComponentUptime) GetWarnings() string {
+func (o *ComponentUptime) GetWarnings() []string {
 	if o == nil || IsNil(o.Warnings) {
-		var ret string
+		var ret []string
 		return ret
 	}
-	return *o.Warnings
+	return o.Warnings
 }
 
 // GetWarningsOk returns a tuple with the Warnings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ComponentUptime) GetWarningsOk() (*string, bool) {
+func (o *ComponentUptime) GetWarningsOk() ([]string, bool) {
 	if o == nil || IsNil(o.Warnings) {
 		return nil, false
 	}
@@ -243,9 +243,9 @@ func (o *ComponentUptime) HasWarnings() bool {
 	return false
 }
 
-// SetWarnings gets a reference to the given string and assigns it to the Warnings field.
-func (o *ComponentUptime) SetWarnings(v string) {
-	o.Warnings = &v
+// SetWarnings gets a reference to the given []string and assigns it to the Warnings field.
+func (o *ComponentUptime) SetWarnings(v []string) {
+	o.Warnings = v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.

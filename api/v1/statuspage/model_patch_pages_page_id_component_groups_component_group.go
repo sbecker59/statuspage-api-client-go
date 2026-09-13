@@ -16,40 +16,40 @@ import (
 	"fmt"
 )
 
-// checks if the PostPagesPageIdComponentGroupsComponentGroup type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &PostPagesPageIdComponentGroupsComponentGroup{}
+// checks if the PatchPagesPageIdComponentGroupsComponentGroup type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PatchPagesPageIdComponentGroupsComponentGroup{}
 
-// PostPagesPageIdComponentGroupsComponentGroup struct for PostPagesPageIdComponentGroupsComponentGroup
-type PostPagesPageIdComponentGroupsComponentGroup struct {
+// PatchPagesPageIdComponentGroupsComponentGroup struct for PatchPagesPageIdComponentGroupsComponentGroup
+type PatchPagesPageIdComponentGroupsComponentGroup struct {
 	Components []string `json:"components"`
 	Name       string   `json:"name"`
-	// Description of the component group.
+	// Updated description of the component group.
 	Description *string `json:"description,omitempty"`
 }
 
-type _PostPagesPageIdComponentGroupsComponentGroup PostPagesPageIdComponentGroupsComponentGroup
+type _PatchPagesPageIdComponentGroupsComponentGroup PatchPagesPageIdComponentGroupsComponentGroup
 
-// NewPostPagesPageIdComponentGroupsComponentGroup instantiates a new PostPagesPageIdComponentGroupsComponentGroup object
+// NewPatchPagesPageIdComponentGroupsComponentGroup instantiates a new PatchPagesPageIdComponentGroupsComponentGroup object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPostPagesPageIdComponentGroupsComponentGroup(components []string, name string) *PostPagesPageIdComponentGroupsComponentGroup {
-	this := PostPagesPageIdComponentGroupsComponentGroup{}
+func NewPatchPagesPageIdComponentGroupsComponentGroup(components []string, name string) *PatchPagesPageIdComponentGroupsComponentGroup {
+	this := PatchPagesPageIdComponentGroupsComponentGroup{}
 	this.Components = components
 	this.Name = name
 	return &this
 }
 
-// NewPostPagesPageIdComponentGroupsComponentGroupWithDefaults instantiates a new PostPagesPageIdComponentGroupsComponentGroup object
+// NewPatchPagesPageIdComponentGroupsComponentGroupWithDefaults instantiates a new PatchPagesPageIdComponentGroupsComponentGroup object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPostPagesPageIdComponentGroupsComponentGroupWithDefaults() *PostPagesPageIdComponentGroupsComponentGroup {
-	this := PostPagesPageIdComponentGroupsComponentGroup{}
+func NewPatchPagesPageIdComponentGroupsComponentGroupWithDefaults() *PatchPagesPageIdComponentGroupsComponentGroup {
+	this := PatchPagesPageIdComponentGroupsComponentGroup{}
 	return &this
 }
 
 // GetComponents returns the Components field value
-func (o *PostPagesPageIdComponentGroupsComponentGroup) GetComponents() []string {
+func (o *PatchPagesPageIdComponentGroupsComponentGroup) GetComponents() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -60,7 +60,7 @@ func (o *PostPagesPageIdComponentGroupsComponentGroup) GetComponents() []string 
 
 // GetComponentsOk returns a tuple with the Components field value
 // and a boolean to check if the value has been set.
-func (o *PostPagesPageIdComponentGroupsComponentGroup) GetComponentsOk() ([]string, bool) {
+func (o *PatchPagesPageIdComponentGroupsComponentGroup) GetComponentsOk() ([]string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -68,12 +68,12 @@ func (o *PostPagesPageIdComponentGroupsComponentGroup) GetComponentsOk() ([]stri
 }
 
 // SetComponents sets field value
-func (o *PostPagesPageIdComponentGroupsComponentGroup) SetComponents(v []string) {
+func (o *PatchPagesPageIdComponentGroupsComponentGroup) SetComponents(v []string) {
 	o.Components = v
 }
 
 // GetName returns the Name field value
-func (o *PostPagesPageIdComponentGroupsComponentGroup) GetName() string {
+func (o *PatchPagesPageIdComponentGroupsComponentGroup) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -84,7 +84,7 @@ func (o *PostPagesPageIdComponentGroupsComponentGroup) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
-func (o *PostPagesPageIdComponentGroupsComponentGroup) GetNameOk() (*string, bool) {
+func (o *PatchPagesPageIdComponentGroupsComponentGroup) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -92,12 +92,12 @@ func (o *PostPagesPageIdComponentGroupsComponentGroup) GetNameOk() (*string, boo
 }
 
 // SetName sets field value
-func (o *PostPagesPageIdComponentGroupsComponentGroup) SetName(v string) {
+func (o *PatchPagesPageIdComponentGroupsComponentGroup) SetName(v string) {
 	o.Name = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *PostPagesPageIdComponentGroupsComponentGroup) GetDescription() string {
+func (o *PatchPagesPageIdComponentGroupsComponentGroup) GetDescription() string {
 	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
@@ -107,7 +107,7 @@ func (o *PostPagesPageIdComponentGroupsComponentGroup) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostPagesPageIdComponentGroupsComponentGroup) GetDescriptionOk() (*string, bool) {
+func (o *PatchPagesPageIdComponentGroupsComponentGroup) GetDescriptionOk() (*string, bool) {
 	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
@@ -115,7 +115,7 @@ func (o *PostPagesPageIdComponentGroupsComponentGroup) GetDescriptionOk() (*stri
 }
 
 // HasDescription returns a boolean if a field has been set.
-func (o *PostPagesPageIdComponentGroupsComponentGroup) HasDescription() bool {
+func (o *PatchPagesPageIdComponentGroupsComponentGroup) HasDescription() bool {
 	if o != nil && !IsNil(o.Description) {
 		return true
 	}
@@ -124,11 +124,11 @@ func (o *PostPagesPageIdComponentGroupsComponentGroup) HasDescription() bool {
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *PostPagesPageIdComponentGroupsComponentGroup) SetDescription(v string) {
+func (o *PatchPagesPageIdComponentGroupsComponentGroup) SetDescription(v string) {
 	o.Description = &v
 }
 
-func (o PostPagesPageIdComponentGroupsComponentGroup) MarshalJSON() ([]byte, error) {
+func (o PatchPagesPageIdComponentGroupsComponentGroup) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -136,7 +136,7 @@ func (o PostPagesPageIdComponentGroupsComponentGroup) MarshalJSON() ([]byte, err
 	return json.Marshal(toSerialize)
 }
 
-func (o PostPagesPageIdComponentGroupsComponentGroup) ToMap() (map[string]interface{}, error) {
+func (o PatchPagesPageIdComponentGroupsComponentGroup) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["components"] = o.Components
 	toSerialize["name"] = o.Name
@@ -146,7 +146,7 @@ func (o PostPagesPageIdComponentGroupsComponentGroup) ToMap() (map[string]interf
 	return toSerialize, nil
 }
 
-func (o *PostPagesPageIdComponentGroupsComponentGroup) UnmarshalJSON(data []byte) (err error) {
+func (o *PatchPagesPageIdComponentGroupsComponentGroup) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
@@ -169,53 +169,53 @@ func (o *PostPagesPageIdComponentGroupsComponentGroup) UnmarshalJSON(data []byte
 		}
 	}
 
-	varPostPagesPageIdComponentGroupsComponentGroup := _PostPagesPageIdComponentGroupsComponentGroup{}
+	varPatchPagesPageIdComponentGroupsComponentGroup := _PatchPagesPageIdComponentGroupsComponentGroup{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPostPagesPageIdComponentGroupsComponentGroup)
+	err = decoder.Decode(&varPatchPagesPageIdComponentGroupsComponentGroup)
 
 	if err != nil {
 		return err
 	}
 
-	*o = PostPagesPageIdComponentGroupsComponentGroup(varPostPagesPageIdComponentGroupsComponentGroup)
+	*o = PatchPagesPageIdComponentGroupsComponentGroup(varPatchPagesPageIdComponentGroupsComponentGroup)
 
 	return err
 }
 
-type NullablePostPagesPageIdComponentGroupsComponentGroup struct {
-	value *PostPagesPageIdComponentGroupsComponentGroup
+type NullablePatchPagesPageIdComponentGroupsComponentGroup struct {
+	value *PatchPagesPageIdComponentGroupsComponentGroup
 	isSet bool
 }
 
-func (v NullablePostPagesPageIdComponentGroupsComponentGroup) Get() *PostPagesPageIdComponentGroupsComponentGroup {
+func (v NullablePatchPagesPageIdComponentGroupsComponentGroup) Get() *PatchPagesPageIdComponentGroupsComponentGroup {
 	return v.value
 }
 
-func (v *NullablePostPagesPageIdComponentGroupsComponentGroup) Set(val *PostPagesPageIdComponentGroupsComponentGroup) {
+func (v *NullablePatchPagesPageIdComponentGroupsComponentGroup) Set(val *PatchPagesPageIdComponentGroupsComponentGroup) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePostPagesPageIdComponentGroupsComponentGroup) IsSet() bool {
+func (v NullablePatchPagesPageIdComponentGroupsComponentGroup) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePostPagesPageIdComponentGroupsComponentGroup) Unset() {
+func (v *NullablePatchPagesPageIdComponentGroupsComponentGroup) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePostPagesPageIdComponentGroupsComponentGroup(val *PostPagesPageIdComponentGroupsComponentGroup) *NullablePostPagesPageIdComponentGroupsComponentGroup {
-	return &NullablePostPagesPageIdComponentGroupsComponentGroup{value: val, isSet: true}
+func NewNullablePatchPagesPageIdComponentGroupsComponentGroup(val *PatchPagesPageIdComponentGroupsComponentGroup) *NullablePatchPagesPageIdComponentGroupsComponentGroup {
+	return &NullablePatchPagesPageIdComponentGroupsComponentGroup{value: val, isSet: true}
 }
 
-func (v NullablePostPagesPageIdComponentGroupsComponentGroup) MarshalJSON() ([]byte, error) {
+func (v NullablePatchPagesPageIdComponentGroupsComponentGroup) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePostPagesPageIdComponentGroupsComponentGroup) UnmarshalJSON(src []byte) error {
+func (v *NullablePatchPagesPageIdComponentGroupsComponentGroup) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

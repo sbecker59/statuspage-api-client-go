@@ -27,7 +27,7 @@ type PageAccessUser struct {
 	// IDP login user id. Key is typically \"uid\".
 	ExternalLogin      *string    `json:"external_login,omitempty"`
 	PageAccessGroupId  *string    `json:"page_access_group_id,omitempty"`
-	PageAccessGroupIds *string    `json:"page_access_group_ids,omitempty"`
+	PageAccessGroupIds []string   `json:"page_access_group_ids,omitempty"`
 	CreatedAt          *time.Time `json:"created_at,omitempty"`
 	UpdatedAt          *time.Time `json:"updated_at,omitempty"`
 }
@@ -210,17 +210,17 @@ func (o *PageAccessUser) SetPageAccessGroupId(v string) {
 }
 
 // GetPageAccessGroupIds returns the PageAccessGroupIds field value if set, zero value otherwise.
-func (o *PageAccessUser) GetPageAccessGroupIds() string {
+func (o *PageAccessUser) GetPageAccessGroupIds() []string {
 	if o == nil || IsNil(o.PageAccessGroupIds) {
-		var ret string
+		var ret []string
 		return ret
 	}
-	return *o.PageAccessGroupIds
+	return o.PageAccessGroupIds
 }
 
 // GetPageAccessGroupIdsOk returns a tuple with the PageAccessGroupIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PageAccessUser) GetPageAccessGroupIdsOk() (*string, bool) {
+func (o *PageAccessUser) GetPageAccessGroupIdsOk() ([]string, bool) {
 	if o == nil || IsNil(o.PageAccessGroupIds) {
 		return nil, false
 	}
@@ -236,9 +236,9 @@ func (o *PageAccessUser) HasPageAccessGroupIds() bool {
 	return false
 }
 
-// SetPageAccessGroupIds gets a reference to the given string and assigns it to the PageAccessGroupIds field.
-func (o *PageAccessUser) SetPageAccessGroupIds(v string) {
-	o.PageAccessGroupIds = &v
+// SetPageAccessGroupIds gets a reference to the given []string and assigns it to the PageAccessGroupIds field.
+func (o *PageAccessUser) SetPageAccessGroupIds(v []string) {
+	o.PageAccessGroupIds = v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.

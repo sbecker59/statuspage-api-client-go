@@ -269,6 +269,7 @@ Class | Method | HTTP request | Description
  - [PatchPages](docs/PatchPages.md)
  - [PatchPagesPage](docs/PatchPagesPage.md)
  - [PatchPagesPageIdComponentGroups](docs/PatchPagesPageIdComponentGroups.md)
+ - [PatchPagesPageIdComponentGroupsComponentGroup](docs/PatchPagesPageIdComponentGroupsComponentGroup.md)
  - [PatchPagesPageIdComponents](docs/PatchPagesPageIdComponents.md)
  - [PatchPagesPageIdIncidents](docs/PatchPagesPageIdIncidents.md)
  - [PatchPagesPageIdIncidentsIncident](docs/PatchPagesPageIdIncidentsIncident.md)

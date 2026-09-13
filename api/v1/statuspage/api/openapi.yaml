@@ -6968,11 +6968,11 @@ components:
         css_graph_color: css_graph_color
         css_link_color: css_link_color
         css_no_data: css_no_data
-        favicon_logo: favicon_logo
-        transactional_logo: transactional_logo
-        hero_cover: hero_cover
-        email_logo: email_logo
-        twitter_logo: twitter_logo
+        favicon_logo: ""
+        transactional_logo: ""
+        hero_cover: ""
+        email_logo: ""
+        twitter_logo: ""
       properties:
         id:
           description: Page identifier
@@ -7098,16 +7098,11 @@ components:
         css_no_data:
           description: CSS Color
           type: string
-        favicon_logo:
-          type: string
-        transactional_logo:
-          type: string
-        hero_cover:
-          type: string
-        email_logo:
-          type: string
-        twitter_logo:
-          type: string
+        favicon_logo: {}
+        transactional_logo: {}
+        hero_cover: {}
+        email_logo: {}
+        twitter_logo: {}
       type: object
     ErrorEntity:
       description: Get a list of users
@@ -7143,7 +7138,7 @@ components:
         email: user@example.com
         external_login: external_login
         page_access_group_id: page_access_group_id
-        page_access_group_ids: "[]"
+        page_access_group_ids: []
         created_at: 2000-01-23T04:56:07.000+00:00
         updated_at: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -7162,8 +7157,10 @@ components:
         page_access_group_id:
           type: string
         page_access_group_ids:
-          example: "[]"
-          type: string
+          example: []
+          items:
+            type: string
+          type: array
         created_at:
           format: date-time
           type: string
@@ -7696,7 +7693,8 @@ components:
         workspace_name: Atlassian
         quarantined_at: 2000-01-23T04:56:07.000+00:00
         purge_at: 2000-01-23T04:56:07.000+00:00
-        components: "[\"f00glczysv7v\"]"
+        components:
+        - f00glczysv7v
         page_access_user_id: yq8v7ckzbf9m
         created_at: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -7756,8 +7754,11 @@ components:
         components:
           description: The components for which the subscriber has elected to receive
             updates.
-          example: "[\"f00glczysv7v\"]"
-          type: string
+          example:
+          - f00glczysv7v
+          items:
+            type: string
+          type: array
         page_access_user_id:
           description: The Page Access user this subscriber belongs to (only for audience-specific
             pages).
@@ -8450,8 +8451,9 @@ components:
         uptime_percentage: 96.67
         major_outage: 86400
         partial_outage: 0
-        warnings: "[\"End date was adjusted to today. See range_end field in response\
-          \ for end date used.\"]"
+        warnings:
+        - End date was adjusted to today. See range_end field in response for end
+          date used.
         id: id
         name: name
         related_events:
@@ -8484,9 +8486,12 @@ components:
           type: integer
         warnings:
           description: Warning messages related to the uptime query that may occur
-          example: "[\"End date was adjusted to today. See range_end field in response\
-            \ for end date used.\"]"
-          type: string
+          example:
+          - End date was adjusted to today. See range_end field in response for end
+            date used.
+          items:
+            type: string
+          type: array
         id:
           description: Component identifier
           type: string
@@ -8499,9 +8504,6 @@ components:
     postPagesPageIdComponentGroups:
       description: Create a component group
       properties:
-        description:
-          description: Description of the component group.
-          type: string
         component_group:
           $ref: "#/components/schemas/postPagesPageIdComponentGroups_component_group"
       type: object
@@ -8512,8 +8514,10 @@ components:
         page_id: page_id
         name: API Components
         description: description
-        components: "[\"abc123\",\"abc124\"]"
-        position: position
+        components:
+        - abc123
+        - abc124
+        position: 0
         created_at: 2000-01-23T04:56:07.000+00:00
         updated_at: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -8529,10 +8533,16 @@ components:
         description:
           type: string
         components:
-          example: "[\"abc123\",\"abc124\"]"
-          type: string
+          example:
+          - abc123
+          - abc124
+          items:
+            type: string
+          type: array
         position:
-          type: string
+          description: Order the component group will appear on the page
+          format: int32
+          type: integer
         created_at:
           format: date-time
           type: string
@@ -8543,20 +8553,14 @@ components:
     patchPagesPageIdComponentGroups:
       description: Update a component group
       properties:
-        description:
-          description: Updated description of the component group.
-          type: string
         component_group:
-          $ref: "#/components/schemas/postPagesPageIdComponentGroups_component_group"
+          $ref: "#/components/schemas/patchPagesPageIdComponentGroups_component_group"
       type: object
     putPagesPageIdComponentGroups:
       description: Update a component group
       properties:
-        description:
-          description: Updated description of the component group.
-          type: string
         component_group:
-          $ref: "#/components/schemas/postPagesPageIdComponentGroups_component_group"
+          $ref: "#/components/schemas/patchPagesPageIdComponentGroups_component_group"
       type: object
     ComponentGroupUptime:
       description: Get uptime data for a component group that has uptime showcase
@@ -8567,8 +8571,9 @@ components:
         uptime_percentage: 96.67
         major_outage: 86400
         partial_outage: 0
-        warnings: "[\"End date was adjusted to today. See range_end field in response\
-          \ for end date used.\"]"
+        warnings:
+        - End date was adjusted to today. See range_end field in response for end
+          date used.
         id: id
         name: name
         related_events:
@@ -8603,9 +8608,12 @@ components:
           type: integer
         warnings:
           description: Warning messages related to the uptime query that may occur
-          example: "[\"End date was adjusted to today. See range_end field in response\
-            \ for end date used.\"]"
-          type: string
+          example:
+          - End date was adjusted to today. See range_end field in response for end
+            date used.
+          items:
+            type: string
+          type: array
         id:
           description: Component group identifier
           type: string
@@ -8678,7 +8686,7 @@ components:
         last_revalidated_at: 2000-01-23T04:56:07.000+00:00
         created_at: 2000-01-23T04:56:07.000+00:00
         updated_at: 2000-01-23T04:56:07.000+00:00
-        page_id: 0
+        page_id: page_id
       properties:
         id:
           description: Identifier for Metrics Provider
@@ -8699,8 +8707,7 @@ components:
           format: date-time
           type: string
         page_id:
-          format: int32
-          type: integer
+          type: string
       type: object
     postPagesPageIdMetricsProviders:
       description: Create a metric provider
@@ -9410,6 +9417,24 @@ components:
             type: string
           type: array
         name:
+          type: string
+        description:
+          description: Description of the component group.
+          type: string
+      required:
+      - components
+      - name
+      type: object
+    patchPagesPageIdComponentGroups_component_group:
+      properties:
+        components:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        description:
+          description: Updated description of the component group.
           type: string
       required:
       - components

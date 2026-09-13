@@ -273,3 +273,5 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+scripts/developer_statuspage_io.json

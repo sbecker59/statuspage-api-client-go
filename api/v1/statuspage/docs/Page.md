@@ -44,11 +44,11 @@ Name | Type | Description | Notes
 **CssGraphColor** | Pointer to **string** | CSS Color | [optional] 
 **CssLinkColor** | Pointer to **string** | CSS Color | [optional] 
 **CssNoData** | Pointer to **string** | CSS Color | [optional] 
-**FaviconLogo** | Pointer to **string** |  | [optional] 
-**TransactionalLogo** | Pointer to **string** |  | [optional] 
-**HeroCover** | Pointer to **string** |  | [optional] 
-**EmailLogo** | Pointer to **string** |  | [optional] 
-**TwitterLogo** | Pointer to **string** |  | [optional] 
+**FaviconLogo** | Pointer to **interface{}** |  | [optional] 
+**TransactionalLogo** | Pointer to **interface{}** |  | [optional] 
+**HeroCover** | Pointer to **interface{}** |  | [optional] 
+**EmailLogo** | Pointer to **interface{}** |  | [optional] 
+**TwitterLogo** | Pointer to **interface{}** |  | [optional] 
 
 ## Methods
 
@@ -1071,20 +1071,20 @@ HasCssNoData returns a boolean if a field has been set.
 
 ### GetFaviconLogo
 
-`func (o *Page) GetFaviconLogo() string`
+`func (o *Page) GetFaviconLogo() interface{}`
 
 GetFaviconLogo returns the FaviconLogo field if non-nil, zero value otherwise.
 
 ### GetFaviconLogoOk
 
-`func (o *Page) GetFaviconLogoOk() (*string, bool)`
+`func (o *Page) GetFaviconLogoOk() (*interface{}, bool)`
 
 GetFaviconLogoOk returns a tuple with the FaviconLogo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFaviconLogo
 
-`func (o *Page) SetFaviconLogo(v string)`
+`func (o *Page) SetFaviconLogo(v interface{})`
 
 SetFaviconLogo sets FaviconLogo field to given value.
 
@@ -1094,22 +1094,32 @@ SetFaviconLogo sets FaviconLogo field to given value.
 
 HasFaviconLogo returns a boolean if a field has been set.
 
+### SetFaviconLogoNil
+
+`func (o *Page) SetFaviconLogoNil(b bool)`
+
+ SetFaviconLogoNil sets the value for FaviconLogo to be an explicit nil
+
+### UnsetFaviconLogo
+`func (o *Page) UnsetFaviconLogo()`
+
+UnsetFaviconLogo ensures that no value is present for FaviconLogo, not even an explicit nil
 ### GetTransactionalLogo
 
-`func (o *Page) GetTransactionalLogo() string`
+`func (o *Page) GetTransactionalLogo() interface{}`
 
 GetTransactionalLogo returns the TransactionalLogo field if non-nil, zero value otherwise.
 
 ### GetTransactionalLogoOk
 
-`func (o *Page) GetTransactionalLogoOk() (*string, bool)`
+`func (o *Page) GetTransactionalLogoOk() (*interface{}, bool)`
 
 GetTransactionalLogoOk returns a tuple with the TransactionalLogo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTransactionalLogo
 
-`func (o *Page) SetTransactionalLogo(v string)`
+`func (o *Page) SetTransactionalLogo(v interface{})`
 
 SetTransactionalLogo sets TransactionalLogo field to given value.
 
@@ -1119,22 +1129,32 @@ SetTransactionalLogo sets TransactionalLogo field to given value.
 
 HasTransactionalLogo returns a boolean if a field has been set.
 
+### SetTransactionalLogoNil
+
+`func (o *Page) SetTransactionalLogoNil(b bool)`
+
+ SetTransactionalLogoNil sets the value for TransactionalLogo to be an explicit nil
+
+### UnsetTransactionalLogo
+`func (o *Page) UnsetTransactionalLogo()`
+
+UnsetTransactionalLogo ensures that no value is present for TransactionalLogo, not even an explicit nil
 ### GetHeroCover
 
-`func (o *Page) GetHeroCover() string`
+`func (o *Page) GetHeroCover() interface{}`
 
 GetHeroCover returns the HeroCover field if non-nil, zero value otherwise.
 
 ### GetHeroCoverOk
 
-`func (o *Page) GetHeroCoverOk() (*string, bool)`
+`func (o *Page) GetHeroCoverOk() (*interface{}, bool)`
 
 GetHeroCoverOk returns a tuple with the HeroCover field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetHeroCover
 
-`func (o *Page) SetHeroCover(v string)`
+`func (o *Page) SetHeroCover(v interface{})`
 
 SetHeroCover sets HeroCover field to given value.
 
@@ -1144,22 +1164,32 @@ SetHeroCover sets HeroCover field to given value.
 
 HasHeroCover returns a boolean if a field has been set.
 
+### SetHeroCoverNil
+
+`func (o *Page) SetHeroCoverNil(b bool)`
+
+ SetHeroCoverNil sets the value for HeroCover to be an explicit nil
+
+### UnsetHeroCover
+`func (o *Page) UnsetHeroCover()`
+
+UnsetHeroCover ensures that no value is present for HeroCover, not even an explicit nil
 ### GetEmailLogo
 
-`func (o *Page) GetEmailLogo() string`
+`func (o *Page) GetEmailLogo() interface{}`
 
 GetEmailLogo returns the EmailLogo field if non-nil, zero value otherwise.
 
 ### GetEmailLogoOk
 
-`func (o *Page) GetEmailLogoOk() (*string, bool)`
+`func (o *Page) GetEmailLogoOk() (*interface{}, bool)`
 
 GetEmailLogoOk returns a tuple with the EmailLogo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEmailLogo
 
-`func (o *Page) SetEmailLogo(v string)`
+`func (o *Page) SetEmailLogo(v interface{})`
 
 SetEmailLogo sets EmailLogo field to given value.
 
@@ -1169,22 +1199,32 @@ SetEmailLogo sets EmailLogo field to given value.
 
 HasEmailLogo returns a boolean if a field has been set.
 
+### SetEmailLogoNil
+
+`func (o *Page) SetEmailLogoNil(b bool)`
+
+ SetEmailLogoNil sets the value for EmailLogo to be an explicit nil
+
+### UnsetEmailLogo
+`func (o *Page) UnsetEmailLogo()`
+
+UnsetEmailLogo ensures that no value is present for EmailLogo, not even an explicit nil
 ### GetTwitterLogo
 
-`func (o *Page) GetTwitterLogo() string`
+`func (o *Page) GetTwitterLogo() interface{}`
 
 GetTwitterLogo returns the TwitterLogo field if non-nil, zero value otherwise.
 
 ### GetTwitterLogoOk
 
-`func (o *Page) GetTwitterLogoOk() (*string, bool)`
+`func (o *Page) GetTwitterLogoOk() (*interface{}, bool)`
 
 GetTwitterLogoOk returns a tuple with the TwitterLogo field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTwitterLogo
 
-`func (o *Page) SetTwitterLogo(v string)`
+`func (o *Page) SetTwitterLogo(v interface{})`
 
 SetTwitterLogo sets TwitterLogo field to given value.
 
@@ -1194,6 +1234,16 @@ SetTwitterLogo sets TwitterLogo field to given value.
 
 HasTwitterLogo returns a boolean if a field has been set.
 
+### SetTwitterLogoNil
+
+`func (o *Page) SetTwitterLogoNil(b bool)`
+
+ SetTwitterLogoNil sets the value for TwitterLogo to be an explicit nil
+
+### UnsetTwitterLogo
+`func (o *Page) UnsetTwitterLogo()`
+
+UnsetTwitterLogo ensures that no value is present for TwitterLogo, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

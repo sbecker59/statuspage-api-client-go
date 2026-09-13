@@ -19,9 +19,7 @@ var _ MappedNullable = &PutPagesPageIdComponentGroups{}
 
 // PutPagesPageIdComponentGroups Update a component group
 type PutPagesPageIdComponentGroups struct {
-	// Updated description of the component group.
-	Description    *string                                       `json:"description,omitempty"`
-	ComponentGroup *PostPagesPageIdComponentGroupsComponentGroup `json:"component_group,omitempty"`
+	ComponentGroup *PatchPagesPageIdComponentGroupsComponentGroup `json:"component_group,omitempty"`
 }
 
 // NewPutPagesPageIdComponentGroups instantiates a new PutPagesPageIdComponentGroups object
@@ -41,42 +39,10 @@ func NewPutPagesPageIdComponentGroupsWithDefaults() *PutPagesPageIdComponentGrou
 	return &this
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise.
-func (o *PutPagesPageIdComponentGroups) GetDescription() string {
-	if o == nil || IsNil(o.Description) {
-		var ret string
-		return ret
-	}
-	return *o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PutPagesPageIdComponentGroups) GetDescriptionOk() (*string, bool) {
-	if o == nil || IsNil(o.Description) {
-		return nil, false
-	}
-	return o.Description, true
-}
-
-// HasDescription returns a boolean if a field has been set.
-func (o *PutPagesPageIdComponentGroups) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
-		return true
-	}
-
-	return false
-}
-
-// SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *PutPagesPageIdComponentGroups) SetDescription(v string) {
-	o.Description = &v
-}
-
 // GetComponentGroup returns the ComponentGroup field value if set, zero value otherwise.
-func (o *PutPagesPageIdComponentGroups) GetComponentGroup() PostPagesPageIdComponentGroupsComponentGroup {
+func (o *PutPagesPageIdComponentGroups) GetComponentGroup() PatchPagesPageIdComponentGroupsComponentGroup {
 	if o == nil || IsNil(o.ComponentGroup) {
-		var ret PostPagesPageIdComponentGroupsComponentGroup
+		var ret PatchPagesPageIdComponentGroupsComponentGroup
 		return ret
 	}
 	return *o.ComponentGroup
@@ -84,7 +50,7 @@ func (o *PutPagesPageIdComponentGroups) GetComponentGroup() PostPagesPageIdCompo
 
 // GetComponentGroupOk returns a tuple with the ComponentGroup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PutPagesPageIdComponentGroups) GetComponentGroupOk() (*PostPagesPageIdComponentGroupsComponentGroup, bool) {
+func (o *PutPagesPageIdComponentGroups) GetComponentGroupOk() (*PatchPagesPageIdComponentGroupsComponentGroup, bool) {
 	if o == nil || IsNil(o.ComponentGroup) {
 		return nil, false
 	}
@@ -100,8 +66,8 @@ func (o *PutPagesPageIdComponentGroups) HasComponentGroup() bool {
 	return false
 }
 
-// SetComponentGroup gets a reference to the given PostPagesPageIdComponentGroupsComponentGroup and assigns it to the ComponentGroup field.
-func (o *PutPagesPageIdComponentGroups) SetComponentGroup(v PostPagesPageIdComponentGroupsComponentGroup) {
+// SetComponentGroup gets a reference to the given PatchPagesPageIdComponentGroupsComponentGroup and assigns it to the ComponentGroup field.
+func (o *PutPagesPageIdComponentGroups) SetComponentGroup(v PatchPagesPageIdComponentGroupsComponentGroup) {
 	o.ComponentGroup = &v
 }
 
@@ -115,9 +81,6 @@ func (o PutPagesPageIdComponentGroups) MarshalJSON() ([]byte, error) {
 
 func (o PutPagesPageIdComponentGroups) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Description) {
-		toSerialize["description"] = o.Description
-	}
 	if !IsNil(o.ComponentGroup) {
 		toSerialize["component_group"] = o.ComponentGroup
 	}

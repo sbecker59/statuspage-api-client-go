@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Email** | Pointer to **string** |  | [optional] 
 **ExternalLogin** | Pointer to **string** | IDP login user id. Key is typically \&quot;uid\&quot;. | [optional] 
 **PageAccessGroupId** | Pointer to **string** |  | [optional] 
-**PageAccessGroupIds** | Pointer to **string** |  | [optional] 
+**PageAccessGroupIds** | Pointer to **[]string** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 
@@ -159,20 +159,20 @@ HasPageAccessGroupId returns a boolean if a field has been set.
 
 ### GetPageAccessGroupIds
 
-`func (o *PageAccessUser) GetPageAccessGroupIds() string`
+`func (o *PageAccessUser) GetPageAccessGroupIds() []string`
 
 GetPageAccessGroupIds returns the PageAccessGroupIds field if non-nil, zero value otherwise.
 
 ### GetPageAccessGroupIdsOk
 
-`func (o *PageAccessUser) GetPageAccessGroupIdsOk() (*string, bool)`
+`func (o *PageAccessUser) GetPageAccessGroupIdsOk() (*[]string, bool)`
 
 GetPageAccessGroupIdsOk returns a tuple with the PageAccessGroupIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPageAccessGroupIds
 
-`func (o *PageAccessUser) SetPageAccessGroupIds(v string)`
+`func (o *PageAccessUser) SetPageAccessGroupIds(v []string)`
 
 SetPageAccessGroupIds sets PageAccessGroupIds field to given value.
 

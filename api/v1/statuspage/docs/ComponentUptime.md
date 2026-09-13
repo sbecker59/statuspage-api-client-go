@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **UptimePercentage** | Pointer to **float32** | Uptime percentage for a component | [optional] 
 **MajorOutage** | Pointer to **int32** | Seconds of major outage | [optional] 
 **PartialOutage** | Pointer to **int32** | Seconds of partial outage | [optional] 
-**Warnings** | Pointer to **string** | Warning messages related to the uptime query that may occur | [optional] 
+**Warnings** | Pointer to **[]string** | Warning messages related to the uptime query that may occur | [optional] 
 **Id** | Pointer to **string** | Component identifier | [optional] 
 **Name** | Pointer to **string** | Component display name | [optional] 
 **RelatedEvents** | Pointer to [**ComponentUptimeRelatedEvents**](ComponentUptimeRelatedEvents.md) |  | [optional] 
@@ -160,20 +160,20 @@ HasPartialOutage returns a boolean if a field has been set.
 
 ### GetWarnings
 
-`func (o *ComponentUptime) GetWarnings() string`
+`func (o *ComponentUptime) GetWarnings() []string`
 
 GetWarnings returns the Warnings field if non-nil, zero value otherwise.
 
 ### GetWarningsOk
 
-`func (o *ComponentUptime) GetWarningsOk() (*string, bool)`
+`func (o *ComponentUptime) GetWarningsOk() (*[]string, bool)`
 
 GetWarningsOk returns a tuple with the Warnings field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWarnings
 
-`func (o *ComponentUptime) SetWarnings(v string)`
+`func (o *ComponentUptime) SetWarnings(v []string)`
 
 SetWarnings sets Warnings field to given value.
 
