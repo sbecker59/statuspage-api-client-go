@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the Metric type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Metric{}
+
 // Metric Create a metric for a metric provider
 type Metric struct {
 	// Metric identifier
@@ -26,22 +29,22 @@ type Metric struct {
 	// Name of metric
 	Name *string `json:"name,omitempty"`
 	// Should the metric be displayed
-	Display *bool `json:"display,omitempty"`
-	TooltipDescription *string `json:"tooltip_description,omitempty"`
-	Backfilled *bool `json:"backfilled,omitempty"`
-	YAxisMin *float32 `json:"y_axis_min,omitempty"`
-	YAxisMax *float32 `json:"y_axis_max,omitempty"`
+	Display            *bool    `json:"display,omitempty"`
+	TooltipDescription *string  `json:"tooltip_description,omitempty"`
+	Backfilled         *bool    `json:"backfilled,omitempty"`
+	YAxisMin           *float32 `json:"y_axis_min,omitempty"`
+	YAxisMax           *float32 `json:"y_axis_max,omitempty"`
 	// Should the values on the y axis be hidden on render
 	YAxisHidden *bool `json:"y_axis_hidden,omitempty"`
 	// Suffix to describe the units on the graph
-	Suffix *string `json:"suffix,omitempty"`
-	DecimalPlaces *int32 `json:"decimal_places,omitempty"`
-	MostRecentDataAt *time.Time `json:"most_recent_data_at,omitempty"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-	LastFetchedAt *time.Time `json:"last_fetched_at,omitempty"`
-	BackfillPercentage *int32 `json:"backfill_percentage,omitempty"`
-	ReferenceName *string `json:"reference_name,omitempty"`
+	Suffix             *string    `json:"suffix,omitempty"`
+	DecimalPlaces      *int32     `json:"decimal_places,omitempty"`
+	MostRecentDataAt   *time.Time `json:"most_recent_data_at,omitempty"`
+	CreatedAt          *time.Time `json:"created_at,omitempty"`
+	UpdatedAt          *time.Time `json:"updated_at,omitempty"`
+	LastFetchedAt      *time.Time `json:"last_fetched_at,omitempty"`
+	BackfillPercentage *int32     `json:"backfill_percentage,omitempty"`
+	ReferenceName      *string    `json:"reference_name,omitempty"`
 }
 
 // NewMetric instantiates a new Metric object
@@ -63,7 +66,7 @@ func NewMetricWithDefaults() *Metric {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Metric) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -73,7 +76,7 @@ func (o *Metric) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metric) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -81,7 +84,7 @@ func (o *Metric) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Metric) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -95,7 +98,7 @@ func (o *Metric) SetId(v string) {
 
 // GetMetricsProviderId returns the MetricsProviderId field value if set, zero value otherwise.
 func (o *Metric) GetMetricsProviderId() string {
-	if o == nil || o.MetricsProviderId == nil {
+	if o == nil || IsNil(o.MetricsProviderId) {
 		var ret string
 		return ret
 	}
@@ -105,7 +108,7 @@ func (o *Metric) GetMetricsProviderId() string {
 // GetMetricsProviderIdOk returns a tuple with the MetricsProviderId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metric) GetMetricsProviderIdOk() (*string, bool) {
-	if o == nil || o.MetricsProviderId == nil {
+	if o == nil || IsNil(o.MetricsProviderId) {
 		return nil, false
 	}
 	return o.MetricsProviderId, true
@@ -113,7 +116,7 @@ func (o *Metric) GetMetricsProviderIdOk() (*string, bool) {
 
 // HasMetricsProviderId returns a boolean if a field has been set.
 func (o *Metric) HasMetricsProviderId() bool {
-	if o != nil && o.MetricsProviderId != nil {
+	if o != nil && !IsNil(o.MetricsProviderId) {
 		return true
 	}
 
@@ -127,7 +130,7 @@ func (o *Metric) SetMetricsProviderId(v string) {
 
 // GetMetricIdentifier returns the MetricIdentifier field value if set, zero value otherwise.
 func (o *Metric) GetMetricIdentifier() string {
-	if o == nil || o.MetricIdentifier == nil {
+	if o == nil || IsNil(o.MetricIdentifier) {
 		var ret string
 		return ret
 	}
@@ -137,7 +140,7 @@ func (o *Metric) GetMetricIdentifier() string {
 // GetMetricIdentifierOk returns a tuple with the MetricIdentifier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metric) GetMetricIdentifierOk() (*string, bool) {
-	if o == nil || o.MetricIdentifier == nil {
+	if o == nil || IsNil(o.MetricIdentifier) {
 		return nil, false
 	}
 	return o.MetricIdentifier, true
@@ -145,7 +148,7 @@ func (o *Metric) GetMetricIdentifierOk() (*string, bool) {
 
 // HasMetricIdentifier returns a boolean if a field has been set.
 func (o *Metric) HasMetricIdentifier() bool {
-	if o != nil && o.MetricIdentifier != nil {
+	if o != nil && !IsNil(o.MetricIdentifier) {
 		return true
 	}
 
@@ -159,7 +162,7 @@ func (o *Metric) SetMetricIdentifier(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Metric) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -169,7 +172,7 @@ func (o *Metric) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metric) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -177,7 +180,7 @@ func (o *Metric) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Metric) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -191,7 +194,7 @@ func (o *Metric) SetName(v string) {
 
 // GetDisplay returns the Display field value if set, zero value otherwise.
 func (o *Metric) GetDisplay() bool {
-	if o == nil || o.Display == nil {
+	if o == nil || IsNil(o.Display) {
 		var ret bool
 		return ret
 	}
@@ -201,7 +204,7 @@ func (o *Metric) GetDisplay() bool {
 // GetDisplayOk returns a tuple with the Display field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metric) GetDisplayOk() (*bool, bool) {
-	if o == nil || o.Display == nil {
+	if o == nil || IsNil(o.Display) {
 		return nil, false
 	}
 	return o.Display, true
@@ -209,7 +212,7 @@ func (o *Metric) GetDisplayOk() (*bool, bool) {
 
 // HasDisplay returns a boolean if a field has been set.
 func (o *Metric) HasDisplay() bool {
-	if o != nil && o.Display != nil {
+	if o != nil && !IsNil(o.Display) {
 		return true
 	}
 
@@ -223,7 +226,7 @@ func (o *Metric) SetDisplay(v bool) {
 
 // GetTooltipDescription returns the TooltipDescription field value if set, zero value otherwise.
 func (o *Metric) GetTooltipDescription() string {
-	if o == nil || o.TooltipDescription == nil {
+	if o == nil || IsNil(o.TooltipDescription) {
 		var ret string
 		return ret
 	}
@@ -233,7 +236,7 @@ func (o *Metric) GetTooltipDescription() string {
 // GetTooltipDescriptionOk returns a tuple with the TooltipDescription field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metric) GetTooltipDescriptionOk() (*string, bool) {
-	if o == nil || o.TooltipDescription == nil {
+	if o == nil || IsNil(o.TooltipDescription) {
 		return nil, false
 	}
 	return o.TooltipDescription, true
@@ -241,7 +244,7 @@ func (o *Metric) GetTooltipDescriptionOk() (*string, bool) {
 
 // HasTooltipDescription returns a boolean if a field has been set.
 func (o *Metric) HasTooltipDescription() bool {
-	if o != nil && o.TooltipDescription != nil {
+	if o != nil && !IsNil(o.TooltipDescription) {
 		return true
 	}
 
@@ -255,7 +258,7 @@ func (o *Metric) SetTooltipDescription(v string) {
 
 // GetBackfilled returns the Backfilled field value if set, zero value otherwise.
 func (o *Metric) GetBackfilled() bool {
-	if o == nil || o.Backfilled == nil {
+	if o == nil || IsNil(o.Backfilled) {
 		var ret bool
 		return ret
 	}
@@ -265,7 +268,7 @@ func (o *Metric) GetBackfilled() bool {
 // GetBackfilledOk returns a tuple with the Backfilled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metric) GetBackfilledOk() (*bool, bool) {
-	if o == nil || o.Backfilled == nil {
+	if o == nil || IsNil(o.Backfilled) {
 		return nil, false
 	}
 	return o.Backfilled, true
@@ -273,7 +276,7 @@ func (o *Metric) GetBackfilledOk() (*bool, bool) {
 
 // HasBackfilled returns a boolean if a field has been set.
 func (o *Metric) HasBackfilled() bool {
-	if o != nil && o.Backfilled != nil {
+	if o != nil && !IsNil(o.Backfilled) {
 		return true
 	}
 
@@ -287,7 +290,7 @@ func (o *Metric) SetBackfilled(v bool) {
 
 // GetYAxisMin returns the YAxisMin field value if set, zero value otherwise.
 func (o *Metric) GetYAxisMin() float32 {
-	if o == nil || o.YAxisMin == nil {
+	if o == nil || IsNil(o.YAxisMin) {
 		var ret float32
 		return ret
 	}
@@ -297,7 +300,7 @@ func (o *Metric) GetYAxisMin() float32 {
 // GetYAxisMinOk returns a tuple with the YAxisMin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metric) GetYAxisMinOk() (*float32, bool) {
-	if o == nil || o.YAxisMin == nil {
+	if o == nil || IsNil(o.YAxisMin) {
 		return nil, false
 	}
 	return o.YAxisMin, true
@@ -305,7 +308,7 @@ func (o *Metric) GetYAxisMinOk() (*float32, bool) {
 
 // HasYAxisMin returns a boolean if a field has been set.
 func (o *Metric) HasYAxisMin() bool {
-	if o != nil && o.YAxisMin != nil {
+	if o != nil && !IsNil(o.YAxisMin) {
 		return true
 	}
 
@@ -319,7 +322,7 @@ func (o *Metric) SetYAxisMin(v float32) {
 
 // GetYAxisMax returns the YAxisMax field value if set, zero value otherwise.
 func (o *Metric) GetYAxisMax() float32 {
-	if o == nil || o.YAxisMax == nil {
+	if o == nil || IsNil(o.YAxisMax) {
 		var ret float32
 		return ret
 	}
@@ -329,7 +332,7 @@ func (o *Metric) GetYAxisMax() float32 {
 // GetYAxisMaxOk returns a tuple with the YAxisMax field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metric) GetYAxisMaxOk() (*float32, bool) {
-	if o == nil || o.YAxisMax == nil {
+	if o == nil || IsNil(o.YAxisMax) {
 		return nil, false
 	}
 	return o.YAxisMax, true
@@ -337,7 +340,7 @@ func (o *Metric) GetYAxisMaxOk() (*float32, bool) {
 
 // HasYAxisMax returns a boolean if a field has been set.
 func (o *Metric) HasYAxisMax() bool {
-	if o != nil && o.YAxisMax != nil {
+	if o != nil && !IsNil(o.YAxisMax) {
 		return true
 	}
 
@@ -351,7 +354,7 @@ func (o *Metric) SetYAxisMax(v float32) {
 
 // GetYAxisHidden returns the YAxisHidden field value if set, zero value otherwise.
 func (o *Metric) GetYAxisHidden() bool {
-	if o == nil || o.YAxisHidden == nil {
+	if o == nil || IsNil(o.YAxisHidden) {
 		var ret bool
 		return ret
 	}
@@ -361,7 +364,7 @@ func (o *Metric) GetYAxisHidden() bool {
 // GetYAxisHiddenOk returns a tuple with the YAxisHidden field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metric) GetYAxisHiddenOk() (*bool, bool) {
-	if o == nil || o.YAxisHidden == nil {
+	if o == nil || IsNil(o.YAxisHidden) {
 		return nil, false
 	}
 	return o.YAxisHidden, true
@@ -369,7 +372,7 @@ func (o *Metric) GetYAxisHiddenOk() (*bool, bool) {
 
 // HasYAxisHidden returns a boolean if a field has been set.
 func (o *Metric) HasYAxisHidden() bool {
-	if o != nil && o.YAxisHidden != nil {
+	if o != nil && !IsNil(o.YAxisHidden) {
 		return true
 	}
 
@@ -383,7 +386,7 @@ func (o *Metric) SetYAxisHidden(v bool) {
 
 // GetSuffix returns the Suffix field value if set, zero value otherwise.
 func (o *Metric) GetSuffix() string {
-	if o == nil || o.Suffix == nil {
+	if o == nil || IsNil(o.Suffix) {
 		var ret string
 		return ret
 	}
@@ -393,7 +396,7 @@ func (o *Metric) GetSuffix() string {
 // GetSuffixOk returns a tuple with the Suffix field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metric) GetSuffixOk() (*string, bool) {
-	if o == nil || o.Suffix == nil {
+	if o == nil || IsNil(o.Suffix) {
 		return nil, false
 	}
 	return o.Suffix, true
@@ -401,7 +404,7 @@ func (o *Metric) GetSuffixOk() (*string, bool) {
 
 // HasSuffix returns a boolean if a field has been set.
 func (o *Metric) HasSuffix() bool {
-	if o != nil && o.Suffix != nil {
+	if o != nil && !IsNil(o.Suffix) {
 		return true
 	}
 
@@ -415,7 +418,7 @@ func (o *Metric) SetSuffix(v string) {
 
 // GetDecimalPlaces returns the DecimalPlaces field value if set, zero value otherwise.
 func (o *Metric) GetDecimalPlaces() int32 {
-	if o == nil || o.DecimalPlaces == nil {
+	if o == nil || IsNil(o.DecimalPlaces) {
 		var ret int32
 		return ret
 	}
@@ -425,7 +428,7 @@ func (o *Metric) GetDecimalPlaces() int32 {
 // GetDecimalPlacesOk returns a tuple with the DecimalPlaces field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metric) GetDecimalPlacesOk() (*int32, bool) {
-	if o == nil || o.DecimalPlaces == nil {
+	if o == nil || IsNil(o.DecimalPlaces) {
 		return nil, false
 	}
 	return o.DecimalPlaces, true
@@ -433,7 +436,7 @@ func (o *Metric) GetDecimalPlacesOk() (*int32, bool) {
 
 // HasDecimalPlaces returns a boolean if a field has been set.
 func (o *Metric) HasDecimalPlaces() bool {
-	if o != nil && o.DecimalPlaces != nil {
+	if o != nil && !IsNil(o.DecimalPlaces) {
 		return true
 	}
 
@@ -447,7 +450,7 @@ func (o *Metric) SetDecimalPlaces(v int32) {
 
 // GetMostRecentDataAt returns the MostRecentDataAt field value if set, zero value otherwise.
 func (o *Metric) GetMostRecentDataAt() time.Time {
-	if o == nil || o.MostRecentDataAt == nil {
+	if o == nil || IsNil(o.MostRecentDataAt) {
 		var ret time.Time
 		return ret
 	}
@@ -457,7 +460,7 @@ func (o *Metric) GetMostRecentDataAt() time.Time {
 // GetMostRecentDataAtOk returns a tuple with the MostRecentDataAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metric) GetMostRecentDataAtOk() (*time.Time, bool) {
-	if o == nil || o.MostRecentDataAt == nil {
+	if o == nil || IsNil(o.MostRecentDataAt) {
 		return nil, false
 	}
 	return o.MostRecentDataAt, true
@@ -465,7 +468,7 @@ func (o *Metric) GetMostRecentDataAtOk() (*time.Time, bool) {
 
 // HasMostRecentDataAt returns a boolean if a field has been set.
 func (o *Metric) HasMostRecentDataAt() bool {
-	if o != nil && o.MostRecentDataAt != nil {
+	if o != nil && !IsNil(o.MostRecentDataAt) {
 		return true
 	}
 
@@ -479,7 +482,7 @@ func (o *Metric) SetMostRecentDataAt(v time.Time) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *Metric) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -489,7 +492,7 @@ func (o *Metric) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metric) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -497,7 +500,7 @@ func (o *Metric) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Metric) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -511,7 +514,7 @@ func (o *Metric) SetCreatedAt(v time.Time) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *Metric) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -521,7 +524,7 @@ func (o *Metric) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metric) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -529,7 +532,7 @@ func (o *Metric) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *Metric) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -543,7 +546,7 @@ func (o *Metric) SetUpdatedAt(v time.Time) {
 
 // GetLastFetchedAt returns the LastFetchedAt field value if set, zero value otherwise.
 func (o *Metric) GetLastFetchedAt() time.Time {
-	if o == nil || o.LastFetchedAt == nil {
+	if o == nil || IsNil(o.LastFetchedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -553,7 +556,7 @@ func (o *Metric) GetLastFetchedAt() time.Time {
 // GetLastFetchedAtOk returns a tuple with the LastFetchedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metric) GetLastFetchedAtOk() (*time.Time, bool) {
-	if o == nil || o.LastFetchedAt == nil {
+	if o == nil || IsNil(o.LastFetchedAt) {
 		return nil, false
 	}
 	return o.LastFetchedAt, true
@@ -561,7 +564,7 @@ func (o *Metric) GetLastFetchedAtOk() (*time.Time, bool) {
 
 // HasLastFetchedAt returns a boolean if a field has been set.
 func (o *Metric) HasLastFetchedAt() bool {
-	if o != nil && o.LastFetchedAt != nil {
+	if o != nil && !IsNil(o.LastFetchedAt) {
 		return true
 	}
 
@@ -575,7 +578,7 @@ func (o *Metric) SetLastFetchedAt(v time.Time) {
 
 // GetBackfillPercentage returns the BackfillPercentage field value if set, zero value otherwise.
 func (o *Metric) GetBackfillPercentage() int32 {
-	if o == nil || o.BackfillPercentage == nil {
+	if o == nil || IsNil(o.BackfillPercentage) {
 		var ret int32
 		return ret
 	}
@@ -585,7 +588,7 @@ func (o *Metric) GetBackfillPercentage() int32 {
 // GetBackfillPercentageOk returns a tuple with the BackfillPercentage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metric) GetBackfillPercentageOk() (*int32, bool) {
-	if o == nil || o.BackfillPercentage == nil {
+	if o == nil || IsNil(o.BackfillPercentage) {
 		return nil, false
 	}
 	return o.BackfillPercentage, true
@@ -593,7 +596,7 @@ func (o *Metric) GetBackfillPercentageOk() (*int32, bool) {
 
 // HasBackfillPercentage returns a boolean if a field has been set.
 func (o *Metric) HasBackfillPercentage() bool {
-	if o != nil && o.BackfillPercentage != nil {
+	if o != nil && !IsNil(o.BackfillPercentage) {
 		return true
 	}
 
@@ -607,7 +610,7 @@ func (o *Metric) SetBackfillPercentage(v int32) {
 
 // GetReferenceName returns the ReferenceName field value if set, zero value otherwise.
 func (o *Metric) GetReferenceName() string {
-	if o == nil || o.ReferenceName == nil {
+	if o == nil || IsNil(o.ReferenceName) {
 		var ret string
 		return ret
 	}
@@ -617,7 +620,7 @@ func (o *Metric) GetReferenceName() string {
 // GetReferenceNameOk returns a tuple with the ReferenceName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Metric) GetReferenceNameOk() (*string, bool) {
-	if o == nil || o.ReferenceName == nil {
+	if o == nil || IsNil(o.ReferenceName) {
 		return nil, false
 	}
 	return o.ReferenceName, true
@@ -625,7 +628,7 @@ func (o *Metric) GetReferenceNameOk() (*string, bool) {
 
 // HasReferenceName returns a boolean if a field has been set.
 func (o *Metric) HasReferenceName() bool {
-	if o != nil && o.ReferenceName != nil {
+	if o != nil && !IsNil(o.ReferenceName) {
 		return true
 	}
 
@@ -638,62 +641,70 @@ func (o *Metric) SetReferenceName(v string) {
 }
 
 func (o Metric) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.MetricsProviderId != nil {
-		toSerialize["metrics_provider_id"] = o.MetricsProviderId
-	}
-	if o.MetricIdentifier != nil {
-		toSerialize["metric_identifier"] = o.MetricIdentifier
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.Display != nil {
-		toSerialize["display"] = o.Display
-	}
-	if o.TooltipDescription != nil {
-		toSerialize["tooltip_description"] = o.TooltipDescription
-	}
-	if o.Backfilled != nil {
-		toSerialize["backfilled"] = o.Backfilled
-	}
-	if o.YAxisMin != nil {
-		toSerialize["y_axis_min"] = o.YAxisMin
-	}
-	if o.YAxisMax != nil {
-		toSerialize["y_axis_max"] = o.YAxisMax
-	}
-	if o.YAxisHidden != nil {
-		toSerialize["y_axis_hidden"] = o.YAxisHidden
-	}
-	if o.Suffix != nil {
-		toSerialize["suffix"] = o.Suffix
-	}
-	if o.DecimalPlaces != nil {
-		toSerialize["decimal_places"] = o.DecimalPlaces
-	}
-	if o.MostRecentDataAt != nil {
-		toSerialize["most_recent_data_at"] = o.MostRecentDataAt
-	}
-	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if o.UpdatedAt != nil {
-		toSerialize["updated_at"] = o.UpdatedAt
-	}
-	if o.LastFetchedAt != nil {
-		toSerialize["last_fetched_at"] = o.LastFetchedAt
-	}
-	if o.BackfillPercentage != nil {
-		toSerialize["backfill_percentage"] = o.BackfillPercentage
-	}
-	if o.ReferenceName != nil {
-		toSerialize["reference_name"] = o.ReferenceName
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Metric) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.MetricsProviderId) {
+		toSerialize["metrics_provider_id"] = o.MetricsProviderId
+	}
+	if !IsNil(o.MetricIdentifier) {
+		toSerialize["metric_identifier"] = o.MetricIdentifier
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Display) {
+		toSerialize["display"] = o.Display
+	}
+	if !IsNil(o.TooltipDescription) {
+		toSerialize["tooltip_description"] = o.TooltipDescription
+	}
+	if !IsNil(o.Backfilled) {
+		toSerialize["backfilled"] = o.Backfilled
+	}
+	if !IsNil(o.YAxisMin) {
+		toSerialize["y_axis_min"] = o.YAxisMin
+	}
+	if !IsNil(o.YAxisMax) {
+		toSerialize["y_axis_max"] = o.YAxisMax
+	}
+	if !IsNil(o.YAxisHidden) {
+		toSerialize["y_axis_hidden"] = o.YAxisHidden
+	}
+	if !IsNil(o.Suffix) {
+		toSerialize["suffix"] = o.Suffix
+	}
+	if !IsNil(o.DecimalPlaces) {
+		toSerialize["decimal_places"] = o.DecimalPlaces
+	}
+	if !IsNil(o.MostRecentDataAt) {
+		toSerialize["most_recent_data_at"] = o.MostRecentDataAt
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if !IsNil(o.LastFetchedAt) {
+		toSerialize["last_fetched_at"] = o.LastFetchedAt
+	}
+	if !IsNil(o.BackfillPercentage) {
+		toSerialize["backfill_percentage"] = o.BackfillPercentage
+	}
+	if !IsNil(o.ReferenceName) {
+		toSerialize["reference_name"] = o.ReferenceName
+	}
+	return toSerialize, nil
 }
 
 type NullableMetric struct {
@@ -731,5 +742,3 @@ func (v *NullableMetric) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

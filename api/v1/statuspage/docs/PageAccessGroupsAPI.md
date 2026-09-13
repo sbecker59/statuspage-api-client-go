@@ -1,15 +1,15 @@
-# \PageAccessGroupsApi
+# \PageAccessGroupsAPI
 
 All URIs are relative to *https://api.statuspage.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeletePagesPageIdPageAccessGroupsPageAccessGroupId**](PageAccessGroupsApi.md#DeletePagesPageIdPageAccessGroupsPageAccessGroupId) | **Delete** /pages/{page_id}/page_access_groups/{page_access_group_id} | Remove a page access group
-[**GetPagesPageIdPageAccessGroups**](PageAccessGroupsApi.md#GetPagesPageIdPageAccessGroups) | **Get** /pages/{page_id}/page_access_groups | Get a list of page access groups
-[**GetPagesPageIdPageAccessGroupsPageAccessGroupId**](PageAccessGroupsApi.md#GetPagesPageIdPageAccessGroupsPageAccessGroupId) | **Get** /pages/{page_id}/page_access_groups/{page_access_group_id} | Get a page access group
-[**PatchPagesPageIdPageAccessGroupsPageAccessGroupId**](PageAccessGroupsApi.md#PatchPagesPageIdPageAccessGroupsPageAccessGroupId) | **Patch** /pages/{page_id}/page_access_groups/{page_access_group_id} | Update a page access group
-[**PostPagesPageIdPageAccessGroups**](PageAccessGroupsApi.md#PostPagesPageIdPageAccessGroups) | **Post** /pages/{page_id}/page_access_groups | Create a page access group
-[**PutPagesPageIdPageAccessGroupsPageAccessGroupId**](PageAccessGroupsApi.md#PutPagesPageIdPageAccessGroupsPageAccessGroupId) | **Put** /pages/{page_id}/page_access_groups/{page_access_group_id} | Update a page access group
+[**DeletePagesPageIdPageAccessGroupsPageAccessGroupId**](PageAccessGroupsAPI.md#DeletePagesPageIdPageAccessGroupsPageAccessGroupId) | **Delete** /pages/{page_id}/page_access_groups/{page_access_group_id} | Remove a page access group
+[**GetPagesPageIdPageAccessGroups**](PageAccessGroupsAPI.md#GetPagesPageIdPageAccessGroups) | **Get** /pages/{page_id}/page_access_groups | Get a list of page access groups
+[**GetPagesPageIdPageAccessGroupsPageAccessGroupId**](PageAccessGroupsAPI.md#GetPagesPageIdPageAccessGroupsPageAccessGroupId) | **Get** /pages/{page_id}/page_access_groups/{page_access_group_id} | Get a page access group
+[**PatchPagesPageIdPageAccessGroupsPageAccessGroupId**](PageAccessGroupsAPI.md#PatchPagesPageIdPageAccessGroupsPageAccessGroupId) | **Patch** /pages/{page_id}/page_access_groups/{page_access_group_id} | Update a page access group
+[**PostPagesPageIdPageAccessGroups**](PageAccessGroupsAPI.md#PostPagesPageIdPageAccessGroups) | **Post** /pages/{page_id}/page_access_groups | Create a page access group
+[**PutPagesPageIdPageAccessGroupsPageAccessGroupId**](PageAccessGroupsAPI.md#PutPagesPageIdPageAccessGroupsPageAccessGroupId) | **Put** /pages/{page_id}/page_access_groups/{page_access_group_id} | Update a page access group
 
 
 
@@ -27,25 +27,25 @@ Remove a page access group
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    pageAccessGroupId := "pageAccessGroupId_example" // string | Page Access Group Identifier
+	pageId := "pageId_example" // string | Page identifier
+	pageAccessGroupId := "pageAccessGroupId_example" // string | Page Access Group Identifier
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PageAccessGroupsApi.DeletePagesPageIdPageAccessGroupsPageAccessGroupId(context.Background(), pageId, pageAccessGroupId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupsApi.DeletePagesPageIdPageAccessGroupsPageAccessGroupId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeletePagesPageIdPageAccessGroupsPageAccessGroupId`: PageAccessGroup
-    fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupsApi.DeletePagesPageIdPageAccessGroupsPageAccessGroupId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PageAccessGroupsAPI.DeletePagesPageIdPageAccessGroupsPageAccessGroupId(context.Background(), pageId, pageAccessGroupId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupsAPI.DeletePagesPageIdPageAccessGroupsPageAccessGroupId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeletePagesPageIdPageAccessGroupsPageAccessGroupId`: PageAccessGroup
+	fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupsAPI.DeletePagesPageIdPageAccessGroupsPageAccessGroupId`: %v\n", resp)
 }
 ```
 
@@ -100,26 +100,26 @@ Get a list of page access groups
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    page := int32(56) // int32 | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. (optional)
-    perPage := int32(56) // int32 | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. (optional)
+	pageId := "pageId_example" // string | Page identifier
+	page := int32(56) // int32 | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. (optional)
+	perPage := int32(56) // int32 | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PageAccessGroupsApi.GetPagesPageIdPageAccessGroups(context.Background(), pageId).Page(page).PerPage(perPage).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupsApi.GetPagesPageIdPageAccessGroups``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPagesPageIdPageAccessGroups`: []PageAccessGroup
-    fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupsApi.GetPagesPageIdPageAccessGroups`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PageAccessGroupsAPI.GetPagesPageIdPageAccessGroups(context.Background(), pageId).Page(page).PerPage(perPage).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupsAPI.GetPagesPageIdPageAccessGroups``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPagesPageIdPageAccessGroups`: []PageAccessGroup
+	fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupsAPI.GetPagesPageIdPageAccessGroups`: %v\n", resp)
 }
 ```
 
@@ -174,25 +174,25 @@ Get a page access group
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    pageAccessGroupId := "pageAccessGroupId_example" // string | Page Access Group Identifier
+	pageId := "pageId_example" // string | Page identifier
+	pageAccessGroupId := "pageAccessGroupId_example" // string | Page Access Group Identifier
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PageAccessGroupsApi.GetPagesPageIdPageAccessGroupsPageAccessGroupId(context.Background(), pageId, pageAccessGroupId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupsApi.GetPagesPageIdPageAccessGroupsPageAccessGroupId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPagesPageIdPageAccessGroupsPageAccessGroupId`: PageAccessGroup
-    fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupsApi.GetPagesPageIdPageAccessGroupsPageAccessGroupId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PageAccessGroupsAPI.GetPagesPageIdPageAccessGroupsPageAccessGroupId(context.Background(), pageId, pageAccessGroupId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupsAPI.GetPagesPageIdPageAccessGroupsPageAccessGroupId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPagesPageIdPageAccessGroupsPageAccessGroupId`: PageAccessGroup
+	fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupsAPI.GetPagesPageIdPageAccessGroupsPageAccessGroupId`: %v\n", resp)
 }
 ```
 
@@ -247,26 +247,26 @@ Update a page access group
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    pageAccessGroupId := "pageAccessGroupId_example" // string | Page Access Group Identifier
-    patchPagesPageIdPageAccessGroups := *openapiclient.NewPatchPagesPageIdPageAccessGroups() // PatchPagesPageIdPageAccessGroups | 
+	pageId := "pageId_example" // string | Page identifier
+	pageAccessGroupId := "pageAccessGroupId_example" // string | Page Access Group Identifier
+	patchPagesPageIdPageAccessGroups := *openapiclient.NewPatchPagesPageIdPageAccessGroups() // PatchPagesPageIdPageAccessGroups | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PageAccessGroupsApi.PatchPagesPageIdPageAccessGroupsPageAccessGroupId(context.Background(), pageId, pageAccessGroupId).PatchPagesPageIdPageAccessGroups(patchPagesPageIdPageAccessGroups).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupsApi.PatchPagesPageIdPageAccessGroupsPageAccessGroupId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PatchPagesPageIdPageAccessGroupsPageAccessGroupId`: PageAccessGroup
-    fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupsApi.PatchPagesPageIdPageAccessGroupsPageAccessGroupId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PageAccessGroupsAPI.PatchPagesPageIdPageAccessGroupsPageAccessGroupId(context.Background(), pageId, pageAccessGroupId).PatchPagesPageIdPageAccessGroups(patchPagesPageIdPageAccessGroups).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupsAPI.PatchPagesPageIdPageAccessGroupsPageAccessGroupId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PatchPagesPageIdPageAccessGroupsPageAccessGroupId`: PageAccessGroup
+	fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupsAPI.PatchPagesPageIdPageAccessGroupsPageAccessGroupId`: %v\n", resp)
 }
 ```
 
@@ -322,25 +322,25 @@ Create a page access group
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    postPagesPageIdPageAccessGroups := *openapiclient.NewPostPagesPageIdPageAccessGroups() // PostPagesPageIdPageAccessGroups | 
+	pageId := "pageId_example" // string | Page identifier
+	postPagesPageIdPageAccessGroups := *openapiclient.NewPostPagesPageIdPageAccessGroups() // PostPagesPageIdPageAccessGroups | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PageAccessGroupsApi.PostPagesPageIdPageAccessGroups(context.Background(), pageId).PostPagesPageIdPageAccessGroups(postPagesPageIdPageAccessGroups).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupsApi.PostPagesPageIdPageAccessGroups``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostPagesPageIdPageAccessGroups`: PageAccessGroup
-    fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupsApi.PostPagesPageIdPageAccessGroups`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PageAccessGroupsAPI.PostPagesPageIdPageAccessGroups(context.Background(), pageId).PostPagesPageIdPageAccessGroups(postPagesPageIdPageAccessGroups).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupsAPI.PostPagesPageIdPageAccessGroups``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostPagesPageIdPageAccessGroups`: PageAccessGroup
+	fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupsAPI.PostPagesPageIdPageAccessGroups`: %v\n", resp)
 }
 ```
 
@@ -394,26 +394,26 @@ Update a page access group
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    pageAccessGroupId := "pageAccessGroupId_example" // string | Page Access Group Identifier
-    putPagesPageIdPageAccessGroups := *openapiclient.NewPutPagesPageIdPageAccessGroups() // PutPagesPageIdPageAccessGroups | 
+	pageId := "pageId_example" // string | Page identifier
+	pageAccessGroupId := "pageAccessGroupId_example" // string | Page Access Group Identifier
+	putPagesPageIdPageAccessGroups := *openapiclient.NewPutPagesPageIdPageAccessGroups() // PutPagesPageIdPageAccessGroups | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PageAccessGroupsApi.PutPagesPageIdPageAccessGroupsPageAccessGroupId(context.Background(), pageId, pageAccessGroupId).PutPagesPageIdPageAccessGroups(putPagesPageIdPageAccessGroups).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupsApi.PutPagesPageIdPageAccessGroupsPageAccessGroupId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutPagesPageIdPageAccessGroupsPageAccessGroupId`: PageAccessGroup
-    fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupsApi.PutPagesPageIdPageAccessGroupsPageAccessGroupId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PageAccessGroupsAPI.PutPagesPageIdPageAccessGroupsPageAccessGroupId(context.Background(), pageId, pageAccessGroupId).PutPagesPageIdPageAccessGroups(putPagesPageIdPageAccessGroups).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupsAPI.PutPagesPageIdPageAccessGroupsPageAccessGroupId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutPagesPageIdPageAccessGroupsPageAccessGroupId`: PageAccessGroup
+	fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupsAPI.PutPagesPageIdPageAccessGroupsPageAccessGroupId`: %v\n", resp)
 }
 ```
 

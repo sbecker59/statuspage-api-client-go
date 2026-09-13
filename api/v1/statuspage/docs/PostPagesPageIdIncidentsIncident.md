@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **ScheduledAutoCompleted** | Pointer to **bool** | Controls whether the incident is scheduled to automatically change to complete. | [optional] 
 **AutoTransitionDeliverNotificationsAtStart** | Pointer to **bool** | Controls whether send notification when scheduled maintenances auto transition to started. | [optional] 
 **AutoTransitionDeliverNotificationsAtEnd** | Pointer to **bool** | Controls whether send notification when scheduled maintenances auto transition to completed. | [optional] 
+**ReminderIntervals** | Pointer to **string** | Custom reminder intervals for unresolved/open incidents. Not applicable for &lt;strong&gt;Scheduled maintenance&lt;/strong&gt;&lt;br&gt;There are 4 possible states for reminder_intervals:&lt;br&gt;&lt;strong&gt;DEFAULT:&lt;/strong&gt; NULL, representing a default behavior with intervals [3, 6, 12, 24].&lt;br&gt;&lt;strong&gt;AFTER:&lt;/strong&gt; A serialized array of strictly increasing intervals, each integer ranges from [1-24] (inclusive). Ex \&quot;[1, 5, 7, 10]\&quot;&lt;br&gt;&lt;strong&gt;EVERY:&lt;/strong&gt; An integer in the range [1-24] as a string, representing equal intervals. Ex \&quot;4\&quot; for [4, 8, 12, 16, 20, 24]&lt;br&gt;&lt;strong&gt;OFF:&lt;/strong&gt; A serialized empty array, for example, \&quot;[]\&quot;, meaning no reminder notifications will be sent. | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** | Attach a json object to the incident. All top-level values in the object must also be objects. | [optional] 
 **DeliverNotifications** | Pointer to **bool** | Deliver notifications to subscribers if this is true. If this is false, create an incident without notifying customers. | [optional] [default to true]
 **AutoTweetAtBeginning** | Pointer to **bool** | Controls whether tweet automatically when scheduled maintenance starts. | [optional] 
@@ -342,6 +343,31 @@ SetAutoTransitionDeliverNotificationsAtEnd sets AutoTransitionDeliverNotificatio
 `func (o *PostPagesPageIdIncidentsIncident) HasAutoTransitionDeliverNotificationsAtEnd() bool`
 
 HasAutoTransitionDeliverNotificationsAtEnd returns a boolean if a field has been set.
+
+### GetReminderIntervals
+
+`func (o *PostPagesPageIdIncidentsIncident) GetReminderIntervals() string`
+
+GetReminderIntervals returns the ReminderIntervals field if non-nil, zero value otherwise.
+
+### GetReminderIntervalsOk
+
+`func (o *PostPagesPageIdIncidentsIncident) GetReminderIntervalsOk() (*string, bool)`
+
+GetReminderIntervalsOk returns a tuple with the ReminderIntervals field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReminderIntervals
+
+`func (o *PostPagesPageIdIncidentsIncident) SetReminderIntervals(v string)`
+
+SetReminderIntervals sets ReminderIntervals field to given value.
+
+### HasReminderIntervals
+
+`func (o *PostPagesPageIdIncidentsIncident) HasReminderIntervals() bool`
+
+HasReminderIntervals returns a boolean if a field has been set.
 
 ### GetMetadata
 

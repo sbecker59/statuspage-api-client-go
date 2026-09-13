@@ -1,4 +1,4 @@
-# MetricAddResponseMetricId
+# MetricAddResponseMetricIdInner
 
 ## Properties
 
@@ -9,70 +9,70 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewMetricAddResponseMetricId
+### NewMetricAddResponseMetricIdInner
 
-`func NewMetricAddResponseMetricId() *MetricAddResponseMetricId`
+`func NewMetricAddResponseMetricIdInner() *MetricAddResponseMetricIdInner`
 
-NewMetricAddResponseMetricId instantiates a new MetricAddResponseMetricId object
+NewMetricAddResponseMetricIdInner instantiates a new MetricAddResponseMetricIdInner object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed
 
-### NewMetricAddResponseMetricIdWithDefaults
+### NewMetricAddResponseMetricIdInnerWithDefaults
 
-`func NewMetricAddResponseMetricIdWithDefaults() *MetricAddResponseMetricId`
+`func NewMetricAddResponseMetricIdInnerWithDefaults() *MetricAddResponseMetricIdInner`
 
-NewMetricAddResponseMetricIdWithDefaults instantiates a new MetricAddResponseMetricId object
+NewMetricAddResponseMetricIdInnerWithDefaults instantiates a new MetricAddResponseMetricIdInner object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
 ### GetTimestamp
 
-`func (o *MetricAddResponseMetricId) GetTimestamp() int32`
+`func (o *MetricAddResponseMetricIdInner) GetTimestamp() int32`
 
 GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
 
 ### GetTimestampOk
 
-`func (o *MetricAddResponseMetricId) GetTimestampOk() (*int32, bool)`
+`func (o *MetricAddResponseMetricIdInner) GetTimestampOk() (*int32, bool)`
 
 GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTimestamp
 
-`func (o *MetricAddResponseMetricId) SetTimestamp(v int32)`
+`func (o *MetricAddResponseMetricIdInner) SetTimestamp(v int32)`
 
 SetTimestamp sets Timestamp field to given value.
 
 ### HasTimestamp
 
-`func (o *MetricAddResponseMetricId) HasTimestamp() bool`
+`func (o *MetricAddResponseMetricIdInner) HasTimestamp() bool`
 
 HasTimestamp returns a boolean if a field has been set.
 
 ### GetValue
 
-`func (o *MetricAddResponseMetricId) GetValue() float32`
+`func (o *MetricAddResponseMetricIdInner) GetValue() float32`
 
 GetValue returns the Value field if non-nil, zero value otherwise.
 
 ### GetValueOk
 
-`func (o *MetricAddResponseMetricId) GetValueOk() (*float32, bool)`
+`func (o *MetricAddResponseMetricIdInner) GetValueOk() (*float32, bool)`
 
 GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValue
 
-`func (o *MetricAddResponseMetricId) SetValue(v float32)`
+`func (o *MetricAddResponseMetricIdInner) SetValue(v float32)`
 
 SetValue sets Value field to given value.
 
 ### HasValue
 
-`func (o *MetricAddResponseMetricId) HasValue() bool`
+`func (o *MetricAddResponseMetricIdInner) HasValue() bool`
 
 HasValue returns a boolean if a field has been set.
 

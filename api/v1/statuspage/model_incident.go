@@ -15,12 +15,15 @@ import (
 	"time"
 )
 
+// checks if the Incident type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Incident{}
+
 // Incident Get an incident
 type Incident struct {
 	// Incident Identifier
 	Id *string `json:"id,omitempty"`
 	// Incident components
-	Components *[]Component `json:"components,omitempty"`
+	Components []Component `json:"components,omitempty"`
 	// The timestamp when the incident was created at.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// The impact of the incident.
@@ -28,9 +31,11 @@ type Incident struct {
 	// value to override calculated impact value
 	ImpactOverride *string `json:"impact_override,omitempty"`
 	// The incident updates for incident.
-	IncidentUpdates *[]IncidentUpdate `json:"incident_updates,omitempty"`
+	IncidentUpdates []IncidentUpdate `json:"incident_updates,omitempty"`
+	// The incident impacts for the incident (limited to 500).
+	IncidentImpacts []IncidentImpact `json:"incident_impacts,omitempty"`
 	// Metadata attached to the incident. Top level values must be objects.
-	Metadata *map[string]interface{} `json:"metadata,omitempty"`
+	Metadata *Object `json:"metadata,omitempty"`
 	// The timestamp when incident entered monitoring state.
 	MonitoringAt *time.Time `json:"monitoring_at,omitempty"`
 	// Incident Name. There is a maximum limit of 255 characters.
@@ -77,6 +82,8 @@ type Incident struct {
 	Status *string `json:"status,omitempty"`
 	// The timestamp when the incident was updated at.
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	// Custom reminder intervals for unresolved/open incidents. Not applicable for <strong>Scheduled maintenance</strong><br>There are 4 possible states for reminder_intervals:<br><strong>DEFAULT:</strong> NULL, representing a default behavior with intervals [3, 6, 12, 24].<br><strong>AFTER:</strong> A serialized array of strictly increasing intervals, each integer ranges from [1-24] (inclusive). Ex \"[1, 5, 7, 10]\"<br><strong>EVERY:</strong> An integer in the range [1-24] as a string, representing equal intervals. Ex \"4\" for [4, 8, 12, 16, 20, 24]<br><strong>OFF:</strong> A serialized empty array, for example, \"[]\", meaning no reminder notifications will be sent.
+	ReminderIntervals *string `json:"reminder_intervals,omitempty"`
 }
 
 // NewIncident instantiates a new Incident object
@@ -98,7 +105,7 @@ func NewIncidentWithDefaults() *Incident {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Incident) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -108,7 +115,7 @@ func (o *Incident) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Incident) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -116,7 +123,7 @@ func (o *Incident) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Incident) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -130,17 +137,17 @@ func (o *Incident) SetId(v string) {
 
 // GetComponents returns the Components field value if set, zero value otherwise.
 func (o *Incident) GetComponents() []Component {
-	if o == nil || o.Components == nil {
+	if o == nil || IsNil(o.Components) {
 		var ret []Component
 		return ret
 	}
-	return *o.Components
+	return o.Components
 }
 
 // GetComponentsOk returns a tuple with the Components field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Incident) GetComponentsOk() (*[]Component, bool) {
-	if o == nil || o.Components == nil {
+func (o *Incident) GetComponentsOk() ([]Component, bool) {
+	if o == nil || IsNil(o.Components) {
 		return nil, false
 	}
 	return o.Components, true
@@ -148,7 +155,7 @@ func (o *Incident) GetComponentsOk() (*[]Component, bool) {
 
 // HasComponents returns a boolean if a field has been set.
 func (o *Incident) HasComponents() bool {
-	if o != nil && o.Components != nil {
+	if o != nil && !IsNil(o.Components) {
 		return true
 	}
 
@@ -157,12 +164,12 @@ func (o *Incident) HasComponents() bool {
 
 // SetComponents gets a reference to the given []Component and assigns it to the Components field.
 func (o *Incident) SetComponents(v []Component) {
-	o.Components = &v
+	o.Components = v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *Incident) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -172,7 +179,7 @@ func (o *Incident) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Incident) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -180,7 +187,7 @@ func (o *Incident) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Incident) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -194,7 +201,7 @@ func (o *Incident) SetCreatedAt(v time.Time) {
 
 // GetImpact returns the Impact field value if set, zero value otherwise.
 func (o *Incident) GetImpact() string {
-	if o == nil || o.Impact == nil {
+	if o == nil || IsNil(o.Impact) {
 		var ret string
 		return ret
 	}
@@ -204,7 +211,7 @@ func (o *Incident) GetImpact() string {
 // GetImpactOk returns a tuple with the Impact field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Incident) GetImpactOk() (*string, bool) {
-	if o == nil || o.Impact == nil {
+	if o == nil || IsNil(o.Impact) {
 		return nil, false
 	}
 	return o.Impact, true
@@ -212,7 +219,7 @@ func (o *Incident) GetImpactOk() (*string, bool) {
 
 // HasImpact returns a boolean if a field has been set.
 func (o *Incident) HasImpact() bool {
-	if o != nil && o.Impact != nil {
+	if o != nil && !IsNil(o.Impact) {
 		return true
 	}
 
@@ -226,7 +233,7 @@ func (o *Incident) SetImpact(v string) {
 
 // GetImpactOverride returns the ImpactOverride field value if set, zero value otherwise.
 func (o *Incident) GetImpactOverride() string {
-	if o == nil || o.ImpactOverride == nil {
+	if o == nil || IsNil(o.ImpactOverride) {
 		var ret string
 		return ret
 	}
@@ -236,7 +243,7 @@ func (o *Incident) GetImpactOverride() string {
 // GetImpactOverrideOk returns a tuple with the ImpactOverride field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Incident) GetImpactOverrideOk() (*string, bool) {
-	if o == nil || o.ImpactOverride == nil {
+	if o == nil || IsNil(o.ImpactOverride) {
 		return nil, false
 	}
 	return o.ImpactOverride, true
@@ -244,7 +251,7 @@ func (o *Incident) GetImpactOverrideOk() (*string, bool) {
 
 // HasImpactOverride returns a boolean if a field has been set.
 func (o *Incident) HasImpactOverride() bool {
-	if o != nil && o.ImpactOverride != nil {
+	if o != nil && !IsNil(o.ImpactOverride) {
 		return true
 	}
 
@@ -258,17 +265,17 @@ func (o *Incident) SetImpactOverride(v string) {
 
 // GetIncidentUpdates returns the IncidentUpdates field value if set, zero value otherwise.
 func (o *Incident) GetIncidentUpdates() []IncidentUpdate {
-	if o == nil || o.IncidentUpdates == nil {
+	if o == nil || IsNil(o.IncidentUpdates) {
 		var ret []IncidentUpdate
 		return ret
 	}
-	return *o.IncidentUpdates
+	return o.IncidentUpdates
 }
 
 // GetIncidentUpdatesOk returns a tuple with the IncidentUpdates field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Incident) GetIncidentUpdatesOk() (*[]IncidentUpdate, bool) {
-	if o == nil || o.IncidentUpdates == nil {
+func (o *Incident) GetIncidentUpdatesOk() ([]IncidentUpdate, bool) {
+	if o == nil || IsNil(o.IncidentUpdates) {
 		return nil, false
 	}
 	return o.IncidentUpdates, true
@@ -276,7 +283,7 @@ func (o *Incident) GetIncidentUpdatesOk() (*[]IncidentUpdate, bool) {
 
 // HasIncidentUpdates returns a boolean if a field has been set.
 func (o *Incident) HasIncidentUpdates() bool {
-	if o != nil && o.IncidentUpdates != nil {
+	if o != nil && !IsNil(o.IncidentUpdates) {
 		return true
 	}
 
@@ -285,13 +292,45 @@ func (o *Incident) HasIncidentUpdates() bool {
 
 // SetIncidentUpdates gets a reference to the given []IncidentUpdate and assigns it to the IncidentUpdates field.
 func (o *Incident) SetIncidentUpdates(v []IncidentUpdate) {
-	o.IncidentUpdates = &v
+	o.IncidentUpdates = v
+}
+
+// GetIncidentImpacts returns the IncidentImpacts field value if set, zero value otherwise.
+func (o *Incident) GetIncidentImpacts() []IncidentImpact {
+	if o == nil || IsNil(o.IncidentImpacts) {
+		var ret []IncidentImpact
+		return ret
+	}
+	return o.IncidentImpacts
+}
+
+// GetIncidentImpactsOk returns a tuple with the IncidentImpacts field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Incident) GetIncidentImpactsOk() ([]IncidentImpact, bool) {
+	if o == nil || IsNil(o.IncidentImpacts) {
+		return nil, false
+	}
+	return o.IncidentImpacts, true
+}
+
+// HasIncidentImpacts returns a boolean if a field has been set.
+func (o *Incident) HasIncidentImpacts() bool {
+	if o != nil && !IsNil(o.IncidentImpacts) {
+		return true
+	}
+
+	return false
+}
+
+// SetIncidentImpacts gets a reference to the given []IncidentImpact and assigns it to the IncidentImpacts field.
+func (o *Incident) SetIncidentImpacts(v []IncidentImpact) {
+	o.IncidentImpacts = v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
-func (o *Incident) GetMetadata() map[string]interface{} {
-	if o == nil || o.Metadata == nil {
-		var ret map[string]interface{}
+func (o *Incident) GetMetadata() Object {
+	if o == nil || IsNil(o.Metadata) {
+		var ret Object
 		return ret
 	}
 	return *o.Metadata
@@ -299,8 +338,8 @@ func (o *Incident) GetMetadata() map[string]interface{} {
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Incident) GetMetadataOk() (*map[string]interface{}, bool) {
-	if o == nil || o.Metadata == nil {
+func (o *Incident) GetMetadataOk() (*Object, bool) {
+	if o == nil || IsNil(o.Metadata) {
 		return nil, false
 	}
 	return o.Metadata, true
@@ -308,21 +347,21 @@ func (o *Incident) GetMetadataOk() (*map[string]interface{}, bool) {
 
 // HasMetadata returns a boolean if a field has been set.
 func (o *Incident) HasMetadata() bool {
-	if o != nil && o.Metadata != nil {
+	if o != nil && !IsNil(o.Metadata) {
 		return true
 	}
 
 	return false
 }
 
-// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
-func (o *Incident) SetMetadata(v map[string]interface{}) {
+// SetMetadata gets a reference to the given Object and assigns it to the Metadata field.
+func (o *Incident) SetMetadata(v Object) {
 	o.Metadata = &v
 }
 
 // GetMonitoringAt returns the MonitoringAt field value if set, zero value otherwise.
 func (o *Incident) GetMonitoringAt() time.Time {
-	if o == nil || o.MonitoringAt == nil {
+	if o == nil || IsNil(o.MonitoringAt) {
 		var ret time.Time
 		return ret
 	}
@@ -332,7 +371,7 @@ func (o *Incident) GetMonitoringAt() time.Time {
 // GetMonitoringAtOk returns a tuple with the MonitoringAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Incident) GetMonitoringAtOk() (*time.Time, bool) {
-	if o == nil || o.MonitoringAt == nil {
+	if o == nil || IsNil(o.MonitoringAt) {
 		return nil, false
 	}
 	return o.MonitoringAt, true
@@ -340,7 +379,7 @@ func (o *Incident) GetMonitoringAtOk() (*time.Time, bool) {
 
 // HasMonitoringAt returns a boolean if a field has been set.
 func (o *Incident) HasMonitoringAt() bool {
-	if o != nil && o.MonitoringAt != nil {
+	if o != nil && !IsNil(o.MonitoringAt) {
 		return true
 	}
 
@@ -354,7 +393,7 @@ func (o *Incident) SetMonitoringAt(v time.Time) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Incident) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -364,7 +403,7 @@ func (o *Incident) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Incident) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -372,7 +411,7 @@ func (o *Incident) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Incident) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -386,7 +425,7 @@ func (o *Incident) SetName(v string) {
 
 // GetPageId returns the PageId field value if set, zero value otherwise.
 func (o *Incident) GetPageId() string {
-	if o == nil || o.PageId == nil {
+	if o == nil || IsNil(o.PageId) {
 		var ret string
 		return ret
 	}
@@ -396,7 +435,7 @@ func (o *Incident) GetPageId() string {
 // GetPageIdOk returns a tuple with the PageId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Incident) GetPageIdOk() (*string, bool) {
-	if o == nil || o.PageId == nil {
+	if o == nil || IsNil(o.PageId) {
 		return nil, false
 	}
 	return o.PageId, true
@@ -404,7 +443,7 @@ func (o *Incident) GetPageIdOk() (*string, bool) {
 
 // HasPageId returns a boolean if a field has been set.
 func (o *Incident) HasPageId() bool {
-	if o != nil && o.PageId != nil {
+	if o != nil && !IsNil(o.PageId) {
 		return true
 	}
 
@@ -418,7 +457,7 @@ func (o *Incident) SetPageId(v string) {
 
 // GetPostmortemBody returns the PostmortemBody field value if set, zero value otherwise.
 func (o *Incident) GetPostmortemBody() string {
-	if o == nil || o.PostmortemBody == nil {
+	if o == nil || IsNil(o.PostmortemBody) {
 		var ret string
 		return ret
 	}
@@ -428,7 +467,7 @@ func (o *Incident) GetPostmortemBody() string {
 // GetPostmortemBodyOk returns a tuple with the PostmortemBody field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Incident) GetPostmortemBodyOk() (*string, bool) {
-	if o == nil || o.PostmortemBody == nil {
+	if o == nil || IsNil(o.PostmortemBody) {
 		return nil, false
 	}
 	return o.PostmortemBody, true
@@ -436,7 +475,7 @@ func (o *Incident) GetPostmortemBodyOk() (*string, bool) {
 
 // HasPostmortemBody returns a boolean if a field has been set.
 func (o *Incident) HasPostmortemBody() bool {
-	if o != nil && o.PostmortemBody != nil {
+	if o != nil && !IsNil(o.PostmortemBody) {
 		return true
 	}
 
@@ -450,7 +489,7 @@ func (o *Incident) SetPostmortemBody(v string) {
 
 // GetPostmortemBodyLastUpdatedAt returns the PostmortemBodyLastUpdatedAt field value if set, zero value otherwise.
 func (o *Incident) GetPostmortemBodyLastUpdatedAt() time.Time {
-	if o == nil || o.PostmortemBodyLastUpdatedAt == nil {
+	if o == nil || IsNil(o.PostmortemBodyLastUpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -460,7 +499,7 @@ func (o *Incident) GetPostmortemBodyLastUpdatedAt() time.Time {
 // GetPostmortemBodyLastUpdatedAtOk returns a tuple with the PostmortemBodyLastUpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Incident) GetPostmortemBodyLastUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.PostmortemBodyLastUpdatedAt == nil {
+	if o == nil || IsNil(o.PostmortemBodyLastUpdatedAt) {
 		return nil, false
 	}
 	return o.PostmortemBodyLastUpdatedAt, true
@@ -468,7 +507,7 @@ func (o *Incident) GetPostmortemBodyLastUpdatedAtOk() (*time.Time, bool) {
 
 // HasPostmortemBodyLastUpdatedAt returns a boolean if a field has been set.
 func (o *Incident) HasPostmortemBodyLastUpdatedAt() bool {
-	if o != nil && o.PostmortemBodyLastUpdatedAt != nil {
+	if o != nil && !IsNil(o.PostmortemBodyLastUpdatedAt) {
 		return true
 	}
 
@@ -482,7 +521,7 @@ func (o *Incident) SetPostmortemBodyLastUpdatedAt(v time.Time) {
 
 // GetPostmortemIgnored returns the PostmortemIgnored field value if set, zero value otherwise.
 func (o *Incident) GetPostmortemIgnored() bool {
-	if o == nil || o.PostmortemIgnored == nil {
+	if o == nil || IsNil(o.PostmortemIgnored) {
 		var ret bool
 		return ret
 	}
@@ -492,7 +531,7 @@ func (o *Incident) GetPostmortemIgnored() bool {
 // GetPostmortemIgnoredOk returns a tuple with the PostmortemIgnored field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Incident) GetPostmortemIgnoredOk() (*bool, bool) {
-	if o == nil || o.PostmortemIgnored == nil {
+	if o == nil || IsNil(o.PostmortemIgnored) {
 		return nil, false
 	}
 	return o.PostmortemIgnored, true
@@ -500,7 +539,7 @@ func (o *Incident) GetPostmortemIgnoredOk() (*bool, bool) {
 
 // HasPostmortemIgnored returns a boolean if a field has been set.
 func (o *Incident) HasPostmortemIgnored() bool {
-	if o != nil && o.PostmortemIgnored != nil {
+	if o != nil && !IsNil(o.PostmortemIgnored) {
 		return true
 	}
 
@@ -514,7 +553,7 @@ func (o *Incident) SetPostmortemIgnored(v bool) {
 
 // GetPostmortemNotifiedSubscribers returns the PostmortemNotifiedSubscribers field value if set, zero value otherwise.
 func (o *Incident) GetPostmortemNotifiedSubscribers() bool {
-	if o == nil || o.PostmortemNotifiedSubscribers == nil {
+	if o == nil || IsNil(o.PostmortemNotifiedSubscribers) {
 		var ret bool
 		return ret
 	}
@@ -524,7 +563,7 @@ func (o *Incident) GetPostmortemNotifiedSubscribers() bool {
 // GetPostmortemNotifiedSubscribersOk returns a tuple with the PostmortemNotifiedSubscribers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Incident) GetPostmortemNotifiedSubscribersOk() (*bool, bool) {
-	if o == nil || o.PostmortemNotifiedSubscribers == nil {
+	if o == nil || IsNil(o.PostmortemNotifiedSubscribers) {
 		return nil, false
 	}
 	return o.PostmortemNotifiedSubscribers, true
@@ -532,7 +571,7 @@ func (o *Incident) GetPostmortemNotifiedSubscribersOk() (*bool, bool) {
 
 // HasPostmortemNotifiedSubscribers returns a boolean if a field has been set.
 func (o *Incident) HasPostmortemNotifiedSubscribers() bool {
-	if o != nil && o.PostmortemNotifiedSubscribers != nil {
+	if o != nil && !IsNil(o.PostmortemNotifiedSubscribers) {
 		return true
 	}
 
@@ -546,7 +585,7 @@ func (o *Incident) SetPostmortemNotifiedSubscribers(v bool) {
 
 // GetPostmortemNotifiedTwitter returns the PostmortemNotifiedTwitter field value if set, zero value otherwise.
 func (o *Incident) GetPostmortemNotifiedTwitter() bool {
-	if o == nil || o.PostmortemNotifiedTwitter == nil {
+	if o == nil || IsNil(o.PostmortemNotifiedTwitter) {
 		var ret bool
 		return ret
 	}
@@ -556,7 +595,7 @@ func (o *Incident) GetPostmortemNotifiedTwitter() bool {
 // GetPostmortemNotifiedTwitterOk returns a tuple with the PostmortemNotifiedTwitter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Incident) GetPostmortemNotifiedTwitterOk() (*bool, bool) {
-	if o == nil || o.PostmortemNotifiedTwitter == nil {
+	if o == nil || IsNil(o.PostmortemNotifiedTwitter) {
 		return nil, false
 	}
 	return o.PostmortemNotifiedTwitter, true
@@ -564,7 +603,7 @@ func (o *Incident) GetPostmortemNotifiedTwitterOk() (*bool, bool) {
 
 // HasPostmortemNotifiedTwitter returns a boolean if a field has been set.
 func (o *Incident) HasPostmortemNotifiedTwitter() bool {
-	if o != nil && o.PostmortemNotifiedTwitter != nil {
+	if o != nil && !IsNil(o.PostmortemNotifiedTwitter) {
 		return true
 	}
 
@@ -578,7 +617,7 @@ func (o *Incident) SetPostmortemNotifiedTwitter(v bool) {
 
 // GetPostmortemPublishedAt returns the PostmortemPublishedAt field value if set, zero value otherwise.
 func (o *Incident) GetPostmortemPublishedAt() bool {
-	if o == nil || o.PostmortemPublishedAt == nil {
+	if o == nil || IsNil(o.PostmortemPublishedAt) {
 		var ret bool
 		return ret
 	}
@@ -588,7 +627,7 @@ func (o *Incident) GetPostmortemPublishedAt() bool {
 // GetPostmortemPublishedAtOk returns a tuple with the PostmortemPublishedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Incident) GetPostmortemPublishedAtOk() (*bool, bool) {
-	if o == nil || o.PostmortemPublishedAt == nil {
+	if o == nil || IsNil(o.PostmortemPublishedAt) {
 		return nil, false
 	}
 	return o.PostmortemPublishedAt, true
@@ -596,7 +635,7 @@ func (o *Incident) GetPostmortemPublishedAtOk() (*bool, bool) {
 
 // HasPostmortemPublishedAt returns a boolean if a field has been set.
 func (o *Incident) HasPostmortemPublishedAt() bool {
-	if o != nil && o.PostmortemPublishedAt != nil {
+	if o != nil && !IsNil(o.PostmortemPublishedAt) {
 		return true
 	}
 
@@ -610,7 +649,7 @@ func (o *Incident) SetPostmortemPublishedAt(v bool) {
 
 // GetResolvedAt returns the ResolvedAt field value if set, zero value otherwise.
 func (o *Incident) GetResolvedAt() time.Time {
-	if o == nil || o.ResolvedAt == nil {
+	if o == nil || IsNil(o.ResolvedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -620,7 +659,7 @@ func (o *Incident) GetResolvedAt() time.Time {
 // GetResolvedAtOk returns a tuple with the ResolvedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Incident) GetResolvedAtOk() (*time.Time, bool) {
-	if o == nil || o.ResolvedAt == nil {
+	if o == nil || IsNil(o.ResolvedAt) {
 		return nil, false
 	}
 	return o.ResolvedAt, true
@@ -628,7 +667,7 @@ func (o *Incident) GetResolvedAtOk() (*time.Time, bool) {
 
 // HasResolvedAt returns a boolean if a field has been set.
 func (o *Incident) HasResolvedAt() bool {
-	if o != nil && o.ResolvedAt != nil {
+	if o != nil && !IsNil(o.ResolvedAt) {
 		return true
 	}
 
@@ -642,7 +681,7 @@ func (o *Incident) SetResolvedAt(v time.Time) {
 
 // GetScheduledAutoCompleted returns the ScheduledAutoCompleted field value if set, zero value otherwise.
 func (o *Incident) GetScheduledAutoCompleted() bool {
-	if o == nil || o.ScheduledAutoCompleted == nil {
+	if o == nil || IsNil(o.ScheduledAutoCompleted) {
 		var ret bool
 		return ret
 	}
@@ -652,7 +691,7 @@ func (o *Incident) GetScheduledAutoCompleted() bool {
 // GetScheduledAutoCompletedOk returns a tuple with the ScheduledAutoCompleted field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Incident) GetScheduledAutoCompletedOk() (*bool, bool) {
-	if o == nil || o.ScheduledAutoCompleted == nil {
+	if o == nil || IsNil(o.ScheduledAutoCompleted) {
 		return nil, false
 	}
 	return o.ScheduledAutoCompleted, true
@@ -660,7 +699,7 @@ func (o *Incident) GetScheduledAutoCompletedOk() (*bool, bool) {
 
 // HasScheduledAutoCompleted returns a boolean if a field has been set.
 func (o *Incident) HasScheduledAutoCompleted() bool {
-	if o != nil && o.ScheduledAutoCompleted != nil {
+	if o != nil && !IsNil(o.ScheduledAutoCompleted) {
 		return true
 	}
 
@@ -674,7 +713,7 @@ func (o *Incident) SetScheduledAutoCompleted(v bool) {
 
 // GetScheduledAutoInProgress returns the ScheduledAutoInProgress field value if set, zero value otherwise.
 func (o *Incident) GetScheduledAutoInProgress() bool {
-	if o == nil || o.ScheduledAutoInProgress == nil {
+	if o == nil || IsNil(o.ScheduledAutoInProgress) {
 		var ret bool
 		return ret
 	}
@@ -684,7 +723,7 @@ func (o *Incident) GetScheduledAutoInProgress() bool {
 // GetScheduledAutoInProgressOk returns a tuple with the ScheduledAutoInProgress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Incident) GetScheduledAutoInProgressOk() (*bool, bool) {
-	if o == nil || o.ScheduledAutoInProgress == nil {
+	if o == nil || IsNil(o.ScheduledAutoInProgress) {
 		return nil, false
 	}
 	return o.ScheduledAutoInProgress, true
@@ -692,7 +731,7 @@ func (o *Incident) GetScheduledAutoInProgressOk() (*bool, bool) {
 
 // HasScheduledAutoInProgress returns a boolean if a field has been set.
 func (o *Incident) HasScheduledAutoInProgress() bool {
-	if o != nil && o.ScheduledAutoInProgress != nil {
+	if o != nil && !IsNil(o.ScheduledAutoInProgress) {
 		return true
 	}
 
@@ -706,7 +745,7 @@ func (o *Incident) SetScheduledAutoInProgress(v bool) {
 
 // GetScheduledFor returns the ScheduledFor field value if set, zero value otherwise.
 func (o *Incident) GetScheduledFor() time.Time {
-	if o == nil || o.ScheduledFor == nil {
+	if o == nil || IsNil(o.ScheduledFor) {
 		var ret time.Time
 		return ret
 	}
@@ -716,7 +755,7 @@ func (o *Incident) GetScheduledFor() time.Time {
 // GetScheduledForOk returns a tuple with the ScheduledFor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Incident) GetScheduledForOk() (*time.Time, bool) {
-	if o == nil || o.ScheduledFor == nil {
+	if o == nil || IsNil(o.ScheduledFor) {
 		return nil, false
 	}
 	return o.ScheduledFor, true
@@ -724,7 +763,7 @@ func (o *Incident) GetScheduledForOk() (*time.Time, bool) {
 
 // HasScheduledFor returns a boolean if a field has been set.
 func (o *Incident) HasScheduledFor() bool {
-	if o != nil && o.ScheduledFor != nil {
+	if o != nil && !IsNil(o.ScheduledFor) {
 		return true
 	}
 
@@ -738,7 +777,7 @@ func (o *Incident) SetScheduledFor(v time.Time) {
 
 // GetAutoTransitionDeliverNotificationsAtEnd returns the AutoTransitionDeliverNotificationsAtEnd field value if set, zero value otherwise.
 func (o *Incident) GetAutoTransitionDeliverNotificationsAtEnd() bool {
-	if o == nil || o.AutoTransitionDeliverNotificationsAtEnd == nil {
+	if o == nil || IsNil(o.AutoTransitionDeliverNotificationsAtEnd) {
 		var ret bool
 		return ret
 	}
@@ -748,7 +787,7 @@ func (o *Incident) GetAutoTransitionDeliverNotificationsAtEnd() bool {
 // GetAutoTransitionDeliverNotificationsAtEndOk returns a tuple with the AutoTransitionDeliverNotificationsAtEnd field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Incident) GetAutoTransitionDeliverNotificationsAtEndOk() (*bool, bool) {
-	if o == nil || o.AutoTransitionDeliverNotificationsAtEnd == nil {
+	if o == nil || IsNil(o.AutoTransitionDeliverNotificationsAtEnd) {
 		return nil, false
 	}
 	return o.AutoTransitionDeliverNotificationsAtEnd, true
@@ -756,7 +795,7 @@ func (o *Incident) GetAutoTransitionDeliverNotificationsAtEndOk() (*bool, bool) 
 
 // HasAutoTransitionDeliverNotificationsAtEnd returns a boolean if a field has been set.
 func (o *Incident) HasAutoTransitionDeliverNotificationsAtEnd() bool {
-	if o != nil && o.AutoTransitionDeliverNotificationsAtEnd != nil {
+	if o != nil && !IsNil(o.AutoTransitionDeliverNotificationsAtEnd) {
 		return true
 	}
 
@@ -770,7 +809,7 @@ func (o *Incident) SetAutoTransitionDeliverNotificationsAtEnd(v bool) {
 
 // GetAutoTransitionDeliverNotificationsAtStart returns the AutoTransitionDeliverNotificationsAtStart field value if set, zero value otherwise.
 func (o *Incident) GetAutoTransitionDeliverNotificationsAtStart() bool {
-	if o == nil || o.AutoTransitionDeliverNotificationsAtStart == nil {
+	if o == nil || IsNil(o.AutoTransitionDeliverNotificationsAtStart) {
 		var ret bool
 		return ret
 	}
@@ -780,7 +819,7 @@ func (o *Incident) GetAutoTransitionDeliverNotificationsAtStart() bool {
 // GetAutoTransitionDeliverNotificationsAtStartOk returns a tuple with the AutoTransitionDeliverNotificationsAtStart field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Incident) GetAutoTransitionDeliverNotificationsAtStartOk() (*bool, bool) {
-	if o == nil || o.AutoTransitionDeliverNotificationsAtStart == nil {
+	if o == nil || IsNil(o.AutoTransitionDeliverNotificationsAtStart) {
 		return nil, false
 	}
 	return o.AutoTransitionDeliverNotificationsAtStart, true
@@ -788,7 +827,7 @@ func (o *Incident) GetAutoTransitionDeliverNotificationsAtStartOk() (*bool, bool
 
 // HasAutoTransitionDeliverNotificationsAtStart returns a boolean if a field has been set.
 func (o *Incident) HasAutoTransitionDeliverNotificationsAtStart() bool {
-	if o != nil && o.AutoTransitionDeliverNotificationsAtStart != nil {
+	if o != nil && !IsNil(o.AutoTransitionDeliverNotificationsAtStart) {
 		return true
 	}
 
@@ -802,7 +841,7 @@ func (o *Incident) SetAutoTransitionDeliverNotificationsAtStart(v bool) {
 
 // GetAutoTransitionToMaintenanceState returns the AutoTransitionToMaintenanceState field value if set, zero value otherwise.
 func (o *Incident) GetAutoTransitionToMaintenanceState() bool {
-	if o == nil || o.AutoTransitionToMaintenanceState == nil {
+	if o == nil || IsNil(o.AutoTransitionToMaintenanceState) {
 		var ret bool
 		return ret
 	}
@@ -812,7 +851,7 @@ func (o *Incident) GetAutoTransitionToMaintenanceState() bool {
 // GetAutoTransitionToMaintenanceStateOk returns a tuple with the AutoTransitionToMaintenanceState field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Incident) GetAutoTransitionToMaintenanceStateOk() (*bool, bool) {
-	if o == nil || o.AutoTransitionToMaintenanceState == nil {
+	if o == nil || IsNil(o.AutoTransitionToMaintenanceState) {
 		return nil, false
 	}
 	return o.AutoTransitionToMaintenanceState, true
@@ -820,7 +859,7 @@ func (o *Incident) GetAutoTransitionToMaintenanceStateOk() (*bool, bool) {
 
 // HasAutoTransitionToMaintenanceState returns a boolean if a field has been set.
 func (o *Incident) HasAutoTransitionToMaintenanceState() bool {
-	if o != nil && o.AutoTransitionToMaintenanceState != nil {
+	if o != nil && !IsNil(o.AutoTransitionToMaintenanceState) {
 		return true
 	}
 
@@ -834,7 +873,7 @@ func (o *Incident) SetAutoTransitionToMaintenanceState(v bool) {
 
 // GetAutoTransitionToOperationalState returns the AutoTransitionToOperationalState field value if set, zero value otherwise.
 func (o *Incident) GetAutoTransitionToOperationalState() bool {
-	if o == nil || o.AutoTransitionToOperationalState == nil {
+	if o == nil || IsNil(o.AutoTransitionToOperationalState) {
 		var ret bool
 		return ret
 	}
@@ -844,7 +883,7 @@ func (o *Incident) GetAutoTransitionToOperationalState() bool {
 // GetAutoTransitionToOperationalStateOk returns a tuple with the AutoTransitionToOperationalState field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Incident) GetAutoTransitionToOperationalStateOk() (*bool, bool) {
-	if o == nil || o.AutoTransitionToOperationalState == nil {
+	if o == nil || IsNil(o.AutoTransitionToOperationalState) {
 		return nil, false
 	}
 	return o.AutoTransitionToOperationalState, true
@@ -852,7 +891,7 @@ func (o *Incident) GetAutoTransitionToOperationalStateOk() (*bool, bool) {
 
 // HasAutoTransitionToOperationalState returns a boolean if a field has been set.
 func (o *Incident) HasAutoTransitionToOperationalState() bool {
-	if o != nil && o.AutoTransitionToOperationalState != nil {
+	if o != nil && !IsNil(o.AutoTransitionToOperationalState) {
 		return true
 	}
 
@@ -866,7 +905,7 @@ func (o *Incident) SetAutoTransitionToOperationalState(v bool) {
 
 // GetScheduledRemindPrior returns the ScheduledRemindPrior field value if set, zero value otherwise.
 func (o *Incident) GetScheduledRemindPrior() bool {
-	if o == nil || o.ScheduledRemindPrior == nil {
+	if o == nil || IsNil(o.ScheduledRemindPrior) {
 		var ret bool
 		return ret
 	}
@@ -876,7 +915,7 @@ func (o *Incident) GetScheduledRemindPrior() bool {
 // GetScheduledRemindPriorOk returns a tuple with the ScheduledRemindPrior field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Incident) GetScheduledRemindPriorOk() (*bool, bool) {
-	if o == nil || o.ScheduledRemindPrior == nil {
+	if o == nil || IsNil(o.ScheduledRemindPrior) {
 		return nil, false
 	}
 	return o.ScheduledRemindPrior, true
@@ -884,7 +923,7 @@ func (o *Incident) GetScheduledRemindPriorOk() (*bool, bool) {
 
 // HasScheduledRemindPrior returns a boolean if a field has been set.
 func (o *Incident) HasScheduledRemindPrior() bool {
-	if o != nil && o.ScheduledRemindPrior != nil {
+	if o != nil && !IsNil(o.ScheduledRemindPrior) {
 		return true
 	}
 
@@ -898,7 +937,7 @@ func (o *Incident) SetScheduledRemindPrior(v bool) {
 
 // GetScheduledRemindedAt returns the ScheduledRemindedAt field value if set, zero value otherwise.
 func (o *Incident) GetScheduledRemindedAt() time.Time {
-	if o == nil || o.ScheduledRemindedAt == nil {
+	if o == nil || IsNil(o.ScheduledRemindedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -908,7 +947,7 @@ func (o *Incident) GetScheduledRemindedAt() time.Time {
 // GetScheduledRemindedAtOk returns a tuple with the ScheduledRemindedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Incident) GetScheduledRemindedAtOk() (*time.Time, bool) {
-	if o == nil || o.ScheduledRemindedAt == nil {
+	if o == nil || IsNil(o.ScheduledRemindedAt) {
 		return nil, false
 	}
 	return o.ScheduledRemindedAt, true
@@ -916,7 +955,7 @@ func (o *Incident) GetScheduledRemindedAtOk() (*time.Time, bool) {
 
 // HasScheduledRemindedAt returns a boolean if a field has been set.
 func (o *Incident) HasScheduledRemindedAt() bool {
-	if o != nil && o.ScheduledRemindedAt != nil {
+	if o != nil && !IsNil(o.ScheduledRemindedAt) {
 		return true
 	}
 
@@ -930,7 +969,7 @@ func (o *Incident) SetScheduledRemindedAt(v time.Time) {
 
 // GetScheduledUntil returns the ScheduledUntil field value if set, zero value otherwise.
 func (o *Incident) GetScheduledUntil() time.Time {
-	if o == nil || o.ScheduledUntil == nil {
+	if o == nil || IsNil(o.ScheduledUntil) {
 		var ret time.Time
 		return ret
 	}
@@ -940,7 +979,7 @@ func (o *Incident) GetScheduledUntil() time.Time {
 // GetScheduledUntilOk returns a tuple with the ScheduledUntil field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Incident) GetScheduledUntilOk() (*time.Time, bool) {
-	if o == nil || o.ScheduledUntil == nil {
+	if o == nil || IsNil(o.ScheduledUntil) {
 		return nil, false
 	}
 	return o.ScheduledUntil, true
@@ -948,7 +987,7 @@ func (o *Incident) GetScheduledUntilOk() (*time.Time, bool) {
 
 // HasScheduledUntil returns a boolean if a field has been set.
 func (o *Incident) HasScheduledUntil() bool {
-	if o != nil && o.ScheduledUntil != nil {
+	if o != nil && !IsNil(o.ScheduledUntil) {
 		return true
 	}
 
@@ -962,7 +1001,7 @@ func (o *Incident) SetScheduledUntil(v time.Time) {
 
 // GetShortlink returns the Shortlink field value if set, zero value otherwise.
 func (o *Incident) GetShortlink() string {
-	if o == nil || o.Shortlink == nil {
+	if o == nil || IsNil(o.Shortlink) {
 		var ret string
 		return ret
 	}
@@ -972,7 +1011,7 @@ func (o *Incident) GetShortlink() string {
 // GetShortlinkOk returns a tuple with the Shortlink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Incident) GetShortlinkOk() (*string, bool) {
-	if o == nil || o.Shortlink == nil {
+	if o == nil || IsNil(o.Shortlink) {
 		return nil, false
 	}
 	return o.Shortlink, true
@@ -980,7 +1019,7 @@ func (o *Incident) GetShortlinkOk() (*string, bool) {
 
 // HasShortlink returns a boolean if a field has been set.
 func (o *Incident) HasShortlink() bool {
-	if o != nil && o.Shortlink != nil {
+	if o != nil && !IsNil(o.Shortlink) {
 		return true
 	}
 
@@ -994,7 +1033,7 @@ func (o *Incident) SetShortlink(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *Incident) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -1004,7 +1043,7 @@ func (o *Incident) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Incident) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -1012,7 +1051,7 @@ func (o *Incident) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *Incident) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -1026,7 +1065,7 @@ func (o *Incident) SetStatus(v string) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *Incident) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -1036,7 +1075,7 @@ func (o *Incident) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Incident) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -1044,7 +1083,7 @@ func (o *Incident) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *Incident) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -1056,99 +1095,145 @@ func (o *Incident) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = &v
 }
 
+// GetReminderIntervals returns the ReminderIntervals field value if set, zero value otherwise.
+func (o *Incident) GetReminderIntervals() string {
+	if o == nil || IsNil(o.ReminderIntervals) {
+		var ret string
+		return ret
+	}
+	return *o.ReminderIntervals
+}
+
+// GetReminderIntervalsOk returns a tuple with the ReminderIntervals field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Incident) GetReminderIntervalsOk() (*string, bool) {
+	if o == nil || IsNil(o.ReminderIntervals) {
+		return nil, false
+	}
+	return o.ReminderIntervals, true
+}
+
+// HasReminderIntervals returns a boolean if a field has been set.
+func (o *Incident) HasReminderIntervals() bool {
+	if o != nil && !IsNil(o.ReminderIntervals) {
+		return true
+	}
+
+	return false
+}
+
+// SetReminderIntervals gets a reference to the given string and assigns it to the ReminderIntervals field.
+func (o *Incident) SetReminderIntervals(v string) {
+	o.ReminderIntervals = &v
+}
+
 func (o Incident) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Components != nil {
-		toSerialize["components"] = o.Components
-	}
-	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if o.Impact != nil {
-		toSerialize["impact"] = o.Impact
-	}
-	if o.ImpactOverride != nil {
-		toSerialize["impact_override"] = o.ImpactOverride
-	}
-	if o.IncidentUpdates != nil {
-		toSerialize["incident_updates"] = o.IncidentUpdates
-	}
-	if o.Metadata != nil {
-		toSerialize["metadata"] = o.Metadata
-	}
-	if o.MonitoringAt != nil {
-		toSerialize["monitoring_at"] = o.MonitoringAt
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.PageId != nil {
-		toSerialize["page_id"] = o.PageId
-	}
-	if o.PostmortemBody != nil {
-		toSerialize["postmortem_body"] = o.PostmortemBody
-	}
-	if o.PostmortemBodyLastUpdatedAt != nil {
-		toSerialize["postmortem_body_last_updated_at"] = o.PostmortemBodyLastUpdatedAt
-	}
-	if o.PostmortemIgnored != nil {
-		toSerialize["postmortem_ignored"] = o.PostmortemIgnored
-	}
-	if o.PostmortemNotifiedSubscribers != nil {
-		toSerialize["postmortem_notified_subscribers"] = o.PostmortemNotifiedSubscribers
-	}
-	if o.PostmortemNotifiedTwitter != nil {
-		toSerialize["postmortem_notified_twitter"] = o.PostmortemNotifiedTwitter
-	}
-	if o.PostmortemPublishedAt != nil {
-		toSerialize["postmortem_published_at"] = o.PostmortemPublishedAt
-	}
-	if o.ResolvedAt != nil {
-		toSerialize["resolved_at"] = o.ResolvedAt
-	}
-	if o.ScheduledAutoCompleted != nil {
-		toSerialize["scheduled_auto_completed"] = o.ScheduledAutoCompleted
-	}
-	if o.ScheduledAutoInProgress != nil {
-		toSerialize["scheduled_auto_in_progress"] = o.ScheduledAutoInProgress
-	}
-	if o.ScheduledFor != nil {
-		toSerialize["scheduled_for"] = o.ScheduledFor
-	}
-	if o.AutoTransitionDeliverNotificationsAtEnd != nil {
-		toSerialize["auto_transition_deliver_notifications_at_end"] = o.AutoTransitionDeliverNotificationsAtEnd
-	}
-	if o.AutoTransitionDeliverNotificationsAtStart != nil {
-		toSerialize["auto_transition_deliver_notifications_at_start"] = o.AutoTransitionDeliverNotificationsAtStart
-	}
-	if o.AutoTransitionToMaintenanceState != nil {
-		toSerialize["auto_transition_to_maintenance_state"] = o.AutoTransitionToMaintenanceState
-	}
-	if o.AutoTransitionToOperationalState != nil {
-		toSerialize["auto_transition_to_operational_state"] = o.AutoTransitionToOperationalState
-	}
-	if o.ScheduledRemindPrior != nil {
-		toSerialize["scheduled_remind_prior"] = o.ScheduledRemindPrior
-	}
-	if o.ScheduledRemindedAt != nil {
-		toSerialize["scheduled_reminded_at"] = o.ScheduledRemindedAt
-	}
-	if o.ScheduledUntil != nil {
-		toSerialize["scheduled_until"] = o.ScheduledUntil
-	}
-	if o.Shortlink != nil {
-		toSerialize["shortlink"] = o.Shortlink
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
-	}
-	if o.UpdatedAt != nil {
-		toSerialize["updated_at"] = o.UpdatedAt
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Incident) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Components) {
+		toSerialize["components"] = o.Components
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.Impact) {
+		toSerialize["impact"] = o.Impact
+	}
+	if !IsNil(o.ImpactOverride) {
+		toSerialize["impact_override"] = o.ImpactOverride
+	}
+	if !IsNil(o.IncidentUpdates) {
+		toSerialize["incident_updates"] = o.IncidentUpdates
+	}
+	if !IsNil(o.IncidentImpacts) {
+		toSerialize["incident_impacts"] = o.IncidentImpacts
+	}
+	if !IsNil(o.Metadata) {
+		toSerialize["metadata"] = o.Metadata
+	}
+	if !IsNil(o.MonitoringAt) {
+		toSerialize["monitoring_at"] = o.MonitoringAt
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.PageId) {
+		toSerialize["page_id"] = o.PageId
+	}
+	if !IsNil(o.PostmortemBody) {
+		toSerialize["postmortem_body"] = o.PostmortemBody
+	}
+	if !IsNil(o.PostmortemBodyLastUpdatedAt) {
+		toSerialize["postmortem_body_last_updated_at"] = o.PostmortemBodyLastUpdatedAt
+	}
+	if !IsNil(o.PostmortemIgnored) {
+		toSerialize["postmortem_ignored"] = o.PostmortemIgnored
+	}
+	if !IsNil(o.PostmortemNotifiedSubscribers) {
+		toSerialize["postmortem_notified_subscribers"] = o.PostmortemNotifiedSubscribers
+	}
+	if !IsNil(o.PostmortemNotifiedTwitter) {
+		toSerialize["postmortem_notified_twitter"] = o.PostmortemNotifiedTwitter
+	}
+	if !IsNil(o.PostmortemPublishedAt) {
+		toSerialize["postmortem_published_at"] = o.PostmortemPublishedAt
+	}
+	if !IsNil(o.ResolvedAt) {
+		toSerialize["resolved_at"] = o.ResolvedAt
+	}
+	if !IsNil(o.ScheduledAutoCompleted) {
+		toSerialize["scheduled_auto_completed"] = o.ScheduledAutoCompleted
+	}
+	if !IsNil(o.ScheduledAutoInProgress) {
+		toSerialize["scheduled_auto_in_progress"] = o.ScheduledAutoInProgress
+	}
+	if !IsNil(o.ScheduledFor) {
+		toSerialize["scheduled_for"] = o.ScheduledFor
+	}
+	if !IsNil(o.AutoTransitionDeliverNotificationsAtEnd) {
+		toSerialize["auto_transition_deliver_notifications_at_end"] = o.AutoTransitionDeliverNotificationsAtEnd
+	}
+	if !IsNil(o.AutoTransitionDeliverNotificationsAtStart) {
+		toSerialize["auto_transition_deliver_notifications_at_start"] = o.AutoTransitionDeliverNotificationsAtStart
+	}
+	if !IsNil(o.AutoTransitionToMaintenanceState) {
+		toSerialize["auto_transition_to_maintenance_state"] = o.AutoTransitionToMaintenanceState
+	}
+	if !IsNil(o.AutoTransitionToOperationalState) {
+		toSerialize["auto_transition_to_operational_state"] = o.AutoTransitionToOperationalState
+	}
+	if !IsNil(o.ScheduledRemindPrior) {
+		toSerialize["scheduled_remind_prior"] = o.ScheduledRemindPrior
+	}
+	if !IsNil(o.ScheduledRemindedAt) {
+		toSerialize["scheduled_reminded_at"] = o.ScheduledRemindedAt
+	}
+	if !IsNil(o.ScheduledUntil) {
+		toSerialize["scheduled_until"] = o.ScheduledUntil
+	}
+	if !IsNil(o.Shortlink) {
+		toSerialize["shortlink"] = o.Shortlink
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if !IsNil(o.ReminderIntervals) {
+		toSerialize["reminder_intervals"] = o.ReminderIntervals
+	}
+	return toSerialize, nil
 }
 
 type NullableIncident struct {
@@ -1186,5 +1271,3 @@ func (v *NullableIncident) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

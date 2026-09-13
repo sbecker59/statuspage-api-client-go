@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the PatchPagesPageIdIncidentsIncident type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PatchPagesPageIdIncidentsIncident{}
+
 // PatchPagesPageIdIncidentsIncident struct for PatchPagesPageIdIncidentsIncident
 type PatchPagesPageIdIncidentsIncident struct {
 	// Incident Name. There is a maximum limit of 255 characters.
@@ -41,8 +44,10 @@ type PatchPagesPageIdIncidentsIncident struct {
 	AutoTransitionDeliverNotificationsAtStart *bool `json:"auto_transition_deliver_notifications_at_start,omitempty"`
 	// Controls whether send notification when scheduled maintenances auto transition to completed.
 	AutoTransitionDeliverNotificationsAtEnd *bool `json:"auto_transition_deliver_notifications_at_end,omitempty"`
+	// Custom reminder intervals for unresolved/open incidents. Not applicable for <strong>Scheduled maintenance</strong><br>There are 4 possible states for reminder_intervals:<br><strong>DEFAULT:</strong> NULL, representing a default behavior with intervals [3, 6, 12, 24].<br><strong>AFTER:</strong> A serialized array of strictly increasing intervals, each integer ranges from [1-24] (inclusive). Ex \"[1, 5, 7, 10]\"<br><strong>EVERY:</strong> An integer in the range [1-24] as a string, representing equal intervals. Ex \"4\" for [4, 8, 12, 16, 20, 24]<br><strong>OFF:</strong> A serialized empty array, for example, \"[]\", meaning no reminder notifications will be sent.
+	ReminderIntervals *string `json:"reminder_intervals,omitempty"`
 	// Attach a json object to the incident. All top-level values in the object must also be objects.
-	Metadata *map[string]interface{} `json:"metadata,omitempty"`
+	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// Deliver notifications to subscribers if this is true. If this is false, create an incident without notifying customers.
 	DeliverNotifications *bool `json:"deliver_notifications,omitempty"`
 	// Controls whether tweet automatically when scheduled maintenance starts.
@@ -58,10 +63,10 @@ type PatchPagesPageIdIncidentsIncident struct {
 	// Controls whether incident is backfilled. If true, components cannot be specified.
 	Backfilled *bool `json:"backfilled,omitempty"`
 	// The initial message, created as the first incident update. There is a maximum limit of 25000 characters
-	Body *string `json:"body,omitempty"`
-	Components *map[string]interface{} `json:"components,omitempty"`
+	Body       *string                                      `json:"body,omitempty"`
+	Components *PatchPagesPageIdIncidentsIncidentComponents `json:"components,omitempty"`
 	// List of component_ids affected by this incident
-	ComponentIds *[]string `json:"component_ids,omitempty"`
+	ComponentIds []string `json:"component_ids,omitempty"`
 	// Same as :scheduled_auto_transition_in_progress. Controls whether the incident is scheduled to automatically change to in progress.
 	ScheduledAutoTransition *bool `json:"scheduled_auto_transition,omitempty"`
 }
@@ -89,7 +94,7 @@ func NewPatchPagesPageIdIncidentsIncidentWithDefaults() *PatchPagesPageIdInciden
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *PatchPagesPageIdIncidentsIncident) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -99,7 +104,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdIncidentsIncident) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -107,7 +112,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *PatchPagesPageIdIncidentsIncident) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -121,7 +126,7 @@ func (o *PatchPagesPageIdIncidentsIncident) SetName(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *PatchPagesPageIdIncidentsIncident) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -131,7 +136,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdIncidentsIncident) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -139,7 +144,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *PatchPagesPageIdIncidentsIncident) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -153,7 +158,7 @@ func (o *PatchPagesPageIdIncidentsIncident) SetStatus(v string) {
 
 // GetImpactOverride returns the ImpactOverride field value if set, zero value otherwise.
 func (o *PatchPagesPageIdIncidentsIncident) GetImpactOverride() string {
-	if o == nil || o.ImpactOverride == nil {
+	if o == nil || IsNil(o.ImpactOverride) {
 		var ret string
 		return ret
 	}
@@ -163,7 +168,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetImpactOverride() string {
 // GetImpactOverrideOk returns a tuple with the ImpactOverride field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdIncidentsIncident) GetImpactOverrideOk() (*string, bool) {
-	if o == nil || o.ImpactOverride == nil {
+	if o == nil || IsNil(o.ImpactOverride) {
 		return nil, false
 	}
 	return o.ImpactOverride, true
@@ -171,7 +176,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetImpactOverrideOk() (*string, bool
 
 // HasImpactOverride returns a boolean if a field has been set.
 func (o *PatchPagesPageIdIncidentsIncident) HasImpactOverride() bool {
-	if o != nil && o.ImpactOverride != nil {
+	if o != nil && !IsNil(o.ImpactOverride) {
 		return true
 	}
 
@@ -185,7 +190,7 @@ func (o *PatchPagesPageIdIncidentsIncident) SetImpactOverride(v string) {
 
 // GetScheduledFor returns the ScheduledFor field value if set, zero value otherwise.
 func (o *PatchPagesPageIdIncidentsIncident) GetScheduledFor() time.Time {
-	if o == nil || o.ScheduledFor == nil {
+	if o == nil || IsNil(o.ScheduledFor) {
 		var ret time.Time
 		return ret
 	}
@@ -195,7 +200,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetScheduledFor() time.Time {
 // GetScheduledForOk returns a tuple with the ScheduledFor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdIncidentsIncident) GetScheduledForOk() (*time.Time, bool) {
-	if o == nil || o.ScheduledFor == nil {
+	if o == nil || IsNil(o.ScheduledFor) {
 		return nil, false
 	}
 	return o.ScheduledFor, true
@@ -203,7 +208,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetScheduledForOk() (*time.Time, boo
 
 // HasScheduledFor returns a boolean if a field has been set.
 func (o *PatchPagesPageIdIncidentsIncident) HasScheduledFor() bool {
-	if o != nil && o.ScheduledFor != nil {
+	if o != nil && !IsNil(o.ScheduledFor) {
 		return true
 	}
 
@@ -217,7 +222,7 @@ func (o *PatchPagesPageIdIncidentsIncident) SetScheduledFor(v time.Time) {
 
 // GetScheduledUntil returns the ScheduledUntil field value if set, zero value otherwise.
 func (o *PatchPagesPageIdIncidentsIncident) GetScheduledUntil() time.Time {
-	if o == nil || o.ScheduledUntil == nil {
+	if o == nil || IsNil(o.ScheduledUntil) {
 		var ret time.Time
 		return ret
 	}
@@ -227,7 +232,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetScheduledUntil() time.Time {
 // GetScheduledUntilOk returns a tuple with the ScheduledUntil field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdIncidentsIncident) GetScheduledUntilOk() (*time.Time, bool) {
-	if o == nil || o.ScheduledUntil == nil {
+	if o == nil || IsNil(o.ScheduledUntil) {
 		return nil, false
 	}
 	return o.ScheduledUntil, true
@@ -235,7 +240,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetScheduledUntilOk() (*time.Time, b
 
 // HasScheduledUntil returns a boolean if a field has been set.
 func (o *PatchPagesPageIdIncidentsIncident) HasScheduledUntil() bool {
-	if o != nil && o.ScheduledUntil != nil {
+	if o != nil && !IsNil(o.ScheduledUntil) {
 		return true
 	}
 
@@ -249,7 +254,7 @@ func (o *PatchPagesPageIdIncidentsIncident) SetScheduledUntil(v time.Time) {
 
 // GetScheduledRemindPrior returns the ScheduledRemindPrior field value if set, zero value otherwise.
 func (o *PatchPagesPageIdIncidentsIncident) GetScheduledRemindPrior() bool {
-	if o == nil || o.ScheduledRemindPrior == nil {
+	if o == nil || IsNil(o.ScheduledRemindPrior) {
 		var ret bool
 		return ret
 	}
@@ -259,7 +264,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetScheduledRemindPrior() bool {
 // GetScheduledRemindPriorOk returns a tuple with the ScheduledRemindPrior field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdIncidentsIncident) GetScheduledRemindPriorOk() (*bool, bool) {
-	if o == nil || o.ScheduledRemindPrior == nil {
+	if o == nil || IsNil(o.ScheduledRemindPrior) {
 		return nil, false
 	}
 	return o.ScheduledRemindPrior, true
@@ -267,7 +272,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetScheduledRemindPriorOk() (*bool, 
 
 // HasScheduledRemindPrior returns a boolean if a field has been set.
 func (o *PatchPagesPageIdIncidentsIncident) HasScheduledRemindPrior() bool {
-	if o != nil && o.ScheduledRemindPrior != nil {
+	if o != nil && !IsNil(o.ScheduledRemindPrior) {
 		return true
 	}
 
@@ -281,7 +286,7 @@ func (o *PatchPagesPageIdIncidentsIncident) SetScheduledRemindPrior(v bool) {
 
 // GetAutoTransitionToMaintenanceState returns the AutoTransitionToMaintenanceState field value if set, zero value otherwise.
 func (o *PatchPagesPageIdIncidentsIncident) GetAutoTransitionToMaintenanceState() bool {
-	if o == nil || o.AutoTransitionToMaintenanceState == nil {
+	if o == nil || IsNil(o.AutoTransitionToMaintenanceState) {
 		var ret bool
 		return ret
 	}
@@ -291,7 +296,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetAutoTransitionToMaintenanceState(
 // GetAutoTransitionToMaintenanceStateOk returns a tuple with the AutoTransitionToMaintenanceState field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdIncidentsIncident) GetAutoTransitionToMaintenanceStateOk() (*bool, bool) {
-	if o == nil || o.AutoTransitionToMaintenanceState == nil {
+	if o == nil || IsNil(o.AutoTransitionToMaintenanceState) {
 		return nil, false
 	}
 	return o.AutoTransitionToMaintenanceState, true
@@ -299,7 +304,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetAutoTransitionToMaintenanceStateO
 
 // HasAutoTransitionToMaintenanceState returns a boolean if a field has been set.
 func (o *PatchPagesPageIdIncidentsIncident) HasAutoTransitionToMaintenanceState() bool {
-	if o != nil && o.AutoTransitionToMaintenanceState != nil {
+	if o != nil && !IsNil(o.AutoTransitionToMaintenanceState) {
 		return true
 	}
 
@@ -313,7 +318,7 @@ func (o *PatchPagesPageIdIncidentsIncident) SetAutoTransitionToMaintenanceState(
 
 // GetAutoTransitionToOperationalState returns the AutoTransitionToOperationalState field value if set, zero value otherwise.
 func (o *PatchPagesPageIdIncidentsIncident) GetAutoTransitionToOperationalState() bool {
-	if o == nil || o.AutoTransitionToOperationalState == nil {
+	if o == nil || IsNil(o.AutoTransitionToOperationalState) {
 		var ret bool
 		return ret
 	}
@@ -323,7 +328,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetAutoTransitionToOperationalState(
 // GetAutoTransitionToOperationalStateOk returns a tuple with the AutoTransitionToOperationalState field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdIncidentsIncident) GetAutoTransitionToOperationalStateOk() (*bool, bool) {
-	if o == nil || o.AutoTransitionToOperationalState == nil {
+	if o == nil || IsNil(o.AutoTransitionToOperationalState) {
 		return nil, false
 	}
 	return o.AutoTransitionToOperationalState, true
@@ -331,7 +336,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetAutoTransitionToOperationalStateO
 
 // HasAutoTransitionToOperationalState returns a boolean if a field has been set.
 func (o *PatchPagesPageIdIncidentsIncident) HasAutoTransitionToOperationalState() bool {
-	if o != nil && o.AutoTransitionToOperationalState != nil {
+	if o != nil && !IsNil(o.AutoTransitionToOperationalState) {
 		return true
 	}
 
@@ -345,7 +350,7 @@ func (o *PatchPagesPageIdIncidentsIncident) SetAutoTransitionToOperationalState(
 
 // GetScheduledAutoInProgress returns the ScheduledAutoInProgress field value if set, zero value otherwise.
 func (o *PatchPagesPageIdIncidentsIncident) GetScheduledAutoInProgress() bool {
-	if o == nil || o.ScheduledAutoInProgress == nil {
+	if o == nil || IsNil(o.ScheduledAutoInProgress) {
 		var ret bool
 		return ret
 	}
@@ -355,7 +360,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetScheduledAutoInProgress() bool {
 // GetScheduledAutoInProgressOk returns a tuple with the ScheduledAutoInProgress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdIncidentsIncident) GetScheduledAutoInProgressOk() (*bool, bool) {
-	if o == nil || o.ScheduledAutoInProgress == nil {
+	if o == nil || IsNil(o.ScheduledAutoInProgress) {
 		return nil, false
 	}
 	return o.ScheduledAutoInProgress, true
@@ -363,7 +368,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetScheduledAutoInProgressOk() (*boo
 
 // HasScheduledAutoInProgress returns a boolean if a field has been set.
 func (o *PatchPagesPageIdIncidentsIncident) HasScheduledAutoInProgress() bool {
-	if o != nil && o.ScheduledAutoInProgress != nil {
+	if o != nil && !IsNil(o.ScheduledAutoInProgress) {
 		return true
 	}
 
@@ -377,7 +382,7 @@ func (o *PatchPagesPageIdIncidentsIncident) SetScheduledAutoInProgress(v bool) {
 
 // GetScheduledAutoCompleted returns the ScheduledAutoCompleted field value if set, zero value otherwise.
 func (o *PatchPagesPageIdIncidentsIncident) GetScheduledAutoCompleted() bool {
-	if o == nil || o.ScheduledAutoCompleted == nil {
+	if o == nil || IsNil(o.ScheduledAutoCompleted) {
 		var ret bool
 		return ret
 	}
@@ -387,7 +392,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetScheduledAutoCompleted() bool {
 // GetScheduledAutoCompletedOk returns a tuple with the ScheduledAutoCompleted field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdIncidentsIncident) GetScheduledAutoCompletedOk() (*bool, bool) {
-	if o == nil || o.ScheduledAutoCompleted == nil {
+	if o == nil || IsNil(o.ScheduledAutoCompleted) {
 		return nil, false
 	}
 	return o.ScheduledAutoCompleted, true
@@ -395,7 +400,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetScheduledAutoCompletedOk() (*bool
 
 // HasScheduledAutoCompleted returns a boolean if a field has been set.
 func (o *PatchPagesPageIdIncidentsIncident) HasScheduledAutoCompleted() bool {
-	if o != nil && o.ScheduledAutoCompleted != nil {
+	if o != nil && !IsNil(o.ScheduledAutoCompleted) {
 		return true
 	}
 
@@ -409,7 +414,7 @@ func (o *PatchPagesPageIdIncidentsIncident) SetScheduledAutoCompleted(v bool) {
 
 // GetAutoTransitionDeliverNotificationsAtStart returns the AutoTransitionDeliverNotificationsAtStart field value if set, zero value otherwise.
 func (o *PatchPagesPageIdIncidentsIncident) GetAutoTransitionDeliverNotificationsAtStart() bool {
-	if o == nil || o.AutoTransitionDeliverNotificationsAtStart == nil {
+	if o == nil || IsNil(o.AutoTransitionDeliverNotificationsAtStart) {
 		var ret bool
 		return ret
 	}
@@ -419,7 +424,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetAutoTransitionDeliverNotification
 // GetAutoTransitionDeliverNotificationsAtStartOk returns a tuple with the AutoTransitionDeliverNotificationsAtStart field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdIncidentsIncident) GetAutoTransitionDeliverNotificationsAtStartOk() (*bool, bool) {
-	if o == nil || o.AutoTransitionDeliverNotificationsAtStart == nil {
+	if o == nil || IsNil(o.AutoTransitionDeliverNotificationsAtStart) {
 		return nil, false
 	}
 	return o.AutoTransitionDeliverNotificationsAtStart, true
@@ -427,7 +432,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetAutoTransitionDeliverNotification
 
 // HasAutoTransitionDeliverNotificationsAtStart returns a boolean if a field has been set.
 func (o *PatchPagesPageIdIncidentsIncident) HasAutoTransitionDeliverNotificationsAtStart() bool {
-	if o != nil && o.AutoTransitionDeliverNotificationsAtStart != nil {
+	if o != nil && !IsNil(o.AutoTransitionDeliverNotificationsAtStart) {
 		return true
 	}
 
@@ -441,7 +446,7 @@ func (o *PatchPagesPageIdIncidentsIncident) SetAutoTransitionDeliverNotification
 
 // GetAutoTransitionDeliverNotificationsAtEnd returns the AutoTransitionDeliverNotificationsAtEnd field value if set, zero value otherwise.
 func (o *PatchPagesPageIdIncidentsIncident) GetAutoTransitionDeliverNotificationsAtEnd() bool {
-	if o == nil || o.AutoTransitionDeliverNotificationsAtEnd == nil {
+	if o == nil || IsNil(o.AutoTransitionDeliverNotificationsAtEnd) {
 		var ret bool
 		return ret
 	}
@@ -451,7 +456,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetAutoTransitionDeliverNotification
 // GetAutoTransitionDeliverNotificationsAtEndOk returns a tuple with the AutoTransitionDeliverNotificationsAtEnd field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdIncidentsIncident) GetAutoTransitionDeliverNotificationsAtEndOk() (*bool, bool) {
-	if o == nil || o.AutoTransitionDeliverNotificationsAtEnd == nil {
+	if o == nil || IsNil(o.AutoTransitionDeliverNotificationsAtEnd) {
 		return nil, false
 	}
 	return o.AutoTransitionDeliverNotificationsAtEnd, true
@@ -459,7 +464,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetAutoTransitionDeliverNotification
 
 // HasAutoTransitionDeliverNotificationsAtEnd returns a boolean if a field has been set.
 func (o *PatchPagesPageIdIncidentsIncident) HasAutoTransitionDeliverNotificationsAtEnd() bool {
-	if o != nil && o.AutoTransitionDeliverNotificationsAtEnd != nil {
+	if o != nil && !IsNil(o.AutoTransitionDeliverNotificationsAtEnd) {
 		return true
 	}
 
@@ -471,27 +476,59 @@ func (o *PatchPagesPageIdIncidentsIncident) SetAutoTransitionDeliverNotification
 	o.AutoTransitionDeliverNotificationsAtEnd = &v
 }
 
+// GetReminderIntervals returns the ReminderIntervals field value if set, zero value otherwise.
+func (o *PatchPagesPageIdIncidentsIncident) GetReminderIntervals() string {
+	if o == nil || IsNil(o.ReminderIntervals) {
+		var ret string
+		return ret
+	}
+	return *o.ReminderIntervals
+}
+
+// GetReminderIntervalsOk returns a tuple with the ReminderIntervals field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchPagesPageIdIncidentsIncident) GetReminderIntervalsOk() (*string, bool) {
+	if o == nil || IsNil(o.ReminderIntervals) {
+		return nil, false
+	}
+	return o.ReminderIntervals, true
+}
+
+// HasReminderIntervals returns a boolean if a field has been set.
+func (o *PatchPagesPageIdIncidentsIncident) HasReminderIntervals() bool {
+	if o != nil && !IsNil(o.ReminderIntervals) {
+		return true
+	}
+
+	return false
+}
+
+// SetReminderIntervals gets a reference to the given string and assigns it to the ReminderIntervals field.
+func (o *PatchPagesPageIdIncidentsIncident) SetReminderIntervals(v string) {
+	o.ReminderIntervals = &v
+}
+
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *PatchPagesPageIdIncidentsIncident) GetMetadata() map[string]interface{} {
-	if o == nil || o.Metadata == nil {
+	if o == nil || IsNil(o.Metadata) {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Metadata
+	return o.Metadata
 }
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchPagesPageIdIncidentsIncident) GetMetadataOk() (*map[string]interface{}, bool) {
-	if o == nil || o.Metadata == nil {
-		return nil, false
+func (o *PatchPagesPageIdIncidentsIncident) GetMetadataOk() (map[string]interface{}, bool) {
+	if o == nil || IsNil(o.Metadata) {
+		return map[string]interface{}{}, false
 	}
 	return o.Metadata, true
 }
 
 // HasMetadata returns a boolean if a field has been set.
 func (o *PatchPagesPageIdIncidentsIncident) HasMetadata() bool {
-	if o != nil && o.Metadata != nil {
+	if o != nil && !IsNil(o.Metadata) {
 		return true
 	}
 
@@ -500,12 +537,12 @@ func (o *PatchPagesPageIdIncidentsIncident) HasMetadata() bool {
 
 // SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
 func (o *PatchPagesPageIdIncidentsIncident) SetMetadata(v map[string]interface{}) {
-	o.Metadata = &v
+	o.Metadata = v
 }
 
 // GetDeliverNotifications returns the DeliverNotifications field value if set, zero value otherwise.
 func (o *PatchPagesPageIdIncidentsIncident) GetDeliverNotifications() bool {
-	if o == nil || o.DeliverNotifications == nil {
+	if o == nil || IsNil(o.DeliverNotifications) {
 		var ret bool
 		return ret
 	}
@@ -515,7 +552,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetDeliverNotifications() bool {
 // GetDeliverNotificationsOk returns a tuple with the DeliverNotifications field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdIncidentsIncident) GetDeliverNotificationsOk() (*bool, bool) {
-	if o == nil || o.DeliverNotifications == nil {
+	if o == nil || IsNil(o.DeliverNotifications) {
 		return nil, false
 	}
 	return o.DeliverNotifications, true
@@ -523,7 +560,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetDeliverNotificationsOk() (*bool, 
 
 // HasDeliverNotifications returns a boolean if a field has been set.
 func (o *PatchPagesPageIdIncidentsIncident) HasDeliverNotifications() bool {
-	if o != nil && o.DeliverNotifications != nil {
+	if o != nil && !IsNil(o.DeliverNotifications) {
 		return true
 	}
 
@@ -537,7 +574,7 @@ func (o *PatchPagesPageIdIncidentsIncident) SetDeliverNotifications(v bool) {
 
 // GetAutoTweetAtBeginning returns the AutoTweetAtBeginning field value if set, zero value otherwise.
 func (o *PatchPagesPageIdIncidentsIncident) GetAutoTweetAtBeginning() bool {
-	if o == nil || o.AutoTweetAtBeginning == nil {
+	if o == nil || IsNil(o.AutoTweetAtBeginning) {
 		var ret bool
 		return ret
 	}
@@ -547,7 +584,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetAutoTweetAtBeginning() bool {
 // GetAutoTweetAtBeginningOk returns a tuple with the AutoTweetAtBeginning field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdIncidentsIncident) GetAutoTweetAtBeginningOk() (*bool, bool) {
-	if o == nil || o.AutoTweetAtBeginning == nil {
+	if o == nil || IsNil(o.AutoTweetAtBeginning) {
 		return nil, false
 	}
 	return o.AutoTweetAtBeginning, true
@@ -555,7 +592,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetAutoTweetAtBeginningOk() (*bool, 
 
 // HasAutoTweetAtBeginning returns a boolean if a field has been set.
 func (o *PatchPagesPageIdIncidentsIncident) HasAutoTweetAtBeginning() bool {
-	if o != nil && o.AutoTweetAtBeginning != nil {
+	if o != nil && !IsNil(o.AutoTweetAtBeginning) {
 		return true
 	}
 
@@ -569,7 +606,7 @@ func (o *PatchPagesPageIdIncidentsIncident) SetAutoTweetAtBeginning(v bool) {
 
 // GetAutoTweetOnCompletion returns the AutoTweetOnCompletion field value if set, zero value otherwise.
 func (o *PatchPagesPageIdIncidentsIncident) GetAutoTweetOnCompletion() bool {
-	if o == nil || o.AutoTweetOnCompletion == nil {
+	if o == nil || IsNil(o.AutoTweetOnCompletion) {
 		var ret bool
 		return ret
 	}
@@ -579,7 +616,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetAutoTweetOnCompletion() bool {
 // GetAutoTweetOnCompletionOk returns a tuple with the AutoTweetOnCompletion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdIncidentsIncident) GetAutoTweetOnCompletionOk() (*bool, bool) {
-	if o == nil || o.AutoTweetOnCompletion == nil {
+	if o == nil || IsNil(o.AutoTweetOnCompletion) {
 		return nil, false
 	}
 	return o.AutoTweetOnCompletion, true
@@ -587,7 +624,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetAutoTweetOnCompletionOk() (*bool,
 
 // HasAutoTweetOnCompletion returns a boolean if a field has been set.
 func (o *PatchPagesPageIdIncidentsIncident) HasAutoTweetOnCompletion() bool {
-	if o != nil && o.AutoTweetOnCompletion != nil {
+	if o != nil && !IsNil(o.AutoTweetOnCompletion) {
 		return true
 	}
 
@@ -601,7 +638,7 @@ func (o *PatchPagesPageIdIncidentsIncident) SetAutoTweetOnCompletion(v bool) {
 
 // GetAutoTweetOnCreation returns the AutoTweetOnCreation field value if set, zero value otherwise.
 func (o *PatchPagesPageIdIncidentsIncident) GetAutoTweetOnCreation() bool {
-	if o == nil || o.AutoTweetOnCreation == nil {
+	if o == nil || IsNil(o.AutoTweetOnCreation) {
 		var ret bool
 		return ret
 	}
@@ -611,7 +648,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetAutoTweetOnCreation() bool {
 // GetAutoTweetOnCreationOk returns a tuple with the AutoTweetOnCreation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdIncidentsIncident) GetAutoTweetOnCreationOk() (*bool, bool) {
-	if o == nil || o.AutoTweetOnCreation == nil {
+	if o == nil || IsNil(o.AutoTweetOnCreation) {
 		return nil, false
 	}
 	return o.AutoTweetOnCreation, true
@@ -619,7 +656,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetAutoTweetOnCreationOk() (*bool, b
 
 // HasAutoTweetOnCreation returns a boolean if a field has been set.
 func (o *PatchPagesPageIdIncidentsIncident) HasAutoTweetOnCreation() bool {
-	if o != nil && o.AutoTweetOnCreation != nil {
+	if o != nil && !IsNil(o.AutoTweetOnCreation) {
 		return true
 	}
 
@@ -633,7 +670,7 @@ func (o *PatchPagesPageIdIncidentsIncident) SetAutoTweetOnCreation(v bool) {
 
 // GetAutoTweetOneHourBefore returns the AutoTweetOneHourBefore field value if set, zero value otherwise.
 func (o *PatchPagesPageIdIncidentsIncident) GetAutoTweetOneHourBefore() bool {
-	if o == nil || o.AutoTweetOneHourBefore == nil {
+	if o == nil || IsNil(o.AutoTweetOneHourBefore) {
 		var ret bool
 		return ret
 	}
@@ -643,7 +680,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetAutoTweetOneHourBefore() bool {
 // GetAutoTweetOneHourBeforeOk returns a tuple with the AutoTweetOneHourBefore field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdIncidentsIncident) GetAutoTweetOneHourBeforeOk() (*bool, bool) {
-	if o == nil || o.AutoTweetOneHourBefore == nil {
+	if o == nil || IsNil(o.AutoTweetOneHourBefore) {
 		return nil, false
 	}
 	return o.AutoTweetOneHourBefore, true
@@ -651,7 +688,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetAutoTweetOneHourBeforeOk() (*bool
 
 // HasAutoTweetOneHourBefore returns a boolean if a field has been set.
 func (o *PatchPagesPageIdIncidentsIncident) HasAutoTweetOneHourBefore() bool {
-	if o != nil && o.AutoTweetOneHourBefore != nil {
+	if o != nil && !IsNil(o.AutoTweetOneHourBefore) {
 		return true
 	}
 
@@ -665,7 +702,7 @@ func (o *PatchPagesPageIdIncidentsIncident) SetAutoTweetOneHourBefore(v bool) {
 
 // GetBackfillDate returns the BackfillDate field value if set, zero value otherwise.
 func (o *PatchPagesPageIdIncidentsIncident) GetBackfillDate() string {
-	if o == nil || o.BackfillDate == nil {
+	if o == nil || IsNil(o.BackfillDate) {
 		var ret string
 		return ret
 	}
@@ -675,7 +712,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetBackfillDate() string {
 // GetBackfillDateOk returns a tuple with the BackfillDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdIncidentsIncident) GetBackfillDateOk() (*string, bool) {
-	if o == nil || o.BackfillDate == nil {
+	if o == nil || IsNil(o.BackfillDate) {
 		return nil, false
 	}
 	return o.BackfillDate, true
@@ -683,7 +720,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetBackfillDateOk() (*string, bool) 
 
 // HasBackfillDate returns a boolean if a field has been set.
 func (o *PatchPagesPageIdIncidentsIncident) HasBackfillDate() bool {
-	if o != nil && o.BackfillDate != nil {
+	if o != nil && !IsNil(o.BackfillDate) {
 		return true
 	}
 
@@ -697,7 +734,7 @@ func (o *PatchPagesPageIdIncidentsIncident) SetBackfillDate(v string) {
 
 // GetBackfilled returns the Backfilled field value if set, zero value otherwise.
 func (o *PatchPagesPageIdIncidentsIncident) GetBackfilled() bool {
-	if o == nil || o.Backfilled == nil {
+	if o == nil || IsNil(o.Backfilled) {
 		var ret bool
 		return ret
 	}
@@ -707,7 +744,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetBackfilled() bool {
 // GetBackfilledOk returns a tuple with the Backfilled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdIncidentsIncident) GetBackfilledOk() (*bool, bool) {
-	if o == nil || o.Backfilled == nil {
+	if o == nil || IsNil(o.Backfilled) {
 		return nil, false
 	}
 	return o.Backfilled, true
@@ -715,7 +752,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetBackfilledOk() (*bool, bool) {
 
 // HasBackfilled returns a boolean if a field has been set.
 func (o *PatchPagesPageIdIncidentsIncident) HasBackfilled() bool {
-	if o != nil && o.Backfilled != nil {
+	if o != nil && !IsNil(o.Backfilled) {
 		return true
 	}
 
@@ -729,7 +766,7 @@ func (o *PatchPagesPageIdIncidentsIncident) SetBackfilled(v bool) {
 
 // GetBody returns the Body field value if set, zero value otherwise.
 func (o *PatchPagesPageIdIncidentsIncident) GetBody() string {
-	if o == nil || o.Body == nil {
+	if o == nil || IsNil(o.Body) {
 		var ret string
 		return ret
 	}
@@ -739,7 +776,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetBody() string {
 // GetBodyOk returns a tuple with the Body field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdIncidentsIncident) GetBodyOk() (*string, bool) {
-	if o == nil || o.Body == nil {
+	if o == nil || IsNil(o.Body) {
 		return nil, false
 	}
 	return o.Body, true
@@ -747,7 +784,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetBodyOk() (*string, bool) {
 
 // HasBody returns a boolean if a field has been set.
 func (o *PatchPagesPageIdIncidentsIncident) HasBody() bool {
-	if o != nil && o.Body != nil {
+	if o != nil && !IsNil(o.Body) {
 		return true
 	}
 
@@ -760,9 +797,9 @@ func (o *PatchPagesPageIdIncidentsIncident) SetBody(v string) {
 }
 
 // GetComponents returns the Components field value if set, zero value otherwise.
-func (o *PatchPagesPageIdIncidentsIncident) GetComponents() map[string]interface{} {
-	if o == nil || o.Components == nil {
-		var ret map[string]interface{}
+func (o *PatchPagesPageIdIncidentsIncident) GetComponents() PatchPagesPageIdIncidentsIncidentComponents {
+	if o == nil || IsNil(o.Components) {
+		var ret PatchPagesPageIdIncidentsIncidentComponents
 		return ret
 	}
 	return *o.Components
@@ -770,8 +807,8 @@ func (o *PatchPagesPageIdIncidentsIncident) GetComponents() map[string]interface
 
 // GetComponentsOk returns a tuple with the Components field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchPagesPageIdIncidentsIncident) GetComponentsOk() (*map[string]interface{}, bool) {
-	if o == nil || o.Components == nil {
+func (o *PatchPagesPageIdIncidentsIncident) GetComponentsOk() (*PatchPagesPageIdIncidentsIncidentComponents, bool) {
+	if o == nil || IsNil(o.Components) {
 		return nil, false
 	}
 	return o.Components, true
@@ -779,31 +816,31 @@ func (o *PatchPagesPageIdIncidentsIncident) GetComponentsOk() (*map[string]inter
 
 // HasComponents returns a boolean if a field has been set.
 func (o *PatchPagesPageIdIncidentsIncident) HasComponents() bool {
-	if o != nil && o.Components != nil {
+	if o != nil && !IsNil(o.Components) {
 		return true
 	}
 
 	return false
 }
 
-// SetComponents gets a reference to the given map[string]interface{} and assigns it to the Components field.
-func (o *PatchPagesPageIdIncidentsIncident) SetComponents(v map[string]interface{}) {
+// SetComponents gets a reference to the given PatchPagesPageIdIncidentsIncidentComponents and assigns it to the Components field.
+func (o *PatchPagesPageIdIncidentsIncident) SetComponents(v PatchPagesPageIdIncidentsIncidentComponents) {
 	o.Components = &v
 }
 
 // GetComponentIds returns the ComponentIds field value if set, zero value otherwise.
 func (o *PatchPagesPageIdIncidentsIncident) GetComponentIds() []string {
-	if o == nil || o.ComponentIds == nil {
+	if o == nil || IsNil(o.ComponentIds) {
 		var ret []string
 		return ret
 	}
-	return *o.ComponentIds
+	return o.ComponentIds
 }
 
 // GetComponentIdsOk returns a tuple with the ComponentIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchPagesPageIdIncidentsIncident) GetComponentIdsOk() (*[]string, bool) {
-	if o == nil || o.ComponentIds == nil {
+func (o *PatchPagesPageIdIncidentsIncident) GetComponentIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.ComponentIds) {
 		return nil, false
 	}
 	return o.ComponentIds, true
@@ -811,7 +848,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetComponentIdsOk() (*[]string, bool
 
 // HasComponentIds returns a boolean if a field has been set.
 func (o *PatchPagesPageIdIncidentsIncident) HasComponentIds() bool {
-	if o != nil && o.ComponentIds != nil {
+	if o != nil && !IsNil(o.ComponentIds) {
 		return true
 	}
 
@@ -820,12 +857,12 @@ func (o *PatchPagesPageIdIncidentsIncident) HasComponentIds() bool {
 
 // SetComponentIds gets a reference to the given []string and assigns it to the ComponentIds field.
 func (o *PatchPagesPageIdIncidentsIncident) SetComponentIds(v []string) {
-	o.ComponentIds = &v
+	o.ComponentIds = v
 }
 
 // GetScheduledAutoTransition returns the ScheduledAutoTransition field value if set, zero value otherwise.
 func (o *PatchPagesPageIdIncidentsIncident) GetScheduledAutoTransition() bool {
-	if o == nil || o.ScheduledAutoTransition == nil {
+	if o == nil || IsNil(o.ScheduledAutoTransition) {
 		var ret bool
 		return ret
 	}
@@ -835,7 +872,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetScheduledAutoTransition() bool {
 // GetScheduledAutoTransitionOk returns a tuple with the ScheduledAutoTransition field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdIncidentsIncident) GetScheduledAutoTransitionOk() (*bool, bool) {
-	if o == nil || o.ScheduledAutoTransition == nil {
+	if o == nil || IsNil(o.ScheduledAutoTransition) {
 		return nil, false
 	}
 	return o.ScheduledAutoTransition, true
@@ -843,7 +880,7 @@ func (o *PatchPagesPageIdIncidentsIncident) GetScheduledAutoTransitionOk() (*boo
 
 // HasScheduledAutoTransition returns a boolean if a field has been set.
 func (o *PatchPagesPageIdIncidentsIncident) HasScheduledAutoTransition() bool {
-	if o != nil && o.ScheduledAutoTransition != nil {
+	if o != nil && !IsNil(o.ScheduledAutoTransition) {
 		return true
 	}
 
@@ -856,80 +893,91 @@ func (o *PatchPagesPageIdIncidentsIncident) SetScheduledAutoTransition(v bool) {
 }
 
 func (o PatchPagesPageIdIncidentsIncident) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
-	}
-	if o.ImpactOverride != nil {
-		toSerialize["impact_override"] = o.ImpactOverride
-	}
-	if o.ScheduledFor != nil {
-		toSerialize["scheduled_for"] = o.ScheduledFor
-	}
-	if o.ScheduledUntil != nil {
-		toSerialize["scheduled_until"] = o.ScheduledUntil
-	}
-	if o.ScheduledRemindPrior != nil {
-		toSerialize["scheduled_remind_prior"] = o.ScheduledRemindPrior
-	}
-	if o.AutoTransitionToMaintenanceState != nil {
-		toSerialize["auto_transition_to_maintenance_state"] = o.AutoTransitionToMaintenanceState
-	}
-	if o.AutoTransitionToOperationalState != nil {
-		toSerialize["auto_transition_to_operational_state"] = o.AutoTransitionToOperationalState
-	}
-	if o.ScheduledAutoInProgress != nil {
-		toSerialize["scheduled_auto_in_progress"] = o.ScheduledAutoInProgress
-	}
-	if o.ScheduledAutoCompleted != nil {
-		toSerialize["scheduled_auto_completed"] = o.ScheduledAutoCompleted
-	}
-	if o.AutoTransitionDeliverNotificationsAtStart != nil {
-		toSerialize["auto_transition_deliver_notifications_at_start"] = o.AutoTransitionDeliverNotificationsAtStart
-	}
-	if o.AutoTransitionDeliverNotificationsAtEnd != nil {
-		toSerialize["auto_transition_deliver_notifications_at_end"] = o.AutoTransitionDeliverNotificationsAtEnd
-	}
-	if o.Metadata != nil {
-		toSerialize["metadata"] = o.Metadata
-	}
-	if o.DeliverNotifications != nil {
-		toSerialize["deliver_notifications"] = o.DeliverNotifications
-	}
-	if o.AutoTweetAtBeginning != nil {
-		toSerialize["auto_tweet_at_beginning"] = o.AutoTweetAtBeginning
-	}
-	if o.AutoTweetOnCompletion != nil {
-		toSerialize["auto_tweet_on_completion"] = o.AutoTweetOnCompletion
-	}
-	if o.AutoTweetOnCreation != nil {
-		toSerialize["auto_tweet_on_creation"] = o.AutoTweetOnCreation
-	}
-	if o.AutoTweetOneHourBefore != nil {
-		toSerialize["auto_tweet_one_hour_before"] = o.AutoTweetOneHourBefore
-	}
-	if o.BackfillDate != nil {
-		toSerialize["backfill_date"] = o.BackfillDate
-	}
-	if o.Backfilled != nil {
-		toSerialize["backfilled"] = o.Backfilled
-	}
-	if o.Body != nil {
-		toSerialize["body"] = o.Body
-	}
-	if o.Components != nil {
-		toSerialize["components"] = o.Components
-	}
-	if o.ComponentIds != nil {
-		toSerialize["component_ids"] = o.ComponentIds
-	}
-	if o.ScheduledAutoTransition != nil {
-		toSerialize["scheduled_auto_transition"] = o.ScheduledAutoTransition
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PatchPagesPageIdIncidentsIncident) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.ImpactOverride) {
+		toSerialize["impact_override"] = o.ImpactOverride
+	}
+	if !IsNil(o.ScheduledFor) {
+		toSerialize["scheduled_for"] = o.ScheduledFor
+	}
+	if !IsNil(o.ScheduledUntil) {
+		toSerialize["scheduled_until"] = o.ScheduledUntil
+	}
+	if !IsNil(o.ScheduledRemindPrior) {
+		toSerialize["scheduled_remind_prior"] = o.ScheduledRemindPrior
+	}
+	if !IsNil(o.AutoTransitionToMaintenanceState) {
+		toSerialize["auto_transition_to_maintenance_state"] = o.AutoTransitionToMaintenanceState
+	}
+	if !IsNil(o.AutoTransitionToOperationalState) {
+		toSerialize["auto_transition_to_operational_state"] = o.AutoTransitionToOperationalState
+	}
+	if !IsNil(o.ScheduledAutoInProgress) {
+		toSerialize["scheduled_auto_in_progress"] = o.ScheduledAutoInProgress
+	}
+	if !IsNil(o.ScheduledAutoCompleted) {
+		toSerialize["scheduled_auto_completed"] = o.ScheduledAutoCompleted
+	}
+	if !IsNil(o.AutoTransitionDeliverNotificationsAtStart) {
+		toSerialize["auto_transition_deliver_notifications_at_start"] = o.AutoTransitionDeliverNotificationsAtStart
+	}
+	if !IsNil(o.AutoTransitionDeliverNotificationsAtEnd) {
+		toSerialize["auto_transition_deliver_notifications_at_end"] = o.AutoTransitionDeliverNotificationsAtEnd
+	}
+	if !IsNil(o.ReminderIntervals) {
+		toSerialize["reminder_intervals"] = o.ReminderIntervals
+	}
+	if !IsNil(o.Metadata) {
+		toSerialize["metadata"] = o.Metadata
+	}
+	if !IsNil(o.DeliverNotifications) {
+		toSerialize["deliver_notifications"] = o.DeliverNotifications
+	}
+	if !IsNil(o.AutoTweetAtBeginning) {
+		toSerialize["auto_tweet_at_beginning"] = o.AutoTweetAtBeginning
+	}
+	if !IsNil(o.AutoTweetOnCompletion) {
+		toSerialize["auto_tweet_on_completion"] = o.AutoTweetOnCompletion
+	}
+	if !IsNil(o.AutoTweetOnCreation) {
+		toSerialize["auto_tweet_on_creation"] = o.AutoTweetOnCreation
+	}
+	if !IsNil(o.AutoTweetOneHourBefore) {
+		toSerialize["auto_tweet_one_hour_before"] = o.AutoTweetOneHourBefore
+	}
+	if !IsNil(o.BackfillDate) {
+		toSerialize["backfill_date"] = o.BackfillDate
+	}
+	if !IsNil(o.Backfilled) {
+		toSerialize["backfilled"] = o.Backfilled
+	}
+	if !IsNil(o.Body) {
+		toSerialize["body"] = o.Body
+	}
+	if !IsNil(o.Components) {
+		toSerialize["components"] = o.Components
+	}
+	if !IsNil(o.ComponentIds) {
+		toSerialize["component_ids"] = o.ComponentIds
+	}
+	if !IsNil(o.ScheduledAutoTransition) {
+		toSerialize["scheduled_auto_transition"] = o.ScheduledAutoTransition
+	}
+	return toSerialize, nil
 }
 
 type NullablePatchPagesPageIdIncidentsIncident struct {
@@ -967,5 +1015,3 @@ func (v *NullablePatchPagesPageIdIncidentsIncident) UnmarshalJSON(src []byte) er
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

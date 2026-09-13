@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PutOrganizationsOrganizationIdPermissionsPages type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PutOrganizationsOrganizationIdPermissionsPages{}
+
 // PutOrganizationsOrganizationIdPermissionsPages struct for PutOrganizationsOrganizationIdPermissionsPages
 type PutOrganizationsOrganizationIdPermissionsPages struct {
 	PageId *PutOrganizationsOrganizationIdPermissionsPagesPageId `json:"page_id,omitempty"`
@@ -38,7 +41,7 @@ func NewPutOrganizationsOrganizationIdPermissionsPagesWithDefaults() *PutOrganiz
 
 // GetPageId returns the PageId field value if set, zero value otherwise.
 func (o *PutOrganizationsOrganizationIdPermissionsPages) GetPageId() PutOrganizationsOrganizationIdPermissionsPagesPageId {
-	if o == nil || o.PageId == nil {
+	if o == nil || IsNil(o.PageId) {
 		var ret PutOrganizationsOrganizationIdPermissionsPagesPageId
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *PutOrganizationsOrganizationIdPermissionsPages) GetPageId() PutOrganiza
 // GetPageIdOk returns a tuple with the PageId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PutOrganizationsOrganizationIdPermissionsPages) GetPageIdOk() (*PutOrganizationsOrganizationIdPermissionsPagesPageId, bool) {
-	if o == nil || o.PageId == nil {
+	if o == nil || IsNil(o.PageId) {
 		return nil, false
 	}
 	return o.PageId, true
@@ -56,7 +59,7 @@ func (o *PutOrganizationsOrganizationIdPermissionsPages) GetPageIdOk() (*PutOrga
 
 // HasPageId returns a boolean if a field has been set.
 func (o *PutOrganizationsOrganizationIdPermissionsPages) HasPageId() bool {
-	if o != nil && o.PageId != nil {
+	if o != nil && !IsNil(o.PageId) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *PutOrganizationsOrganizationIdPermissionsPages) SetPageId(v PutOrganiza
 }
 
 func (o PutOrganizationsOrganizationIdPermissionsPages) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.PageId != nil {
-		toSerialize["page_id"] = o.PageId
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PutOrganizationsOrganizationIdPermissionsPages) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.PageId) {
+		toSerialize["page_id"] = o.PageId
+	}
+	return toSerialize, nil
 }
 
 type NullablePutOrganizationsOrganizationIdPermissionsPages struct {
@@ -111,5 +122,3 @@ func (v *NullablePutOrganizationsOrganizationIdPermissionsPages) UnmarshalJSON(s
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

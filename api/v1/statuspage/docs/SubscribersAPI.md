@@ -1,21 +1,21 @@
-# \SubscribersApi
+# \SubscribersAPI
 
 All URIs are relative to *https://api.statuspage.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeletePagesPageIdSubscribersSubscriberId**](SubscribersApi.md#DeletePagesPageIdSubscribersSubscriberId) | **Delete** /pages/{page_id}/subscribers/{subscriber_id} | Unsubscribe a subscriber
-[**GetPagesPageIdSubscribers**](SubscribersApi.md#GetPagesPageIdSubscribers) | **Get** /pages/{page_id}/subscribers | Get a list of subscribers
-[**GetPagesPageIdSubscribersCount**](SubscribersApi.md#GetPagesPageIdSubscribersCount) | **Get** /pages/{page_id}/subscribers/count | Get a count of subscribers by type
-[**GetPagesPageIdSubscribersHistogramByState**](SubscribersApi.md#GetPagesPageIdSubscribersHistogramByState) | **Get** /pages/{page_id}/subscribers/histogram_by_state | Get a histogram of subscribers by type and then state
-[**GetPagesPageIdSubscribersSubscriberId**](SubscribersApi.md#GetPagesPageIdSubscribersSubscriberId) | **Get** /pages/{page_id}/subscribers/{subscriber_id} | Get a subscriber
-[**GetPagesPageIdSubscribersUnsubscribed**](SubscribersApi.md#GetPagesPageIdSubscribersUnsubscribed) | **Get** /pages/{page_id}/subscribers/unsubscribed | Get a list of unsubscribed subscribers
-[**PatchPagesPageIdSubscribersSubscriberId**](SubscribersApi.md#PatchPagesPageIdSubscribersSubscriberId) | **Patch** /pages/{page_id}/subscribers/{subscriber_id} | Update a subscriber
-[**PostPagesPageIdSubscribers**](SubscribersApi.md#PostPagesPageIdSubscribers) | **Post** /pages/{page_id}/subscribers | Create a subscriber
-[**PostPagesPageIdSubscribersReactivate**](SubscribersApi.md#PostPagesPageIdSubscribersReactivate) | **Post** /pages/{page_id}/subscribers/reactivate | Reactivate a list of subscribers
-[**PostPagesPageIdSubscribersResendConfirmation**](SubscribersApi.md#PostPagesPageIdSubscribersResendConfirmation) | **Post** /pages/{page_id}/subscribers/resend_confirmation | Resend confirmations to a list of subscribers
-[**PostPagesPageIdSubscribersSubscriberIdResendConfirmation**](SubscribersApi.md#PostPagesPageIdSubscribersSubscriberIdResendConfirmation) | **Post** /pages/{page_id}/subscribers/{subscriber_id}/resend_confirmation | Resend confirmation to a subscriber
-[**PostPagesPageIdSubscribersUnsubscribe**](SubscribersApi.md#PostPagesPageIdSubscribersUnsubscribe) | **Post** /pages/{page_id}/subscribers/unsubscribe | Unsubscribe a list of subscribers
+[**DeletePagesPageIdSubscribersSubscriberId**](SubscribersAPI.md#DeletePagesPageIdSubscribersSubscriberId) | **Delete** /pages/{page_id}/subscribers/{subscriber_id} | Unsubscribe a subscriber
+[**GetPagesPageIdSubscribers**](SubscribersAPI.md#GetPagesPageIdSubscribers) | **Get** /pages/{page_id}/subscribers | Get a list of subscribers
+[**GetPagesPageIdSubscribersCount**](SubscribersAPI.md#GetPagesPageIdSubscribersCount) | **Get** /pages/{page_id}/subscribers/count | Get a count of subscribers by type
+[**GetPagesPageIdSubscribersHistogramByState**](SubscribersAPI.md#GetPagesPageIdSubscribersHistogramByState) | **Get** /pages/{page_id}/subscribers/histogram_by_state | Get a histogram of subscribers by type and then state
+[**GetPagesPageIdSubscribersSubscriberId**](SubscribersAPI.md#GetPagesPageIdSubscribersSubscriberId) | **Get** /pages/{page_id}/subscribers/{subscriber_id} | Get a subscriber
+[**GetPagesPageIdSubscribersUnsubscribed**](SubscribersAPI.md#GetPagesPageIdSubscribersUnsubscribed) | **Get** /pages/{page_id}/subscribers/unsubscribed | Get a list of unsubscribed subscribers
+[**PatchPagesPageIdSubscribersSubscriberId**](SubscribersAPI.md#PatchPagesPageIdSubscribersSubscriberId) | **Patch** /pages/{page_id}/subscribers/{subscriber_id} | Update a subscriber
+[**PostPagesPageIdSubscribers**](SubscribersAPI.md#PostPagesPageIdSubscribers) | **Post** /pages/{page_id}/subscribers | Create a subscriber
+[**PostPagesPageIdSubscribersReactivate**](SubscribersAPI.md#PostPagesPageIdSubscribersReactivate) | **Post** /pages/{page_id}/subscribers/reactivate | Reactivate a list of subscribers
+[**PostPagesPageIdSubscribersResendConfirmation**](SubscribersAPI.md#PostPagesPageIdSubscribersResendConfirmation) | **Post** /pages/{page_id}/subscribers/resend_confirmation | Resend confirmations to a list of subscribers
+[**PostPagesPageIdSubscribersSubscriberIdResendConfirmation**](SubscribersAPI.md#PostPagesPageIdSubscribersSubscriberIdResendConfirmation) | **Post** /pages/{page_id}/subscribers/{subscriber_id}/resend_confirmation | Resend confirmation to a subscriber
+[**PostPagesPageIdSubscribersUnsubscribe**](SubscribersAPI.md#PostPagesPageIdSubscribersUnsubscribe) | **Post** /pages/{page_id}/subscribers/unsubscribe | Unsubscribe a list of subscribers
 
 
 
@@ -33,26 +33,26 @@ Unsubscribe a subscriber
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    subscriberId := "subscriberId_example" // string | Subscriber Identifier
-    skipUnsubscriptionNotification := true // bool | If skip_unsubscription_notification is true, the subscriber does not receive any notifications when they are unsubscribed. (optional)
+	pageId := "pageId_example" // string | Page identifier
+	subscriberId := "subscriberId_example" // string | Subscriber Identifier
+	skipUnsubscriptionNotification := true // bool | If skip_unsubscription_notification is true, the subscriber does not receive any notifications when they are unsubscribed. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscribersApi.DeletePagesPageIdSubscribersSubscriberId(context.Background(), pageId, subscriberId).SkipUnsubscriptionNotification(skipUnsubscriptionNotification).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SubscribersApi.DeletePagesPageIdSubscribersSubscriberId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeletePagesPageIdSubscribersSubscriberId`: Subscriber
-    fmt.Fprintf(os.Stdout, "Response from `SubscribersApi.DeletePagesPageIdSubscribersSubscriberId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SubscribersAPI.DeletePagesPageIdSubscribersSubscriberId(context.Background(), pageId, subscriberId).SkipUnsubscriptionNotification(skipUnsubscriptionNotification).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubscribersAPI.DeletePagesPageIdSubscribersSubscriberId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeletePagesPageIdSubscribersSubscriberId`: Subscriber
+	fmt.Fprintf(os.Stdout, "Response from `SubscribersAPI.DeletePagesPageIdSubscribersSubscriberId`: %v\n", resp)
 }
 ```
 
@@ -108,31 +108,31 @@ Get a list of subscribers
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    q := "q_example" // string | If this is specified, search the contact information (email, endpoint, or phone number) for the provided value. This parameter doesn’t support searching for Slack subscribers. (optional)
-    type_ := "type__example" // string | If specified, only return subscribers of the indicated type. (optional)
-    state := "state_example" // string | If this is present, only return subscribers in this state. Specify state \"all\" to find subscribers in any states. (optional) (default to "active")
-    limit := int32(56) // int32 | The maximum number of rows to return. If a text query string is specified (q=), the default and maximum limit is 100. If the text query string is not specified, the default and maximum limit are not set, and not providing a limit will return all the subscribers. Beginning February 28, 2023, a default limit of 100 will be imposed and this endpoint will return paginated data (i.e. will no longer return all subscribers) even if this query parameter is not provided. (optional)
-    page := int32(56) // int32 | The page offset of subscribers. The first page is page 0, the second page 1, etc. This skips page * limit subscribers. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. (optional) (default to 0)
-    sortField := "sortField_example" // string | The field on which to sort: 'primary' to indicate sorting by the identifying field, 'created_at' for sorting by creation timestamp, 'quarantined_at' for sorting by quarantine timestamp, and 'relevance' which sorts by the relevancy of the search text. 'relevance' is not a valid parameter if no search text is supplied. (optional) (default to "primary")
-    sortDirection := "sortDirection_example" // string | The sort direction of the listing. (optional) (default to "asc")
+	pageId := "pageId_example" // string | Page identifier
+	q := "q_example" // string | If this is specified, search the contact information (email, endpoint, or phone number) for the provided value. This parameter doesn’t support searching for Slack subscribers. (optional)
+	type_ := "type__example" // string | If specified, only return subscribers of the indicated type. (optional)
+	state := "state_example" // string | If this is present, only return subscribers in this state. Specify state \"all\" to find subscribers in any states. (optional) (default to "active")
+	limit := int32(56) // int32 | The maximum number of rows to return. If a text query string is specified (q=), the default and maximum limit is 100. If the text query string is not specified, the default and maximum limit are not set, and not providing a limit will return all the subscribers. Beginning February 28, 2023, a default limit of 100 will be imposed and this endpoint will return paginated data (i.e. will no longer return all subscribers) even if this query parameter is not provided. (optional)
+	page := int32(56) // int32 | The page offset of subscribers. The first page is page 0, the second page 1, etc. This skips page * limit subscribers. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. (optional) (default to 0)
+	sortField := "sortField_example" // string | The field on which to sort: 'primary' to indicate sorting by the identifying field, 'created_at' for sorting by creation timestamp, 'quarantined_at' for sorting by quarantine timestamp, and 'relevance' which sorts by the relevancy of the search text. 'relevance' is not a valid parameter if no search text is supplied. (optional) (default to "primary")
+	sortDirection := "sortDirection_example" // string | The sort direction of the listing. (optional) (default to "asc")
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscribersApi.GetPagesPageIdSubscribers(context.Background(), pageId).Q(q).Type_(type_).State(state).Limit(limit).Page(page).SortField(sortField).SortDirection(sortDirection).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SubscribersApi.GetPagesPageIdSubscribers``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPagesPageIdSubscribers`: []Subscriber
-    fmt.Fprintf(os.Stdout, "Response from `SubscribersApi.GetPagesPageIdSubscribers`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SubscribersAPI.GetPagesPageIdSubscribers(context.Background(), pageId).Q(q).Type_(type_).State(state).Limit(limit).Page(page).SortField(sortField).SortDirection(sortDirection).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubscribersAPI.GetPagesPageIdSubscribers``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPagesPageIdSubscribers`: []Subscriber
+	fmt.Fprintf(os.Stdout, "Response from `SubscribersAPI.GetPagesPageIdSubscribers`: %v\n", resp)
 }
 ```
 
@@ -192,26 +192,26 @@ Get a count of subscribers by type
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    type_ := "type__example" // string | If this is present, only count subscribers of this type. (optional)
-    state := "state_example" // string | If this is present, only count subscribers in this state. Specify state \"all\" to count subscribers in any states. (optional) (default to "active")
+	pageId := "pageId_example" // string | Page identifier
+	type_ := "type__example" // string | If this is present, only count subscribers of this type. (optional)
+	state := "state_example" // string | If this is present, only count subscribers in this state. Specify state \"all\" to count subscribers in any states. (optional) (default to "active")
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscribersApi.GetPagesPageIdSubscribersCount(context.Background(), pageId).Type_(type_).State(state).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SubscribersApi.GetPagesPageIdSubscribersCount``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPagesPageIdSubscribersCount`: SubscriberCountByType
-    fmt.Fprintf(os.Stdout, "Response from `SubscribersApi.GetPagesPageIdSubscribersCount`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SubscribersAPI.GetPagesPageIdSubscribersCount(context.Background(), pageId).Type_(type_).State(state).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubscribersAPI.GetPagesPageIdSubscribersCount``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPagesPageIdSubscribersCount`: SubscriberCountByType
+	fmt.Fprintf(os.Stdout, "Response from `SubscribersAPI.GetPagesPageIdSubscribersCount`: %v\n", resp)
 }
 ```
 
@@ -266,24 +266,24 @@ Get a histogram of subscribers by type and then state
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
+	pageId := "pageId_example" // string | Page identifier
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscribersApi.GetPagesPageIdSubscribersHistogramByState(context.Background(), pageId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SubscribersApi.GetPagesPageIdSubscribersHistogramByState``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPagesPageIdSubscribersHistogramByState`: SubscriberCountByTypeAndState
-    fmt.Fprintf(os.Stdout, "Response from `SubscribersApi.GetPagesPageIdSubscribersHistogramByState`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SubscribersAPI.GetPagesPageIdSubscribersHistogramByState(context.Background(), pageId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubscribersAPI.GetPagesPageIdSubscribersHistogramByState``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPagesPageIdSubscribersHistogramByState`: SubscriberCountByTypeAndState
+	fmt.Fprintf(os.Stdout, "Response from `SubscribersAPI.GetPagesPageIdSubscribersHistogramByState`: %v\n", resp)
 }
 ```
 
@@ -336,25 +336,25 @@ Get a subscriber
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    subscriberId := "subscriberId_example" // string | Subscriber Identifier
+	pageId := "pageId_example" // string | Page identifier
+	subscriberId := "subscriberId_example" // string | Subscriber Identifier
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscribersApi.GetPagesPageIdSubscribersSubscriberId(context.Background(), pageId, subscriberId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SubscribersApi.GetPagesPageIdSubscribersSubscriberId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPagesPageIdSubscribersSubscriberId`: Subscriber
-    fmt.Fprintf(os.Stdout, "Response from `SubscribersApi.GetPagesPageIdSubscribersSubscriberId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SubscribersAPI.GetPagesPageIdSubscribersSubscriberId(context.Background(), pageId, subscriberId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubscribersAPI.GetPagesPageIdSubscribersSubscriberId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPagesPageIdSubscribersSubscriberId`: Subscriber
+	fmt.Fprintf(os.Stdout, "Response from `SubscribersAPI.GetPagesPageIdSubscribersSubscriberId`: %v\n", resp)
 }
 ```
 
@@ -409,26 +409,26 @@ Get a list of unsubscribed subscribers
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    page := int32(56) // int32 | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. (optional)
-    perPage := int32(56) // int32 | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. (optional)
+	pageId := "pageId_example" // string | Page identifier
+	page := int32(56) // int32 | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. (optional)
+	perPage := int32(56) // int32 | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscribersApi.GetPagesPageIdSubscribersUnsubscribed(context.Background(), pageId).Page(page).PerPage(perPage).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SubscribersApi.GetPagesPageIdSubscribersUnsubscribed``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPagesPageIdSubscribersUnsubscribed`: []Subscriber
-    fmt.Fprintf(os.Stdout, "Response from `SubscribersApi.GetPagesPageIdSubscribersUnsubscribed`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SubscribersAPI.GetPagesPageIdSubscribersUnsubscribed(context.Background(), pageId).Page(page).PerPage(perPage).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubscribersAPI.GetPagesPageIdSubscribersUnsubscribed``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPagesPageIdSubscribersUnsubscribed`: []Subscriber
+	fmt.Fprintf(os.Stdout, "Response from `SubscribersAPI.GetPagesPageIdSubscribersUnsubscribed`: %v\n", resp)
 }
 ```
 
@@ -483,26 +483,26 @@ Update a subscriber
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    subscriberId := "subscriberId_example" // string | Subscriber Identifier
-    patchPagesPageIdSubscribers := *openapiclient.NewPatchPagesPageIdSubscribers() // PatchPagesPageIdSubscribers | 
+	pageId := "pageId_example" // string | Page identifier
+	subscriberId := "subscriberId_example" // string | Subscriber Identifier
+	patchPagesPageIdSubscribers := *openapiclient.NewPatchPagesPageIdSubscribers() // PatchPagesPageIdSubscribers | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscribersApi.PatchPagesPageIdSubscribersSubscriberId(context.Background(), pageId, subscriberId).PatchPagesPageIdSubscribers(patchPagesPageIdSubscribers).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SubscribersApi.PatchPagesPageIdSubscribersSubscriberId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PatchPagesPageIdSubscribersSubscriberId`: Subscriber
-    fmt.Fprintf(os.Stdout, "Response from `SubscribersApi.PatchPagesPageIdSubscribersSubscriberId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SubscribersAPI.PatchPagesPageIdSubscribersSubscriberId(context.Background(), pageId, subscriberId).PatchPagesPageIdSubscribers(patchPagesPageIdSubscribers).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubscribersAPI.PatchPagesPageIdSubscribersSubscriberId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PatchPagesPageIdSubscribersSubscriberId`: Subscriber
+	fmt.Fprintf(os.Stdout, "Response from `SubscribersAPI.PatchPagesPageIdSubscribersSubscriberId`: %v\n", resp)
 }
 ```
 
@@ -558,25 +558,25 @@ Create a subscriber
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    postPagesPageIdSubscribers := *openapiclient.NewPostPagesPageIdSubscribers() // PostPagesPageIdSubscribers | 
+	pageId := "pageId_example" // string | Page identifier
+	postPagesPageIdSubscribers := *openapiclient.NewPostPagesPageIdSubscribers() // PostPagesPageIdSubscribers | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscribersApi.PostPagesPageIdSubscribers(context.Background(), pageId).PostPagesPageIdSubscribers(postPagesPageIdSubscribers).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SubscribersApi.PostPagesPageIdSubscribers``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostPagesPageIdSubscribers`: Subscriber
-    fmt.Fprintf(os.Stdout, "Response from `SubscribersApi.PostPagesPageIdSubscribers`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SubscribersAPI.PostPagesPageIdSubscribers(context.Background(), pageId).PostPagesPageIdSubscribers(postPagesPageIdSubscribers).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubscribersAPI.PostPagesPageIdSubscribers``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostPagesPageIdSubscribers`: Subscriber
+	fmt.Fprintf(os.Stdout, "Response from `SubscribersAPI.PostPagesPageIdSubscribers`: %v\n", resp)
 }
 ```
 
@@ -630,23 +630,23 @@ Reactivate a list of subscribers
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    postPagesPageIdSubscribersReactivate := *openapiclient.NewPostPagesPageIdSubscribersReactivate("Subscribers_example") // PostPagesPageIdSubscribersReactivate | 
+	pageId := "pageId_example" // string | Page identifier
+	postPagesPageIdSubscribersReactivate := *openapiclient.NewPostPagesPageIdSubscribersReactivate("Subscribers_example") // PostPagesPageIdSubscribersReactivate | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscribersApi.PostPagesPageIdSubscribersReactivate(context.Background(), pageId).PostPagesPageIdSubscribersReactivate(postPagesPageIdSubscribersReactivate).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SubscribersApi.PostPagesPageIdSubscribersReactivate``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.SubscribersAPI.PostPagesPageIdSubscribersReactivate(context.Background(), pageId).PostPagesPageIdSubscribersReactivate(postPagesPageIdSubscribersReactivate).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubscribersAPI.PostPagesPageIdSubscribersReactivate``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -700,23 +700,23 @@ Resend confirmations to a list of subscribers
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    postPagesPageIdSubscribersResendConfirmation := *openapiclient.NewPostPagesPageIdSubscribersResendConfirmation("Subscribers_example") // PostPagesPageIdSubscribersResendConfirmation | 
+	pageId := "pageId_example" // string | Page identifier
+	postPagesPageIdSubscribersResendConfirmation := *openapiclient.NewPostPagesPageIdSubscribersResendConfirmation("Subscribers_example") // PostPagesPageIdSubscribersResendConfirmation | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscribersApi.PostPagesPageIdSubscribersResendConfirmation(context.Background(), pageId).PostPagesPageIdSubscribersResendConfirmation(postPagesPageIdSubscribersResendConfirmation).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SubscribersApi.PostPagesPageIdSubscribersResendConfirmation``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.SubscribersAPI.PostPagesPageIdSubscribersResendConfirmation(context.Background(), pageId).PostPagesPageIdSubscribersResendConfirmation(postPagesPageIdSubscribersResendConfirmation).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubscribersAPI.PostPagesPageIdSubscribersResendConfirmation``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -770,23 +770,23 @@ Resend confirmation to a subscriber
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    subscriberId := "subscriberId_example" // string | Subscriber Identifier
+	pageId := "pageId_example" // string | Page identifier
+	subscriberId := "subscriberId_example" // string | Subscriber Identifier
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscribersApi.PostPagesPageIdSubscribersSubscriberIdResendConfirmation(context.Background(), pageId, subscriberId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SubscribersApi.PostPagesPageIdSubscribersSubscriberIdResendConfirmation``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.SubscribersAPI.PostPagesPageIdSubscribersSubscriberIdResendConfirmation(context.Background(), pageId, subscriberId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubscribersAPI.PostPagesPageIdSubscribersSubscriberIdResendConfirmation``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -841,23 +841,23 @@ Unsubscribe a list of subscribers
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    postPagesPageIdSubscribersUnsubscribe := *openapiclient.NewPostPagesPageIdSubscribersUnsubscribe("Subscribers_example") // PostPagesPageIdSubscribersUnsubscribe | 
+	pageId := "pageId_example" // string | Page identifier
+	postPagesPageIdSubscribersUnsubscribe := *openapiclient.NewPostPagesPageIdSubscribersUnsubscribe("Subscribers_example") // PostPagesPageIdSubscribersUnsubscribe | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.SubscribersApi.PostPagesPageIdSubscribersUnsubscribe(context.Background(), pageId).PostPagesPageIdSubscribersUnsubscribe(postPagesPageIdSubscribersUnsubscribe).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SubscribersApi.PostPagesPageIdSubscribersUnsubscribe``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.SubscribersAPI.PostPagesPageIdSubscribersUnsubscribe(context.Background(), pageId).PostPagesPageIdSubscribersUnsubscribe(postPagesPageIdSubscribersUnsubscribe).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubscribersAPI.PostPagesPageIdSubscribersUnsubscribe``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 

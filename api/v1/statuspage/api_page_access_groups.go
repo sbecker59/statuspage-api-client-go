@@ -12,30 +12,24 @@ package openapi
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// PageAccessGroupsApiService PageAccessGroupsApi service
-type PageAccessGroupsApiService service
+// PageAccessGroupsAPIService PageAccessGroupsAPI service
+type PageAccessGroupsAPIService service
 
 type ApiDeletePagesPageIdPageAccessGroupsPageAccessGroupIdRequest struct {
-	ctx _context.Context
-	ApiService *PageAccessGroupsApiService
-	pageId string
+	ctx               context.Context
+	ApiService        *PageAccessGroupsAPIService
+	pageId            string
 	pageAccessGroupId string
 }
 
-
-func (r ApiDeletePagesPageIdPageAccessGroupsPageAccessGroupIdRequest) Execute() (PageAccessGroup, *_nethttp.Response, error) {
+func (r ApiDeletePagesPageIdPageAccessGroupsPageAccessGroupIdRequest) Execute() (*PageAccessGroup, *http.Response, error) {
 	return r.ApiService.DeletePagesPageIdPageAccessGroupsPageAccessGroupIdExecute(r)
 }
 
@@ -44,44 +38,43 @@ DeletePagesPageIdPageAccessGroupsPageAccessGroupId Remove a page access group
 
 Remove a page access group
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @param pageAccessGroupId Page Access Group Identifier
- @return ApiDeletePagesPageIdPageAccessGroupsPageAccessGroupIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@param pageAccessGroupId Page Access Group Identifier
+	@return ApiDeletePagesPageIdPageAccessGroupsPageAccessGroupIdRequest
 */
-func (a *PageAccessGroupsApiService) DeletePagesPageIdPageAccessGroupsPageAccessGroupId(ctx _context.Context, pageId string, pageAccessGroupId string) ApiDeletePagesPageIdPageAccessGroupsPageAccessGroupIdRequest {
+func (a *PageAccessGroupsAPIService) DeletePagesPageIdPageAccessGroupsPageAccessGroupId(ctx context.Context, pageId string, pageAccessGroupId string) ApiDeletePagesPageIdPageAccessGroupsPageAccessGroupIdRequest {
 	return ApiDeletePagesPageIdPageAccessGroupsPageAccessGroupIdRequest{
-		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ApiService:        a,
+		ctx:               ctx,
+		pageId:            pageId,
 		pageAccessGroupId: pageAccessGroupId,
 	}
 }
 
 // Execute executes the request
-//  @return PageAccessGroup
-func (a *PageAccessGroupsApiService) DeletePagesPageIdPageAccessGroupsPageAccessGroupIdExecute(r ApiDeletePagesPageIdPageAccessGroupsPageAccessGroupIdRequest) (PageAccessGroup, *_nethttp.Response, error) {
+//
+//	@return PageAccessGroup
+func (a *PageAccessGroupsAPIService) DeletePagesPageIdPageAccessGroupsPageAccessGroupIdExecute(r ApiDeletePagesPageIdPageAccessGroupsPageAccessGroupIdRequest) (*PageAccessGroup, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  PageAccessGroup
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *PageAccessGroup
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PageAccessGroupsApiService.DeletePagesPageIdPageAccessGroupsPageAccessGroupId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PageAccessGroupsAPIService.DeletePagesPageIdPageAccessGroupsPageAccessGroupId")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/page_access_groups/{page_access_group_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"page_access_group_id"+"}", _neturl.PathEscape(parameterToString(r.pageAccessGroupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_access_group_id"+"}", url.PathEscape(parameterValueToString(r.pageAccessGroupId, "pageAccessGroupId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -114,7 +107,7 @@ func (a *PageAccessGroupsApiService) DeletePagesPageIdPageAccessGroupsPageAccess
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -124,15 +117,15 @@ func (a *PageAccessGroupsApiService) DeletePagesPageIdPageAccessGroupsPageAccess
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -143,6 +136,7 @@ func (a *PageAccessGroupsApiService) DeletePagesPageIdPageAccessGroupsPageAccess
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -153,6 +147,7 @@ func (a *PageAccessGroupsApiService) DeletePagesPageIdPageAccessGroupsPageAccess
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -163,6 +158,7 @@ func (a *PageAccessGroupsApiService) DeletePagesPageIdPageAccessGroupsPageAccess
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -170,7 +166,7 @@ func (a *PageAccessGroupsApiService) DeletePagesPageIdPageAccessGroupsPageAccess
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -181,11 +177,11 @@ func (a *PageAccessGroupsApiService) DeletePagesPageIdPageAccessGroupsPageAccess
 }
 
 type ApiGetPagesPageIdPageAccessGroupsRequest struct {
-	ctx _context.Context
-	ApiService *PageAccessGroupsApiService
-	pageId string
-	page *int32
-	perPage *int32
+	ctx        context.Context
+	ApiService *PageAccessGroupsAPIService
+	pageId     string
+	page       *int32
+	perPage    *int32
 }
 
 // Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided.
@@ -193,13 +189,14 @@ func (r ApiGetPagesPageIdPageAccessGroupsRequest) Page(page int32) ApiGetPagesPa
 	r.page = &page
 	return r
 }
+
 // Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided.
 func (r ApiGetPagesPageIdPageAccessGroupsRequest) PerPage(perPage int32) ApiGetPagesPageIdPageAccessGroupsRequest {
 	r.perPage = &perPage
 	return r
 }
 
-func (r ApiGetPagesPageIdPageAccessGroupsRequest) Execute() ([]PageAccessGroup, *_nethttp.Response, error) {
+func (r ApiGetPagesPageIdPageAccessGroupsRequest) Execute() ([]PageAccessGroup, *http.Response, error) {
 	return r.ApiService.GetPagesPageIdPageAccessGroupsExecute(r)
 }
 
@@ -208,47 +205,46 @@ GetPagesPageIdPageAccessGroups Get a list of page access groups
 
 Get a list of page access groups
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @return ApiGetPagesPageIdPageAccessGroupsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@return ApiGetPagesPageIdPageAccessGroupsRequest
 */
-func (a *PageAccessGroupsApiService) GetPagesPageIdPageAccessGroups(ctx _context.Context, pageId string) ApiGetPagesPageIdPageAccessGroupsRequest {
+func (a *PageAccessGroupsAPIService) GetPagesPageIdPageAccessGroups(ctx context.Context, pageId string) ApiGetPagesPageIdPageAccessGroupsRequest {
 	return ApiGetPagesPageIdPageAccessGroupsRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ctx:        ctx,
+		pageId:     pageId,
 	}
 }
 
 // Execute executes the request
-//  @return []PageAccessGroup
-func (a *PageAccessGroupsApiService) GetPagesPageIdPageAccessGroupsExecute(r ApiGetPagesPageIdPageAccessGroupsRequest) ([]PageAccessGroup, *_nethttp.Response, error) {
+//
+//	@return []PageAccessGroup
+func (a *PageAccessGroupsAPIService) GetPagesPageIdPageAccessGroupsExecute(r ApiGetPagesPageIdPageAccessGroupsRequest) ([]PageAccessGroup, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  []PageAccessGroup
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []PageAccessGroup
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PageAccessGroupsApiService.GetPagesPageIdPageAccessGroups")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PageAccessGroupsAPIService.GetPagesPageIdPageAccessGroups")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/page_access_groups"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
 	}
 	if r.perPage != nil {
-		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", r.perPage, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -281,7 +277,7 @@ func (a *PageAccessGroupsApiService) GetPagesPageIdPageAccessGroupsExecute(r Api
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -291,15 +287,15 @@ func (a *PageAccessGroupsApiService) GetPagesPageIdPageAccessGroupsExecute(r Api
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -310,6 +306,7 @@ func (a *PageAccessGroupsApiService) GetPagesPageIdPageAccessGroupsExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -320,6 +317,7 @@ func (a *PageAccessGroupsApiService) GetPagesPageIdPageAccessGroupsExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -330,6 +328,7 @@ func (a *PageAccessGroupsApiService) GetPagesPageIdPageAccessGroupsExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -337,7 +336,7 @@ func (a *PageAccessGroupsApiService) GetPagesPageIdPageAccessGroupsExecute(r Api
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -348,14 +347,13 @@ func (a *PageAccessGroupsApiService) GetPagesPageIdPageAccessGroupsExecute(r Api
 }
 
 type ApiGetPagesPageIdPageAccessGroupsPageAccessGroupIdRequest struct {
-	ctx _context.Context
-	ApiService *PageAccessGroupsApiService
-	pageId string
+	ctx               context.Context
+	ApiService        *PageAccessGroupsAPIService
+	pageId            string
 	pageAccessGroupId string
 }
 
-
-func (r ApiGetPagesPageIdPageAccessGroupsPageAccessGroupIdRequest) Execute() (PageAccessGroup, *_nethttp.Response, error) {
+func (r ApiGetPagesPageIdPageAccessGroupsPageAccessGroupIdRequest) Execute() (*PageAccessGroup, *http.Response, error) {
 	return r.ApiService.GetPagesPageIdPageAccessGroupsPageAccessGroupIdExecute(r)
 }
 
@@ -364,44 +362,43 @@ GetPagesPageIdPageAccessGroupsPageAccessGroupId Get a page access group
 
 Get a page access group
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @param pageAccessGroupId Page Access Group Identifier
- @return ApiGetPagesPageIdPageAccessGroupsPageAccessGroupIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@param pageAccessGroupId Page Access Group Identifier
+	@return ApiGetPagesPageIdPageAccessGroupsPageAccessGroupIdRequest
 */
-func (a *PageAccessGroupsApiService) GetPagesPageIdPageAccessGroupsPageAccessGroupId(ctx _context.Context, pageId string, pageAccessGroupId string) ApiGetPagesPageIdPageAccessGroupsPageAccessGroupIdRequest {
+func (a *PageAccessGroupsAPIService) GetPagesPageIdPageAccessGroupsPageAccessGroupId(ctx context.Context, pageId string, pageAccessGroupId string) ApiGetPagesPageIdPageAccessGroupsPageAccessGroupIdRequest {
 	return ApiGetPagesPageIdPageAccessGroupsPageAccessGroupIdRequest{
-		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ApiService:        a,
+		ctx:               ctx,
+		pageId:            pageId,
 		pageAccessGroupId: pageAccessGroupId,
 	}
 }
 
 // Execute executes the request
-//  @return PageAccessGroup
-func (a *PageAccessGroupsApiService) GetPagesPageIdPageAccessGroupsPageAccessGroupIdExecute(r ApiGetPagesPageIdPageAccessGroupsPageAccessGroupIdRequest) (PageAccessGroup, *_nethttp.Response, error) {
+//
+//	@return PageAccessGroup
+func (a *PageAccessGroupsAPIService) GetPagesPageIdPageAccessGroupsPageAccessGroupIdExecute(r ApiGetPagesPageIdPageAccessGroupsPageAccessGroupIdRequest) (*PageAccessGroup, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  PageAccessGroup
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *PageAccessGroup
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PageAccessGroupsApiService.GetPagesPageIdPageAccessGroupsPageAccessGroupId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PageAccessGroupsAPIService.GetPagesPageIdPageAccessGroupsPageAccessGroupId")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/page_access_groups/{page_access_group_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"page_access_group_id"+"}", _neturl.PathEscape(parameterToString(r.pageAccessGroupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_access_group_id"+"}", url.PathEscape(parameterValueToString(r.pageAccessGroupId, "pageAccessGroupId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -434,7 +431,7 @@ func (a *PageAccessGroupsApiService) GetPagesPageIdPageAccessGroupsPageAccessGro
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -444,15 +441,15 @@ func (a *PageAccessGroupsApiService) GetPagesPageIdPageAccessGroupsPageAccessGro
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -463,6 +460,7 @@ func (a *PageAccessGroupsApiService) GetPagesPageIdPageAccessGroupsPageAccessGro
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -473,6 +471,7 @@ func (a *PageAccessGroupsApiService) GetPagesPageIdPageAccessGroupsPageAccessGro
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -483,6 +482,7 @@ func (a *PageAccessGroupsApiService) GetPagesPageIdPageAccessGroupsPageAccessGro
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -490,7 +490,7 @@ func (a *PageAccessGroupsApiService) GetPagesPageIdPageAccessGroupsPageAccessGro
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -501,10 +501,10 @@ func (a *PageAccessGroupsApiService) GetPagesPageIdPageAccessGroupsPageAccessGro
 }
 
 type ApiPatchPagesPageIdPageAccessGroupsPageAccessGroupIdRequest struct {
-	ctx _context.Context
-	ApiService *PageAccessGroupsApiService
-	pageId string
-	pageAccessGroupId string
+	ctx                              context.Context
+	ApiService                       *PageAccessGroupsAPIService
+	pageId                           string
+	pageAccessGroupId                string
 	patchPagesPageIdPageAccessGroups *PatchPagesPageIdPageAccessGroups
 }
 
@@ -513,7 +513,7 @@ func (r ApiPatchPagesPageIdPageAccessGroupsPageAccessGroupIdRequest) PatchPagesP
 	return r
 }
 
-func (r ApiPatchPagesPageIdPageAccessGroupsPageAccessGroupIdRequest) Execute() (PageAccessGroup, *_nethttp.Response, error) {
+func (r ApiPatchPagesPageIdPageAccessGroupsPageAccessGroupIdRequest) Execute() (*PageAccessGroup, *http.Response, error) {
 	return r.ApiService.PatchPagesPageIdPageAccessGroupsPageAccessGroupIdExecute(r)
 }
 
@@ -522,44 +522,43 @@ PatchPagesPageIdPageAccessGroupsPageAccessGroupId Update a page access group
 
 Update a page access group
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @param pageAccessGroupId Page Access Group Identifier
- @return ApiPatchPagesPageIdPageAccessGroupsPageAccessGroupIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@param pageAccessGroupId Page Access Group Identifier
+	@return ApiPatchPagesPageIdPageAccessGroupsPageAccessGroupIdRequest
 */
-func (a *PageAccessGroupsApiService) PatchPagesPageIdPageAccessGroupsPageAccessGroupId(ctx _context.Context, pageId string, pageAccessGroupId string) ApiPatchPagesPageIdPageAccessGroupsPageAccessGroupIdRequest {
+func (a *PageAccessGroupsAPIService) PatchPagesPageIdPageAccessGroupsPageAccessGroupId(ctx context.Context, pageId string, pageAccessGroupId string) ApiPatchPagesPageIdPageAccessGroupsPageAccessGroupIdRequest {
 	return ApiPatchPagesPageIdPageAccessGroupsPageAccessGroupIdRequest{
-		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ApiService:        a,
+		ctx:               ctx,
+		pageId:            pageId,
 		pageAccessGroupId: pageAccessGroupId,
 	}
 }
 
 // Execute executes the request
-//  @return PageAccessGroup
-func (a *PageAccessGroupsApiService) PatchPagesPageIdPageAccessGroupsPageAccessGroupIdExecute(r ApiPatchPagesPageIdPageAccessGroupsPageAccessGroupIdRequest) (PageAccessGroup, *_nethttp.Response, error) {
+//
+//	@return PageAccessGroup
+func (a *PageAccessGroupsAPIService) PatchPagesPageIdPageAccessGroupsPageAccessGroupIdExecute(r ApiPatchPagesPageIdPageAccessGroupsPageAccessGroupIdRequest) (*PageAccessGroup, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  PageAccessGroup
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *PageAccessGroup
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PageAccessGroupsApiService.PatchPagesPageIdPageAccessGroupsPageAccessGroupId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PageAccessGroupsAPIService.PatchPagesPageIdPageAccessGroupsPageAccessGroupId")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/page_access_groups/{page_access_group_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"page_access_group_id"+"}", _neturl.PathEscape(parameterToString(r.pageAccessGroupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_access_group_id"+"}", url.PathEscape(parameterValueToString(r.pageAccessGroupId, "pageAccessGroupId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.patchPagesPageIdPageAccessGroups == nil {
 		return localVarReturnValue, nil, reportError("patchPagesPageIdPageAccessGroups is required and must be specified")
 	}
@@ -597,7 +596,7 @@ func (a *PageAccessGroupsApiService) PatchPagesPageIdPageAccessGroupsPageAccessG
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -607,15 +606,15 @@ func (a *PageAccessGroupsApiService) PatchPagesPageIdPageAccessGroupsPageAccessG
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -626,6 +625,7 @@ func (a *PageAccessGroupsApiService) PatchPagesPageIdPageAccessGroupsPageAccessG
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -636,6 +636,7 @@ func (a *PageAccessGroupsApiService) PatchPagesPageIdPageAccessGroupsPageAccessG
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -646,6 +647,7 @@ func (a *PageAccessGroupsApiService) PatchPagesPageIdPageAccessGroupsPageAccessG
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -653,7 +655,7 @@ func (a *PageAccessGroupsApiService) PatchPagesPageIdPageAccessGroupsPageAccessG
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -664,9 +666,9 @@ func (a *PageAccessGroupsApiService) PatchPagesPageIdPageAccessGroupsPageAccessG
 }
 
 type ApiPostPagesPageIdPageAccessGroupsRequest struct {
-	ctx _context.Context
-	ApiService *PageAccessGroupsApiService
-	pageId string
+	ctx                             context.Context
+	ApiService                      *PageAccessGroupsAPIService
+	pageId                          string
 	postPagesPageIdPageAccessGroups *PostPagesPageIdPageAccessGroups
 }
 
@@ -675,7 +677,7 @@ func (r ApiPostPagesPageIdPageAccessGroupsRequest) PostPagesPageIdPageAccessGrou
 	return r
 }
 
-func (r ApiPostPagesPageIdPageAccessGroupsRequest) Execute() (PageAccessGroup, *_nethttp.Response, error) {
+func (r ApiPostPagesPageIdPageAccessGroupsRequest) Execute() (*PageAccessGroup, *http.Response, error) {
 	return r.ApiService.PostPagesPageIdPageAccessGroupsExecute(r)
 }
 
@@ -684,41 +686,40 @@ PostPagesPageIdPageAccessGroups Create a page access group
 
 Create a page access group
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @return ApiPostPagesPageIdPageAccessGroupsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@return ApiPostPagesPageIdPageAccessGroupsRequest
 */
-func (a *PageAccessGroupsApiService) PostPagesPageIdPageAccessGroups(ctx _context.Context, pageId string) ApiPostPagesPageIdPageAccessGroupsRequest {
+func (a *PageAccessGroupsAPIService) PostPagesPageIdPageAccessGroups(ctx context.Context, pageId string) ApiPostPagesPageIdPageAccessGroupsRequest {
 	return ApiPostPagesPageIdPageAccessGroupsRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ctx:        ctx,
+		pageId:     pageId,
 	}
 }
 
 // Execute executes the request
-//  @return PageAccessGroup
-func (a *PageAccessGroupsApiService) PostPagesPageIdPageAccessGroupsExecute(r ApiPostPagesPageIdPageAccessGroupsRequest) (PageAccessGroup, *_nethttp.Response, error) {
+//
+//	@return PageAccessGroup
+func (a *PageAccessGroupsAPIService) PostPagesPageIdPageAccessGroupsExecute(r ApiPostPagesPageIdPageAccessGroupsRequest) (*PageAccessGroup, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  PageAccessGroup
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *PageAccessGroup
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PageAccessGroupsApiService.PostPagesPageIdPageAccessGroups")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PageAccessGroupsAPIService.PostPagesPageIdPageAccessGroups")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/page_access_groups"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.postPagesPageIdPageAccessGroups == nil {
 		return localVarReturnValue, nil, reportError("postPagesPageIdPageAccessGroups is required and must be specified")
 	}
@@ -756,7 +757,7 @@ func (a *PageAccessGroupsApiService) PostPagesPageIdPageAccessGroupsExecute(r Ap
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -766,15 +767,15 @@ func (a *PageAccessGroupsApiService) PostPagesPageIdPageAccessGroupsExecute(r Ap
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -785,6 +786,7 @@ func (a *PageAccessGroupsApiService) PostPagesPageIdPageAccessGroupsExecute(r Ap
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -795,6 +797,7 @@ func (a *PageAccessGroupsApiService) PostPagesPageIdPageAccessGroupsExecute(r Ap
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -805,6 +808,7 @@ func (a *PageAccessGroupsApiService) PostPagesPageIdPageAccessGroupsExecute(r Ap
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -815,6 +819,7 @@ func (a *PageAccessGroupsApiService) PostPagesPageIdPageAccessGroupsExecute(r Ap
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -825,6 +830,7 @@ func (a *PageAccessGroupsApiService) PostPagesPageIdPageAccessGroupsExecute(r Ap
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -832,7 +838,7 @@ func (a *PageAccessGroupsApiService) PostPagesPageIdPageAccessGroupsExecute(r Ap
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -843,10 +849,10 @@ func (a *PageAccessGroupsApiService) PostPagesPageIdPageAccessGroupsExecute(r Ap
 }
 
 type ApiPutPagesPageIdPageAccessGroupsPageAccessGroupIdRequest struct {
-	ctx _context.Context
-	ApiService *PageAccessGroupsApiService
-	pageId string
-	pageAccessGroupId string
+	ctx                            context.Context
+	ApiService                     *PageAccessGroupsAPIService
+	pageId                         string
+	pageAccessGroupId              string
 	putPagesPageIdPageAccessGroups *PutPagesPageIdPageAccessGroups
 }
 
@@ -855,7 +861,7 @@ func (r ApiPutPagesPageIdPageAccessGroupsPageAccessGroupIdRequest) PutPagesPageI
 	return r
 }
 
-func (r ApiPutPagesPageIdPageAccessGroupsPageAccessGroupIdRequest) Execute() (PageAccessGroup, *_nethttp.Response, error) {
+func (r ApiPutPagesPageIdPageAccessGroupsPageAccessGroupIdRequest) Execute() (*PageAccessGroup, *http.Response, error) {
 	return r.ApiService.PutPagesPageIdPageAccessGroupsPageAccessGroupIdExecute(r)
 }
 
@@ -864,44 +870,43 @@ PutPagesPageIdPageAccessGroupsPageAccessGroupId Update a page access group
 
 Update a page access group
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @param pageAccessGroupId Page Access Group Identifier
- @return ApiPutPagesPageIdPageAccessGroupsPageAccessGroupIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@param pageAccessGroupId Page Access Group Identifier
+	@return ApiPutPagesPageIdPageAccessGroupsPageAccessGroupIdRequest
 */
-func (a *PageAccessGroupsApiService) PutPagesPageIdPageAccessGroupsPageAccessGroupId(ctx _context.Context, pageId string, pageAccessGroupId string) ApiPutPagesPageIdPageAccessGroupsPageAccessGroupIdRequest {
+func (a *PageAccessGroupsAPIService) PutPagesPageIdPageAccessGroupsPageAccessGroupId(ctx context.Context, pageId string, pageAccessGroupId string) ApiPutPagesPageIdPageAccessGroupsPageAccessGroupIdRequest {
 	return ApiPutPagesPageIdPageAccessGroupsPageAccessGroupIdRequest{
-		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ApiService:        a,
+		ctx:               ctx,
+		pageId:            pageId,
 		pageAccessGroupId: pageAccessGroupId,
 	}
 }
 
 // Execute executes the request
-//  @return PageAccessGroup
-func (a *PageAccessGroupsApiService) PutPagesPageIdPageAccessGroupsPageAccessGroupIdExecute(r ApiPutPagesPageIdPageAccessGroupsPageAccessGroupIdRequest) (PageAccessGroup, *_nethttp.Response, error) {
+//
+//	@return PageAccessGroup
+func (a *PageAccessGroupsAPIService) PutPagesPageIdPageAccessGroupsPageAccessGroupIdExecute(r ApiPutPagesPageIdPageAccessGroupsPageAccessGroupIdRequest) (*PageAccessGroup, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  PageAccessGroup
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *PageAccessGroup
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PageAccessGroupsApiService.PutPagesPageIdPageAccessGroupsPageAccessGroupId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PageAccessGroupsAPIService.PutPagesPageIdPageAccessGroupsPageAccessGroupId")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/page_access_groups/{page_access_group_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"page_access_group_id"+"}", _neturl.PathEscape(parameterToString(r.pageAccessGroupId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_access_group_id"+"}", url.PathEscape(parameterValueToString(r.pageAccessGroupId, "pageAccessGroupId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.putPagesPageIdPageAccessGroups == nil {
 		return localVarReturnValue, nil, reportError("putPagesPageIdPageAccessGroups is required and must be specified")
 	}
@@ -939,7 +944,7 @@ func (a *PageAccessGroupsApiService) PutPagesPageIdPageAccessGroupsPageAccessGro
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -949,15 +954,15 @@ func (a *PageAccessGroupsApiService) PutPagesPageIdPageAccessGroupsPageAccessGro
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -968,6 +973,7 @@ func (a *PageAccessGroupsApiService) PutPagesPageIdPageAccessGroupsPageAccessGro
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -978,6 +984,7 @@ func (a *PageAccessGroupsApiService) PutPagesPageIdPageAccessGroupsPageAccessGro
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -988,6 +995,7 @@ func (a *PageAccessGroupsApiService) PutPagesPageIdPageAccessGroupsPageAccessGro
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -995,7 +1003,7 @@ func (a *PageAccessGroupsApiService) PutPagesPageIdPageAccessGroupsPageAccessGro
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

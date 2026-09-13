@@ -12,30 +12,24 @@ package openapi
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// ComponentGroupsApiService ComponentGroupsApi service
-type ComponentGroupsApiService service
+// ComponentGroupsAPIService ComponentGroupsAPI service
+type ComponentGroupsAPIService service
 
 type ApiDeletePagesPageIdComponentGroupsIdRequest struct {
-	ctx _context.Context
-	ApiService *ComponentGroupsApiService
-	pageId string
-	id string
+	ctx        context.Context
+	ApiService *ComponentGroupsAPIService
+	pageId     string
+	id         string
 }
 
-
-func (r ApiDeletePagesPageIdComponentGroupsIdRequest) Execute() (GroupComponent, *_nethttp.Response, error) {
+func (r ApiDeletePagesPageIdComponentGroupsIdRequest) Execute() (*GroupComponent, *http.Response, error) {
 	return r.ApiService.DeletePagesPageIdComponentGroupsIdExecute(r)
 }
 
@@ -44,44 +38,43 @@ DeletePagesPageIdComponentGroupsId Delete a component group
 
 Delete a component group
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @param id Component group identifier
- @return ApiDeletePagesPageIdComponentGroupsIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@param id Component group identifier
+	@return ApiDeletePagesPageIdComponentGroupsIdRequest
 */
-func (a *ComponentGroupsApiService) DeletePagesPageIdComponentGroupsId(ctx _context.Context, pageId string, id string) ApiDeletePagesPageIdComponentGroupsIdRequest {
+func (a *ComponentGroupsAPIService) DeletePagesPageIdComponentGroupsId(ctx context.Context, pageId string, id string) ApiDeletePagesPageIdComponentGroupsIdRequest {
 	return ApiDeletePagesPageIdComponentGroupsIdRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
-		id: id,
+		ctx:        ctx,
+		pageId:     pageId,
+		id:         id,
 	}
 }
 
 // Execute executes the request
-//  @return GroupComponent
-func (a *ComponentGroupsApiService) DeletePagesPageIdComponentGroupsIdExecute(r ApiDeletePagesPageIdComponentGroupsIdRequest) (GroupComponent, *_nethttp.Response, error) {
+//
+//	@return GroupComponent
+func (a *ComponentGroupsAPIService) DeletePagesPageIdComponentGroupsIdExecute(r ApiDeletePagesPageIdComponentGroupsIdRequest) (*GroupComponent, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  GroupComponent
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GroupComponent
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ComponentGroupsApiService.DeletePagesPageIdComponentGroupsId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ComponentGroupsAPIService.DeletePagesPageIdComponentGroupsId")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/component-groups/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -114,7 +107,7 @@ func (a *ComponentGroupsApiService) DeletePagesPageIdComponentGroupsIdExecute(r 
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -124,15 +117,15 @@ func (a *ComponentGroupsApiService) DeletePagesPageIdComponentGroupsIdExecute(r 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -143,6 +136,7 @@ func (a *ComponentGroupsApiService) DeletePagesPageIdComponentGroupsIdExecute(r 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -153,6 +147,7 @@ func (a *ComponentGroupsApiService) DeletePagesPageIdComponentGroupsIdExecute(r 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -160,7 +155,7 @@ func (a *ComponentGroupsApiService) DeletePagesPageIdComponentGroupsIdExecute(r 
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -171,11 +166,11 @@ func (a *ComponentGroupsApiService) DeletePagesPageIdComponentGroupsIdExecute(r 
 }
 
 type ApiGetPagesPageIdComponentGroupsRequest struct {
-	ctx _context.Context
-	ApiService *ComponentGroupsApiService
-	pageId string
-	page *int32
-	perPage *int32
+	ctx        context.Context
+	ApiService *ComponentGroupsAPIService
+	pageId     string
+	page       *int32
+	perPage    *int32
 }
 
 // Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided.
@@ -183,13 +178,14 @@ func (r ApiGetPagesPageIdComponentGroupsRequest) Page(page int32) ApiGetPagesPag
 	r.page = &page
 	return r
 }
+
 // Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided.
 func (r ApiGetPagesPageIdComponentGroupsRequest) PerPage(perPage int32) ApiGetPagesPageIdComponentGroupsRequest {
 	r.perPage = &perPage
 	return r
 }
 
-func (r ApiGetPagesPageIdComponentGroupsRequest) Execute() ([]GroupComponent, *_nethttp.Response, error) {
+func (r ApiGetPagesPageIdComponentGroupsRequest) Execute() ([]GroupComponent, *http.Response, error) {
 	return r.ApiService.GetPagesPageIdComponentGroupsExecute(r)
 }
 
@@ -198,47 +194,46 @@ GetPagesPageIdComponentGroups Get a list of component groups
 
 Get a list of component groups
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @return ApiGetPagesPageIdComponentGroupsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@return ApiGetPagesPageIdComponentGroupsRequest
 */
-func (a *ComponentGroupsApiService) GetPagesPageIdComponentGroups(ctx _context.Context, pageId string) ApiGetPagesPageIdComponentGroupsRequest {
+func (a *ComponentGroupsAPIService) GetPagesPageIdComponentGroups(ctx context.Context, pageId string) ApiGetPagesPageIdComponentGroupsRequest {
 	return ApiGetPagesPageIdComponentGroupsRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ctx:        ctx,
+		pageId:     pageId,
 	}
 }
 
 // Execute executes the request
-//  @return []GroupComponent
-func (a *ComponentGroupsApiService) GetPagesPageIdComponentGroupsExecute(r ApiGetPagesPageIdComponentGroupsRequest) ([]GroupComponent, *_nethttp.Response, error) {
+//
+//	@return []GroupComponent
+func (a *ComponentGroupsAPIService) GetPagesPageIdComponentGroupsExecute(r ApiGetPagesPageIdComponentGroupsRequest) ([]GroupComponent, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  []GroupComponent
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []GroupComponent
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ComponentGroupsApiService.GetPagesPageIdComponentGroups")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ComponentGroupsAPIService.GetPagesPageIdComponentGroups")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/component-groups"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
 	}
 	if r.perPage != nil {
-		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", r.perPage, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -271,7 +266,7 @@ func (a *ComponentGroupsApiService) GetPagesPageIdComponentGroupsExecute(r ApiGe
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -281,15 +276,15 @@ func (a *ComponentGroupsApiService) GetPagesPageIdComponentGroupsExecute(r ApiGe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -300,6 +295,7 @@ func (a *ComponentGroupsApiService) GetPagesPageIdComponentGroupsExecute(r ApiGe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -310,6 +306,7 @@ func (a *ComponentGroupsApiService) GetPagesPageIdComponentGroupsExecute(r ApiGe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -317,7 +314,7 @@ func (a *ComponentGroupsApiService) GetPagesPageIdComponentGroupsExecute(r ApiGe
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -328,14 +325,13 @@ func (a *ComponentGroupsApiService) GetPagesPageIdComponentGroupsExecute(r ApiGe
 }
 
 type ApiGetPagesPageIdComponentGroupsIdRequest struct {
-	ctx _context.Context
-	ApiService *ComponentGroupsApiService
-	pageId string
-	id string
+	ctx        context.Context
+	ApiService *ComponentGroupsAPIService
+	pageId     string
+	id         string
 }
 
-
-func (r ApiGetPagesPageIdComponentGroupsIdRequest) Execute() (GroupComponent, *_nethttp.Response, error) {
+func (r ApiGetPagesPageIdComponentGroupsIdRequest) Execute() (*GroupComponent, *http.Response, error) {
 	return r.ApiService.GetPagesPageIdComponentGroupsIdExecute(r)
 }
 
@@ -344,44 +340,43 @@ GetPagesPageIdComponentGroupsId Get a component group
 
 Get a component group
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @param id Component group identifier
- @return ApiGetPagesPageIdComponentGroupsIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@param id Component group identifier
+	@return ApiGetPagesPageIdComponentGroupsIdRequest
 */
-func (a *ComponentGroupsApiService) GetPagesPageIdComponentGroupsId(ctx _context.Context, pageId string, id string) ApiGetPagesPageIdComponentGroupsIdRequest {
+func (a *ComponentGroupsAPIService) GetPagesPageIdComponentGroupsId(ctx context.Context, pageId string, id string) ApiGetPagesPageIdComponentGroupsIdRequest {
 	return ApiGetPagesPageIdComponentGroupsIdRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
-		id: id,
+		ctx:        ctx,
+		pageId:     pageId,
+		id:         id,
 	}
 }
 
 // Execute executes the request
-//  @return GroupComponent
-func (a *ComponentGroupsApiService) GetPagesPageIdComponentGroupsIdExecute(r ApiGetPagesPageIdComponentGroupsIdRequest) (GroupComponent, *_nethttp.Response, error) {
+//
+//	@return GroupComponent
+func (a *ComponentGroupsAPIService) GetPagesPageIdComponentGroupsIdExecute(r ApiGetPagesPageIdComponentGroupsIdRequest) (*GroupComponent, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  GroupComponent
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GroupComponent
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ComponentGroupsApiService.GetPagesPageIdComponentGroupsId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ComponentGroupsAPIService.GetPagesPageIdComponentGroupsId")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/component-groups/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -414,7 +409,7 @@ func (a *ComponentGroupsApiService) GetPagesPageIdComponentGroupsIdExecute(r Api
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -424,15 +419,15 @@ func (a *ComponentGroupsApiService) GetPagesPageIdComponentGroupsIdExecute(r Api
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -443,6 +438,7 @@ func (a *ComponentGroupsApiService) GetPagesPageIdComponentGroupsIdExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -453,6 +449,7 @@ func (a *ComponentGroupsApiService) GetPagesPageIdComponentGroupsIdExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -460,7 +457,7 @@ func (a *ComponentGroupsApiService) GetPagesPageIdComponentGroupsIdExecute(r Api
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -471,14 +468,34 @@ func (a *ComponentGroupsApiService) GetPagesPageIdComponentGroupsIdExecute(r Api
 }
 
 type ApiGetPagesPageIdComponentGroupsIdUptimeRequest struct {
-	ctx _context.Context
-	ApiService *ComponentGroupsApiService
-	pageId string
-	id string
+	ctx               context.Context
+	ApiService        *ComponentGroupsAPIService
+	pageId            string
+	id                string
+	skipRelatedEvents *bool
+	start             *PartialStartDate
+	end               *PartialEndDate
 }
 
+// Skips supplying the related events data along with the component uptime data.
+func (r ApiGetPagesPageIdComponentGroupsIdUptimeRequest) SkipRelatedEvents(skipRelatedEvents bool) ApiGetPagesPageIdComponentGroupsIdUptimeRequest {
+	r.skipRelatedEvents = &skipRelatedEvents
+	return r
+}
 
-func (r ApiGetPagesPageIdComponentGroupsIdUptimeRequest) Execute() (ComponentGroupUptime, *_nethttp.Response, error) {
+// The start date for uptime calculation (defaults to the date of the component in the group with the earliest start_date, or 90 days ago, whichever is more recent). The maximum supported date range is six calendar months. If the year is given, the date defaults to the first day of the year. If the year and month are given, the start date defaults to the first day of that month. The earliest supported date is January 1, 1970.
+func (r ApiGetPagesPageIdComponentGroupsIdUptimeRequest) Start(start PartialStartDate) ApiGetPagesPageIdComponentGroupsIdUptimeRequest {
+	r.start = &start
+	return r
+}
+
+// The end date for uptime calculation (defaults to today in the page&#39;s time zone). The maximum supported date range is six calendar months. If the year is given, the date defaults to the last day of the year. If the year and month are given, the date defaults to the last day of that month. The earliest supported date is January 1, 1970.
+func (r ApiGetPagesPageIdComponentGroupsIdUptimeRequest) End(end PartialEndDate) ApiGetPagesPageIdComponentGroupsIdUptimeRequest {
+	r.end = &end
+	return r
+}
+
+func (r ApiGetPagesPageIdComponentGroupsIdUptimeRequest) Execute() (*ComponentGroupUptime, *http.Response, error) {
 	return r.ApiService.GetPagesPageIdComponentGroupsIdUptimeExecute(r)
 }
 
@@ -487,45 +504,53 @@ GetPagesPageIdComponentGroupsIdUptime Get uptime data for a component group
 
 Get uptime data for a component group that has uptime showcase enabled for at least one component.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @param id Component group identifier
- @return ApiGetPagesPageIdComponentGroupsIdUptimeRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@param id Component group identifier
+	@return ApiGetPagesPageIdComponentGroupsIdUptimeRequest
 */
-func (a *ComponentGroupsApiService) GetPagesPageIdComponentGroupsIdUptime(ctx _context.Context, pageId string, id string) ApiGetPagesPageIdComponentGroupsIdUptimeRequest {
+func (a *ComponentGroupsAPIService) GetPagesPageIdComponentGroupsIdUptime(ctx context.Context, pageId string, id string) ApiGetPagesPageIdComponentGroupsIdUptimeRequest {
 	return ApiGetPagesPageIdComponentGroupsIdUptimeRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
-		id: id,
+		ctx:        ctx,
+		pageId:     pageId,
+		id:         id,
 	}
 }
 
 // Execute executes the request
-//  @return ComponentGroupUptime
-func (a *ComponentGroupsApiService) GetPagesPageIdComponentGroupsIdUptimeExecute(r ApiGetPagesPageIdComponentGroupsIdUptimeRequest) (ComponentGroupUptime, *_nethttp.Response, error) {
+//
+//	@return ComponentGroupUptime
+func (a *ComponentGroupsAPIService) GetPagesPageIdComponentGroupsIdUptimeExecute(r ApiGetPagesPageIdComponentGroupsIdUptimeRequest) (*ComponentGroupUptime, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  ComponentGroupUptime
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ComponentGroupUptime
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ComponentGroupsApiService.GetPagesPageIdComponentGroupsIdUptime")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ComponentGroupsAPIService.GetPagesPageIdComponentGroupsIdUptime")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/component-groups/{id}/uptime"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
+	if r.skipRelatedEvents != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip_related_events", r.skipRelatedEvents, "form", "")
+	}
+	if r.start != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "start", r.start, "form", "")
+	}
+	if r.end != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "end", r.end, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -557,7 +582,7 @@ func (a *ComponentGroupsApiService) GetPagesPageIdComponentGroupsIdUptimeExecute
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -567,15 +592,15 @@ func (a *ComponentGroupsApiService) GetPagesPageIdComponentGroupsIdUptimeExecute
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -586,6 +611,7 @@ func (a *ComponentGroupsApiService) GetPagesPageIdComponentGroupsIdUptimeExecute
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -596,6 +622,7 @@ func (a *ComponentGroupsApiService) GetPagesPageIdComponentGroupsIdUptimeExecute
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -606,6 +633,7 @@ func (a *ComponentGroupsApiService) GetPagesPageIdComponentGroupsIdUptimeExecute
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -613,7 +641,7 @@ func (a *ComponentGroupsApiService) GetPagesPageIdComponentGroupsIdUptimeExecute
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -624,10 +652,10 @@ func (a *ComponentGroupsApiService) GetPagesPageIdComponentGroupsIdUptimeExecute
 }
 
 type ApiPatchPagesPageIdComponentGroupsIdRequest struct {
-	ctx _context.Context
-	ApiService *ComponentGroupsApiService
-	pageId string
-	id string
+	ctx                             context.Context
+	ApiService                      *ComponentGroupsAPIService
+	pageId                          string
+	id                              string
 	patchPagesPageIdComponentGroups *PatchPagesPageIdComponentGroups
 }
 
@@ -636,7 +664,7 @@ func (r ApiPatchPagesPageIdComponentGroupsIdRequest) PatchPagesPageIdComponentGr
 	return r
 }
 
-func (r ApiPatchPagesPageIdComponentGroupsIdRequest) Execute() (GroupComponent, *_nethttp.Response, error) {
+func (r ApiPatchPagesPageIdComponentGroupsIdRequest) Execute() (*GroupComponent, *http.Response, error) {
 	return r.ApiService.PatchPagesPageIdComponentGroupsIdExecute(r)
 }
 
@@ -645,44 +673,43 @@ PatchPagesPageIdComponentGroupsId Update a component group
 
 Update a component group
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @param id Component group identifier
- @return ApiPatchPagesPageIdComponentGroupsIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@param id Component group identifier
+	@return ApiPatchPagesPageIdComponentGroupsIdRequest
 */
-func (a *ComponentGroupsApiService) PatchPagesPageIdComponentGroupsId(ctx _context.Context, pageId string, id string) ApiPatchPagesPageIdComponentGroupsIdRequest {
+func (a *ComponentGroupsAPIService) PatchPagesPageIdComponentGroupsId(ctx context.Context, pageId string, id string) ApiPatchPagesPageIdComponentGroupsIdRequest {
 	return ApiPatchPagesPageIdComponentGroupsIdRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
-		id: id,
+		ctx:        ctx,
+		pageId:     pageId,
+		id:         id,
 	}
 }
 
 // Execute executes the request
-//  @return GroupComponent
-func (a *ComponentGroupsApiService) PatchPagesPageIdComponentGroupsIdExecute(r ApiPatchPagesPageIdComponentGroupsIdRequest) (GroupComponent, *_nethttp.Response, error) {
+//
+//	@return GroupComponent
+func (a *ComponentGroupsAPIService) PatchPagesPageIdComponentGroupsIdExecute(r ApiPatchPagesPageIdComponentGroupsIdRequest) (*GroupComponent, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  GroupComponent
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GroupComponent
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ComponentGroupsApiService.PatchPagesPageIdComponentGroupsId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ComponentGroupsAPIService.PatchPagesPageIdComponentGroupsId")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/component-groups/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.patchPagesPageIdComponentGroups == nil {
 		return localVarReturnValue, nil, reportError("patchPagesPageIdComponentGroups is required and must be specified")
 	}
@@ -720,7 +747,7 @@ func (a *ComponentGroupsApiService) PatchPagesPageIdComponentGroupsIdExecute(r A
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -730,15 +757,15 @@ func (a *ComponentGroupsApiService) PatchPagesPageIdComponentGroupsIdExecute(r A
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -749,6 +776,7 @@ func (a *ComponentGroupsApiService) PatchPagesPageIdComponentGroupsIdExecute(r A
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -759,6 +787,7 @@ func (a *ComponentGroupsApiService) PatchPagesPageIdComponentGroupsIdExecute(r A
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -769,6 +798,7 @@ func (a *ComponentGroupsApiService) PatchPagesPageIdComponentGroupsIdExecute(r A
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -776,7 +806,7 @@ func (a *ComponentGroupsApiService) PatchPagesPageIdComponentGroupsIdExecute(r A
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -787,9 +817,9 @@ func (a *ComponentGroupsApiService) PatchPagesPageIdComponentGroupsIdExecute(r A
 }
 
 type ApiPostPagesPageIdComponentGroupsRequest struct {
-	ctx _context.Context
-	ApiService *ComponentGroupsApiService
-	pageId string
+	ctx                            context.Context
+	ApiService                     *ComponentGroupsAPIService
+	pageId                         string
 	postPagesPageIdComponentGroups *PostPagesPageIdComponentGroups
 }
 
@@ -798,7 +828,7 @@ func (r ApiPostPagesPageIdComponentGroupsRequest) PostPagesPageIdComponentGroups
 	return r
 }
 
-func (r ApiPostPagesPageIdComponentGroupsRequest) Execute() (GroupComponent, *_nethttp.Response, error) {
+func (r ApiPostPagesPageIdComponentGroupsRequest) Execute() (*GroupComponent, *http.Response, error) {
 	return r.ApiService.PostPagesPageIdComponentGroupsExecute(r)
 }
 
@@ -807,41 +837,40 @@ PostPagesPageIdComponentGroups Create a component group
 
 Create a component group
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @return ApiPostPagesPageIdComponentGroupsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@return ApiPostPagesPageIdComponentGroupsRequest
 */
-func (a *ComponentGroupsApiService) PostPagesPageIdComponentGroups(ctx _context.Context, pageId string) ApiPostPagesPageIdComponentGroupsRequest {
+func (a *ComponentGroupsAPIService) PostPagesPageIdComponentGroups(ctx context.Context, pageId string) ApiPostPagesPageIdComponentGroupsRequest {
 	return ApiPostPagesPageIdComponentGroupsRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ctx:        ctx,
+		pageId:     pageId,
 	}
 }
 
 // Execute executes the request
-//  @return GroupComponent
-func (a *ComponentGroupsApiService) PostPagesPageIdComponentGroupsExecute(r ApiPostPagesPageIdComponentGroupsRequest) (GroupComponent, *_nethttp.Response, error) {
+//
+//	@return GroupComponent
+func (a *ComponentGroupsAPIService) PostPagesPageIdComponentGroupsExecute(r ApiPostPagesPageIdComponentGroupsRequest) (*GroupComponent, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  GroupComponent
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GroupComponent
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ComponentGroupsApiService.PostPagesPageIdComponentGroups")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ComponentGroupsAPIService.PostPagesPageIdComponentGroups")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/component-groups"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.postPagesPageIdComponentGroups == nil {
 		return localVarReturnValue, nil, reportError("postPagesPageIdComponentGroups is required and must be specified")
 	}
@@ -879,7 +908,7 @@ func (a *ComponentGroupsApiService) PostPagesPageIdComponentGroupsExecute(r ApiP
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -889,15 +918,15 @@ func (a *ComponentGroupsApiService) PostPagesPageIdComponentGroupsExecute(r ApiP
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -908,6 +937,7 @@ func (a *ComponentGroupsApiService) PostPagesPageIdComponentGroupsExecute(r ApiP
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -918,6 +948,7 @@ func (a *ComponentGroupsApiService) PostPagesPageIdComponentGroupsExecute(r ApiP
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -928,6 +959,7 @@ func (a *ComponentGroupsApiService) PostPagesPageIdComponentGroupsExecute(r ApiP
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -938,6 +970,7 @@ func (a *ComponentGroupsApiService) PostPagesPageIdComponentGroupsExecute(r ApiP
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -945,7 +978,7 @@ func (a *ComponentGroupsApiService) PostPagesPageIdComponentGroupsExecute(r ApiP
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -956,10 +989,10 @@ func (a *ComponentGroupsApiService) PostPagesPageIdComponentGroupsExecute(r ApiP
 }
 
 type ApiPutPagesPageIdComponentGroupsIdRequest struct {
-	ctx _context.Context
-	ApiService *ComponentGroupsApiService
-	pageId string
-	id string
+	ctx                           context.Context
+	ApiService                    *ComponentGroupsAPIService
+	pageId                        string
+	id                            string
 	putPagesPageIdComponentGroups *PutPagesPageIdComponentGroups
 }
 
@@ -968,7 +1001,7 @@ func (r ApiPutPagesPageIdComponentGroupsIdRequest) PutPagesPageIdComponentGroups
 	return r
 }
 
-func (r ApiPutPagesPageIdComponentGroupsIdRequest) Execute() (GroupComponent, *_nethttp.Response, error) {
+func (r ApiPutPagesPageIdComponentGroupsIdRequest) Execute() (*GroupComponent, *http.Response, error) {
 	return r.ApiService.PutPagesPageIdComponentGroupsIdExecute(r)
 }
 
@@ -977,44 +1010,43 @@ PutPagesPageIdComponentGroupsId Update a component group
 
 Update a component group
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @param id Component group identifier
- @return ApiPutPagesPageIdComponentGroupsIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@param id Component group identifier
+	@return ApiPutPagesPageIdComponentGroupsIdRequest
 */
-func (a *ComponentGroupsApiService) PutPagesPageIdComponentGroupsId(ctx _context.Context, pageId string, id string) ApiPutPagesPageIdComponentGroupsIdRequest {
+func (a *ComponentGroupsAPIService) PutPagesPageIdComponentGroupsId(ctx context.Context, pageId string, id string) ApiPutPagesPageIdComponentGroupsIdRequest {
 	return ApiPutPagesPageIdComponentGroupsIdRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
-		id: id,
+		ctx:        ctx,
+		pageId:     pageId,
+		id:         id,
 	}
 }
 
 // Execute executes the request
-//  @return GroupComponent
-func (a *ComponentGroupsApiService) PutPagesPageIdComponentGroupsIdExecute(r ApiPutPagesPageIdComponentGroupsIdRequest) (GroupComponent, *_nethttp.Response, error) {
+//
+//	@return GroupComponent
+func (a *ComponentGroupsAPIService) PutPagesPageIdComponentGroupsIdExecute(r ApiPutPagesPageIdComponentGroupsIdRequest) (*GroupComponent, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  GroupComponent
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GroupComponent
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ComponentGroupsApiService.PutPagesPageIdComponentGroupsId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ComponentGroupsAPIService.PutPagesPageIdComponentGroupsId")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/component-groups/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", _neturl.PathEscape(parameterToString(r.id, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.putPagesPageIdComponentGroups == nil {
 		return localVarReturnValue, nil, reportError("putPagesPageIdComponentGroups is required and must be specified")
 	}
@@ -1052,7 +1084,7 @@ func (a *ComponentGroupsApiService) PutPagesPageIdComponentGroupsIdExecute(r Api
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1062,15 +1094,15 @@ func (a *ComponentGroupsApiService) PutPagesPageIdComponentGroupsIdExecute(r Api
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1081,6 +1113,7 @@ func (a *ComponentGroupsApiService) PutPagesPageIdComponentGroupsIdExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -1091,6 +1124,7 @@ func (a *ComponentGroupsApiService) PutPagesPageIdComponentGroupsIdExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -1101,6 +1135,7 @@ func (a *ComponentGroupsApiService) PutPagesPageIdComponentGroupsIdExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1108,7 +1143,7 @@ func (a *ComponentGroupsApiService) PutPagesPageIdComponentGroupsIdExecute(r Api
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

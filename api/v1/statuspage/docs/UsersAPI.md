@@ -1,13 +1,13 @@
-# \UsersApi
+# \UsersAPI
 
 All URIs are relative to *https://api.statuspage.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteOrganizationsOrganizationIdUsersUserId**](UsersApi.md#DeleteOrganizationsOrganizationIdUsersUserId) | **Delete** /organizations/{organization_id}/users/{user_id} | Delete a user
-[**GetOrganizationsOrganizationIdPermissionsUserId**](UsersApi.md#GetOrganizationsOrganizationIdPermissionsUserId) | **Get** /organizations/{organization_id}/permissions/{user_id} | Get a user&#39;s permissions
-[**GetOrganizationsOrganizationIdUsers**](UsersApi.md#GetOrganizationsOrganizationIdUsers) | **Get** /organizations/{organization_id}/users | Get a list of users
-[**PostOrganizationsOrganizationIdUsers**](UsersApi.md#PostOrganizationsOrganizationIdUsers) | **Post** /organizations/{organization_id}/users | Create a user
+[**DeleteOrganizationsOrganizationIdUsersUserId**](UsersAPI.md#DeleteOrganizationsOrganizationIdUsersUserId) | **Delete** /organizations/{organization_id}/users/{user_id} | Delete a user
+[**GetOrganizationsOrganizationIdPermissionsUserId**](UsersAPI.md#GetOrganizationsOrganizationIdPermissionsUserId) | **Get** /organizations/{organization_id}/permissions/{user_id} | Get a user&#39;s permissions
+[**GetOrganizationsOrganizationIdUsers**](UsersAPI.md#GetOrganizationsOrganizationIdUsers) | **Get** /organizations/{organization_id}/users | Get a list of users
+[**PostOrganizationsOrganizationIdUsers**](UsersAPI.md#PostOrganizationsOrganizationIdUsers) | **Post** /organizations/{organization_id}/users | Create a user
 
 
 
@@ -25,25 +25,25 @@ Delete a user
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    organizationId := "organizationId_example" // string | Organization Identifier
-    userId := "userId_example" // string | User Identifier
+	organizationId := "organizationId_example" // string | Organization Identifier
+	userId := "userId_example" // string | User Identifier
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UsersApi.DeleteOrganizationsOrganizationIdUsersUserId(context.Background(), organizationId, userId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.DeleteOrganizationsOrganizationIdUsersUserId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeleteOrganizationsOrganizationIdUsersUserId`: User
-    fmt.Fprintf(os.Stdout, "Response from `UsersApi.DeleteOrganizationsOrganizationIdUsersUserId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UsersAPI.DeleteOrganizationsOrganizationIdUsersUserId(context.Background(), organizationId, userId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.DeleteOrganizationsOrganizationIdUsersUserId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeleteOrganizationsOrganizationIdUsersUserId`: User
+	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.DeleteOrganizationsOrganizationIdUsersUserId`: %v\n", resp)
 }
 ```
 
@@ -98,25 +98,25 @@ Get a user's permissions
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    organizationId := "organizationId_example" // string | Organization Identifier
-    userId := "userId_example" // string | User identifier
+	organizationId := "organizationId_example" // string | Organization Identifier
+	userId := "userId_example" // string | User identifier
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UsersApi.GetOrganizationsOrganizationIdPermissionsUserId(context.Background(), organizationId, userId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.GetOrganizationsOrganizationIdPermissionsUserId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetOrganizationsOrganizationIdPermissionsUserId`: Permissions
-    fmt.Fprintf(os.Stdout, "Response from `UsersApi.GetOrganizationsOrganizationIdPermissionsUserId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UsersAPI.GetOrganizationsOrganizationIdPermissionsUserId(context.Background(), organizationId, userId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.GetOrganizationsOrganizationIdPermissionsUserId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetOrganizationsOrganizationIdPermissionsUserId`: Permissions
+	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.GetOrganizationsOrganizationIdPermissionsUserId`: %v\n", resp)
 }
 ```
 
@@ -171,26 +171,26 @@ Get a list of users
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    organizationId := "organizationId_example" // string | Organization Identifier
-    page := int32(56) // int32 | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. (optional)
-    perPage := int32(56) // int32 | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. (optional)
+	organizationId := "organizationId_example" // string | Organization Identifier
+	page := int32(56) // int32 | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. (optional)
+	perPage := int32(56) // int32 | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UsersApi.GetOrganizationsOrganizationIdUsers(context.Background(), organizationId).Page(page).PerPage(perPage).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.GetOrganizationsOrganizationIdUsers``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetOrganizationsOrganizationIdUsers`: []User
-    fmt.Fprintf(os.Stdout, "Response from `UsersApi.GetOrganizationsOrganizationIdUsers`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UsersAPI.GetOrganizationsOrganizationIdUsers(context.Background(), organizationId).Page(page).PerPage(perPage).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.GetOrganizationsOrganizationIdUsers``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetOrganizationsOrganizationIdUsers`: []User
+	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.GetOrganizationsOrganizationIdUsers`: %v\n", resp)
 }
 ```
 
@@ -245,25 +245,25 @@ Create a user
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    organizationId := "organizationId_example" // string | Organization Identifier
-    postOrganizationsOrganizationIdUsers := *openapiclient.NewPostOrganizationsOrganizationIdUsers(*openapiclient.NewPostOrganizationsOrganizationIdUsersUser()) // PostOrganizationsOrganizationIdUsers | 
+	organizationId := "organizationId_example" // string | Organization Identifier
+	postOrganizationsOrganizationIdUsers := *openapiclient.NewPostOrganizationsOrganizationIdUsers(*openapiclient.NewPostOrganizationsOrganizationIdUsersUser()) // PostOrganizationsOrganizationIdUsers | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.UsersApi.PostOrganizationsOrganizationIdUsers(context.Background(), organizationId).PostOrganizationsOrganizationIdUsers(postOrganizationsOrganizationIdUsers).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.PostOrganizationsOrganizationIdUsers``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostOrganizationsOrganizationIdUsers`: User
-    fmt.Fprintf(os.Stdout, "Response from `UsersApi.PostOrganizationsOrganizationIdUsers`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.UsersAPI.PostOrganizationsOrganizationIdUsers(context.Background(), organizationId).PostOrganizationsOrganizationIdUsers(postOrganizationsOrganizationIdUsers).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `UsersAPI.PostOrganizationsOrganizationIdUsers``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostOrganizationsOrganizationIdUsers`: User
+	fmt.Fprintf(os.Stdout, "Response from `UsersAPI.PostOrganizationsOrganizationIdUsers`: %v\n", resp)
 }
 ```
 

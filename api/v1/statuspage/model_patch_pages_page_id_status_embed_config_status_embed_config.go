@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig{}
+
 // PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig struct for PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig
 type PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig struct {
 	// Corner where status embed iframe will appear on page
@@ -47,7 +50,7 @@ func NewPatchPagesPageIdStatusEmbedConfigStatusEmbedConfigWithDefaults() *PatchP
 
 // GetPosition returns the Position field value if set, zero value otherwise.
 func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) GetPosition() string {
-	if o == nil || o.Position == nil {
+	if o == nil || IsNil(o.Position) {
 		var ret string
 		return ret
 	}
@@ -57,7 +60,7 @@ func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) GetPosition() strin
 // GetPositionOk returns a tuple with the Position field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) GetPositionOk() (*string, bool) {
-	if o == nil || o.Position == nil {
+	if o == nil || IsNil(o.Position) {
 		return nil, false
 	}
 	return o.Position, true
@@ -65,7 +68,7 @@ func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) GetPositionOk() (*s
 
 // HasPosition returns a boolean if a field has been set.
 func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) HasPosition() bool {
-	if o != nil && o.Position != nil {
+	if o != nil && !IsNil(o.Position) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) SetPosition(v strin
 
 // GetIncidentBackgroundColor returns the IncidentBackgroundColor field value if set, zero value otherwise.
 func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) GetIncidentBackgroundColor() string {
-	if o == nil || o.IncidentBackgroundColor == nil {
+	if o == nil || IsNil(o.IncidentBackgroundColor) {
 		var ret string
 		return ret
 	}
@@ -89,7 +92,7 @@ func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) GetIncidentBackgrou
 // GetIncidentBackgroundColorOk returns a tuple with the IncidentBackgroundColor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) GetIncidentBackgroundColorOk() (*string, bool) {
-	if o == nil || o.IncidentBackgroundColor == nil {
+	if o == nil || IsNil(o.IncidentBackgroundColor) {
 		return nil, false
 	}
 	return o.IncidentBackgroundColor, true
@@ -97,7 +100,7 @@ func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) GetIncidentBackgrou
 
 // HasIncidentBackgroundColor returns a boolean if a field has been set.
 func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) HasIncidentBackgroundColor() bool {
-	if o != nil && o.IncidentBackgroundColor != nil {
+	if o != nil && !IsNil(o.IncidentBackgroundColor) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) SetIncidentBackgrou
 
 // GetIncidentTextColor returns the IncidentTextColor field value if set, zero value otherwise.
 func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) GetIncidentTextColor() string {
-	if o == nil || o.IncidentTextColor == nil {
+	if o == nil || IsNil(o.IncidentTextColor) {
 		var ret string
 		return ret
 	}
@@ -121,7 +124,7 @@ func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) GetIncidentTextColo
 // GetIncidentTextColorOk returns a tuple with the IncidentTextColor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) GetIncidentTextColorOk() (*string, bool) {
-	if o == nil || o.IncidentTextColor == nil {
+	if o == nil || IsNil(o.IncidentTextColor) {
 		return nil, false
 	}
 	return o.IncidentTextColor, true
@@ -129,7 +132,7 @@ func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) GetIncidentTextColo
 
 // HasIncidentTextColor returns a boolean if a field has been set.
 func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) HasIncidentTextColor() bool {
-	if o != nil && o.IncidentTextColor != nil {
+	if o != nil && !IsNil(o.IncidentTextColor) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) SetIncidentTextColo
 
 // GetMaintenanceBackgroundColor returns the MaintenanceBackgroundColor field value if set, zero value otherwise.
 func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) GetMaintenanceBackgroundColor() string {
-	if o == nil || o.MaintenanceBackgroundColor == nil {
+	if o == nil || IsNil(o.MaintenanceBackgroundColor) {
 		var ret string
 		return ret
 	}
@@ -153,7 +156,7 @@ func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) GetMaintenanceBackg
 // GetMaintenanceBackgroundColorOk returns a tuple with the MaintenanceBackgroundColor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) GetMaintenanceBackgroundColorOk() (*string, bool) {
-	if o == nil || o.MaintenanceBackgroundColor == nil {
+	if o == nil || IsNil(o.MaintenanceBackgroundColor) {
 		return nil, false
 	}
 	return o.MaintenanceBackgroundColor, true
@@ -161,7 +164,7 @@ func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) GetMaintenanceBackg
 
 // HasMaintenanceBackgroundColor returns a boolean if a field has been set.
 func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) HasMaintenanceBackgroundColor() bool {
-	if o != nil && o.MaintenanceBackgroundColor != nil {
+	if o != nil && !IsNil(o.MaintenanceBackgroundColor) {
 		return true
 	}
 
@@ -175,7 +178,7 @@ func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) SetMaintenanceBackg
 
 // GetMaintenanceTextColor returns the MaintenanceTextColor field value if set, zero value otherwise.
 func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) GetMaintenanceTextColor() string {
-	if o == nil || o.MaintenanceTextColor == nil {
+	if o == nil || IsNil(o.MaintenanceTextColor) {
 		var ret string
 		return ret
 	}
@@ -185,7 +188,7 @@ func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) GetMaintenanceTextC
 // GetMaintenanceTextColorOk returns a tuple with the MaintenanceTextColor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) GetMaintenanceTextColorOk() (*string, bool) {
-	if o == nil || o.MaintenanceTextColor == nil {
+	if o == nil || IsNil(o.MaintenanceTextColor) {
 		return nil, false
 	}
 	return o.MaintenanceTextColor, true
@@ -193,7 +196,7 @@ func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) GetMaintenanceTextC
 
 // HasMaintenanceTextColor returns a boolean if a field has been set.
 func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) HasMaintenanceTextColor() bool {
-	if o != nil && o.MaintenanceTextColor != nil {
+	if o != nil && !IsNil(o.MaintenanceTextColor) {
 		return true
 	}
 
@@ -206,23 +209,31 @@ func (o *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) SetMaintenanceTextC
 }
 
 func (o PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Position != nil {
-		toSerialize["position"] = o.Position
-	}
-	if o.IncidentBackgroundColor != nil {
-		toSerialize["incident_background_color"] = o.IncidentBackgroundColor
-	}
-	if o.IncidentTextColor != nil {
-		toSerialize["incident_text_color"] = o.IncidentTextColor
-	}
-	if o.MaintenanceBackgroundColor != nil {
-		toSerialize["maintenance_background_color"] = o.MaintenanceBackgroundColor
-	}
-	if o.MaintenanceTextColor != nil {
-		toSerialize["maintenance_text_color"] = o.MaintenanceTextColor
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Position) {
+		toSerialize["position"] = o.Position
+	}
+	if !IsNil(o.IncidentBackgroundColor) {
+		toSerialize["incident_background_color"] = o.IncidentBackgroundColor
+	}
+	if !IsNil(o.IncidentTextColor) {
+		toSerialize["incident_text_color"] = o.IncidentTextColor
+	}
+	if !IsNil(o.MaintenanceBackgroundColor) {
+		toSerialize["maintenance_background_color"] = o.MaintenanceBackgroundColor
+	}
+	if !IsNil(o.MaintenanceTextColor) {
+		toSerialize["maintenance_text_color"] = o.MaintenanceTextColor
+	}
+	return toSerialize, nil
 }
 
 type NullablePatchPagesPageIdStatusEmbedConfigStatusEmbedConfig struct {
@@ -260,5 +271,3 @@ func (v *NullablePatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) UnmarshalJS
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

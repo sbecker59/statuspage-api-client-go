@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MetricId** | Pointer to [**[]MetricAddResponseMetricId**](MetricAddResponseMetricId.md) | Metric identifier to add data to | [optional] 
+**MetricId** | Pointer to [**[]MetricAddResponseMetricIdInner**](MetricAddResponseMetricIdInner.md) | Metric identifier to add data to | [optional] 
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetMetricId
 
-`func (o *MetricAddResponse) GetMetricId() []MetricAddResponseMetricId`
+`func (o *MetricAddResponse) GetMetricId() []MetricAddResponseMetricIdInner`
 
 GetMetricId returns the MetricId field if non-nil, zero value otherwise.
 
 ### GetMetricIdOk
 
-`func (o *MetricAddResponse) GetMetricIdOk() (*[]MetricAddResponseMetricId, bool)`
+`func (o *MetricAddResponse) GetMetricIdOk() (*[]MetricAddResponseMetricIdInner, bool)`
 
 GetMetricIdOk returns a tuple with the MetricId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetricId
 
-`func (o *MetricAddResponse) SetMetricId(v []MetricAddResponseMetricId)`
+`func (o *MetricAddResponse) SetMetricId(v []MetricAddResponseMetricIdInner)`
 
 SetMetricId sets MetricId field to given value.
 

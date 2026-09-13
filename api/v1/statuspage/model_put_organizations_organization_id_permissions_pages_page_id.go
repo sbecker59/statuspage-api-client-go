@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PutOrganizationsOrganizationIdPermissionsPagesPageId type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PutOrganizationsOrganizationIdPermissionsPagesPageId{}
+
 // PutOrganizationsOrganizationIdPermissionsPagesPageId struct for PutOrganizationsOrganizationIdPermissionsPagesPageId
 type PutOrganizationsOrganizationIdPermissionsPagesPageId struct {
 	// Whether or not user should have page configuration role. This field will only be present for pages with Role Based Access Control.
@@ -43,7 +46,7 @@ func NewPutOrganizationsOrganizationIdPermissionsPagesPageIdWithDefaults() *PutO
 
 // GetPageConfiguration returns the PageConfiguration field value if set, zero value otherwise.
 func (o *PutOrganizationsOrganizationIdPermissionsPagesPageId) GetPageConfiguration() bool {
-	if o == nil || o.PageConfiguration == nil {
+	if o == nil || IsNil(o.PageConfiguration) {
 		var ret bool
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *PutOrganizationsOrganizationIdPermissionsPagesPageId) GetPageConfigurat
 // GetPageConfigurationOk returns a tuple with the PageConfiguration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PutOrganizationsOrganizationIdPermissionsPagesPageId) GetPageConfigurationOk() (*bool, bool) {
-	if o == nil || o.PageConfiguration == nil {
+	if o == nil || IsNil(o.PageConfiguration) {
 		return nil, false
 	}
 	return o.PageConfiguration, true
@@ -61,7 +64,7 @@ func (o *PutOrganizationsOrganizationIdPermissionsPagesPageId) GetPageConfigurat
 
 // HasPageConfiguration returns a boolean if a field has been set.
 func (o *PutOrganizationsOrganizationIdPermissionsPagesPageId) HasPageConfiguration() bool {
-	if o != nil && o.PageConfiguration != nil {
+	if o != nil && !IsNil(o.PageConfiguration) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *PutOrganizationsOrganizationIdPermissionsPagesPageId) SetPageConfigurat
 
 // GetIncidentManager returns the IncidentManager field value if set, zero value otherwise.
 func (o *PutOrganizationsOrganizationIdPermissionsPagesPageId) GetIncidentManager() bool {
-	if o == nil || o.IncidentManager == nil {
+	if o == nil || IsNil(o.IncidentManager) {
 		var ret bool
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *PutOrganizationsOrganizationIdPermissionsPagesPageId) GetIncidentManage
 // GetIncidentManagerOk returns a tuple with the IncidentManager field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PutOrganizationsOrganizationIdPermissionsPagesPageId) GetIncidentManagerOk() (*bool, bool) {
-	if o == nil || o.IncidentManager == nil {
+	if o == nil || IsNil(o.IncidentManager) {
 		return nil, false
 	}
 	return o.IncidentManager, true
@@ -93,7 +96,7 @@ func (o *PutOrganizationsOrganizationIdPermissionsPagesPageId) GetIncidentManage
 
 // HasIncidentManager returns a boolean if a field has been set.
 func (o *PutOrganizationsOrganizationIdPermissionsPagesPageId) HasIncidentManager() bool {
-	if o != nil && o.IncidentManager != nil {
+	if o != nil && !IsNil(o.IncidentManager) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *PutOrganizationsOrganizationIdPermissionsPagesPageId) SetIncidentManage
 
 // GetMaintenanceManager returns the MaintenanceManager field value if set, zero value otherwise.
 func (o *PutOrganizationsOrganizationIdPermissionsPagesPageId) GetMaintenanceManager() bool {
-	if o == nil || o.MaintenanceManager == nil {
+	if o == nil || IsNil(o.MaintenanceManager) {
 		var ret bool
 		return ret
 	}
@@ -117,7 +120,7 @@ func (o *PutOrganizationsOrganizationIdPermissionsPagesPageId) GetMaintenanceMan
 // GetMaintenanceManagerOk returns a tuple with the MaintenanceManager field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PutOrganizationsOrganizationIdPermissionsPagesPageId) GetMaintenanceManagerOk() (*bool, bool) {
-	if o == nil || o.MaintenanceManager == nil {
+	if o == nil || IsNil(o.MaintenanceManager) {
 		return nil, false
 	}
 	return o.MaintenanceManager, true
@@ -125,7 +128,7 @@ func (o *PutOrganizationsOrganizationIdPermissionsPagesPageId) GetMaintenanceMan
 
 // HasMaintenanceManager returns a boolean if a field has been set.
 func (o *PutOrganizationsOrganizationIdPermissionsPagesPageId) HasMaintenanceManager() bool {
-	if o != nil && o.MaintenanceManager != nil {
+	if o != nil && !IsNil(o.MaintenanceManager) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *PutOrganizationsOrganizationIdPermissionsPagesPageId) SetMaintenanceMan
 }
 
 func (o PutOrganizationsOrganizationIdPermissionsPagesPageId) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.PageConfiguration != nil {
-		toSerialize["page_configuration"] = o.PageConfiguration
-	}
-	if o.IncidentManager != nil {
-		toSerialize["incident_manager"] = o.IncidentManager
-	}
-	if o.MaintenanceManager != nil {
-		toSerialize["maintenance_manager"] = o.MaintenanceManager
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PutOrganizationsOrganizationIdPermissionsPagesPageId) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.PageConfiguration) {
+		toSerialize["page_configuration"] = o.PageConfiguration
+	}
+	if !IsNil(o.IncidentManager) {
+		toSerialize["incident_manager"] = o.IncidentManager
+	}
+	if !IsNil(o.MaintenanceManager) {
+		toSerialize["maintenance_manager"] = o.MaintenanceManager
+	}
+	return toSerialize, nil
 }
 
 type NullablePutOrganizationsOrganizationIdPermissionsPagesPageId struct {
@@ -186,5 +197,3 @@ func (v *NullablePutOrganizationsOrganizationIdPermissionsPagesPageId) Unmarshal
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

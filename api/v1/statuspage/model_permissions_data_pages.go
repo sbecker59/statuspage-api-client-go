@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PermissionsDataPages type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PermissionsDataPages{}
+
 // PermissionsDataPages Pages accessible by the user.
 type PermissionsDataPages struct {
 	// Page identifier
@@ -45,7 +48,7 @@ func NewPermissionsDataPagesWithDefaults() *PermissionsDataPages {
 
 // GetPageId returns the PageId field value if set, zero value otherwise.
 func (o *PermissionsDataPages) GetPageId() string {
-	if o == nil || o.PageId == nil {
+	if o == nil || IsNil(o.PageId) {
 		var ret string
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *PermissionsDataPages) GetPageId() string {
 // GetPageIdOk returns a tuple with the PageId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PermissionsDataPages) GetPageIdOk() (*string, bool) {
-	if o == nil || o.PageId == nil {
+	if o == nil || IsNil(o.PageId) {
 		return nil, false
 	}
 	return o.PageId, true
@@ -63,7 +66,7 @@ func (o *PermissionsDataPages) GetPageIdOk() (*string, bool) {
 
 // HasPageId returns a boolean if a field has been set.
 func (o *PermissionsDataPages) HasPageId() bool {
-	if o != nil && o.PageId != nil {
+	if o != nil && !IsNil(o.PageId) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *PermissionsDataPages) SetPageId(v string) {
 
 // GetPageConfiguration returns the PageConfiguration field value if set, zero value otherwise.
 func (o *PermissionsDataPages) GetPageConfiguration() bool {
-	if o == nil || o.PageConfiguration == nil {
+	if o == nil || IsNil(o.PageConfiguration) {
 		var ret bool
 		return ret
 	}
@@ -87,7 +90,7 @@ func (o *PermissionsDataPages) GetPageConfiguration() bool {
 // GetPageConfigurationOk returns a tuple with the PageConfiguration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PermissionsDataPages) GetPageConfigurationOk() (*bool, bool) {
-	if o == nil || o.PageConfiguration == nil {
+	if o == nil || IsNil(o.PageConfiguration) {
 		return nil, false
 	}
 	return o.PageConfiguration, true
@@ -95,7 +98,7 @@ func (o *PermissionsDataPages) GetPageConfigurationOk() (*bool, bool) {
 
 // HasPageConfiguration returns a boolean if a field has been set.
 func (o *PermissionsDataPages) HasPageConfiguration() bool {
-	if o != nil && o.PageConfiguration != nil {
+	if o != nil && !IsNil(o.PageConfiguration) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *PermissionsDataPages) SetPageConfiguration(v bool) {
 
 // GetIncidentManager returns the IncidentManager field value if set, zero value otherwise.
 func (o *PermissionsDataPages) GetIncidentManager() bool {
-	if o == nil || o.IncidentManager == nil {
+	if o == nil || IsNil(o.IncidentManager) {
 		var ret bool
 		return ret
 	}
@@ -119,7 +122,7 @@ func (o *PermissionsDataPages) GetIncidentManager() bool {
 // GetIncidentManagerOk returns a tuple with the IncidentManager field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PermissionsDataPages) GetIncidentManagerOk() (*bool, bool) {
-	if o == nil || o.IncidentManager == nil {
+	if o == nil || IsNil(o.IncidentManager) {
 		return nil, false
 	}
 	return o.IncidentManager, true
@@ -127,7 +130,7 @@ func (o *PermissionsDataPages) GetIncidentManagerOk() (*bool, bool) {
 
 // HasIncidentManager returns a boolean if a field has been set.
 func (o *PermissionsDataPages) HasIncidentManager() bool {
-	if o != nil && o.IncidentManager != nil {
+	if o != nil && !IsNil(o.IncidentManager) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *PermissionsDataPages) SetIncidentManager(v bool) {
 
 // GetMaintenanceManager returns the MaintenanceManager field value if set, zero value otherwise.
 func (o *PermissionsDataPages) GetMaintenanceManager() bool {
-	if o == nil || o.MaintenanceManager == nil {
+	if o == nil || IsNil(o.MaintenanceManager) {
 		var ret bool
 		return ret
 	}
@@ -151,7 +154,7 @@ func (o *PermissionsDataPages) GetMaintenanceManager() bool {
 // GetMaintenanceManagerOk returns a tuple with the MaintenanceManager field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PermissionsDataPages) GetMaintenanceManagerOk() (*bool, bool) {
-	if o == nil || o.MaintenanceManager == nil {
+	if o == nil || IsNil(o.MaintenanceManager) {
 		return nil, false
 	}
 	return o.MaintenanceManager, true
@@ -159,7 +162,7 @@ func (o *PermissionsDataPages) GetMaintenanceManagerOk() (*bool, bool) {
 
 // HasMaintenanceManager returns a boolean if a field has been set.
 func (o *PermissionsDataPages) HasMaintenanceManager() bool {
-	if o != nil && o.MaintenanceManager != nil {
+	if o != nil && !IsNil(o.MaintenanceManager) {
 		return true
 	}
 
@@ -172,20 +175,28 @@ func (o *PermissionsDataPages) SetMaintenanceManager(v bool) {
 }
 
 func (o PermissionsDataPages) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.PageId != nil {
-		toSerialize["page_id"] = o.PageId
-	}
-	if o.PageConfiguration != nil {
-		toSerialize["page_configuration"] = o.PageConfiguration
-	}
-	if o.IncidentManager != nil {
-		toSerialize["incident_manager"] = o.IncidentManager
-	}
-	if o.MaintenanceManager != nil {
-		toSerialize["maintenance_manager"] = o.MaintenanceManager
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PermissionsDataPages) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.PageId) {
+		toSerialize["page_id"] = o.PageId
+	}
+	if !IsNil(o.PageConfiguration) {
+		toSerialize["page_configuration"] = o.PageConfiguration
+	}
+	if !IsNil(o.IncidentManager) {
+		toSerialize["incident_manager"] = o.IncidentManager
+	}
+	if !IsNil(o.MaintenanceManager) {
+		toSerialize["maintenance_manager"] = o.MaintenanceManager
+	}
+	return toSerialize, nil
 }
 
 type NullablePermissionsDataPages struct {
@@ -223,5 +234,3 @@ func (v *NullablePermissionsDataPages) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

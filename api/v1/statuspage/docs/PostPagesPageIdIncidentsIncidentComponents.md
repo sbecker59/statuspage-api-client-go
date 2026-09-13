@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ComponentId** | Pointer to **string** | Map of status changes to apply to affected components | [optional] 
+**Var7bsz4wf6bh17** | Pointer to **string** | Map of status changes to apply to affected components | [optional] 
 
 ## Methods
 
@@ -25,30 +25,30 @@ NewPostPagesPageIdIncidentsIncidentComponentsWithDefaults instantiates a new Pos
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetComponentId
+### GetVar7bsz4wf6bh17
 
-`func (o *PostPagesPageIdIncidentsIncidentComponents) GetComponentId() string`
+`func (o *PostPagesPageIdIncidentsIncidentComponents) GetVar7bsz4wf6bh17() string`
 
-GetComponentId returns the ComponentId field if non-nil, zero value otherwise.
+GetVar7bsz4wf6bh17 returns the Var7bsz4wf6bh17 field if non-nil, zero value otherwise.
 
-### GetComponentIdOk
+### GetVar7bsz4wf6bh17Ok
 
-`func (o *PostPagesPageIdIncidentsIncidentComponents) GetComponentIdOk() (*string, bool)`
+`func (o *PostPagesPageIdIncidentsIncidentComponents) GetVar7bsz4wf6bh17Ok() (*string, bool)`
 
-GetComponentIdOk returns a tuple with the ComponentId field if it's non-nil, zero value otherwise
+GetVar7bsz4wf6bh17Ok returns a tuple with the Var7bsz4wf6bh17 field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetComponentId
+### SetVar7bsz4wf6bh17
 
-`func (o *PostPagesPageIdIncidentsIncidentComponents) SetComponentId(v string)`
+`func (o *PostPagesPageIdIncidentsIncidentComponents) SetVar7bsz4wf6bh17(v string)`
 
-SetComponentId sets ComponentId field to given value.
+SetVar7bsz4wf6bh17 sets Var7bsz4wf6bh17 field to given value.
 
-### HasComponentId
+### HasVar7bsz4wf6bh17
 
-`func (o *PostPagesPageIdIncidentsIncidentComponents) HasComponentId() bool`
+`func (o *PostPagesPageIdIncidentsIncidentComponents) HasVar7bsz4wf6bh17() bool`
 
-HasComponentId returns a boolean if a field has been set.
+HasVar7bsz4wf6bh17 returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,19 +1,19 @@
-# \MetricsApi
+# \MetricsAPI
 
 All URIs are relative to *https://api.statuspage.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeletePagesPageIdMetricsMetricId**](MetricsApi.md#DeletePagesPageIdMetricsMetricId) | **Delete** /pages/{page_id}/metrics/{metric_id} | Delete a metric
-[**DeletePagesPageIdMetricsMetricIdData**](MetricsApi.md#DeletePagesPageIdMetricsMetricIdData) | **Delete** /pages/{page_id}/metrics/{metric_id}/data | Reset data for a metric
-[**GetPagesPageIdMetrics**](MetricsApi.md#GetPagesPageIdMetrics) | **Get** /pages/{page_id}/metrics | Get a list of metrics
-[**GetPagesPageIdMetricsMetricId**](MetricsApi.md#GetPagesPageIdMetricsMetricId) | **Get** /pages/{page_id}/metrics/{metric_id} | Get a metric
-[**GetPagesPageIdMetricsProvidersMetricsProviderIdMetrics**](MetricsApi.md#GetPagesPageIdMetricsProvidersMetricsProviderIdMetrics) | **Get** /pages/{page_id}/metrics_providers/{metrics_provider_id}/metrics | List metrics for a metric provider
-[**PatchPagesPageIdMetricsMetricId**](MetricsApi.md#PatchPagesPageIdMetricsMetricId) | **Patch** /pages/{page_id}/metrics/{metric_id} | Update a metric
-[**PostPagesPageIdMetricsData**](MetricsApi.md#PostPagesPageIdMetricsData) | **Post** /pages/{page_id}/metrics/data | Add data points to metrics
-[**PostPagesPageIdMetricsMetricIdData**](MetricsApi.md#PostPagesPageIdMetricsMetricIdData) | **Post** /pages/{page_id}/metrics/{metric_id}/data | Add data to a metric
-[**PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics**](MetricsApi.md#PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics) | **Post** /pages/{page_id}/metrics_providers/{metrics_provider_id}/metrics | Create a metric for a metric provider
-[**PutPagesPageIdMetricsMetricId**](MetricsApi.md#PutPagesPageIdMetricsMetricId) | **Put** /pages/{page_id}/metrics/{metric_id} | Update a metric
+[**DeletePagesPageIdMetricsMetricId**](MetricsAPI.md#DeletePagesPageIdMetricsMetricId) | **Delete** /pages/{page_id}/metrics/{metric_id} | Delete a metric
+[**DeletePagesPageIdMetricsMetricIdData**](MetricsAPI.md#DeletePagesPageIdMetricsMetricIdData) | **Delete** /pages/{page_id}/metrics/{metric_id}/data | Reset data for a metric
+[**GetPagesPageIdMetrics**](MetricsAPI.md#GetPagesPageIdMetrics) | **Get** /pages/{page_id}/metrics | Get a list of metrics
+[**GetPagesPageIdMetricsMetricId**](MetricsAPI.md#GetPagesPageIdMetricsMetricId) | **Get** /pages/{page_id}/metrics/{metric_id} | Get a metric
+[**GetPagesPageIdMetricsProvidersMetricsProviderIdMetrics**](MetricsAPI.md#GetPagesPageIdMetricsProvidersMetricsProviderIdMetrics) | **Get** /pages/{page_id}/metrics_providers/{metrics_provider_id}/metrics | List metrics for a metric provider
+[**PatchPagesPageIdMetricsMetricId**](MetricsAPI.md#PatchPagesPageIdMetricsMetricId) | **Patch** /pages/{page_id}/metrics/{metric_id} | Update a metric
+[**PostPagesPageIdMetricsData**](MetricsAPI.md#PostPagesPageIdMetricsData) | **Post** /pages/{page_id}/metrics/data | Add data points to metrics
+[**PostPagesPageIdMetricsMetricIdData**](MetricsAPI.md#PostPagesPageIdMetricsMetricIdData) | **Post** /pages/{page_id}/metrics/{metric_id}/data | Add data to a metric
+[**PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics**](MetricsAPI.md#PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics) | **Post** /pages/{page_id}/metrics_providers/{metrics_provider_id}/metrics | Create a metric for a metric provider
+[**PutPagesPageIdMetricsMetricId**](MetricsAPI.md#PutPagesPageIdMetricsMetricId) | **Put** /pages/{page_id}/metrics/{metric_id} | Update a metric
 
 
 
@@ -31,25 +31,25 @@ Delete a metric
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    metricId := "metricId_example" // string | Metric Identifier
+	pageId := "pageId_example" // string | Page identifier
+	metricId := "metricId_example" // string | Metric Identifier
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.DeletePagesPageIdMetricsMetricId(context.Background(), pageId, metricId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.DeletePagesPageIdMetricsMetricId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeletePagesPageIdMetricsMetricId`: Metric
-    fmt.Fprintf(os.Stdout, "Response from `MetricsApi.DeletePagesPageIdMetricsMetricId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MetricsAPI.DeletePagesPageIdMetricsMetricId(context.Background(), pageId, metricId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MetricsAPI.DeletePagesPageIdMetricsMetricId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeletePagesPageIdMetricsMetricId`: Metric
+	fmt.Fprintf(os.Stdout, "Response from `MetricsAPI.DeletePagesPageIdMetricsMetricId`: %v\n", resp)
 }
 ```
 
@@ -104,25 +104,25 @@ Reset data for a metric
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    metricId := "metricId_example" // string | Metric Identifier
+	pageId := "pageId_example" // string | Page identifier
+	metricId := "metricId_example" // string | Metric Identifier
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.DeletePagesPageIdMetricsMetricIdData(context.Background(), pageId, metricId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.DeletePagesPageIdMetricsMetricIdData``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeletePagesPageIdMetricsMetricIdData`: Metric
-    fmt.Fprintf(os.Stdout, "Response from `MetricsApi.DeletePagesPageIdMetricsMetricIdData`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MetricsAPI.DeletePagesPageIdMetricsMetricIdData(context.Background(), pageId, metricId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MetricsAPI.DeletePagesPageIdMetricsMetricIdData``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeletePagesPageIdMetricsMetricIdData`: Metric
+	fmt.Fprintf(os.Stdout, "Response from `MetricsAPI.DeletePagesPageIdMetricsMetricIdData`: %v\n", resp)
 }
 ```
 
@@ -177,26 +177,26 @@ Get a list of metrics
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    page := int32(56) // int32 | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. (optional)
-    perPage := int32(56) // int32 | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. (optional)
+	pageId := "pageId_example" // string | Page identifier
+	page := int32(56) // int32 | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. (optional)
+	perPage := int32(56) // int32 | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.GetPagesPageIdMetrics(context.Background(), pageId).Page(page).PerPage(perPage).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.GetPagesPageIdMetrics``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPagesPageIdMetrics`: Metric
-    fmt.Fprintf(os.Stdout, "Response from `MetricsApi.GetPagesPageIdMetrics`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MetricsAPI.GetPagesPageIdMetrics(context.Background(), pageId).Page(page).PerPage(perPage).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MetricsAPI.GetPagesPageIdMetrics``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPagesPageIdMetrics`: Metric
+	fmt.Fprintf(os.Stdout, "Response from `MetricsAPI.GetPagesPageIdMetrics`: %v\n", resp)
 }
 ```
 
@@ -251,25 +251,25 @@ Get a metric
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    metricId := "metricId_example" // string | Metric Identifier
+	pageId := "pageId_example" // string | Page identifier
+	metricId := "metricId_example" // string | Metric Identifier
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.GetPagesPageIdMetricsMetricId(context.Background(), pageId, metricId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.GetPagesPageIdMetricsMetricId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPagesPageIdMetricsMetricId`: Metric
-    fmt.Fprintf(os.Stdout, "Response from `MetricsApi.GetPagesPageIdMetricsMetricId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MetricsAPI.GetPagesPageIdMetricsMetricId(context.Background(), pageId, metricId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MetricsAPI.GetPagesPageIdMetricsMetricId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPagesPageIdMetricsMetricId`: Metric
+	fmt.Fprintf(os.Stdout, "Response from `MetricsAPI.GetPagesPageIdMetricsMetricId`: %v\n", resp)
 }
 ```
 
@@ -324,27 +324,27 @@ List metrics for a metric provider
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    metricsProviderId := "metricsProviderId_example" // string | Metric Provider Identifier
-    page := int32(56) // int32 | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. (optional)
-    perPage := int32(56) // int32 | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. (optional)
+	pageId := "pageId_example" // string | Page identifier
+	metricsProviderId := "metricsProviderId_example" // string | Metric Provider Identifier
+	page := int32(56) // int32 | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. (optional)
+	perPage := int32(56) // int32 | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.GetPagesPageIdMetricsProvidersMetricsProviderIdMetrics(context.Background(), pageId, metricsProviderId).Page(page).PerPage(perPage).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.GetPagesPageIdMetricsProvidersMetricsProviderIdMetrics``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPagesPageIdMetricsProvidersMetricsProviderIdMetrics`: Metric
-    fmt.Fprintf(os.Stdout, "Response from `MetricsApi.GetPagesPageIdMetricsProvidersMetricsProviderIdMetrics`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MetricsAPI.GetPagesPageIdMetricsProvidersMetricsProviderIdMetrics(context.Background(), pageId, metricsProviderId).Page(page).PerPage(perPage).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MetricsAPI.GetPagesPageIdMetricsProvidersMetricsProviderIdMetrics``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPagesPageIdMetricsProvidersMetricsProviderIdMetrics`: Metric
+	fmt.Fprintf(os.Stdout, "Response from `MetricsAPI.GetPagesPageIdMetricsProvidersMetricsProviderIdMetrics`: %v\n", resp)
 }
 ```
 
@@ -401,26 +401,26 @@ Update a metric
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    metricId := "metricId_example" // string | Metric Identifier
-    patchPagesPageIdMetrics := *openapiclient.NewPatchPagesPageIdMetrics() // PatchPagesPageIdMetrics | 
+	pageId := "pageId_example" // string | Page identifier
+	metricId := "metricId_example" // string | Metric Identifier
+	patchPagesPageIdMetrics := *openapiclient.NewPatchPagesPageIdMetrics() // PatchPagesPageIdMetrics | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.PatchPagesPageIdMetricsMetricId(context.Background(), pageId, metricId).PatchPagesPageIdMetrics(patchPagesPageIdMetrics).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.PatchPagesPageIdMetricsMetricId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PatchPagesPageIdMetricsMetricId`: Metric
-    fmt.Fprintf(os.Stdout, "Response from `MetricsApi.PatchPagesPageIdMetricsMetricId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MetricsAPI.PatchPagesPageIdMetricsMetricId(context.Background(), pageId, metricId).PatchPagesPageIdMetrics(patchPagesPageIdMetrics).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MetricsAPI.PatchPagesPageIdMetricsMetricId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PatchPagesPageIdMetricsMetricId`: Metric
+	fmt.Fprintf(os.Stdout, "Response from `MetricsAPI.PatchPagesPageIdMetricsMetricId`: %v\n", resp)
 }
 ```
 
@@ -476,25 +476,25 @@ Add data points to metrics
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    postPagesPageIdMetricsData := *openapiclient.NewPostPagesPageIdMetricsData(*openapiclient.NewMetricAddResponse()) // PostPagesPageIdMetricsData | 
+	pageId := "pageId_example" // string | Page identifier
+	postPagesPageIdMetricsData := *openapiclient.NewPostPagesPageIdMetricsData(*openapiclient.NewMetricAddResponse()) // PostPagesPageIdMetricsData | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.PostPagesPageIdMetricsData(context.Background(), pageId).PostPagesPageIdMetricsData(postPagesPageIdMetricsData).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.PostPagesPageIdMetricsData``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostPagesPageIdMetricsData`: MetricAddResponse
-    fmt.Fprintf(os.Stdout, "Response from `MetricsApi.PostPagesPageIdMetricsData`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MetricsAPI.PostPagesPageIdMetricsData(context.Background(), pageId).PostPagesPageIdMetricsData(postPagesPageIdMetricsData).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MetricsAPI.PostPagesPageIdMetricsData``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostPagesPageIdMetricsData`: MetricAddResponse
+	fmt.Fprintf(os.Stdout, "Response from `MetricsAPI.PostPagesPageIdMetricsData`: %v\n", resp)
 }
 ```
 
@@ -548,26 +548,26 @@ Add data to a metric
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    metricId := "metricId_example" // string | Metric Identifier
-    postPagesPageIdMetricsMetricIdData := *openapiclient.NewPostPagesPageIdMetricsMetricIdData(*openapiclient.NewPostPagesPageIdMetricsMetricIdDataData()) // PostPagesPageIdMetricsMetricIdData | 
+	pageId := "pageId_example" // string | Page identifier
+	metricId := "metricId_example" // string | Metric Identifier
+	postPagesPageIdMetricsMetricIdData := *openapiclient.NewPostPagesPageIdMetricsMetricIdData(*openapiclient.NewPostPagesPageIdMetricsMetricIdDataData()) // PostPagesPageIdMetricsMetricIdData | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.PostPagesPageIdMetricsMetricIdData(context.Background(), pageId, metricId).PostPagesPageIdMetricsMetricIdData(postPagesPageIdMetricsMetricIdData).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.PostPagesPageIdMetricsMetricIdData``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostPagesPageIdMetricsMetricIdData`: SingleMetricAddResponse
-    fmt.Fprintf(os.Stdout, "Response from `MetricsApi.PostPagesPageIdMetricsMetricIdData`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MetricsAPI.PostPagesPageIdMetricsMetricIdData(context.Background(), pageId, metricId).PostPagesPageIdMetricsMetricIdData(postPagesPageIdMetricsMetricIdData).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MetricsAPI.PostPagesPageIdMetricsMetricIdData``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostPagesPageIdMetricsMetricIdData`: SingleMetricAddResponse
+	fmt.Fprintf(os.Stdout, "Response from `MetricsAPI.PostPagesPageIdMetricsMetricIdData`: %v\n", resp)
 }
 ```
 
@@ -623,26 +623,26 @@ Create a metric for a metric provider
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    metricsProviderId := "metricsProviderId_example" // string | Metric Provider Identifier
-    postPagesPageIdMetricsProvidersMetricsProviderIdMetrics := *openapiclient.NewPostPagesPageIdMetricsProvidersMetricsProviderIdMetrics() // PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics | 
+	pageId := "pageId_example" // string | Page identifier
+	metricsProviderId := "metricsProviderId_example" // string | Metric Provider Identifier
+	postPagesPageIdMetricsProvidersMetricsProviderIdMetrics := *openapiclient.NewPostPagesPageIdMetricsProvidersMetricsProviderIdMetrics() // PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics(context.Background(), pageId, metricsProviderId).PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics(postPagesPageIdMetricsProvidersMetricsProviderIdMetrics).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics`: Metric
-    fmt.Fprintf(os.Stdout, "Response from `MetricsApi.PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MetricsAPI.PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics(context.Background(), pageId, metricsProviderId).PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics(postPagesPageIdMetricsProvidersMetricsProviderIdMetrics).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MetricsAPI.PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics`: Metric
+	fmt.Fprintf(os.Stdout, "Response from `MetricsAPI.PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics`: %v\n", resp)
 }
 ```
 
@@ -698,26 +698,26 @@ Update a metric
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    metricId := "metricId_example" // string | Metric Identifier
-    putPagesPageIdMetrics := *openapiclient.NewPutPagesPageIdMetrics() // PutPagesPageIdMetrics | 
+	pageId := "pageId_example" // string | Page identifier
+	metricId := "metricId_example" // string | Metric Identifier
+	putPagesPageIdMetrics := *openapiclient.NewPutPagesPageIdMetrics() // PutPagesPageIdMetrics | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.MetricsApi.PutPagesPageIdMetricsMetricId(context.Background(), pageId, metricId).PutPagesPageIdMetrics(putPagesPageIdMetrics).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.PutPagesPageIdMetricsMetricId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutPagesPageIdMetricsMetricId`: Metric
-    fmt.Fprintf(os.Stdout, "Response from `MetricsApi.PutPagesPageIdMetricsMetricId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.MetricsAPI.PutPagesPageIdMetricsMetricId(context.Background(), pageId, metricId).PutPagesPageIdMetrics(putPagesPageIdMetrics).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `MetricsAPI.PutPagesPageIdMetricsMetricId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutPagesPageIdMetricsMetricId`: Metric
+	fmt.Fprintf(os.Stdout, "Response from `MetricsAPI.PutPagesPageIdMetricsMetricId`: %v\n", resp)
 }
 ```
 

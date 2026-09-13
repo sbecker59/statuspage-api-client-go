@@ -1,14 +1,14 @@
-# \IncidentSubscribersApi
+# \IncidentSubscribersAPI
 
 All URIs are relative to *https://api.statuspage.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeletePagesPageIdIncidentsIncidentIdSubscribersSubscriberId**](IncidentSubscribersApi.md#DeletePagesPageIdIncidentsIncidentIdSubscribersSubscriberId) | **Delete** /pages/{page_id}/incidents/{incident_id}/subscribers/{subscriber_id} | Unsubscribe an incident subscriber
-[**GetPagesPageIdIncidentsIncidentIdSubscribers**](IncidentSubscribersApi.md#GetPagesPageIdIncidentsIncidentIdSubscribers) | **Get** /pages/{page_id}/incidents/{incident_id}/subscribers | Get a list of incident subscribers
-[**GetPagesPageIdIncidentsIncidentIdSubscribersSubscriberId**](IncidentSubscribersApi.md#GetPagesPageIdIncidentsIncidentIdSubscribersSubscriberId) | **Get** /pages/{page_id}/incidents/{incident_id}/subscribers/{subscriber_id} | Get an incident subscriber
-[**PostPagesPageIdIncidentsIncidentIdSubscribers**](IncidentSubscribersApi.md#PostPagesPageIdIncidentsIncidentIdSubscribers) | **Post** /pages/{page_id}/incidents/{incident_id}/subscribers | Create an incident subscriber
-[**PostPagesPageIdIncidentsIncidentIdSubscribersSubscriberIdResendConfirmation**](IncidentSubscribersApi.md#PostPagesPageIdIncidentsIncidentIdSubscribersSubscriberIdResendConfirmation) | **Post** /pages/{page_id}/incidents/{incident_id}/subscribers/{subscriber_id}/resend_confirmation | Resend confirmation to an incident subscriber
+[**DeletePagesPageIdIncidentsIncidentIdSubscribersSubscriberId**](IncidentSubscribersAPI.md#DeletePagesPageIdIncidentsIncidentIdSubscribersSubscriberId) | **Delete** /pages/{page_id}/incidents/{incident_id}/subscribers/{subscriber_id} | Unsubscribe an incident subscriber
+[**GetPagesPageIdIncidentsIncidentIdSubscribers**](IncidentSubscribersAPI.md#GetPagesPageIdIncidentsIncidentIdSubscribers) | **Get** /pages/{page_id}/incidents/{incident_id}/subscribers | Get a list of incident subscribers
+[**GetPagesPageIdIncidentsIncidentIdSubscribersSubscriberId**](IncidentSubscribersAPI.md#GetPagesPageIdIncidentsIncidentIdSubscribersSubscriberId) | **Get** /pages/{page_id}/incidents/{incident_id}/subscribers/{subscriber_id} | Get an incident subscriber
+[**PostPagesPageIdIncidentsIncidentIdSubscribers**](IncidentSubscribersAPI.md#PostPagesPageIdIncidentsIncidentIdSubscribers) | **Post** /pages/{page_id}/incidents/{incident_id}/subscribers | Create an incident subscriber
+[**PostPagesPageIdIncidentsIncidentIdSubscribersSubscriberIdResendConfirmation**](IncidentSubscribersAPI.md#PostPagesPageIdIncidentsIncidentIdSubscribersSubscriberIdResendConfirmation) | **Post** /pages/{page_id}/incidents/{incident_id}/subscribers/{subscriber_id}/resend_confirmation | Resend confirmation to an incident subscriber
 
 
 
@@ -26,26 +26,26 @@ Unsubscribe an incident subscriber
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    incidentId := "incidentId_example" // string | Incident Identifier
-    subscriberId := "subscriberId_example" // string | Subscriber Identifier
+	pageId := "pageId_example" // string | Page identifier
+	incidentId := "incidentId_example" // string | Incident Identifier
+	subscriberId := "subscriberId_example" // string | Subscriber Identifier
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentSubscribersApi.DeletePagesPageIdIncidentsIncidentIdSubscribersSubscriberId(context.Background(), pageId, incidentId, subscriberId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentSubscribersApi.DeletePagesPageIdIncidentsIncidentIdSubscribersSubscriberId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeletePagesPageIdIncidentsIncidentIdSubscribersSubscriberId`: Subscriber
-    fmt.Fprintf(os.Stdout, "Response from `IncidentSubscribersApi.DeletePagesPageIdIncidentsIncidentIdSubscribersSubscriberId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.IncidentSubscribersAPI.DeletePagesPageIdIncidentsIncidentIdSubscribersSubscriberId(context.Background(), pageId, incidentId, subscriberId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IncidentSubscribersAPI.DeletePagesPageIdIncidentsIncidentIdSubscribersSubscriberId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeletePagesPageIdIncidentsIncidentIdSubscribersSubscriberId`: Subscriber
+	fmt.Fprintf(os.Stdout, "Response from `IncidentSubscribersAPI.DeletePagesPageIdIncidentsIncidentIdSubscribersSubscriberId`: %v\n", resp)
 }
 ```
 
@@ -102,27 +102,27 @@ Get a list of incident subscribers
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    incidentId := "incidentId_example" // string | Incident Identifier
-    page := int32(56) // int32 | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. (optional)
-    perPage := int32(56) // int32 | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. (optional)
+	pageId := "pageId_example" // string | Page identifier
+	incidentId := "incidentId_example" // string | Incident Identifier
+	page := int32(56) // int32 | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. (optional)
+	perPage := int32(56) // int32 | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentSubscribersApi.GetPagesPageIdIncidentsIncidentIdSubscribers(context.Background(), pageId, incidentId).Page(page).PerPage(perPage).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentSubscribersApi.GetPagesPageIdIncidentsIncidentIdSubscribers``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPagesPageIdIncidentsIncidentIdSubscribers`: []Subscriber
-    fmt.Fprintf(os.Stdout, "Response from `IncidentSubscribersApi.GetPagesPageIdIncidentsIncidentIdSubscribers`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.IncidentSubscribersAPI.GetPagesPageIdIncidentsIncidentIdSubscribers(context.Background(), pageId, incidentId).Page(page).PerPage(perPage).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IncidentSubscribersAPI.GetPagesPageIdIncidentsIncidentIdSubscribers``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPagesPageIdIncidentsIncidentIdSubscribers`: []Subscriber
+	fmt.Fprintf(os.Stdout, "Response from `IncidentSubscribersAPI.GetPagesPageIdIncidentsIncidentIdSubscribers`: %v\n", resp)
 }
 ```
 
@@ -179,26 +179,26 @@ Get an incident subscriber
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    incidentId := "incidentId_example" // string | Incident Identifier
-    subscriberId := "subscriberId_example" // string | Subscriber Identifier
+	pageId := "pageId_example" // string | Page identifier
+	incidentId := "incidentId_example" // string | Incident Identifier
+	subscriberId := "subscriberId_example" // string | Subscriber Identifier
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentSubscribersApi.GetPagesPageIdIncidentsIncidentIdSubscribersSubscriberId(context.Background(), pageId, incidentId, subscriberId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentSubscribersApi.GetPagesPageIdIncidentsIncidentIdSubscribersSubscriberId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPagesPageIdIncidentsIncidentIdSubscribersSubscriberId`: Subscriber
-    fmt.Fprintf(os.Stdout, "Response from `IncidentSubscribersApi.GetPagesPageIdIncidentsIncidentIdSubscribersSubscriberId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.IncidentSubscribersAPI.GetPagesPageIdIncidentsIncidentIdSubscribersSubscriberId(context.Background(), pageId, incidentId, subscriberId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IncidentSubscribersAPI.GetPagesPageIdIncidentsIncidentIdSubscribersSubscriberId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPagesPageIdIncidentsIncidentIdSubscribersSubscriberId`: Subscriber
+	fmt.Fprintf(os.Stdout, "Response from `IncidentSubscribersAPI.GetPagesPageIdIncidentsIncidentIdSubscribersSubscriberId`: %v\n", resp)
 }
 ```
 
@@ -255,26 +255,26 @@ Create an incident subscriber
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    incidentId := "incidentId_example" // string | Incident Identifier
-    postPagesPageIdIncidentsIncidentIdSubscribers := *openapiclient.NewPostPagesPageIdIncidentsIncidentIdSubscribers() // PostPagesPageIdIncidentsIncidentIdSubscribers | 
+	pageId := "pageId_example" // string | Page identifier
+	incidentId := "incidentId_example" // string | Incident Identifier
+	postPagesPageIdIncidentsIncidentIdSubscribers := *openapiclient.NewPostPagesPageIdIncidentsIncidentIdSubscribers() // PostPagesPageIdIncidentsIncidentIdSubscribers | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentSubscribersApi.PostPagesPageIdIncidentsIncidentIdSubscribers(context.Background(), pageId, incidentId).PostPagesPageIdIncidentsIncidentIdSubscribers(postPagesPageIdIncidentsIncidentIdSubscribers).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentSubscribersApi.PostPagesPageIdIncidentsIncidentIdSubscribers``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostPagesPageIdIncidentsIncidentIdSubscribers`: Subscriber
-    fmt.Fprintf(os.Stdout, "Response from `IncidentSubscribersApi.PostPagesPageIdIncidentsIncidentIdSubscribers`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.IncidentSubscribersAPI.PostPagesPageIdIncidentsIncidentIdSubscribers(context.Background(), pageId, incidentId).PostPagesPageIdIncidentsIncidentIdSubscribers(postPagesPageIdIncidentsIncidentIdSubscribers).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IncidentSubscribersAPI.PostPagesPageIdIncidentsIncidentIdSubscribers``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostPagesPageIdIncidentsIncidentIdSubscribers`: Subscriber
+	fmt.Fprintf(os.Stdout, "Response from `IncidentSubscribersAPI.PostPagesPageIdIncidentsIncidentIdSubscribers`: %v\n", resp)
 }
 ```
 
@@ -330,24 +330,24 @@ Resend confirmation to an incident subscriber
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    incidentId := "incidentId_example" // string | Incident Identifier
-    subscriberId := "subscriberId_example" // string | Subscriber Identifier
+	pageId := "pageId_example" // string | Page identifier
+	incidentId := "incidentId_example" // string | Incident Identifier
+	subscriberId := "subscriberId_example" // string | Subscriber Identifier
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentSubscribersApi.PostPagesPageIdIncidentsIncidentIdSubscribersSubscriberIdResendConfirmation(context.Background(), pageId, incidentId, subscriberId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentSubscribersApi.PostPagesPageIdIncidentsIncidentIdSubscribersSubscriberIdResendConfirmation``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.IncidentSubscribersAPI.PostPagesPageIdIncidentsIncidentIdSubscribersSubscriberIdResendConfirmation(context.Background(), pageId, incidentId, subscriberId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IncidentSubscribersAPI.PostPagesPageIdIncidentsIncidentIdSubscribersSubscriberIdResendConfirmation``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 

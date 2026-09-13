@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the StatusEmbedConfig type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &StatusEmbedConfig{}
+
 // StatusEmbedConfig Update status embed config settings
 type StatusEmbedConfig struct {
 	// Page identifier
@@ -49,7 +52,7 @@ func NewStatusEmbedConfigWithDefaults() *StatusEmbedConfig {
 
 // GetPageId returns the PageId field value if set, zero value otherwise.
 func (o *StatusEmbedConfig) GetPageId() string {
-	if o == nil || o.PageId == nil {
+	if o == nil || IsNil(o.PageId) {
 		var ret string
 		return ret
 	}
@@ -59,7 +62,7 @@ func (o *StatusEmbedConfig) GetPageId() string {
 // GetPageIdOk returns a tuple with the PageId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusEmbedConfig) GetPageIdOk() (*string, bool) {
-	if o == nil || o.PageId == nil {
+	if o == nil || IsNil(o.PageId) {
 		return nil, false
 	}
 	return o.PageId, true
@@ -67,7 +70,7 @@ func (o *StatusEmbedConfig) GetPageIdOk() (*string, bool) {
 
 // HasPageId returns a boolean if a field has been set.
 func (o *StatusEmbedConfig) HasPageId() bool {
-	if o != nil && o.PageId != nil {
+	if o != nil && !IsNil(o.PageId) {
 		return true
 	}
 
@@ -81,7 +84,7 @@ func (o *StatusEmbedConfig) SetPageId(v string) {
 
 // GetPosition returns the Position field value if set, zero value otherwise.
 func (o *StatusEmbedConfig) GetPosition() string {
-	if o == nil || o.Position == nil {
+	if o == nil || IsNil(o.Position) {
 		var ret string
 		return ret
 	}
@@ -91,7 +94,7 @@ func (o *StatusEmbedConfig) GetPosition() string {
 // GetPositionOk returns a tuple with the Position field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusEmbedConfig) GetPositionOk() (*string, bool) {
-	if o == nil || o.Position == nil {
+	if o == nil || IsNil(o.Position) {
 		return nil, false
 	}
 	return o.Position, true
@@ -99,7 +102,7 @@ func (o *StatusEmbedConfig) GetPositionOk() (*string, bool) {
 
 // HasPosition returns a boolean if a field has been set.
 func (o *StatusEmbedConfig) HasPosition() bool {
-	if o != nil && o.Position != nil {
+	if o != nil && !IsNil(o.Position) {
 		return true
 	}
 
@@ -113,7 +116,7 @@ func (o *StatusEmbedConfig) SetPosition(v string) {
 
 // GetIncidentBackgroundColor returns the IncidentBackgroundColor field value if set, zero value otherwise.
 func (o *StatusEmbedConfig) GetIncidentBackgroundColor() string {
-	if o == nil || o.IncidentBackgroundColor == nil {
+	if o == nil || IsNil(o.IncidentBackgroundColor) {
 		var ret string
 		return ret
 	}
@@ -123,7 +126,7 @@ func (o *StatusEmbedConfig) GetIncidentBackgroundColor() string {
 // GetIncidentBackgroundColorOk returns a tuple with the IncidentBackgroundColor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusEmbedConfig) GetIncidentBackgroundColorOk() (*string, bool) {
-	if o == nil || o.IncidentBackgroundColor == nil {
+	if o == nil || IsNil(o.IncidentBackgroundColor) {
 		return nil, false
 	}
 	return o.IncidentBackgroundColor, true
@@ -131,7 +134,7 @@ func (o *StatusEmbedConfig) GetIncidentBackgroundColorOk() (*string, bool) {
 
 // HasIncidentBackgroundColor returns a boolean if a field has been set.
 func (o *StatusEmbedConfig) HasIncidentBackgroundColor() bool {
-	if o != nil && o.IncidentBackgroundColor != nil {
+	if o != nil && !IsNil(o.IncidentBackgroundColor) {
 		return true
 	}
 
@@ -145,7 +148,7 @@ func (o *StatusEmbedConfig) SetIncidentBackgroundColor(v string) {
 
 // GetIncidentTextColor returns the IncidentTextColor field value if set, zero value otherwise.
 func (o *StatusEmbedConfig) GetIncidentTextColor() string {
-	if o == nil || o.IncidentTextColor == nil {
+	if o == nil || IsNil(o.IncidentTextColor) {
 		var ret string
 		return ret
 	}
@@ -155,7 +158,7 @@ func (o *StatusEmbedConfig) GetIncidentTextColor() string {
 // GetIncidentTextColorOk returns a tuple with the IncidentTextColor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusEmbedConfig) GetIncidentTextColorOk() (*string, bool) {
-	if o == nil || o.IncidentTextColor == nil {
+	if o == nil || IsNil(o.IncidentTextColor) {
 		return nil, false
 	}
 	return o.IncidentTextColor, true
@@ -163,7 +166,7 @@ func (o *StatusEmbedConfig) GetIncidentTextColorOk() (*string, bool) {
 
 // HasIncidentTextColor returns a boolean if a field has been set.
 func (o *StatusEmbedConfig) HasIncidentTextColor() bool {
-	if o != nil && o.IncidentTextColor != nil {
+	if o != nil && !IsNil(o.IncidentTextColor) {
 		return true
 	}
 
@@ -177,7 +180,7 @@ func (o *StatusEmbedConfig) SetIncidentTextColor(v string) {
 
 // GetMaintenanceBackgroundColor returns the MaintenanceBackgroundColor field value if set, zero value otherwise.
 func (o *StatusEmbedConfig) GetMaintenanceBackgroundColor() string {
-	if o == nil || o.MaintenanceBackgroundColor == nil {
+	if o == nil || IsNil(o.MaintenanceBackgroundColor) {
 		var ret string
 		return ret
 	}
@@ -187,7 +190,7 @@ func (o *StatusEmbedConfig) GetMaintenanceBackgroundColor() string {
 // GetMaintenanceBackgroundColorOk returns a tuple with the MaintenanceBackgroundColor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusEmbedConfig) GetMaintenanceBackgroundColorOk() (*string, bool) {
-	if o == nil || o.MaintenanceBackgroundColor == nil {
+	if o == nil || IsNil(o.MaintenanceBackgroundColor) {
 		return nil, false
 	}
 	return o.MaintenanceBackgroundColor, true
@@ -195,7 +198,7 @@ func (o *StatusEmbedConfig) GetMaintenanceBackgroundColorOk() (*string, bool) {
 
 // HasMaintenanceBackgroundColor returns a boolean if a field has been set.
 func (o *StatusEmbedConfig) HasMaintenanceBackgroundColor() bool {
-	if o != nil && o.MaintenanceBackgroundColor != nil {
+	if o != nil && !IsNil(o.MaintenanceBackgroundColor) {
 		return true
 	}
 
@@ -209,7 +212,7 @@ func (o *StatusEmbedConfig) SetMaintenanceBackgroundColor(v string) {
 
 // GetMaintenanceTextColor returns the MaintenanceTextColor field value if set, zero value otherwise.
 func (o *StatusEmbedConfig) GetMaintenanceTextColor() string {
-	if o == nil || o.MaintenanceTextColor == nil {
+	if o == nil || IsNil(o.MaintenanceTextColor) {
 		var ret string
 		return ret
 	}
@@ -219,7 +222,7 @@ func (o *StatusEmbedConfig) GetMaintenanceTextColor() string {
 // GetMaintenanceTextColorOk returns a tuple with the MaintenanceTextColor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusEmbedConfig) GetMaintenanceTextColorOk() (*string, bool) {
-	if o == nil || o.MaintenanceTextColor == nil {
+	if o == nil || IsNil(o.MaintenanceTextColor) {
 		return nil, false
 	}
 	return o.MaintenanceTextColor, true
@@ -227,7 +230,7 @@ func (o *StatusEmbedConfig) GetMaintenanceTextColorOk() (*string, bool) {
 
 // HasMaintenanceTextColor returns a boolean if a field has been set.
 func (o *StatusEmbedConfig) HasMaintenanceTextColor() bool {
-	if o != nil && o.MaintenanceTextColor != nil {
+	if o != nil && !IsNil(o.MaintenanceTextColor) {
 		return true
 	}
 
@@ -240,26 +243,34 @@ func (o *StatusEmbedConfig) SetMaintenanceTextColor(v string) {
 }
 
 func (o StatusEmbedConfig) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.PageId != nil {
-		toSerialize["page_id"] = o.PageId
-	}
-	if o.Position != nil {
-		toSerialize["position"] = o.Position
-	}
-	if o.IncidentBackgroundColor != nil {
-		toSerialize["incident_background_color"] = o.IncidentBackgroundColor
-	}
-	if o.IncidentTextColor != nil {
-		toSerialize["incident_text_color"] = o.IncidentTextColor
-	}
-	if o.MaintenanceBackgroundColor != nil {
-		toSerialize["maintenance_background_color"] = o.MaintenanceBackgroundColor
-	}
-	if o.MaintenanceTextColor != nil {
-		toSerialize["maintenance_text_color"] = o.MaintenanceTextColor
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o StatusEmbedConfig) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.PageId) {
+		toSerialize["page_id"] = o.PageId
+	}
+	if !IsNil(o.Position) {
+		toSerialize["position"] = o.Position
+	}
+	if !IsNil(o.IncidentBackgroundColor) {
+		toSerialize["incident_background_color"] = o.IncidentBackgroundColor
+	}
+	if !IsNil(o.IncidentTextColor) {
+		toSerialize["incident_text_color"] = o.IncidentTextColor
+	}
+	if !IsNil(o.MaintenanceBackgroundColor) {
+		toSerialize["maintenance_background_color"] = o.MaintenanceBackgroundColor
+	}
+	if !IsNil(o.MaintenanceTextColor) {
+		toSerialize["maintenance_text_color"] = o.MaintenanceTextColor
+	}
+	return toSerialize, nil
 }
 
 type NullableStatusEmbedConfig struct {
@@ -297,5 +308,3 @@ func (v *NullableStatusEmbedConfig) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

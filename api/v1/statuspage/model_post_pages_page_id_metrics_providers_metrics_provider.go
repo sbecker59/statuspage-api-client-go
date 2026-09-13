@@ -14,10 +14,13 @@ import (
 	"encoding/json"
 )
 
+// checks if the PostPagesPageIdMetricsProvidersMetricsProvider type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PostPagesPageIdMetricsProvidersMetricsProvider{}
+
 // PostPagesPageIdMetricsProvidersMetricsProvider struct for PostPagesPageIdMetricsProvidersMetricsProvider
 type PostPagesPageIdMetricsProvidersMetricsProvider struct {
 	// Required by the Librato metrics provider.
-	Email *string `json:"email,omitempty"`
+	Email    *string `json:"email,omitempty"`
 	Password *string `json:"password,omitempty"`
 	// Required by the Datadog and NewRelic type metrics providers.
 	ApiKey *string `json:"api_key,omitempty"`
@@ -50,7 +53,7 @@ func NewPostPagesPageIdMetricsProvidersMetricsProviderWithDefaults() *PostPagesP
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *PostPagesPageIdMetricsProvidersMetricsProvider) GetEmail() string {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -60,7 +63,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProvider) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProvider) GetEmailOk() (*string, bool) {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		return nil, false
 	}
 	return o.Email, true
@@ -68,7 +71,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProvider) GetEmailOk() (*string, 
 
 // HasEmail returns a boolean if a field has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProvider) HasEmail() bool {
-	if o != nil && o.Email != nil {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -82,7 +85,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProvider) SetEmail(v string) {
 
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *PostPagesPageIdMetricsProvidersMetricsProvider) GetPassword() string {
-	if o == nil || o.Password == nil {
+	if o == nil || IsNil(o.Password) {
 		var ret string
 		return ret
 	}
@@ -92,7 +95,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProvider) GetPassword() string {
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProvider) GetPasswordOk() (*string, bool) {
-	if o == nil || o.Password == nil {
+	if o == nil || IsNil(o.Password) {
 		return nil, false
 	}
 	return o.Password, true
@@ -100,7 +103,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProvider) GetPasswordOk() (*strin
 
 // HasPassword returns a boolean if a field has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProvider) HasPassword() bool {
-	if o != nil && o.Password != nil {
+	if o != nil && !IsNil(o.Password) {
 		return true
 	}
 
@@ -114,7 +117,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProvider) SetPassword(v string) {
 
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
 func (o *PostPagesPageIdMetricsProvidersMetricsProvider) GetApiKey() string {
-	if o == nil || o.ApiKey == nil {
+	if o == nil || IsNil(o.ApiKey) {
 		var ret string
 		return ret
 	}
@@ -124,7 +127,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProvider) GetApiKey() string {
 // GetApiKeyOk returns a tuple with the ApiKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProvider) GetApiKeyOk() (*string, bool) {
-	if o == nil || o.ApiKey == nil {
+	if o == nil || IsNil(o.ApiKey) {
 		return nil, false
 	}
 	return o.ApiKey, true
@@ -132,7 +135,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProvider) GetApiKeyOk() (*string,
 
 // HasApiKey returns a boolean if a field has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProvider) HasApiKey() bool {
-	if o != nil && o.ApiKey != nil {
+	if o != nil && !IsNil(o.ApiKey) {
 		return true
 	}
 
@@ -146,7 +149,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProvider) SetApiKey(v string) {
 
 // GetApiToken returns the ApiToken field value if set, zero value otherwise.
 func (o *PostPagesPageIdMetricsProvidersMetricsProvider) GetApiToken() string {
-	if o == nil || o.ApiToken == nil {
+	if o == nil || IsNil(o.ApiToken) {
 		var ret string
 		return ret
 	}
@@ -156,7 +159,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProvider) GetApiToken() string {
 // GetApiTokenOk returns a tuple with the ApiToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProvider) GetApiTokenOk() (*string, bool) {
-	if o == nil || o.ApiToken == nil {
+	if o == nil || IsNil(o.ApiToken) {
 		return nil, false
 	}
 	return o.ApiToken, true
@@ -164,7 +167,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProvider) GetApiTokenOk() (*strin
 
 // HasApiToken returns a boolean if a field has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProvider) HasApiToken() bool {
-	if o != nil && o.ApiToken != nil {
+	if o != nil && !IsNil(o.ApiToken) {
 		return true
 	}
 
@@ -178,7 +181,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProvider) SetApiToken(v string) {
 
 // GetApplicationKey returns the ApplicationKey field value if set, zero value otherwise.
 func (o *PostPagesPageIdMetricsProvidersMetricsProvider) GetApplicationKey() string {
-	if o == nil || o.ApplicationKey == nil {
+	if o == nil || IsNil(o.ApplicationKey) {
 		var ret string
 		return ret
 	}
@@ -188,7 +191,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProvider) GetApplicationKey() str
 // GetApplicationKeyOk returns a tuple with the ApplicationKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProvider) GetApplicationKeyOk() (*string, bool) {
-	if o == nil || o.ApplicationKey == nil {
+	if o == nil || IsNil(o.ApplicationKey) {
 		return nil, false
 	}
 	return o.ApplicationKey, true
@@ -196,7 +199,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProvider) GetApplicationKeyOk() (
 
 // HasApplicationKey returns a boolean if a field has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProvider) HasApplicationKey() bool {
-	if o != nil && o.ApplicationKey != nil {
+	if o != nil && !IsNil(o.ApplicationKey) {
 		return true
 	}
 
@@ -210,7 +213,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProvider) SetApplicationKey(v str
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *PostPagesPageIdMetricsProvidersMetricsProvider) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -220,7 +223,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProvider) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProvider) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -228,7 +231,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProvider) GetTypeOk() (*string, b
 
 // HasType returns a boolean if a field has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProvider) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -242,7 +245,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProvider) SetType(v string) {
 
 // GetMetricBaseUri returns the MetricBaseUri field value if set, zero value otherwise.
 func (o *PostPagesPageIdMetricsProvidersMetricsProvider) GetMetricBaseUri() string {
-	if o == nil || o.MetricBaseUri == nil {
+	if o == nil || IsNil(o.MetricBaseUri) {
 		var ret string
 		return ret
 	}
@@ -252,7 +255,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProvider) GetMetricBaseUri() stri
 // GetMetricBaseUriOk returns a tuple with the MetricBaseUri field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProvider) GetMetricBaseUriOk() (*string, bool) {
-	if o == nil || o.MetricBaseUri == nil {
+	if o == nil || IsNil(o.MetricBaseUri) {
 		return nil, false
 	}
 	return o.MetricBaseUri, true
@@ -260,7 +263,7 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProvider) GetMetricBaseUriOk() (*
 
 // HasMetricBaseUri returns a boolean if a field has been set.
 func (o *PostPagesPageIdMetricsProvidersMetricsProvider) HasMetricBaseUri() bool {
-	if o != nil && o.MetricBaseUri != nil {
+	if o != nil && !IsNil(o.MetricBaseUri) {
 		return true
 	}
 
@@ -273,29 +276,37 @@ func (o *PostPagesPageIdMetricsProvidersMetricsProvider) SetMetricBaseUri(v stri
 }
 
 func (o PostPagesPageIdMetricsProvidersMetricsProvider) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Email != nil {
-		toSerialize["email"] = o.Email
-	}
-	if o.Password != nil {
-		toSerialize["password"] = o.Password
-	}
-	if o.ApiKey != nil {
-		toSerialize["api_key"] = o.ApiKey
-	}
-	if o.ApiToken != nil {
-		toSerialize["api_token"] = o.ApiToken
-	}
-	if o.ApplicationKey != nil {
-		toSerialize["application_key"] = o.ApplicationKey
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
-	if o.MetricBaseUri != nil {
-		toSerialize["metric_base_uri"] = o.MetricBaseUri
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PostPagesPageIdMetricsProvidersMetricsProvider) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
+	}
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
+	}
+	if !IsNil(o.ApiKey) {
+		toSerialize["api_key"] = o.ApiKey
+	}
+	if !IsNil(o.ApiToken) {
+		toSerialize["api_token"] = o.ApiToken
+	}
+	if !IsNil(o.ApplicationKey) {
+		toSerialize["application_key"] = o.ApplicationKey
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.MetricBaseUri) {
+		toSerialize["metric_base_uri"] = o.MetricBaseUri
+	}
+	return toSerialize, nil
 }
 
 type NullablePostPagesPageIdMetricsProvidersMetricsProvider struct {
@@ -333,5 +344,3 @@ func (v *NullablePostPagesPageIdMetricsProvidersMetricsProvider) UnmarshalJSON(s
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

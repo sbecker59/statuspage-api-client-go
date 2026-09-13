@@ -1,19 +1,19 @@
-# \IncidentsApi
+# \IncidentsAPI
 
 All URIs are relative to *https://api.statuspage.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeletePagesPageIdIncidentsIncidentId**](IncidentsApi.md#DeletePagesPageIdIncidentsIncidentId) | **Delete** /pages/{page_id}/incidents/{incident_id} | Delete an incident
-[**GetPagesPageIdIncidents**](IncidentsApi.md#GetPagesPageIdIncidents) | **Get** /pages/{page_id}/incidents | Get a list of incidents
-[**GetPagesPageIdIncidentsActiveMaintenance**](IncidentsApi.md#GetPagesPageIdIncidentsActiveMaintenance) | **Get** /pages/{page_id}/incidents/active_maintenance | Get a list of active maintenances
-[**GetPagesPageIdIncidentsIncidentId**](IncidentsApi.md#GetPagesPageIdIncidentsIncidentId) | **Get** /pages/{page_id}/incidents/{incident_id} | Get an incident
-[**GetPagesPageIdIncidentsScheduled**](IncidentsApi.md#GetPagesPageIdIncidentsScheduled) | **Get** /pages/{page_id}/incidents/scheduled | Get a list of scheduled incidents
-[**GetPagesPageIdIncidentsUnresolved**](IncidentsApi.md#GetPagesPageIdIncidentsUnresolved) | **Get** /pages/{page_id}/incidents/unresolved | Get a list of unresolved incidents
-[**GetPagesPageIdIncidentsUpcoming**](IncidentsApi.md#GetPagesPageIdIncidentsUpcoming) | **Get** /pages/{page_id}/incidents/upcoming | Get a list of upcoming incidents
-[**PatchPagesPageIdIncidentsIncidentId**](IncidentsApi.md#PatchPagesPageIdIncidentsIncidentId) | **Patch** /pages/{page_id}/incidents/{incident_id} | Update an incident
-[**PostPagesPageIdIncidents**](IncidentsApi.md#PostPagesPageIdIncidents) | **Post** /pages/{page_id}/incidents | Create an incident
-[**PutPagesPageIdIncidentsIncidentId**](IncidentsApi.md#PutPagesPageIdIncidentsIncidentId) | **Put** /pages/{page_id}/incidents/{incident_id} | Update an incident
+[**DeletePagesPageIdIncidentsIncidentId**](IncidentsAPI.md#DeletePagesPageIdIncidentsIncidentId) | **Delete** /pages/{page_id}/incidents/{incident_id} | Delete an incident
+[**GetPagesPageIdIncidents**](IncidentsAPI.md#GetPagesPageIdIncidents) | **Get** /pages/{page_id}/incidents | Get a list of incidents
+[**GetPagesPageIdIncidentsActiveMaintenance**](IncidentsAPI.md#GetPagesPageIdIncidentsActiveMaintenance) | **Get** /pages/{page_id}/incidents/active_maintenance | Get a list of active maintenances
+[**GetPagesPageIdIncidentsIncidentId**](IncidentsAPI.md#GetPagesPageIdIncidentsIncidentId) | **Get** /pages/{page_id}/incidents/{incident_id} | Get an incident
+[**GetPagesPageIdIncidentsScheduled**](IncidentsAPI.md#GetPagesPageIdIncidentsScheduled) | **Get** /pages/{page_id}/incidents/scheduled | Get a list of scheduled incidents
+[**GetPagesPageIdIncidentsUnresolved**](IncidentsAPI.md#GetPagesPageIdIncidentsUnresolved) | **Get** /pages/{page_id}/incidents/unresolved | Get a list of unresolved incidents
+[**GetPagesPageIdIncidentsUpcoming**](IncidentsAPI.md#GetPagesPageIdIncidentsUpcoming) | **Get** /pages/{page_id}/incidents/upcoming | Get a list of upcoming incidents
+[**PatchPagesPageIdIncidentsIncidentId**](IncidentsAPI.md#PatchPagesPageIdIncidentsIncidentId) | **Patch** /pages/{page_id}/incidents/{incident_id} | Update an incident
+[**PostPagesPageIdIncidents**](IncidentsAPI.md#PostPagesPageIdIncidents) | **Post** /pages/{page_id}/incidents | Create an incident
+[**PutPagesPageIdIncidentsIncidentId**](IncidentsAPI.md#PutPagesPageIdIncidentsIncidentId) | **Put** /pages/{page_id}/incidents/{incident_id} | Update an incident
 
 
 
@@ -31,25 +31,25 @@ Delete an incident
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    incidentId := "incidentId_example" // string | Incident Identifier
+	pageId := "pageId_example" // string | Page identifier
+	incidentId := "incidentId_example" // string | Incident Identifier
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentsApi.DeletePagesPageIdIncidentsIncidentId(context.Background(), pageId, incidentId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.DeletePagesPageIdIncidentsIncidentId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeletePagesPageIdIncidentsIncidentId`: Incident
-    fmt.Fprintf(os.Stdout, "Response from `IncidentsApi.DeletePagesPageIdIncidentsIncidentId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.IncidentsAPI.DeletePagesPageIdIncidentsIncidentId(context.Background(), pageId, incidentId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsAPI.DeletePagesPageIdIncidentsIncidentId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeletePagesPageIdIncidentsIncidentId`: Incident
+	fmt.Fprintf(os.Stdout, "Response from `IncidentsAPI.DeletePagesPageIdIncidentsIncidentId`: %v\n", resp)
 }
 ```
 
@@ -104,27 +104,27 @@ Get a list of incidents
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    q := "q_example" // string | If this is specified, search for the text query string in the incidents' name, status, postmortem_body, and incident_updates fields. (optional)
-    limit := int32(56) // int32 | The maximum number of rows to return per page. The default and maximum limit is 100. (optional)
-    page := int32(56) // int32 | Page offset to fetch. (optional)
+	pageId := "pageId_example" // string | Page identifier
+	q := "q_example" // string | If this is specified, search for the text query string in the incidents' name, status, postmortem_body, and incident_updates fields. (optional)
+	limit := int32(56) // int32 | The maximum number of rows to return per page. The default and maximum limit is 100. (optional)
+	page := int32(56) // int32 | Page offset to fetch. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentsApi.GetPagesPageIdIncidents(context.Background(), pageId).Q(q).Limit(limit).Page(page).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.GetPagesPageIdIncidents``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPagesPageIdIncidents`: []Incident
-    fmt.Fprintf(os.Stdout, "Response from `IncidentsApi.GetPagesPageIdIncidents`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.IncidentsAPI.GetPagesPageIdIncidents(context.Background(), pageId).Q(q).Limit(limit).Page(page).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsAPI.GetPagesPageIdIncidents``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPagesPageIdIncidents`: []Incident
+	fmt.Fprintf(os.Stdout, "Response from `IncidentsAPI.GetPagesPageIdIncidents`: %v\n", resp)
 }
 ```
 
@@ -180,26 +180,26 @@ Get a list of active maintenances
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    page := int32(56) // int32 | Page offset to fetch. (optional) (default to 1)
-    perPage := int32(56) // int32 | Number of results to return per page. (optional) (default to 100)
+	pageId := "pageId_example" // string | Page identifier
+	page := int32(56) // int32 | Page offset to fetch. (optional) (default to 1)
+	perPage := int32(56) // int32 | Number of results to return per page. (optional) (default to 100)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentsApi.GetPagesPageIdIncidentsActiveMaintenance(context.Background(), pageId).Page(page).PerPage(perPage).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.GetPagesPageIdIncidentsActiveMaintenance``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPagesPageIdIncidentsActiveMaintenance`: []Incident
-    fmt.Fprintf(os.Stdout, "Response from `IncidentsApi.GetPagesPageIdIncidentsActiveMaintenance`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.IncidentsAPI.GetPagesPageIdIncidentsActiveMaintenance(context.Background(), pageId).Page(page).PerPage(perPage).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsAPI.GetPagesPageIdIncidentsActiveMaintenance``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPagesPageIdIncidentsActiveMaintenance`: []Incident
+	fmt.Fprintf(os.Stdout, "Response from `IncidentsAPI.GetPagesPageIdIncidentsActiveMaintenance`: %v\n", resp)
 }
 ```
 
@@ -254,25 +254,25 @@ Get an incident
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    incidentId := "incidentId_example" // string | Incident Identifier
+	pageId := "pageId_example" // string | Page identifier
+	incidentId := "incidentId_example" // string | Incident Identifier
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentsApi.GetPagesPageIdIncidentsIncidentId(context.Background(), pageId, incidentId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.GetPagesPageIdIncidentsIncidentId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPagesPageIdIncidentsIncidentId`: Incident
-    fmt.Fprintf(os.Stdout, "Response from `IncidentsApi.GetPagesPageIdIncidentsIncidentId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.IncidentsAPI.GetPagesPageIdIncidentsIncidentId(context.Background(), pageId, incidentId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsAPI.GetPagesPageIdIncidentsIncidentId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPagesPageIdIncidentsIncidentId`: Incident
+	fmt.Fprintf(os.Stdout, "Response from `IncidentsAPI.GetPagesPageIdIncidentsIncidentId`: %v\n", resp)
 }
 ```
 
@@ -327,26 +327,26 @@ Get a list of scheduled incidents
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    page := int32(56) // int32 | Page offset to fetch. (optional) (default to 1)
-    perPage := int32(56) // int32 | Number of results to return per page. (optional) (default to 100)
+	pageId := "pageId_example" // string | Page identifier
+	page := int32(56) // int32 | Page offset to fetch. (optional) (default to 1)
+	perPage := int32(56) // int32 | Number of results to return per page. (optional) (default to 100)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentsApi.GetPagesPageIdIncidentsScheduled(context.Background(), pageId).Page(page).PerPage(perPage).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.GetPagesPageIdIncidentsScheduled``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPagesPageIdIncidentsScheduled`: []Incident
-    fmt.Fprintf(os.Stdout, "Response from `IncidentsApi.GetPagesPageIdIncidentsScheduled`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.IncidentsAPI.GetPagesPageIdIncidentsScheduled(context.Background(), pageId).Page(page).PerPage(perPage).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsAPI.GetPagesPageIdIncidentsScheduled``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPagesPageIdIncidentsScheduled`: []Incident
+	fmt.Fprintf(os.Stdout, "Response from `IncidentsAPI.GetPagesPageIdIncidentsScheduled`: %v\n", resp)
 }
 ```
 
@@ -401,26 +401,26 @@ Get a list of unresolved incidents
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    page := int32(56) // int32 | Page offset to fetch. (optional) (default to 1)
-    perPage := int32(56) // int32 | Number of results to return per page. (optional) (default to 100)
+	pageId := "pageId_example" // string | Page identifier
+	page := int32(56) // int32 | Page offset to fetch. (optional) (default to 1)
+	perPage := int32(56) // int32 | Number of results to return per page. (optional) (default to 100)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentsApi.GetPagesPageIdIncidentsUnresolved(context.Background(), pageId).Page(page).PerPage(perPage).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.GetPagesPageIdIncidentsUnresolved``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPagesPageIdIncidentsUnresolved`: []Incident
-    fmt.Fprintf(os.Stdout, "Response from `IncidentsApi.GetPagesPageIdIncidentsUnresolved`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.IncidentsAPI.GetPagesPageIdIncidentsUnresolved(context.Background(), pageId).Page(page).PerPage(perPage).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsAPI.GetPagesPageIdIncidentsUnresolved``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPagesPageIdIncidentsUnresolved`: []Incident
+	fmt.Fprintf(os.Stdout, "Response from `IncidentsAPI.GetPagesPageIdIncidentsUnresolved`: %v\n", resp)
 }
 ```
 
@@ -475,26 +475,26 @@ Get a list of upcoming incidents
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    page := int32(56) // int32 | Page offset to fetch. (optional) (default to 1)
-    perPage := int32(56) // int32 | Number of results to return per page. (optional) (default to 100)
+	pageId := "pageId_example" // string | Page identifier
+	page := int32(56) // int32 | Page offset to fetch. (optional) (default to 1)
+	perPage := int32(56) // int32 | Number of results to return per page. (optional) (default to 100)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentsApi.GetPagesPageIdIncidentsUpcoming(context.Background(), pageId).Page(page).PerPage(perPage).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.GetPagesPageIdIncidentsUpcoming``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPagesPageIdIncidentsUpcoming`: []Incident
-    fmt.Fprintf(os.Stdout, "Response from `IncidentsApi.GetPagesPageIdIncidentsUpcoming`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.IncidentsAPI.GetPagesPageIdIncidentsUpcoming(context.Background(), pageId).Page(page).PerPage(perPage).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsAPI.GetPagesPageIdIncidentsUpcoming``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPagesPageIdIncidentsUpcoming`: []Incident
+	fmt.Fprintf(os.Stdout, "Response from `IncidentsAPI.GetPagesPageIdIncidentsUpcoming`: %v\n", resp)
 }
 ```
 
@@ -549,26 +549,26 @@ Update an incident
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    incidentId := "incidentId_example" // string | Incident Identifier
-    patchPagesPageIdIncidents := *openapiclient.NewPatchPagesPageIdIncidents() // PatchPagesPageIdIncidents | 
+	pageId := "pageId_example" // string | Page identifier
+	incidentId := "incidentId_example" // string | Incident Identifier
+	patchPagesPageIdIncidents := *openapiclient.NewPatchPagesPageIdIncidents() // PatchPagesPageIdIncidents | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentsApi.PatchPagesPageIdIncidentsIncidentId(context.Background(), pageId, incidentId).PatchPagesPageIdIncidents(patchPagesPageIdIncidents).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.PatchPagesPageIdIncidentsIncidentId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PatchPagesPageIdIncidentsIncidentId`: Incident
-    fmt.Fprintf(os.Stdout, "Response from `IncidentsApi.PatchPagesPageIdIncidentsIncidentId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.IncidentsAPI.PatchPagesPageIdIncidentsIncidentId(context.Background(), pageId, incidentId).PatchPagesPageIdIncidents(patchPagesPageIdIncidents).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsAPI.PatchPagesPageIdIncidentsIncidentId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PatchPagesPageIdIncidentsIncidentId`: Incident
+	fmt.Fprintf(os.Stdout, "Response from `IncidentsAPI.PatchPagesPageIdIncidentsIncidentId`: %v\n", resp)
 }
 ```
 
@@ -624,25 +624,25 @@ Create an incident
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    postPagesPageIdIncidents := *openapiclient.NewPostPagesPageIdIncidents() // PostPagesPageIdIncidents | 
+	pageId := "pageId_example" // string | Page identifier
+	postPagesPageIdIncidents := *openapiclient.NewPostPagesPageIdIncidents() // PostPagesPageIdIncidents | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentsApi.PostPagesPageIdIncidents(context.Background(), pageId).PostPagesPageIdIncidents(postPagesPageIdIncidents).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.PostPagesPageIdIncidents``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostPagesPageIdIncidents`: Incident
-    fmt.Fprintf(os.Stdout, "Response from `IncidentsApi.PostPagesPageIdIncidents`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.IncidentsAPI.PostPagesPageIdIncidents(context.Background(), pageId).PostPagesPageIdIncidents(postPagesPageIdIncidents).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsAPI.PostPagesPageIdIncidents``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostPagesPageIdIncidents`: Incident
+	fmt.Fprintf(os.Stdout, "Response from `IncidentsAPI.PostPagesPageIdIncidents`: %v\n", resp)
 }
 ```
 
@@ -696,26 +696,26 @@ Update an incident
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    incidentId := "incidentId_example" // string | Incident Identifier
-    putPagesPageIdIncidents := *openapiclient.NewPutPagesPageIdIncidents() // PutPagesPageIdIncidents | 
+	pageId := "pageId_example" // string | Page identifier
+	incidentId := "incidentId_example" // string | Incident Identifier
+	putPagesPageIdIncidents := *openapiclient.NewPutPagesPageIdIncidents() // PutPagesPageIdIncidents | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentsApi.PutPagesPageIdIncidentsIncidentId(context.Background(), pageId, incidentId).PutPagesPageIdIncidents(putPagesPageIdIncidents).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.PutPagesPageIdIncidentsIncidentId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutPagesPageIdIncidentsIncidentId`: Incident
-    fmt.Fprintf(os.Stdout, "Response from `IncidentsApi.PutPagesPageIdIncidentsIncidentId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.IncidentsAPI.PutPagesPageIdIncidentsIncidentId(context.Background(), pageId, incidentId).PutPagesPageIdIncidents(putPagesPageIdIncidents).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsAPI.PutPagesPageIdIncidentsIncidentId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutPagesPageIdIncidentsIncidentId`: Incident
+	fmt.Fprintf(os.Stdout, "Response from `IncidentsAPI.PutPagesPageIdIncidentsIncidentId`: %v\n", resp)
 }
 ```
 

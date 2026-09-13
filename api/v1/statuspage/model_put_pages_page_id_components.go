@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PutPagesPageIdComponents type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PutPagesPageIdComponents{}
+
 // PutPagesPageIdComponents Update a component
 type PutPagesPageIdComponents struct {
 	Component *PostPagesPageIdComponentsComponent `json:"component,omitempty"`
@@ -38,7 +41,7 @@ func NewPutPagesPageIdComponentsWithDefaults() *PutPagesPageIdComponents {
 
 // GetComponent returns the Component field value if set, zero value otherwise.
 func (o *PutPagesPageIdComponents) GetComponent() PostPagesPageIdComponentsComponent {
-	if o == nil || o.Component == nil {
+	if o == nil || IsNil(o.Component) {
 		var ret PostPagesPageIdComponentsComponent
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *PutPagesPageIdComponents) GetComponent() PostPagesPageIdComponentsCompo
 // GetComponentOk returns a tuple with the Component field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PutPagesPageIdComponents) GetComponentOk() (*PostPagesPageIdComponentsComponent, bool) {
-	if o == nil || o.Component == nil {
+	if o == nil || IsNil(o.Component) {
 		return nil, false
 	}
 	return o.Component, true
@@ -56,7 +59,7 @@ func (o *PutPagesPageIdComponents) GetComponentOk() (*PostPagesPageIdComponentsC
 
 // HasComponent returns a boolean if a field has been set.
 func (o *PutPagesPageIdComponents) HasComponent() bool {
-	if o != nil && o.Component != nil {
+	if o != nil && !IsNil(o.Component) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *PutPagesPageIdComponents) SetComponent(v PostPagesPageIdComponentsCompo
 }
 
 func (o PutPagesPageIdComponents) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Component != nil {
-		toSerialize["component"] = o.Component
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PutPagesPageIdComponents) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Component) {
+		toSerialize["component"] = o.Component
+	}
+	return toSerialize, nil
 }
 
 type NullablePutPagesPageIdComponents struct {
@@ -111,5 +122,3 @@ func (v *NullablePutPagesPageIdComponents) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

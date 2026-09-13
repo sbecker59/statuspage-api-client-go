@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PutPagesPageIdIncidents type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PutPagesPageIdIncidents{}
+
 // PutPagesPageIdIncidents Update an incident
 type PutPagesPageIdIncidents struct {
 	Incident *PatchPagesPageIdIncidentsIncident `json:"incident,omitempty"`
@@ -38,7 +41,7 @@ func NewPutPagesPageIdIncidentsWithDefaults() *PutPagesPageIdIncidents {
 
 // GetIncident returns the Incident field value if set, zero value otherwise.
 func (o *PutPagesPageIdIncidents) GetIncident() PatchPagesPageIdIncidentsIncident {
-	if o == nil || o.Incident == nil {
+	if o == nil || IsNil(o.Incident) {
 		var ret PatchPagesPageIdIncidentsIncident
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *PutPagesPageIdIncidents) GetIncident() PatchPagesPageIdIncidentsInciden
 // GetIncidentOk returns a tuple with the Incident field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PutPagesPageIdIncidents) GetIncidentOk() (*PatchPagesPageIdIncidentsIncident, bool) {
-	if o == nil || o.Incident == nil {
+	if o == nil || IsNil(o.Incident) {
 		return nil, false
 	}
 	return o.Incident, true
@@ -56,7 +59,7 @@ func (o *PutPagesPageIdIncidents) GetIncidentOk() (*PatchPagesPageIdIncidentsInc
 
 // HasIncident returns a boolean if a field has been set.
 func (o *PutPagesPageIdIncidents) HasIncident() bool {
-	if o != nil && o.Incident != nil {
+	if o != nil && !IsNil(o.Incident) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *PutPagesPageIdIncidents) SetIncident(v PatchPagesPageIdIncidentsInciden
 }
 
 func (o PutPagesPageIdIncidents) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Incident != nil {
-		toSerialize["incident"] = o.Incident
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PutPagesPageIdIncidents) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Incident) {
+		toSerialize["incident"] = o.Incident
+	}
+	return toSerialize, nil
 }
 
 type NullablePutPagesPageIdIncidents struct {
@@ -111,5 +122,3 @@ func (v *NullablePutPagesPageIdIncidents) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

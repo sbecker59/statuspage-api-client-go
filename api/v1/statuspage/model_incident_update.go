@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the IncidentUpdate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IncidentUpdate{}
+
 // IncidentUpdate Update a previous incident update
 type IncidentUpdate struct {
 	// Incident Update Identifier.
@@ -22,7 +25,7 @@ type IncidentUpdate struct {
 	// Incident Identifier.
 	IncidentId *string `json:"incident_id,omitempty"`
 	// Affected components associated with the incident update.
-	AffectedComponents *[]map[string]interface{} `json:"affected_components,omitempty"`
+	AffectedComponents []map[string]interface{} `json:"affected_components,omitempty"`
 	// Incident update body.
 	Body *string `json:"body,omitempty"`
 	// The timestamp when the incident update was created at.
@@ -64,7 +67,7 @@ func NewIncidentUpdateWithDefaults() *IncidentUpdate {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *IncidentUpdate) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -74,7 +77,7 @@ func (o *IncidentUpdate) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IncidentUpdate) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -82,7 +85,7 @@ func (o *IncidentUpdate) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *IncidentUpdate) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -96,7 +99,7 @@ func (o *IncidentUpdate) SetId(v string) {
 
 // GetIncidentId returns the IncidentId field value if set, zero value otherwise.
 func (o *IncidentUpdate) GetIncidentId() string {
-	if o == nil || o.IncidentId == nil {
+	if o == nil || IsNil(o.IncidentId) {
 		var ret string
 		return ret
 	}
@@ -106,7 +109,7 @@ func (o *IncidentUpdate) GetIncidentId() string {
 // GetIncidentIdOk returns a tuple with the IncidentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IncidentUpdate) GetIncidentIdOk() (*string, bool) {
-	if o == nil || o.IncidentId == nil {
+	if o == nil || IsNil(o.IncidentId) {
 		return nil, false
 	}
 	return o.IncidentId, true
@@ -114,7 +117,7 @@ func (o *IncidentUpdate) GetIncidentIdOk() (*string, bool) {
 
 // HasIncidentId returns a boolean if a field has been set.
 func (o *IncidentUpdate) HasIncidentId() bool {
-	if o != nil && o.IncidentId != nil {
+	if o != nil && !IsNil(o.IncidentId) {
 		return true
 	}
 
@@ -128,17 +131,17 @@ func (o *IncidentUpdate) SetIncidentId(v string) {
 
 // GetAffectedComponents returns the AffectedComponents field value if set, zero value otherwise.
 func (o *IncidentUpdate) GetAffectedComponents() []map[string]interface{} {
-	if o == nil || o.AffectedComponents == nil {
+	if o == nil || IsNil(o.AffectedComponents) {
 		var ret []map[string]interface{}
 		return ret
 	}
-	return *o.AffectedComponents
+	return o.AffectedComponents
 }
 
 // GetAffectedComponentsOk returns a tuple with the AffectedComponents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IncidentUpdate) GetAffectedComponentsOk() (*[]map[string]interface{}, bool) {
-	if o == nil || o.AffectedComponents == nil {
+func (o *IncidentUpdate) GetAffectedComponentsOk() ([]map[string]interface{}, bool) {
+	if o == nil || IsNil(o.AffectedComponents) {
 		return nil, false
 	}
 	return o.AffectedComponents, true
@@ -146,7 +149,7 @@ func (o *IncidentUpdate) GetAffectedComponentsOk() (*[]map[string]interface{}, b
 
 // HasAffectedComponents returns a boolean if a field has been set.
 func (o *IncidentUpdate) HasAffectedComponents() bool {
-	if o != nil && o.AffectedComponents != nil {
+	if o != nil && !IsNil(o.AffectedComponents) {
 		return true
 	}
 
@@ -155,12 +158,12 @@ func (o *IncidentUpdate) HasAffectedComponents() bool {
 
 // SetAffectedComponents gets a reference to the given []map[string]interface{} and assigns it to the AffectedComponents field.
 func (o *IncidentUpdate) SetAffectedComponents(v []map[string]interface{}) {
-	o.AffectedComponents = &v
+	o.AffectedComponents = v
 }
 
 // GetBody returns the Body field value if set, zero value otherwise.
 func (o *IncidentUpdate) GetBody() string {
-	if o == nil || o.Body == nil {
+	if o == nil || IsNil(o.Body) {
 		var ret string
 		return ret
 	}
@@ -170,7 +173,7 @@ func (o *IncidentUpdate) GetBody() string {
 // GetBodyOk returns a tuple with the Body field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IncidentUpdate) GetBodyOk() (*string, bool) {
-	if o == nil || o.Body == nil {
+	if o == nil || IsNil(o.Body) {
 		return nil, false
 	}
 	return o.Body, true
@@ -178,7 +181,7 @@ func (o *IncidentUpdate) GetBodyOk() (*string, bool) {
 
 // HasBody returns a boolean if a field has been set.
 func (o *IncidentUpdate) HasBody() bool {
-	if o != nil && o.Body != nil {
+	if o != nil && !IsNil(o.Body) {
 		return true
 	}
 
@@ -192,7 +195,7 @@ func (o *IncidentUpdate) SetBody(v string) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *IncidentUpdate) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -202,7 +205,7 @@ func (o *IncidentUpdate) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IncidentUpdate) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -210,7 +213,7 @@ func (o *IncidentUpdate) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *IncidentUpdate) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -224,7 +227,7 @@ func (o *IncidentUpdate) SetCreatedAt(v time.Time) {
 
 // GetCustomTweet returns the CustomTweet field value if set, zero value otherwise.
 func (o *IncidentUpdate) GetCustomTweet() string {
-	if o == nil || o.CustomTweet == nil {
+	if o == nil || IsNil(o.CustomTweet) {
 		var ret string
 		return ret
 	}
@@ -234,7 +237,7 @@ func (o *IncidentUpdate) GetCustomTweet() string {
 // GetCustomTweetOk returns a tuple with the CustomTweet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IncidentUpdate) GetCustomTweetOk() (*string, bool) {
-	if o == nil || o.CustomTweet == nil {
+	if o == nil || IsNil(o.CustomTweet) {
 		return nil, false
 	}
 	return o.CustomTweet, true
@@ -242,7 +245,7 @@ func (o *IncidentUpdate) GetCustomTweetOk() (*string, bool) {
 
 // HasCustomTweet returns a boolean if a field has been set.
 func (o *IncidentUpdate) HasCustomTweet() bool {
-	if o != nil && o.CustomTweet != nil {
+	if o != nil && !IsNil(o.CustomTweet) {
 		return true
 	}
 
@@ -256,7 +259,7 @@ func (o *IncidentUpdate) SetCustomTweet(v string) {
 
 // GetDeliverNotifications returns the DeliverNotifications field value if set, zero value otherwise.
 func (o *IncidentUpdate) GetDeliverNotifications() bool {
-	if o == nil || o.DeliverNotifications == nil {
+	if o == nil || IsNil(o.DeliverNotifications) {
 		var ret bool
 		return ret
 	}
@@ -266,7 +269,7 @@ func (o *IncidentUpdate) GetDeliverNotifications() bool {
 // GetDeliverNotificationsOk returns a tuple with the DeliverNotifications field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IncidentUpdate) GetDeliverNotificationsOk() (*bool, bool) {
-	if o == nil || o.DeliverNotifications == nil {
+	if o == nil || IsNil(o.DeliverNotifications) {
 		return nil, false
 	}
 	return o.DeliverNotifications, true
@@ -274,7 +277,7 @@ func (o *IncidentUpdate) GetDeliverNotificationsOk() (*bool, bool) {
 
 // HasDeliverNotifications returns a boolean if a field has been set.
 func (o *IncidentUpdate) HasDeliverNotifications() bool {
-	if o != nil && o.DeliverNotifications != nil {
+	if o != nil && !IsNil(o.DeliverNotifications) {
 		return true
 	}
 
@@ -288,7 +291,7 @@ func (o *IncidentUpdate) SetDeliverNotifications(v bool) {
 
 // GetDisplayAt returns the DisplayAt field value if set, zero value otherwise.
 func (o *IncidentUpdate) GetDisplayAt() time.Time {
-	if o == nil || o.DisplayAt == nil {
+	if o == nil || IsNil(o.DisplayAt) {
 		var ret time.Time
 		return ret
 	}
@@ -298,7 +301,7 @@ func (o *IncidentUpdate) GetDisplayAt() time.Time {
 // GetDisplayAtOk returns a tuple with the DisplayAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IncidentUpdate) GetDisplayAtOk() (*time.Time, bool) {
-	if o == nil || o.DisplayAt == nil {
+	if o == nil || IsNil(o.DisplayAt) {
 		return nil, false
 	}
 	return o.DisplayAt, true
@@ -306,7 +309,7 @@ func (o *IncidentUpdate) GetDisplayAtOk() (*time.Time, bool) {
 
 // HasDisplayAt returns a boolean if a field has been set.
 func (o *IncidentUpdate) HasDisplayAt() bool {
-	if o != nil && o.DisplayAt != nil {
+	if o != nil && !IsNil(o.DisplayAt) {
 		return true
 	}
 
@@ -320,7 +323,7 @@ func (o *IncidentUpdate) SetDisplayAt(v time.Time) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *IncidentUpdate) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -330,7 +333,7 @@ func (o *IncidentUpdate) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IncidentUpdate) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -338,7 +341,7 @@ func (o *IncidentUpdate) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *IncidentUpdate) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -352,7 +355,7 @@ func (o *IncidentUpdate) SetStatus(v string) {
 
 // GetTweetId returns the TweetId field value if set, zero value otherwise.
 func (o *IncidentUpdate) GetTweetId() string {
-	if o == nil || o.TweetId == nil {
+	if o == nil || IsNil(o.TweetId) {
 		var ret string
 		return ret
 	}
@@ -362,7 +365,7 @@ func (o *IncidentUpdate) GetTweetId() string {
 // GetTweetIdOk returns a tuple with the TweetId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IncidentUpdate) GetTweetIdOk() (*string, bool) {
-	if o == nil || o.TweetId == nil {
+	if o == nil || IsNil(o.TweetId) {
 		return nil, false
 	}
 	return o.TweetId, true
@@ -370,7 +373,7 @@ func (o *IncidentUpdate) GetTweetIdOk() (*string, bool) {
 
 // HasTweetId returns a boolean if a field has been set.
 func (o *IncidentUpdate) HasTweetId() bool {
-	if o != nil && o.TweetId != nil {
+	if o != nil && !IsNil(o.TweetId) {
 		return true
 	}
 
@@ -384,7 +387,7 @@ func (o *IncidentUpdate) SetTweetId(v string) {
 
 // GetTwitterUpdatedAt returns the TwitterUpdatedAt field value if set, zero value otherwise.
 func (o *IncidentUpdate) GetTwitterUpdatedAt() time.Time {
-	if o == nil || o.TwitterUpdatedAt == nil {
+	if o == nil || IsNil(o.TwitterUpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -394,7 +397,7 @@ func (o *IncidentUpdate) GetTwitterUpdatedAt() time.Time {
 // GetTwitterUpdatedAtOk returns a tuple with the TwitterUpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IncidentUpdate) GetTwitterUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.TwitterUpdatedAt == nil {
+	if o == nil || IsNil(o.TwitterUpdatedAt) {
 		return nil, false
 	}
 	return o.TwitterUpdatedAt, true
@@ -402,7 +405,7 @@ func (o *IncidentUpdate) GetTwitterUpdatedAtOk() (*time.Time, bool) {
 
 // HasTwitterUpdatedAt returns a boolean if a field has been set.
 func (o *IncidentUpdate) HasTwitterUpdatedAt() bool {
-	if o != nil && o.TwitterUpdatedAt != nil {
+	if o != nil && !IsNil(o.TwitterUpdatedAt) {
 		return true
 	}
 
@@ -416,7 +419,7 @@ func (o *IncidentUpdate) SetTwitterUpdatedAt(v time.Time) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *IncidentUpdate) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -426,7 +429,7 @@ func (o *IncidentUpdate) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IncidentUpdate) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -434,7 +437,7 @@ func (o *IncidentUpdate) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *IncidentUpdate) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -448,7 +451,7 @@ func (o *IncidentUpdate) SetUpdatedAt(v time.Time) {
 
 // GetWantsTwitterUpdate returns the WantsTwitterUpdate field value if set, zero value otherwise.
 func (o *IncidentUpdate) GetWantsTwitterUpdate() bool {
-	if o == nil || o.WantsTwitterUpdate == nil {
+	if o == nil || IsNil(o.WantsTwitterUpdate) {
 		var ret bool
 		return ret
 	}
@@ -458,7 +461,7 @@ func (o *IncidentUpdate) GetWantsTwitterUpdate() bool {
 // GetWantsTwitterUpdateOk returns a tuple with the WantsTwitterUpdate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *IncidentUpdate) GetWantsTwitterUpdateOk() (*bool, bool) {
-	if o == nil || o.WantsTwitterUpdate == nil {
+	if o == nil || IsNil(o.WantsTwitterUpdate) {
 		return nil, false
 	}
 	return o.WantsTwitterUpdate, true
@@ -466,7 +469,7 @@ func (o *IncidentUpdate) GetWantsTwitterUpdateOk() (*bool, bool) {
 
 // HasWantsTwitterUpdate returns a boolean if a field has been set.
 func (o *IncidentUpdate) HasWantsTwitterUpdate() bool {
-	if o != nil && o.WantsTwitterUpdate != nil {
+	if o != nil && !IsNil(o.WantsTwitterUpdate) {
 		return true
 	}
 
@@ -479,47 +482,55 @@ func (o *IncidentUpdate) SetWantsTwitterUpdate(v bool) {
 }
 
 func (o IncidentUpdate) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.IncidentId != nil {
-		toSerialize["incident_id"] = o.IncidentId
-	}
-	if o.AffectedComponents != nil {
-		toSerialize["affected_components"] = o.AffectedComponents
-	}
-	if o.Body != nil {
-		toSerialize["body"] = o.Body
-	}
-	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if o.CustomTweet != nil {
-		toSerialize["custom_tweet"] = o.CustomTweet
-	}
-	if o.DeliverNotifications != nil {
-		toSerialize["deliver_notifications"] = o.DeliverNotifications
-	}
-	if o.DisplayAt != nil {
-		toSerialize["display_at"] = o.DisplayAt
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
-	}
-	if o.TweetId != nil {
-		toSerialize["tweet_id"] = o.TweetId
-	}
-	if o.TwitterUpdatedAt != nil {
-		toSerialize["twitter_updated_at"] = o.TwitterUpdatedAt
-	}
-	if o.UpdatedAt != nil {
-		toSerialize["updated_at"] = o.UpdatedAt
-	}
-	if o.WantsTwitterUpdate != nil {
-		toSerialize["wants_twitter_update"] = o.WantsTwitterUpdate
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o IncidentUpdate) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.IncidentId) {
+		toSerialize["incident_id"] = o.IncidentId
+	}
+	if !IsNil(o.AffectedComponents) {
+		toSerialize["affected_components"] = o.AffectedComponents
+	}
+	if !IsNil(o.Body) {
+		toSerialize["body"] = o.Body
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.CustomTweet) {
+		toSerialize["custom_tweet"] = o.CustomTweet
+	}
+	if !IsNil(o.DeliverNotifications) {
+		toSerialize["deliver_notifications"] = o.DeliverNotifications
+	}
+	if !IsNil(o.DisplayAt) {
+		toSerialize["display_at"] = o.DisplayAt
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.TweetId) {
+		toSerialize["tweet_id"] = o.TweetId
+	}
+	if !IsNil(o.TwitterUpdatedAt) {
+		toSerialize["twitter_updated_at"] = o.TwitterUpdatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if !IsNil(o.WantsTwitterUpdate) {
+		toSerialize["wants_twitter_update"] = o.WantsTwitterUpdate
+	}
+	return toSerialize, nil
 }
 
 type NullableIncidentUpdate struct {
@@ -557,5 +568,3 @@ func (v *NullableIncidentUpdate) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

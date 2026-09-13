@@ -1,13 +1,13 @@
-# \PagesApi
+# \PagesAPI
 
 All URIs are relative to *https://api.statuspage.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetPages**](PagesApi.md#GetPages) | **Get** /pages | Get a list of pages
-[**GetPagesPageId**](PagesApi.md#GetPagesPageId) | **Get** /pages/{page_id} | Get a page
-[**PatchPagesPageId**](PagesApi.md#PatchPagesPageId) | **Patch** /pages/{page_id} | Update a page
-[**PutPagesPageId**](PagesApi.md#PutPagesPageId) | **Put** /pages/{page_id} | Update a page
+[**GetPages**](PagesAPI.md#GetPages) | **Get** /pages | Get a list of pages
+[**GetPagesPageId**](PagesAPI.md#GetPagesPageId) | **Get** /pages/{page_id} | Get a page
+[**PatchPagesPageId**](PagesAPI.md#PatchPagesPageId) | **Patch** /pages/{page_id} | Update a page
+[**PutPagesPageId**](PagesAPI.md#PutPagesPageId) | **Put** /pages/{page_id} | Update a page
 
 
 
@@ -25,23 +25,23 @@ Get a list of pages
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PagesApi.GetPages(context.Background()).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PagesApi.GetPages``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPages`: []Page
-    fmt.Fprintf(os.Stdout, "Response from `PagesApi.GetPages`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PagesAPI.GetPages(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PagesAPI.GetPages``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPages`: []Page
+	fmt.Fprintf(os.Stdout, "Response from `PagesAPI.GetPages`: %v\n", resp)
 }
 ```
 
@@ -86,24 +86,24 @@ Get a page
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
+	pageId := "pageId_example" // string | Page identifier
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PagesApi.GetPagesPageId(context.Background(), pageId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PagesApi.GetPagesPageId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPagesPageId`: Page
-    fmt.Fprintf(os.Stdout, "Response from `PagesApi.GetPagesPageId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PagesAPI.GetPagesPageId(context.Background(), pageId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PagesAPI.GetPagesPageId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPagesPageId`: Page
+	fmt.Fprintf(os.Stdout, "Response from `PagesAPI.GetPagesPageId`: %v\n", resp)
 }
 ```
 
@@ -156,25 +156,25 @@ Update a page
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    patchPages := *openapiclient.NewPatchPages() // PatchPages | 
+	pageId := "pageId_example" // string | Page identifier
+	patchPages := *openapiclient.NewPatchPages() // PatchPages | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PagesApi.PatchPagesPageId(context.Background(), pageId).PatchPages(patchPages).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PagesApi.PatchPagesPageId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PatchPagesPageId`: Page
-    fmt.Fprintf(os.Stdout, "Response from `PagesApi.PatchPagesPageId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PagesAPI.PatchPagesPageId(context.Background(), pageId).PatchPages(patchPages).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PagesAPI.PatchPagesPageId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PatchPagesPageId`: Page
+	fmt.Fprintf(os.Stdout, "Response from `PagesAPI.PatchPagesPageId`: %v\n", resp)
 }
 ```
 
@@ -228,25 +228,25 @@ Update a page
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    putPages := *openapiclient.NewPutPages() // PutPages | 
+	pageId := "pageId_example" // string | Page identifier
+	putPages := *openapiclient.NewPutPages() // PutPages | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PagesApi.PutPagesPageId(context.Background(), pageId).PutPages(putPages).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PagesApi.PutPagesPageId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutPagesPageId`: Page
-    fmt.Fprintf(os.Stdout, "Response from `PagesApi.PutPagesPageId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PagesAPI.PutPagesPageId(context.Background(), pageId).PutPages(putPages).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PagesAPI.PutPagesPageId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutPagesPageId`: Page
+	fmt.Fprintf(os.Stdout, "Response from `PagesAPI.PutPagesPageId`: %v\n", resp)
 }
 ```
 

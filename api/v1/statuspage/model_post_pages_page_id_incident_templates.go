@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PostPagesPageIdIncidentTemplates type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PostPagesPageIdIncidentTemplates{}
+
 // PostPagesPageIdIncidentTemplates Create a template
 type PostPagesPageIdIncidentTemplates struct {
 	Template *PostPagesPageIdIncidentTemplatesTemplate `json:"template,omitempty"`
@@ -38,7 +41,7 @@ func NewPostPagesPageIdIncidentTemplatesWithDefaults() *PostPagesPageIdIncidentT
 
 // GetTemplate returns the Template field value if set, zero value otherwise.
 func (o *PostPagesPageIdIncidentTemplates) GetTemplate() PostPagesPageIdIncidentTemplatesTemplate {
-	if o == nil || o.Template == nil {
+	if o == nil || IsNil(o.Template) {
 		var ret PostPagesPageIdIncidentTemplatesTemplate
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *PostPagesPageIdIncidentTemplates) GetTemplate() PostPagesPageIdIncident
 // GetTemplateOk returns a tuple with the Template field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdIncidentTemplates) GetTemplateOk() (*PostPagesPageIdIncidentTemplatesTemplate, bool) {
-	if o == nil || o.Template == nil {
+	if o == nil || IsNil(o.Template) {
 		return nil, false
 	}
 	return o.Template, true
@@ -56,7 +59,7 @@ func (o *PostPagesPageIdIncidentTemplates) GetTemplateOk() (*PostPagesPageIdInci
 
 // HasTemplate returns a boolean if a field has been set.
 func (o *PostPagesPageIdIncidentTemplates) HasTemplate() bool {
-	if o != nil && o.Template != nil {
+	if o != nil && !IsNil(o.Template) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *PostPagesPageIdIncidentTemplates) SetTemplate(v PostPagesPageIdIncident
 }
 
 func (o PostPagesPageIdIncidentTemplates) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Template != nil {
-		toSerialize["template"] = o.Template
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PostPagesPageIdIncidentTemplates) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Template) {
+		toSerialize["template"] = o.Template
+	}
+	return toSerialize, nil
 }
 
 type NullablePostPagesPageIdIncidentTemplates struct {
@@ -111,5 +122,3 @@ func (v *NullablePostPagesPageIdIncidentTemplates) UnmarshalJSON(src []byte) err
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

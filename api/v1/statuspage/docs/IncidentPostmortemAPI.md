@@ -1,14 +1,14 @@
-# \IncidentPostmortemApi
+# \IncidentPostmortemAPI
 
 All URIs are relative to *https://api.statuspage.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeletePagesPageIdIncidentsIncidentIdPostmortem**](IncidentPostmortemApi.md#DeletePagesPageIdIncidentsIncidentIdPostmortem) | **Delete** /pages/{page_id}/incidents/{incident_id}/postmortem | Delete Postmortem
-[**GetPagesPageIdIncidentsIncidentIdPostmortem**](IncidentPostmortemApi.md#GetPagesPageIdIncidentsIncidentIdPostmortem) | **Get** /pages/{page_id}/incidents/{incident_id}/postmortem | Get Postmortem
-[**PutPagesPageIdIncidentsIncidentIdPostmortem**](IncidentPostmortemApi.md#PutPagesPageIdIncidentsIncidentIdPostmortem) | **Put** /pages/{page_id}/incidents/{incident_id}/postmortem | Create Postmortem
-[**PutPagesPageIdIncidentsIncidentIdPostmortemPublish**](IncidentPostmortemApi.md#PutPagesPageIdIncidentsIncidentIdPostmortemPublish) | **Put** /pages/{page_id}/incidents/{incident_id}/postmortem/publish | Publish Postmortem
-[**PutPagesPageIdIncidentsIncidentIdPostmortemRevert**](IncidentPostmortemApi.md#PutPagesPageIdIncidentsIncidentIdPostmortemRevert) | **Put** /pages/{page_id}/incidents/{incident_id}/postmortem/revert | Revert Postmortem
+[**DeletePagesPageIdIncidentsIncidentIdPostmortem**](IncidentPostmortemAPI.md#DeletePagesPageIdIncidentsIncidentIdPostmortem) | **Delete** /pages/{page_id}/incidents/{incident_id}/postmortem | Delete Postmortem
+[**GetPagesPageIdIncidentsIncidentIdPostmortem**](IncidentPostmortemAPI.md#GetPagesPageIdIncidentsIncidentIdPostmortem) | **Get** /pages/{page_id}/incidents/{incident_id}/postmortem | Get Postmortem
+[**PutPagesPageIdIncidentsIncidentIdPostmortem**](IncidentPostmortemAPI.md#PutPagesPageIdIncidentsIncidentIdPostmortem) | **Put** /pages/{page_id}/incidents/{incident_id}/postmortem | Create Postmortem
+[**PutPagesPageIdIncidentsIncidentIdPostmortemPublish**](IncidentPostmortemAPI.md#PutPagesPageIdIncidentsIncidentIdPostmortemPublish) | **Put** /pages/{page_id}/incidents/{incident_id}/postmortem/publish | Publish Postmortem
+[**PutPagesPageIdIncidentsIncidentIdPostmortemRevert**](IncidentPostmortemAPI.md#PutPagesPageIdIncidentsIncidentIdPostmortemRevert) | **Put** /pages/{page_id}/incidents/{incident_id}/postmortem/revert | Revert Postmortem
 
 
 
@@ -26,23 +26,23 @@ Delete Postmortem
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    incidentId := "incidentId_example" // string | Incident Identifier
+	pageId := "pageId_example" // string | Page identifier
+	incidentId := "incidentId_example" // string | Incident Identifier
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentPostmortemApi.DeletePagesPageIdIncidentsIncidentIdPostmortem(context.Background(), pageId, incidentId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentPostmortemApi.DeletePagesPageIdIncidentsIncidentIdPostmortem``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.IncidentPostmortemAPI.DeletePagesPageIdIncidentsIncidentIdPostmortem(context.Background(), pageId, incidentId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IncidentPostmortemAPI.DeletePagesPageIdIncidentsIncidentIdPostmortem``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -97,25 +97,25 @@ Get Postmortem
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    incidentId := "incidentId_example" // string | Incident Identifier
+	pageId := "pageId_example" // string | Page identifier
+	incidentId := "incidentId_example" // string | Incident Identifier
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentPostmortemApi.GetPagesPageIdIncidentsIncidentIdPostmortem(context.Background(), pageId, incidentId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentPostmortemApi.GetPagesPageIdIncidentsIncidentIdPostmortem``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPagesPageIdIncidentsIncidentIdPostmortem`: Postmortem
-    fmt.Fprintf(os.Stdout, "Response from `IncidentPostmortemApi.GetPagesPageIdIncidentsIncidentIdPostmortem`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.IncidentPostmortemAPI.GetPagesPageIdIncidentsIncidentIdPostmortem(context.Background(), pageId, incidentId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IncidentPostmortemAPI.GetPagesPageIdIncidentsIncidentIdPostmortem``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPagesPageIdIncidentsIncidentIdPostmortem`: Postmortem
+	fmt.Fprintf(os.Stdout, "Response from `IncidentPostmortemAPI.GetPagesPageIdIncidentsIncidentIdPostmortem`: %v\n", resp)
 }
 ```
 
@@ -170,26 +170,26 @@ Create Postmortem
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    incidentId := "incidentId_example" // string | Incident Identifier
-    putPagesPageIdIncidentsIncidentIdPostmortem := *openapiclient.NewPutPagesPageIdIncidentsIncidentIdPostmortem() // PutPagesPageIdIncidentsIncidentIdPostmortem | 
+	pageId := "pageId_example" // string | Page identifier
+	incidentId := "incidentId_example" // string | Incident Identifier
+	putPagesPageIdIncidentsIncidentIdPostmortem := *openapiclient.NewPutPagesPageIdIncidentsIncidentIdPostmortem() // PutPagesPageIdIncidentsIncidentIdPostmortem | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentPostmortemApi.PutPagesPageIdIncidentsIncidentIdPostmortem(context.Background(), pageId, incidentId).PutPagesPageIdIncidentsIncidentIdPostmortem(putPagesPageIdIncidentsIncidentIdPostmortem).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentPostmortemApi.PutPagesPageIdIncidentsIncidentIdPostmortem``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutPagesPageIdIncidentsIncidentIdPostmortem`: Postmortem
-    fmt.Fprintf(os.Stdout, "Response from `IncidentPostmortemApi.PutPagesPageIdIncidentsIncidentIdPostmortem`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.IncidentPostmortemAPI.PutPagesPageIdIncidentsIncidentIdPostmortem(context.Background(), pageId, incidentId).PutPagesPageIdIncidentsIncidentIdPostmortem(putPagesPageIdIncidentsIncidentIdPostmortem).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IncidentPostmortemAPI.PutPagesPageIdIncidentsIncidentIdPostmortem``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutPagesPageIdIncidentsIncidentIdPostmortem`: Postmortem
+	fmt.Fprintf(os.Stdout, "Response from `IncidentPostmortemAPI.PutPagesPageIdIncidentsIncidentIdPostmortem`: %v\n", resp)
 }
 ```
 
@@ -245,26 +245,26 @@ Publish Postmortem
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    incidentId := "incidentId_example" // string | Incident Identifier
-    putPagesPageIdIncidentsIncidentIdPostmortemPublish := *openapiclient.NewPutPagesPageIdIncidentsIncidentIdPostmortemPublish() // PutPagesPageIdIncidentsIncidentIdPostmortemPublish | 
+	pageId := "pageId_example" // string | Page identifier
+	incidentId := "incidentId_example" // string | Incident Identifier
+	putPagesPageIdIncidentsIncidentIdPostmortemPublish := *openapiclient.NewPutPagesPageIdIncidentsIncidentIdPostmortemPublish() // PutPagesPageIdIncidentsIncidentIdPostmortemPublish | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentPostmortemApi.PutPagesPageIdIncidentsIncidentIdPostmortemPublish(context.Background(), pageId, incidentId).PutPagesPageIdIncidentsIncidentIdPostmortemPublish(putPagesPageIdIncidentsIncidentIdPostmortemPublish).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentPostmortemApi.PutPagesPageIdIncidentsIncidentIdPostmortemPublish``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutPagesPageIdIncidentsIncidentIdPostmortemPublish`: Postmortem
-    fmt.Fprintf(os.Stdout, "Response from `IncidentPostmortemApi.PutPagesPageIdIncidentsIncidentIdPostmortemPublish`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.IncidentPostmortemAPI.PutPagesPageIdIncidentsIncidentIdPostmortemPublish(context.Background(), pageId, incidentId).PutPagesPageIdIncidentsIncidentIdPostmortemPublish(putPagesPageIdIncidentsIncidentIdPostmortemPublish).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IncidentPostmortemAPI.PutPagesPageIdIncidentsIncidentIdPostmortemPublish``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutPagesPageIdIncidentsIncidentIdPostmortemPublish`: Postmortem
+	fmt.Fprintf(os.Stdout, "Response from `IncidentPostmortemAPI.PutPagesPageIdIncidentsIncidentIdPostmortemPublish`: %v\n", resp)
 }
 ```
 
@@ -320,25 +320,25 @@ Revert Postmortem
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    incidentId := "incidentId_example" // string | Incident Identifier
+	pageId := "pageId_example" // string | Page identifier
+	incidentId := "incidentId_example" // string | Incident Identifier
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.IncidentPostmortemApi.PutPagesPageIdIncidentsIncidentIdPostmortemRevert(context.Background(), pageId, incidentId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `IncidentPostmortemApi.PutPagesPageIdIncidentsIncidentIdPostmortemRevert``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutPagesPageIdIncidentsIncidentIdPostmortemRevert`: Postmortem
-    fmt.Fprintf(os.Stdout, "Response from `IncidentPostmortemApi.PutPagesPageIdIncidentsIncidentIdPostmortemRevert`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.IncidentPostmortemAPI.PutPagesPageIdIncidentsIncidentIdPostmortemRevert(context.Background(), pageId, incidentId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IncidentPostmortemAPI.PutPagesPageIdIncidentsIncidentIdPostmortemRevert``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutPagesPageIdIncidentsIncidentIdPostmortemRevert`: Postmortem
+	fmt.Fprintf(os.Stdout, "Response from `IncidentPostmortemAPI.PutPagesPageIdIncidentsIncidentIdPostmortemRevert`: %v\n", resp)
 }
 ```
 

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | Name of metric | [optional] 
 **MetricIdentifier** | Pointer to **string** | The identifier used to look up the metric data from the provider | [optional] 
 **Transform** | Pointer to **string** | The transform to apply to metric before pulling into Statuspage. One of: \&quot;average\&quot;, \&quot;count\&quot;, \&quot;max\&quot;, \&quot;min\&quot;, or \&quot;sum\&quot; | [optional] 
+**ApplicationId** | Pointer to **string** | The Identifier for new relic application. Required in the case of NewRelic only | [optional] 
 **Suffix** | Pointer to **string** | Suffix to describe the units on the graph | [optional] 
 **YAxisMin** | Pointer to **int32** | The lower bound of the y axis | [optional] 
 **YAxisMax** | Pointer to **int32** | The upper bound of the y axis | [optional] 
@@ -108,6 +109,31 @@ SetTransform sets Transform field to given value.
 `func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) HasTransform() bool`
 
 HasTransform returns a boolean if a field has been set.
+
+### GetApplicationId
+
+`func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetApplicationId() string`
+
+GetApplicationId returns the ApplicationId field if non-nil, zero value otherwise.
+
+### GetApplicationIdOk
+
+`func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) GetApplicationIdOk() (*string, bool)`
+
+GetApplicationIdOk returns a tuple with the ApplicationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApplicationId
+
+`func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) SetApplicationId(v string)`
+
+SetApplicationId sets ApplicationId field to given value.
+
+### HasApplicationId
+
+`func (o *PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric) HasApplicationId() bool`
+
+HasApplicationId returns a boolean if a field has been set.
 
 ### GetSuffix
 

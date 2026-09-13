@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PostPagesPageIdPageAccessGroups type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PostPagesPageIdPageAccessGroups{}
+
 // PostPagesPageIdPageAccessGroups Create a page access group
 type PostPagesPageIdPageAccessGroups struct {
 	PageAccessGroup *PostPagesPageIdPageAccessGroupsPageAccessGroup `json:"page_access_group,omitempty"`
@@ -38,7 +41,7 @@ func NewPostPagesPageIdPageAccessGroupsWithDefaults() *PostPagesPageIdPageAccess
 
 // GetPageAccessGroup returns the PageAccessGroup field value if set, zero value otherwise.
 func (o *PostPagesPageIdPageAccessGroups) GetPageAccessGroup() PostPagesPageIdPageAccessGroupsPageAccessGroup {
-	if o == nil || o.PageAccessGroup == nil {
+	if o == nil || IsNil(o.PageAccessGroup) {
 		var ret PostPagesPageIdPageAccessGroupsPageAccessGroup
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *PostPagesPageIdPageAccessGroups) GetPageAccessGroup() PostPagesPageIdPa
 // GetPageAccessGroupOk returns a tuple with the PageAccessGroup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdPageAccessGroups) GetPageAccessGroupOk() (*PostPagesPageIdPageAccessGroupsPageAccessGroup, bool) {
-	if o == nil || o.PageAccessGroup == nil {
+	if o == nil || IsNil(o.PageAccessGroup) {
 		return nil, false
 	}
 	return o.PageAccessGroup, true
@@ -56,7 +59,7 @@ func (o *PostPagesPageIdPageAccessGroups) GetPageAccessGroupOk() (*PostPagesPage
 
 // HasPageAccessGroup returns a boolean if a field has been set.
 func (o *PostPagesPageIdPageAccessGroups) HasPageAccessGroup() bool {
-	if o != nil && o.PageAccessGroup != nil {
+	if o != nil && !IsNil(o.PageAccessGroup) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *PostPagesPageIdPageAccessGroups) SetPageAccessGroup(v PostPagesPageIdPa
 }
 
 func (o PostPagesPageIdPageAccessGroups) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.PageAccessGroup != nil {
-		toSerialize["page_access_group"] = o.PageAccessGroup
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PostPagesPageIdPageAccessGroups) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.PageAccessGroup) {
+		toSerialize["page_access_group"] = o.PageAccessGroup
+	}
+	return toSerialize, nil
 }
 
 type NullablePostPagesPageIdPageAccessGroups struct {
@@ -111,5 +122,3 @@ func (v *NullablePostPagesPageIdPageAccessGroups) UnmarshalJSON(src []byte) erro
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

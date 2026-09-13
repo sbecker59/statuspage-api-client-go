@@ -1,11 +1,11 @@
-# \PermissionsApi
+# \PermissionsAPI
 
 All URIs are relative to *https://api.statuspage.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetOrganizationsOrganizationIdPermissionsUserId**](PermissionsApi.md#GetOrganizationsOrganizationIdPermissionsUserId) | **Get** /organizations/{organization_id}/permissions/{user_id} | Get a user&#39;s permissions
-[**PutOrganizationsOrganizationIdPermissionsUserId**](PermissionsApi.md#PutOrganizationsOrganizationIdPermissionsUserId) | **Put** /organizations/{organization_id}/permissions/{user_id} | Update a user&#39;s role permissions
+[**GetOrganizationsOrganizationIdPermissionsUserId**](PermissionsAPI.md#GetOrganizationsOrganizationIdPermissionsUserId) | **Get** /organizations/{organization_id}/permissions/{user_id} | Get a user&#39;s permissions
+[**PutOrganizationsOrganizationIdPermissionsUserId**](PermissionsAPI.md#PutOrganizationsOrganizationIdPermissionsUserId) | **Put** /organizations/{organization_id}/permissions/{user_id} | Update a user&#39;s role permissions
 
 
 
@@ -23,25 +23,25 @@ Get a user's permissions
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    organizationId := "organizationId_example" // string | Organization Identifier
-    userId := "userId_example" // string | User identifier
+	organizationId := "organizationId_example" // string | Organization Identifier
+	userId := "userId_example" // string | User identifier
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PermissionsApi.GetOrganizationsOrganizationIdPermissionsUserId(context.Background(), organizationId, userId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PermissionsApi.GetOrganizationsOrganizationIdPermissionsUserId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetOrganizationsOrganizationIdPermissionsUserId`: Permissions
-    fmt.Fprintf(os.Stdout, "Response from `PermissionsApi.GetOrganizationsOrganizationIdPermissionsUserId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PermissionsAPI.GetOrganizationsOrganizationIdPermissionsUserId(context.Background(), organizationId, userId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PermissionsAPI.GetOrganizationsOrganizationIdPermissionsUserId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetOrganizationsOrganizationIdPermissionsUserId`: Permissions
+	fmt.Fprintf(os.Stdout, "Response from `PermissionsAPI.GetOrganizationsOrganizationIdPermissionsUserId`: %v\n", resp)
 }
 ```
 
@@ -96,26 +96,26 @@ Update a user's role permissions
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    organizationId := "organizationId_example" // string | Organization Identifier
-    userId := "userId_example" // string | User identifier
-    putOrganizationsOrganizationIdPermissions := *openapiclient.NewPutOrganizationsOrganizationIdPermissions() // PutOrganizationsOrganizationIdPermissions | 
+	organizationId := "organizationId_example" // string | Organization Identifier
+	userId := "userId_example" // string | User identifier
+	putOrganizationsOrganizationIdPermissions := *openapiclient.NewPutOrganizationsOrganizationIdPermissions() // PutOrganizationsOrganizationIdPermissions | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PermissionsApi.PutOrganizationsOrganizationIdPermissionsUserId(context.Background(), organizationId, userId).PutOrganizationsOrganizationIdPermissions(putOrganizationsOrganizationIdPermissions).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PermissionsApi.PutOrganizationsOrganizationIdPermissionsUserId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutOrganizationsOrganizationIdPermissionsUserId`: Permissions
-    fmt.Fprintf(os.Stdout, "Response from `PermissionsApi.PutOrganizationsOrganizationIdPermissionsUserId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PermissionsAPI.PutOrganizationsOrganizationIdPermissionsUserId(context.Background(), organizationId, userId).PutOrganizationsOrganizationIdPermissions(putOrganizationsOrganizationIdPermissions).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PermissionsAPI.PutOrganizationsOrganizationIdPermissionsUserId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutOrganizationsOrganizationIdPermissionsUserId`: Permissions
+	fmt.Fprintf(os.Stdout, "Response from `PermissionsAPI.PutOrganizationsOrganizationIdPermissionsUserId`: %v\n", resp)
 }
 ```
 

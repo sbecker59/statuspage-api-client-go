@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the Page type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Page{}
+
 // Page Get a page
 type Page struct {
 	// Page identifier
@@ -24,9 +27,9 @@ type Page struct {
 	// Timestamp the record was last updated
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// Name of your page to be displayed
-	Name *string `json:"name,omitempty"`
+	Name            *string `json:"name,omitempty"`
 	PageDescription *string `json:"page_description,omitempty"`
-	Headline *string `json:"headline,omitempty"`
+	Headline        *string `json:"headline,omitempty"`
 	// The main template your statuspage will use
 	Branding *string `json:"branding,omitempty"`
 	// Subdomain at which to access your status page
@@ -34,7 +37,7 @@ type Page struct {
 	// CNAME alias for your status page
 	Domain *string `json:"domain,omitempty"`
 	// Website of your page.  Clicking on your statuspage image will link here.
-	Url *string `json:"url,omitempty"`
+	Url        *string `json:"url,omitempty"`
 	SupportUrl *string `json:"support_url,omitempty"`
 	// Should your page hide itself from search engines
 	HiddenFromSearch *bool `json:"hidden_from_search,omitempty"`
@@ -53,14 +56,14 @@ type Page struct {
 	// Allows you to customize the email address your page notifications come from
 	NotificationsFromEmail *string `json:"notifications_from_email,omitempty"`
 	// Allows you to customize the footer appearing on your notification emails.  Accepts Markdown for formatting
-	NotificationsEmailFooter *string `json:"notifications_email_footer,omitempty"`
-	ActivityScore *float32 `json:"activity_score,omitempty"`
-	TwitterUsername *string `json:"twitter_username,omitempty"`
-	ViewersMustBeTeamMembers *bool `json:"viewers_must_be_team_members,omitempty"`
-	IpRestrictions *string `json:"ip_restrictions,omitempty"`
-	City *string `json:"city,omitempty"`
-	State *string `json:"state,omitempty"`
-	Country *string `json:"country,omitempty"`
+	NotificationsEmailFooter *string  `json:"notifications_email_footer,omitempty"`
+	ActivityScore            *float32 `json:"activity_score,omitempty"`
+	TwitterUsername          *string  `json:"twitter_username,omitempty"`
+	ViewersMustBeTeamMembers *bool    `json:"viewers_must_be_team_members,omitempty"`
+	IpRestrictions           *string  `json:"ip_restrictions,omitempty"`
+	City                     *string  `json:"city,omitempty"`
+	State                    *string  `json:"state,omitempty"`
+	Country                  *string  `json:"country,omitempty"`
 	// Timezone configured for your page
 	TimeZone *string `json:"time_zone,omitempty"`
 	// CSS Color
@@ -86,12 +89,12 @@ type Page struct {
 	// CSS Color
 	CssLinkColor *string `json:"css_link_color,omitempty"`
 	// CSS Color
-	CssNoData *string `json:"css_no_data,omitempty"`
-	FaviconLogo *interface{} `json:"favicon_logo,omitempty"`
-	TransactionalLogo *interface{} `json:"transactional_logo,omitempty"`
-	HeroCover *interface{} `json:"hero_cover,omitempty"`
-	EmailLogo *interface{} `json:"email_logo,omitempty"`
-	TwitterLogo *interface{} `json:"twitter_logo,omitempty"`
+	CssNoData         *string `json:"css_no_data,omitempty"`
+	FaviconLogo       *string `json:"favicon_logo,omitempty"`
+	TransactionalLogo *string `json:"transactional_logo,omitempty"`
+	HeroCover         *string `json:"hero_cover,omitempty"`
+	EmailLogo         *string `json:"email_logo,omitempty"`
+	TwitterLogo       *string `json:"twitter_logo,omitempty"`
 }
 
 // NewPage instantiates a new Page object
@@ -113,7 +116,7 @@ func NewPageWithDefaults() *Page {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Page) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -123,7 +126,7 @@ func (o *Page) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -131,7 +134,7 @@ func (o *Page) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Page) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -145,7 +148,7 @@ func (o *Page) SetId(v string) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *Page) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -155,7 +158,7 @@ func (o *Page) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -163,7 +166,7 @@ func (o *Page) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Page) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -177,7 +180,7 @@ func (o *Page) SetCreatedAt(v time.Time) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *Page) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -187,7 +190,7 @@ func (o *Page) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -195,7 +198,7 @@ func (o *Page) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *Page) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -209,7 +212,7 @@ func (o *Page) SetUpdatedAt(v time.Time) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Page) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -219,7 +222,7 @@ func (o *Page) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -227,7 +230,7 @@ func (o *Page) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Page) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -241,7 +244,7 @@ func (o *Page) SetName(v string) {
 
 // GetPageDescription returns the PageDescription field value if set, zero value otherwise.
 func (o *Page) GetPageDescription() string {
-	if o == nil || o.PageDescription == nil {
+	if o == nil || IsNil(o.PageDescription) {
 		var ret string
 		return ret
 	}
@@ -251,7 +254,7 @@ func (o *Page) GetPageDescription() string {
 // GetPageDescriptionOk returns a tuple with the PageDescription field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetPageDescriptionOk() (*string, bool) {
-	if o == nil || o.PageDescription == nil {
+	if o == nil || IsNil(o.PageDescription) {
 		return nil, false
 	}
 	return o.PageDescription, true
@@ -259,7 +262,7 @@ func (o *Page) GetPageDescriptionOk() (*string, bool) {
 
 // HasPageDescription returns a boolean if a field has been set.
 func (o *Page) HasPageDescription() bool {
-	if o != nil && o.PageDescription != nil {
+	if o != nil && !IsNil(o.PageDescription) {
 		return true
 	}
 
@@ -273,7 +276,7 @@ func (o *Page) SetPageDescription(v string) {
 
 // GetHeadline returns the Headline field value if set, zero value otherwise.
 func (o *Page) GetHeadline() string {
-	if o == nil || o.Headline == nil {
+	if o == nil || IsNil(o.Headline) {
 		var ret string
 		return ret
 	}
@@ -283,7 +286,7 @@ func (o *Page) GetHeadline() string {
 // GetHeadlineOk returns a tuple with the Headline field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetHeadlineOk() (*string, bool) {
-	if o == nil || o.Headline == nil {
+	if o == nil || IsNil(o.Headline) {
 		return nil, false
 	}
 	return o.Headline, true
@@ -291,7 +294,7 @@ func (o *Page) GetHeadlineOk() (*string, bool) {
 
 // HasHeadline returns a boolean if a field has been set.
 func (o *Page) HasHeadline() bool {
-	if o != nil && o.Headline != nil {
+	if o != nil && !IsNil(o.Headline) {
 		return true
 	}
 
@@ -305,7 +308,7 @@ func (o *Page) SetHeadline(v string) {
 
 // GetBranding returns the Branding field value if set, zero value otherwise.
 func (o *Page) GetBranding() string {
-	if o == nil || o.Branding == nil {
+	if o == nil || IsNil(o.Branding) {
 		var ret string
 		return ret
 	}
@@ -315,7 +318,7 @@ func (o *Page) GetBranding() string {
 // GetBrandingOk returns a tuple with the Branding field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetBrandingOk() (*string, bool) {
-	if o == nil || o.Branding == nil {
+	if o == nil || IsNil(o.Branding) {
 		return nil, false
 	}
 	return o.Branding, true
@@ -323,7 +326,7 @@ func (o *Page) GetBrandingOk() (*string, bool) {
 
 // HasBranding returns a boolean if a field has been set.
 func (o *Page) HasBranding() bool {
-	if o != nil && o.Branding != nil {
+	if o != nil && !IsNil(o.Branding) {
 		return true
 	}
 
@@ -337,7 +340,7 @@ func (o *Page) SetBranding(v string) {
 
 // GetSubdomain returns the Subdomain field value if set, zero value otherwise.
 func (o *Page) GetSubdomain() string {
-	if o == nil || o.Subdomain == nil {
+	if o == nil || IsNil(o.Subdomain) {
 		var ret string
 		return ret
 	}
@@ -347,7 +350,7 @@ func (o *Page) GetSubdomain() string {
 // GetSubdomainOk returns a tuple with the Subdomain field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetSubdomainOk() (*string, bool) {
-	if o == nil || o.Subdomain == nil {
+	if o == nil || IsNil(o.Subdomain) {
 		return nil, false
 	}
 	return o.Subdomain, true
@@ -355,7 +358,7 @@ func (o *Page) GetSubdomainOk() (*string, bool) {
 
 // HasSubdomain returns a boolean if a field has been set.
 func (o *Page) HasSubdomain() bool {
-	if o != nil && o.Subdomain != nil {
+	if o != nil && !IsNil(o.Subdomain) {
 		return true
 	}
 
@@ -369,7 +372,7 @@ func (o *Page) SetSubdomain(v string) {
 
 // GetDomain returns the Domain field value if set, zero value otherwise.
 func (o *Page) GetDomain() string {
-	if o == nil || o.Domain == nil {
+	if o == nil || IsNil(o.Domain) {
 		var ret string
 		return ret
 	}
@@ -379,7 +382,7 @@ func (o *Page) GetDomain() string {
 // GetDomainOk returns a tuple with the Domain field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetDomainOk() (*string, bool) {
-	if o == nil || o.Domain == nil {
+	if o == nil || IsNil(o.Domain) {
 		return nil, false
 	}
 	return o.Domain, true
@@ -387,7 +390,7 @@ func (o *Page) GetDomainOk() (*string, bool) {
 
 // HasDomain returns a boolean if a field has been set.
 func (o *Page) HasDomain() bool {
-	if o != nil && o.Domain != nil {
+	if o != nil && !IsNil(o.Domain) {
 		return true
 	}
 
@@ -401,7 +404,7 @@ func (o *Page) SetDomain(v string) {
 
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *Page) GetUrl() string {
-	if o == nil || o.Url == nil {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
@@ -411,7 +414,7 @@ func (o *Page) GetUrl() string {
 // GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetUrlOk() (*string, bool) {
-	if o == nil || o.Url == nil {
+	if o == nil || IsNil(o.Url) {
 		return nil, false
 	}
 	return o.Url, true
@@ -419,7 +422,7 @@ func (o *Page) GetUrlOk() (*string, bool) {
 
 // HasUrl returns a boolean if a field has been set.
 func (o *Page) HasUrl() bool {
-	if o != nil && o.Url != nil {
+	if o != nil && !IsNil(o.Url) {
 		return true
 	}
 
@@ -433,7 +436,7 @@ func (o *Page) SetUrl(v string) {
 
 // GetSupportUrl returns the SupportUrl field value if set, zero value otherwise.
 func (o *Page) GetSupportUrl() string {
-	if o == nil || o.SupportUrl == nil {
+	if o == nil || IsNil(o.SupportUrl) {
 		var ret string
 		return ret
 	}
@@ -443,7 +446,7 @@ func (o *Page) GetSupportUrl() string {
 // GetSupportUrlOk returns a tuple with the SupportUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetSupportUrlOk() (*string, bool) {
-	if o == nil || o.SupportUrl == nil {
+	if o == nil || IsNil(o.SupportUrl) {
 		return nil, false
 	}
 	return o.SupportUrl, true
@@ -451,7 +454,7 @@ func (o *Page) GetSupportUrlOk() (*string, bool) {
 
 // HasSupportUrl returns a boolean if a field has been set.
 func (o *Page) HasSupportUrl() bool {
-	if o != nil && o.SupportUrl != nil {
+	if o != nil && !IsNil(o.SupportUrl) {
 		return true
 	}
 
@@ -465,7 +468,7 @@ func (o *Page) SetSupportUrl(v string) {
 
 // GetHiddenFromSearch returns the HiddenFromSearch field value if set, zero value otherwise.
 func (o *Page) GetHiddenFromSearch() bool {
-	if o == nil || o.HiddenFromSearch == nil {
+	if o == nil || IsNil(o.HiddenFromSearch) {
 		var ret bool
 		return ret
 	}
@@ -475,7 +478,7 @@ func (o *Page) GetHiddenFromSearch() bool {
 // GetHiddenFromSearchOk returns a tuple with the HiddenFromSearch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetHiddenFromSearchOk() (*bool, bool) {
-	if o == nil || o.HiddenFromSearch == nil {
+	if o == nil || IsNil(o.HiddenFromSearch) {
 		return nil, false
 	}
 	return o.HiddenFromSearch, true
@@ -483,7 +486,7 @@ func (o *Page) GetHiddenFromSearchOk() (*bool, bool) {
 
 // HasHiddenFromSearch returns a boolean if a field has been set.
 func (o *Page) HasHiddenFromSearch() bool {
-	if o != nil && o.HiddenFromSearch != nil {
+	if o != nil && !IsNil(o.HiddenFromSearch) {
 		return true
 	}
 
@@ -497,7 +500,7 @@ func (o *Page) SetHiddenFromSearch(v bool) {
 
 // GetAllowPageSubscribers returns the AllowPageSubscribers field value if set, zero value otherwise.
 func (o *Page) GetAllowPageSubscribers() bool {
-	if o == nil || o.AllowPageSubscribers == nil {
+	if o == nil || IsNil(o.AllowPageSubscribers) {
 		var ret bool
 		return ret
 	}
@@ -507,7 +510,7 @@ func (o *Page) GetAllowPageSubscribers() bool {
 // GetAllowPageSubscribersOk returns a tuple with the AllowPageSubscribers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetAllowPageSubscribersOk() (*bool, bool) {
-	if o == nil || o.AllowPageSubscribers == nil {
+	if o == nil || IsNil(o.AllowPageSubscribers) {
 		return nil, false
 	}
 	return o.AllowPageSubscribers, true
@@ -515,7 +518,7 @@ func (o *Page) GetAllowPageSubscribersOk() (*bool, bool) {
 
 // HasAllowPageSubscribers returns a boolean if a field has been set.
 func (o *Page) HasAllowPageSubscribers() bool {
-	if o != nil && o.AllowPageSubscribers != nil {
+	if o != nil && !IsNil(o.AllowPageSubscribers) {
 		return true
 	}
 
@@ -529,7 +532,7 @@ func (o *Page) SetAllowPageSubscribers(v bool) {
 
 // GetAllowIncidentSubscribers returns the AllowIncidentSubscribers field value if set, zero value otherwise.
 func (o *Page) GetAllowIncidentSubscribers() bool {
-	if o == nil || o.AllowIncidentSubscribers == nil {
+	if o == nil || IsNil(o.AllowIncidentSubscribers) {
 		var ret bool
 		return ret
 	}
@@ -539,7 +542,7 @@ func (o *Page) GetAllowIncidentSubscribers() bool {
 // GetAllowIncidentSubscribersOk returns a tuple with the AllowIncidentSubscribers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetAllowIncidentSubscribersOk() (*bool, bool) {
-	if o == nil || o.AllowIncidentSubscribers == nil {
+	if o == nil || IsNil(o.AllowIncidentSubscribers) {
 		return nil, false
 	}
 	return o.AllowIncidentSubscribers, true
@@ -547,7 +550,7 @@ func (o *Page) GetAllowIncidentSubscribersOk() (*bool, bool) {
 
 // HasAllowIncidentSubscribers returns a boolean if a field has been set.
 func (o *Page) HasAllowIncidentSubscribers() bool {
-	if o != nil && o.AllowIncidentSubscribers != nil {
+	if o != nil && !IsNil(o.AllowIncidentSubscribers) {
 		return true
 	}
 
@@ -561,7 +564,7 @@ func (o *Page) SetAllowIncidentSubscribers(v bool) {
 
 // GetAllowEmailSubscribers returns the AllowEmailSubscribers field value if set, zero value otherwise.
 func (o *Page) GetAllowEmailSubscribers() bool {
-	if o == nil || o.AllowEmailSubscribers == nil {
+	if o == nil || IsNil(o.AllowEmailSubscribers) {
 		var ret bool
 		return ret
 	}
@@ -571,7 +574,7 @@ func (o *Page) GetAllowEmailSubscribers() bool {
 // GetAllowEmailSubscribersOk returns a tuple with the AllowEmailSubscribers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetAllowEmailSubscribersOk() (*bool, bool) {
-	if o == nil || o.AllowEmailSubscribers == nil {
+	if o == nil || IsNil(o.AllowEmailSubscribers) {
 		return nil, false
 	}
 	return o.AllowEmailSubscribers, true
@@ -579,7 +582,7 @@ func (o *Page) GetAllowEmailSubscribersOk() (*bool, bool) {
 
 // HasAllowEmailSubscribers returns a boolean if a field has been set.
 func (o *Page) HasAllowEmailSubscribers() bool {
-	if o != nil && o.AllowEmailSubscribers != nil {
+	if o != nil && !IsNil(o.AllowEmailSubscribers) {
 		return true
 	}
 
@@ -593,7 +596,7 @@ func (o *Page) SetAllowEmailSubscribers(v bool) {
 
 // GetAllowSmsSubscribers returns the AllowSmsSubscribers field value if set, zero value otherwise.
 func (o *Page) GetAllowSmsSubscribers() bool {
-	if o == nil || o.AllowSmsSubscribers == nil {
+	if o == nil || IsNil(o.AllowSmsSubscribers) {
 		var ret bool
 		return ret
 	}
@@ -603,7 +606,7 @@ func (o *Page) GetAllowSmsSubscribers() bool {
 // GetAllowSmsSubscribersOk returns a tuple with the AllowSmsSubscribers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetAllowSmsSubscribersOk() (*bool, bool) {
-	if o == nil || o.AllowSmsSubscribers == nil {
+	if o == nil || IsNil(o.AllowSmsSubscribers) {
 		return nil, false
 	}
 	return o.AllowSmsSubscribers, true
@@ -611,7 +614,7 @@ func (o *Page) GetAllowSmsSubscribersOk() (*bool, bool) {
 
 // HasAllowSmsSubscribers returns a boolean if a field has been set.
 func (o *Page) HasAllowSmsSubscribers() bool {
-	if o != nil && o.AllowSmsSubscribers != nil {
+	if o != nil && !IsNil(o.AllowSmsSubscribers) {
 		return true
 	}
 
@@ -625,7 +628,7 @@ func (o *Page) SetAllowSmsSubscribers(v bool) {
 
 // GetAllowRssAtomFeeds returns the AllowRssAtomFeeds field value if set, zero value otherwise.
 func (o *Page) GetAllowRssAtomFeeds() bool {
-	if o == nil || o.AllowRssAtomFeeds == nil {
+	if o == nil || IsNil(o.AllowRssAtomFeeds) {
 		var ret bool
 		return ret
 	}
@@ -635,7 +638,7 @@ func (o *Page) GetAllowRssAtomFeeds() bool {
 // GetAllowRssAtomFeedsOk returns a tuple with the AllowRssAtomFeeds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetAllowRssAtomFeedsOk() (*bool, bool) {
-	if o == nil || o.AllowRssAtomFeeds == nil {
+	if o == nil || IsNil(o.AllowRssAtomFeeds) {
 		return nil, false
 	}
 	return o.AllowRssAtomFeeds, true
@@ -643,7 +646,7 @@ func (o *Page) GetAllowRssAtomFeedsOk() (*bool, bool) {
 
 // HasAllowRssAtomFeeds returns a boolean if a field has been set.
 func (o *Page) HasAllowRssAtomFeeds() bool {
-	if o != nil && o.AllowRssAtomFeeds != nil {
+	if o != nil && !IsNil(o.AllowRssAtomFeeds) {
 		return true
 	}
 
@@ -657,7 +660,7 @@ func (o *Page) SetAllowRssAtomFeeds(v bool) {
 
 // GetAllowWebhookSubscribers returns the AllowWebhookSubscribers field value if set, zero value otherwise.
 func (o *Page) GetAllowWebhookSubscribers() bool {
-	if o == nil || o.AllowWebhookSubscribers == nil {
+	if o == nil || IsNil(o.AllowWebhookSubscribers) {
 		var ret bool
 		return ret
 	}
@@ -667,7 +670,7 @@ func (o *Page) GetAllowWebhookSubscribers() bool {
 // GetAllowWebhookSubscribersOk returns a tuple with the AllowWebhookSubscribers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetAllowWebhookSubscribersOk() (*bool, bool) {
-	if o == nil || o.AllowWebhookSubscribers == nil {
+	if o == nil || IsNil(o.AllowWebhookSubscribers) {
 		return nil, false
 	}
 	return o.AllowWebhookSubscribers, true
@@ -675,7 +678,7 @@ func (o *Page) GetAllowWebhookSubscribersOk() (*bool, bool) {
 
 // HasAllowWebhookSubscribers returns a boolean if a field has been set.
 func (o *Page) HasAllowWebhookSubscribers() bool {
-	if o != nil && o.AllowWebhookSubscribers != nil {
+	if o != nil && !IsNil(o.AllowWebhookSubscribers) {
 		return true
 	}
 
@@ -689,7 +692,7 @@ func (o *Page) SetAllowWebhookSubscribers(v bool) {
 
 // GetNotificationsFromEmail returns the NotificationsFromEmail field value if set, zero value otherwise.
 func (o *Page) GetNotificationsFromEmail() string {
-	if o == nil || o.NotificationsFromEmail == nil {
+	if o == nil || IsNil(o.NotificationsFromEmail) {
 		var ret string
 		return ret
 	}
@@ -699,7 +702,7 @@ func (o *Page) GetNotificationsFromEmail() string {
 // GetNotificationsFromEmailOk returns a tuple with the NotificationsFromEmail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetNotificationsFromEmailOk() (*string, bool) {
-	if o == nil || o.NotificationsFromEmail == nil {
+	if o == nil || IsNil(o.NotificationsFromEmail) {
 		return nil, false
 	}
 	return o.NotificationsFromEmail, true
@@ -707,7 +710,7 @@ func (o *Page) GetNotificationsFromEmailOk() (*string, bool) {
 
 // HasNotificationsFromEmail returns a boolean if a field has been set.
 func (o *Page) HasNotificationsFromEmail() bool {
-	if o != nil && o.NotificationsFromEmail != nil {
+	if o != nil && !IsNil(o.NotificationsFromEmail) {
 		return true
 	}
 
@@ -721,7 +724,7 @@ func (o *Page) SetNotificationsFromEmail(v string) {
 
 // GetNotificationsEmailFooter returns the NotificationsEmailFooter field value if set, zero value otherwise.
 func (o *Page) GetNotificationsEmailFooter() string {
-	if o == nil || o.NotificationsEmailFooter == nil {
+	if o == nil || IsNil(o.NotificationsEmailFooter) {
 		var ret string
 		return ret
 	}
@@ -731,7 +734,7 @@ func (o *Page) GetNotificationsEmailFooter() string {
 // GetNotificationsEmailFooterOk returns a tuple with the NotificationsEmailFooter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetNotificationsEmailFooterOk() (*string, bool) {
-	if o == nil || o.NotificationsEmailFooter == nil {
+	if o == nil || IsNil(o.NotificationsEmailFooter) {
 		return nil, false
 	}
 	return o.NotificationsEmailFooter, true
@@ -739,7 +742,7 @@ func (o *Page) GetNotificationsEmailFooterOk() (*string, bool) {
 
 // HasNotificationsEmailFooter returns a boolean if a field has been set.
 func (o *Page) HasNotificationsEmailFooter() bool {
-	if o != nil && o.NotificationsEmailFooter != nil {
+	if o != nil && !IsNil(o.NotificationsEmailFooter) {
 		return true
 	}
 
@@ -753,7 +756,7 @@ func (o *Page) SetNotificationsEmailFooter(v string) {
 
 // GetActivityScore returns the ActivityScore field value if set, zero value otherwise.
 func (o *Page) GetActivityScore() float32 {
-	if o == nil || o.ActivityScore == nil {
+	if o == nil || IsNil(o.ActivityScore) {
 		var ret float32
 		return ret
 	}
@@ -763,7 +766,7 @@ func (o *Page) GetActivityScore() float32 {
 // GetActivityScoreOk returns a tuple with the ActivityScore field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetActivityScoreOk() (*float32, bool) {
-	if o == nil || o.ActivityScore == nil {
+	if o == nil || IsNil(o.ActivityScore) {
 		return nil, false
 	}
 	return o.ActivityScore, true
@@ -771,7 +774,7 @@ func (o *Page) GetActivityScoreOk() (*float32, bool) {
 
 // HasActivityScore returns a boolean if a field has been set.
 func (o *Page) HasActivityScore() bool {
-	if o != nil && o.ActivityScore != nil {
+	if o != nil && !IsNil(o.ActivityScore) {
 		return true
 	}
 
@@ -785,7 +788,7 @@ func (o *Page) SetActivityScore(v float32) {
 
 // GetTwitterUsername returns the TwitterUsername field value if set, zero value otherwise.
 func (o *Page) GetTwitterUsername() string {
-	if o == nil || o.TwitterUsername == nil {
+	if o == nil || IsNil(o.TwitterUsername) {
 		var ret string
 		return ret
 	}
@@ -795,7 +798,7 @@ func (o *Page) GetTwitterUsername() string {
 // GetTwitterUsernameOk returns a tuple with the TwitterUsername field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetTwitterUsernameOk() (*string, bool) {
-	if o == nil || o.TwitterUsername == nil {
+	if o == nil || IsNil(o.TwitterUsername) {
 		return nil, false
 	}
 	return o.TwitterUsername, true
@@ -803,7 +806,7 @@ func (o *Page) GetTwitterUsernameOk() (*string, bool) {
 
 // HasTwitterUsername returns a boolean if a field has been set.
 func (o *Page) HasTwitterUsername() bool {
-	if o != nil && o.TwitterUsername != nil {
+	if o != nil && !IsNil(o.TwitterUsername) {
 		return true
 	}
 
@@ -817,7 +820,7 @@ func (o *Page) SetTwitterUsername(v string) {
 
 // GetViewersMustBeTeamMembers returns the ViewersMustBeTeamMembers field value if set, zero value otherwise.
 func (o *Page) GetViewersMustBeTeamMembers() bool {
-	if o == nil || o.ViewersMustBeTeamMembers == nil {
+	if o == nil || IsNil(o.ViewersMustBeTeamMembers) {
 		var ret bool
 		return ret
 	}
@@ -827,7 +830,7 @@ func (o *Page) GetViewersMustBeTeamMembers() bool {
 // GetViewersMustBeTeamMembersOk returns a tuple with the ViewersMustBeTeamMembers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetViewersMustBeTeamMembersOk() (*bool, bool) {
-	if o == nil || o.ViewersMustBeTeamMembers == nil {
+	if o == nil || IsNil(o.ViewersMustBeTeamMembers) {
 		return nil, false
 	}
 	return o.ViewersMustBeTeamMembers, true
@@ -835,7 +838,7 @@ func (o *Page) GetViewersMustBeTeamMembersOk() (*bool, bool) {
 
 // HasViewersMustBeTeamMembers returns a boolean if a field has been set.
 func (o *Page) HasViewersMustBeTeamMembers() bool {
-	if o != nil && o.ViewersMustBeTeamMembers != nil {
+	if o != nil && !IsNil(o.ViewersMustBeTeamMembers) {
 		return true
 	}
 
@@ -849,7 +852,7 @@ func (o *Page) SetViewersMustBeTeamMembers(v bool) {
 
 // GetIpRestrictions returns the IpRestrictions field value if set, zero value otherwise.
 func (o *Page) GetIpRestrictions() string {
-	if o == nil || o.IpRestrictions == nil {
+	if o == nil || IsNil(o.IpRestrictions) {
 		var ret string
 		return ret
 	}
@@ -859,7 +862,7 @@ func (o *Page) GetIpRestrictions() string {
 // GetIpRestrictionsOk returns a tuple with the IpRestrictions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetIpRestrictionsOk() (*string, bool) {
-	if o == nil || o.IpRestrictions == nil {
+	if o == nil || IsNil(o.IpRestrictions) {
 		return nil, false
 	}
 	return o.IpRestrictions, true
@@ -867,7 +870,7 @@ func (o *Page) GetIpRestrictionsOk() (*string, bool) {
 
 // HasIpRestrictions returns a boolean if a field has been set.
 func (o *Page) HasIpRestrictions() bool {
-	if o != nil && o.IpRestrictions != nil {
+	if o != nil && !IsNil(o.IpRestrictions) {
 		return true
 	}
 
@@ -881,7 +884,7 @@ func (o *Page) SetIpRestrictions(v string) {
 
 // GetCity returns the City field value if set, zero value otherwise.
 func (o *Page) GetCity() string {
-	if o == nil || o.City == nil {
+	if o == nil || IsNil(o.City) {
 		var ret string
 		return ret
 	}
@@ -891,7 +894,7 @@ func (o *Page) GetCity() string {
 // GetCityOk returns a tuple with the City field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetCityOk() (*string, bool) {
-	if o == nil || o.City == nil {
+	if o == nil || IsNil(o.City) {
 		return nil, false
 	}
 	return o.City, true
@@ -899,7 +902,7 @@ func (o *Page) GetCityOk() (*string, bool) {
 
 // HasCity returns a boolean if a field has been set.
 func (o *Page) HasCity() bool {
-	if o != nil && o.City != nil {
+	if o != nil && !IsNil(o.City) {
 		return true
 	}
 
@@ -913,7 +916,7 @@ func (o *Page) SetCity(v string) {
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *Page) GetState() string {
-	if o == nil || o.State == nil {
+	if o == nil || IsNil(o.State) {
 		var ret string
 		return ret
 	}
@@ -923,7 +926,7 @@ func (o *Page) GetState() string {
 // GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetStateOk() (*string, bool) {
-	if o == nil || o.State == nil {
+	if o == nil || IsNil(o.State) {
 		return nil, false
 	}
 	return o.State, true
@@ -931,7 +934,7 @@ func (o *Page) GetStateOk() (*string, bool) {
 
 // HasState returns a boolean if a field has been set.
 func (o *Page) HasState() bool {
-	if o != nil && o.State != nil {
+	if o != nil && !IsNil(o.State) {
 		return true
 	}
 
@@ -945,7 +948,7 @@ func (o *Page) SetState(v string) {
 
 // GetCountry returns the Country field value if set, zero value otherwise.
 func (o *Page) GetCountry() string {
-	if o == nil || o.Country == nil {
+	if o == nil || IsNil(o.Country) {
 		var ret string
 		return ret
 	}
@@ -955,7 +958,7 @@ func (o *Page) GetCountry() string {
 // GetCountryOk returns a tuple with the Country field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetCountryOk() (*string, bool) {
-	if o == nil || o.Country == nil {
+	if o == nil || IsNil(o.Country) {
 		return nil, false
 	}
 	return o.Country, true
@@ -963,7 +966,7 @@ func (o *Page) GetCountryOk() (*string, bool) {
 
 // HasCountry returns a boolean if a field has been set.
 func (o *Page) HasCountry() bool {
-	if o != nil && o.Country != nil {
+	if o != nil && !IsNil(o.Country) {
 		return true
 	}
 
@@ -977,7 +980,7 @@ func (o *Page) SetCountry(v string) {
 
 // GetTimeZone returns the TimeZone field value if set, zero value otherwise.
 func (o *Page) GetTimeZone() string {
-	if o == nil || o.TimeZone == nil {
+	if o == nil || IsNil(o.TimeZone) {
 		var ret string
 		return ret
 	}
@@ -987,7 +990,7 @@ func (o *Page) GetTimeZone() string {
 // GetTimeZoneOk returns a tuple with the TimeZone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetTimeZoneOk() (*string, bool) {
-	if o == nil || o.TimeZone == nil {
+	if o == nil || IsNil(o.TimeZone) {
 		return nil, false
 	}
 	return o.TimeZone, true
@@ -995,7 +998,7 @@ func (o *Page) GetTimeZoneOk() (*string, bool) {
 
 // HasTimeZone returns a boolean if a field has been set.
 func (o *Page) HasTimeZone() bool {
-	if o != nil && o.TimeZone != nil {
+	if o != nil && !IsNil(o.TimeZone) {
 		return true
 	}
 
@@ -1009,7 +1012,7 @@ func (o *Page) SetTimeZone(v string) {
 
 // GetCssBodyBackgroundColor returns the CssBodyBackgroundColor field value if set, zero value otherwise.
 func (o *Page) GetCssBodyBackgroundColor() string {
-	if o == nil || o.CssBodyBackgroundColor == nil {
+	if o == nil || IsNil(o.CssBodyBackgroundColor) {
 		var ret string
 		return ret
 	}
@@ -1019,7 +1022,7 @@ func (o *Page) GetCssBodyBackgroundColor() string {
 // GetCssBodyBackgroundColorOk returns a tuple with the CssBodyBackgroundColor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetCssBodyBackgroundColorOk() (*string, bool) {
-	if o == nil || o.CssBodyBackgroundColor == nil {
+	if o == nil || IsNil(o.CssBodyBackgroundColor) {
 		return nil, false
 	}
 	return o.CssBodyBackgroundColor, true
@@ -1027,7 +1030,7 @@ func (o *Page) GetCssBodyBackgroundColorOk() (*string, bool) {
 
 // HasCssBodyBackgroundColor returns a boolean if a field has been set.
 func (o *Page) HasCssBodyBackgroundColor() bool {
-	if o != nil && o.CssBodyBackgroundColor != nil {
+	if o != nil && !IsNil(o.CssBodyBackgroundColor) {
 		return true
 	}
 
@@ -1041,7 +1044,7 @@ func (o *Page) SetCssBodyBackgroundColor(v string) {
 
 // GetCssFontColor returns the CssFontColor field value if set, zero value otherwise.
 func (o *Page) GetCssFontColor() string {
-	if o == nil || o.CssFontColor == nil {
+	if o == nil || IsNil(o.CssFontColor) {
 		var ret string
 		return ret
 	}
@@ -1051,7 +1054,7 @@ func (o *Page) GetCssFontColor() string {
 // GetCssFontColorOk returns a tuple with the CssFontColor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetCssFontColorOk() (*string, bool) {
-	if o == nil || o.CssFontColor == nil {
+	if o == nil || IsNil(o.CssFontColor) {
 		return nil, false
 	}
 	return o.CssFontColor, true
@@ -1059,7 +1062,7 @@ func (o *Page) GetCssFontColorOk() (*string, bool) {
 
 // HasCssFontColor returns a boolean if a field has been set.
 func (o *Page) HasCssFontColor() bool {
-	if o != nil && o.CssFontColor != nil {
+	if o != nil && !IsNil(o.CssFontColor) {
 		return true
 	}
 
@@ -1073,7 +1076,7 @@ func (o *Page) SetCssFontColor(v string) {
 
 // GetCssLightFontColor returns the CssLightFontColor field value if set, zero value otherwise.
 func (o *Page) GetCssLightFontColor() string {
-	if o == nil || o.CssLightFontColor == nil {
+	if o == nil || IsNil(o.CssLightFontColor) {
 		var ret string
 		return ret
 	}
@@ -1083,7 +1086,7 @@ func (o *Page) GetCssLightFontColor() string {
 // GetCssLightFontColorOk returns a tuple with the CssLightFontColor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetCssLightFontColorOk() (*string, bool) {
-	if o == nil || o.CssLightFontColor == nil {
+	if o == nil || IsNil(o.CssLightFontColor) {
 		return nil, false
 	}
 	return o.CssLightFontColor, true
@@ -1091,7 +1094,7 @@ func (o *Page) GetCssLightFontColorOk() (*string, bool) {
 
 // HasCssLightFontColor returns a boolean if a field has been set.
 func (o *Page) HasCssLightFontColor() bool {
-	if o != nil && o.CssLightFontColor != nil {
+	if o != nil && !IsNil(o.CssLightFontColor) {
 		return true
 	}
 
@@ -1105,7 +1108,7 @@ func (o *Page) SetCssLightFontColor(v string) {
 
 // GetCssGreens returns the CssGreens field value if set, zero value otherwise.
 func (o *Page) GetCssGreens() string {
-	if o == nil || o.CssGreens == nil {
+	if o == nil || IsNil(o.CssGreens) {
 		var ret string
 		return ret
 	}
@@ -1115,7 +1118,7 @@ func (o *Page) GetCssGreens() string {
 // GetCssGreensOk returns a tuple with the CssGreens field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetCssGreensOk() (*string, bool) {
-	if o == nil || o.CssGreens == nil {
+	if o == nil || IsNil(o.CssGreens) {
 		return nil, false
 	}
 	return o.CssGreens, true
@@ -1123,7 +1126,7 @@ func (o *Page) GetCssGreensOk() (*string, bool) {
 
 // HasCssGreens returns a boolean if a field has been set.
 func (o *Page) HasCssGreens() bool {
-	if o != nil && o.CssGreens != nil {
+	if o != nil && !IsNil(o.CssGreens) {
 		return true
 	}
 
@@ -1137,7 +1140,7 @@ func (o *Page) SetCssGreens(v string) {
 
 // GetCssYellows returns the CssYellows field value if set, zero value otherwise.
 func (o *Page) GetCssYellows() string {
-	if o == nil || o.CssYellows == nil {
+	if o == nil || IsNil(o.CssYellows) {
 		var ret string
 		return ret
 	}
@@ -1147,7 +1150,7 @@ func (o *Page) GetCssYellows() string {
 // GetCssYellowsOk returns a tuple with the CssYellows field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetCssYellowsOk() (*string, bool) {
-	if o == nil || o.CssYellows == nil {
+	if o == nil || IsNil(o.CssYellows) {
 		return nil, false
 	}
 	return o.CssYellows, true
@@ -1155,7 +1158,7 @@ func (o *Page) GetCssYellowsOk() (*string, bool) {
 
 // HasCssYellows returns a boolean if a field has been set.
 func (o *Page) HasCssYellows() bool {
-	if o != nil && o.CssYellows != nil {
+	if o != nil && !IsNil(o.CssYellows) {
 		return true
 	}
 
@@ -1169,7 +1172,7 @@ func (o *Page) SetCssYellows(v string) {
 
 // GetCssOranges returns the CssOranges field value if set, zero value otherwise.
 func (o *Page) GetCssOranges() string {
-	if o == nil || o.CssOranges == nil {
+	if o == nil || IsNil(o.CssOranges) {
 		var ret string
 		return ret
 	}
@@ -1179,7 +1182,7 @@ func (o *Page) GetCssOranges() string {
 // GetCssOrangesOk returns a tuple with the CssOranges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetCssOrangesOk() (*string, bool) {
-	if o == nil || o.CssOranges == nil {
+	if o == nil || IsNil(o.CssOranges) {
 		return nil, false
 	}
 	return o.CssOranges, true
@@ -1187,7 +1190,7 @@ func (o *Page) GetCssOrangesOk() (*string, bool) {
 
 // HasCssOranges returns a boolean if a field has been set.
 func (o *Page) HasCssOranges() bool {
-	if o != nil && o.CssOranges != nil {
+	if o != nil && !IsNil(o.CssOranges) {
 		return true
 	}
 
@@ -1201,7 +1204,7 @@ func (o *Page) SetCssOranges(v string) {
 
 // GetCssBlues returns the CssBlues field value if set, zero value otherwise.
 func (o *Page) GetCssBlues() string {
-	if o == nil || o.CssBlues == nil {
+	if o == nil || IsNil(o.CssBlues) {
 		var ret string
 		return ret
 	}
@@ -1211,7 +1214,7 @@ func (o *Page) GetCssBlues() string {
 // GetCssBluesOk returns a tuple with the CssBlues field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetCssBluesOk() (*string, bool) {
-	if o == nil || o.CssBlues == nil {
+	if o == nil || IsNil(o.CssBlues) {
 		return nil, false
 	}
 	return o.CssBlues, true
@@ -1219,7 +1222,7 @@ func (o *Page) GetCssBluesOk() (*string, bool) {
 
 // HasCssBlues returns a boolean if a field has been set.
 func (o *Page) HasCssBlues() bool {
-	if o != nil && o.CssBlues != nil {
+	if o != nil && !IsNil(o.CssBlues) {
 		return true
 	}
 
@@ -1233,7 +1236,7 @@ func (o *Page) SetCssBlues(v string) {
 
 // GetCssReds returns the CssReds field value if set, zero value otherwise.
 func (o *Page) GetCssReds() string {
-	if o == nil || o.CssReds == nil {
+	if o == nil || IsNil(o.CssReds) {
 		var ret string
 		return ret
 	}
@@ -1243,7 +1246,7 @@ func (o *Page) GetCssReds() string {
 // GetCssRedsOk returns a tuple with the CssReds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetCssRedsOk() (*string, bool) {
-	if o == nil || o.CssReds == nil {
+	if o == nil || IsNil(o.CssReds) {
 		return nil, false
 	}
 	return o.CssReds, true
@@ -1251,7 +1254,7 @@ func (o *Page) GetCssRedsOk() (*string, bool) {
 
 // HasCssReds returns a boolean if a field has been set.
 func (o *Page) HasCssReds() bool {
-	if o != nil && o.CssReds != nil {
+	if o != nil && !IsNil(o.CssReds) {
 		return true
 	}
 
@@ -1265,7 +1268,7 @@ func (o *Page) SetCssReds(v string) {
 
 // GetCssBorderColor returns the CssBorderColor field value if set, zero value otherwise.
 func (o *Page) GetCssBorderColor() string {
-	if o == nil || o.CssBorderColor == nil {
+	if o == nil || IsNil(o.CssBorderColor) {
 		var ret string
 		return ret
 	}
@@ -1275,7 +1278,7 @@ func (o *Page) GetCssBorderColor() string {
 // GetCssBorderColorOk returns a tuple with the CssBorderColor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetCssBorderColorOk() (*string, bool) {
-	if o == nil || o.CssBorderColor == nil {
+	if o == nil || IsNil(o.CssBorderColor) {
 		return nil, false
 	}
 	return o.CssBorderColor, true
@@ -1283,7 +1286,7 @@ func (o *Page) GetCssBorderColorOk() (*string, bool) {
 
 // HasCssBorderColor returns a boolean if a field has been set.
 func (o *Page) HasCssBorderColor() bool {
-	if o != nil && o.CssBorderColor != nil {
+	if o != nil && !IsNil(o.CssBorderColor) {
 		return true
 	}
 
@@ -1297,7 +1300,7 @@ func (o *Page) SetCssBorderColor(v string) {
 
 // GetCssGraphColor returns the CssGraphColor field value if set, zero value otherwise.
 func (o *Page) GetCssGraphColor() string {
-	if o == nil || o.CssGraphColor == nil {
+	if o == nil || IsNil(o.CssGraphColor) {
 		var ret string
 		return ret
 	}
@@ -1307,7 +1310,7 @@ func (o *Page) GetCssGraphColor() string {
 // GetCssGraphColorOk returns a tuple with the CssGraphColor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetCssGraphColorOk() (*string, bool) {
-	if o == nil || o.CssGraphColor == nil {
+	if o == nil || IsNil(o.CssGraphColor) {
 		return nil, false
 	}
 	return o.CssGraphColor, true
@@ -1315,7 +1318,7 @@ func (o *Page) GetCssGraphColorOk() (*string, bool) {
 
 // HasCssGraphColor returns a boolean if a field has been set.
 func (o *Page) HasCssGraphColor() bool {
-	if o != nil && o.CssGraphColor != nil {
+	if o != nil && !IsNil(o.CssGraphColor) {
 		return true
 	}
 
@@ -1329,7 +1332,7 @@ func (o *Page) SetCssGraphColor(v string) {
 
 // GetCssLinkColor returns the CssLinkColor field value if set, zero value otherwise.
 func (o *Page) GetCssLinkColor() string {
-	if o == nil || o.CssLinkColor == nil {
+	if o == nil || IsNil(o.CssLinkColor) {
 		var ret string
 		return ret
 	}
@@ -1339,7 +1342,7 @@ func (o *Page) GetCssLinkColor() string {
 // GetCssLinkColorOk returns a tuple with the CssLinkColor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetCssLinkColorOk() (*string, bool) {
-	if o == nil || o.CssLinkColor == nil {
+	if o == nil || IsNil(o.CssLinkColor) {
 		return nil, false
 	}
 	return o.CssLinkColor, true
@@ -1347,7 +1350,7 @@ func (o *Page) GetCssLinkColorOk() (*string, bool) {
 
 // HasCssLinkColor returns a boolean if a field has been set.
 func (o *Page) HasCssLinkColor() bool {
-	if o != nil && o.CssLinkColor != nil {
+	if o != nil && !IsNil(o.CssLinkColor) {
 		return true
 	}
 
@@ -1361,7 +1364,7 @@ func (o *Page) SetCssLinkColor(v string) {
 
 // GetCssNoData returns the CssNoData field value if set, zero value otherwise.
 func (o *Page) GetCssNoData() string {
-	if o == nil || o.CssNoData == nil {
+	if o == nil || IsNil(o.CssNoData) {
 		var ret string
 		return ret
 	}
@@ -1371,7 +1374,7 @@ func (o *Page) GetCssNoData() string {
 // GetCssNoDataOk returns a tuple with the CssNoData field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Page) GetCssNoDataOk() (*string, bool) {
-	if o == nil || o.CssNoData == nil {
+	if o == nil || IsNil(o.CssNoData) {
 		return nil, false
 	}
 	return o.CssNoData, true
@@ -1379,7 +1382,7 @@ func (o *Page) GetCssNoDataOk() (*string, bool) {
 
 // HasCssNoData returns a boolean if a field has been set.
 func (o *Page) HasCssNoData() bool {
-	if o != nil && o.CssNoData != nil {
+	if o != nil && !IsNil(o.CssNoData) {
 		return true
 	}
 
@@ -1392,9 +1395,9 @@ func (o *Page) SetCssNoData(v string) {
 }
 
 // GetFaviconLogo returns the FaviconLogo field value if set, zero value otherwise.
-func (o *Page) GetFaviconLogo() interface{} {
-	if o == nil || o.FaviconLogo == nil {
-		var ret interface{}
+func (o *Page) GetFaviconLogo() string {
+	if o == nil || IsNil(o.FaviconLogo) {
+		var ret string
 		return ret
 	}
 	return *o.FaviconLogo
@@ -1402,8 +1405,8 @@ func (o *Page) GetFaviconLogo() interface{} {
 
 // GetFaviconLogoOk returns a tuple with the FaviconLogo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Page) GetFaviconLogoOk() (*interface{}, bool) {
-	if o == nil || o.FaviconLogo == nil {
+func (o *Page) GetFaviconLogoOk() (*string, bool) {
+	if o == nil || IsNil(o.FaviconLogo) {
 		return nil, false
 	}
 	return o.FaviconLogo, true
@@ -1411,7 +1414,7 @@ func (o *Page) GetFaviconLogoOk() (*interface{}, bool) {
 
 // HasFaviconLogo returns a boolean if a field has been set.
 func (o *Page) HasFaviconLogo() bool {
-	if o != nil && o.FaviconLogo != nil {
+	if o != nil && !IsNil(o.FaviconLogo) {
 		return true
 	}
 
@@ -1419,14 +1422,14 @@ func (o *Page) HasFaviconLogo() bool {
 }
 
 // SetFaviconLogo gets a reference to the given string and assigns it to the FaviconLogo field.
-func (o *Page) SetFaviconLogo(v interface{}) {
+func (o *Page) SetFaviconLogo(v string) {
 	o.FaviconLogo = &v
 }
 
 // GetTransactionalLogo returns the TransactionalLogo field value if set, zero value otherwise.
-func (o *Page) GetTransactionalLogo() interface{} {
-	if o == nil || o.TransactionalLogo == nil {
-		var ret interface{}
+func (o *Page) GetTransactionalLogo() string {
+	if o == nil || IsNil(o.TransactionalLogo) {
+		var ret string
 		return ret
 	}
 	return *o.TransactionalLogo
@@ -1434,8 +1437,8 @@ func (o *Page) GetTransactionalLogo() interface{} {
 
 // GetTransactionalLogoOk returns a tuple with the TransactionalLogo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Page) GetTransactionalLogoOk() (*interface{}, bool) {
-	if o == nil || o.TransactionalLogo == nil {
+func (o *Page) GetTransactionalLogoOk() (*string, bool) {
+	if o == nil || IsNil(o.TransactionalLogo) {
 		return nil, false
 	}
 	return o.TransactionalLogo, true
@@ -1443,7 +1446,7 @@ func (o *Page) GetTransactionalLogoOk() (*interface{}, bool) {
 
 // HasTransactionalLogo returns a boolean if a field has been set.
 func (o *Page) HasTransactionalLogo() bool {
-	if o != nil && o.TransactionalLogo != nil {
+	if o != nil && !IsNil(o.TransactionalLogo) {
 		return true
 	}
 
@@ -1451,14 +1454,14 @@ func (o *Page) HasTransactionalLogo() bool {
 }
 
 // SetTransactionalLogo gets a reference to the given string and assigns it to the TransactionalLogo field.
-func (o *Page) SetTransactionalLogo(v interface{}) {
+func (o *Page) SetTransactionalLogo(v string) {
 	o.TransactionalLogo = &v
 }
 
 // GetHeroCover returns the HeroCover field value if set, zero value otherwise.
-func (o *Page) GetHeroCover() interface{} {
-	if o == nil || o.HeroCover == nil {
-		var ret interface{}
+func (o *Page) GetHeroCover() string {
+	if o == nil || IsNil(o.HeroCover) {
+		var ret string
 		return ret
 	}
 	return *o.HeroCover
@@ -1466,8 +1469,8 @@ func (o *Page) GetHeroCover() interface{} {
 
 // GetHeroCoverOk returns a tuple with the HeroCover field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Page) GetHeroCoverOk() (*interface{}, bool) {
-	if o == nil || o.HeroCover == nil {
+func (o *Page) GetHeroCoverOk() (*string, bool) {
+	if o == nil || IsNil(o.HeroCover) {
 		return nil, false
 	}
 	return o.HeroCover, true
@@ -1475,7 +1478,7 @@ func (o *Page) GetHeroCoverOk() (*interface{}, bool) {
 
 // HasHeroCover returns a boolean if a field has been set.
 func (o *Page) HasHeroCover() bool {
-	if o != nil && o.HeroCover != nil {
+	if o != nil && !IsNil(o.HeroCover) {
 		return true
 	}
 
@@ -1483,13 +1486,13 @@ func (o *Page) HasHeroCover() bool {
 }
 
 // SetHeroCover gets a reference to the given string and assigns it to the HeroCover field.
-func (o *Page) SetHeroCover(v interface{}) {
+func (o *Page) SetHeroCover(v string) {
 	o.HeroCover = &v
 }
 
 // GetEmailLogo returns the EmailLogo field value if set, zero value otherwise.
-func (o *Page) GetEmailLogo() interface{} {
-	if o == nil || o.EmailLogo == nil {
+func (o *Page) GetEmailLogo() string {
+	if o == nil || IsNil(o.EmailLogo) {
 		var ret string
 		return ret
 	}
@@ -1498,8 +1501,8 @@ func (o *Page) GetEmailLogo() interface{} {
 
 // GetEmailLogoOk returns a tuple with the EmailLogo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Page) GetEmailLogoOk() (*interface{}, bool) {
-	if o == nil || o.EmailLogo == nil {
+func (o *Page) GetEmailLogoOk() (*string, bool) {
+	if o == nil || IsNil(o.EmailLogo) {
 		return nil, false
 	}
 	return o.EmailLogo, true
@@ -1507,7 +1510,7 @@ func (o *Page) GetEmailLogoOk() (*interface{}, bool) {
 
 // HasEmailLogo returns a boolean if a field has been set.
 func (o *Page) HasEmailLogo() bool {
-	if o != nil && o.EmailLogo != nil {
+	if o != nil && !IsNil(o.EmailLogo) {
 		return true
 	}
 
@@ -1515,14 +1518,14 @@ func (o *Page) HasEmailLogo() bool {
 }
 
 // SetEmailLogo gets a reference to the given string and assigns it to the EmailLogo field.
-func (o *Page) SetEmailLogo(v interface{}) {
+func (o *Page) SetEmailLogo(v string) {
 	o.EmailLogo = &v
 }
 
 // GetTwitterLogo returns the TwitterLogo field value if set, zero value otherwise.
-func (o *Page) GetTwitterLogo() interface{} {
-	if o == nil || o.TwitterLogo == nil {
-		var ret interface{}
+func (o *Page) GetTwitterLogo() string {
+	if o == nil || IsNil(o.TwitterLogo) {
+		var ret string
 		return ret
 	}
 	return *o.TwitterLogo
@@ -1530,8 +1533,8 @@ func (o *Page) GetTwitterLogo() interface{} {
 
 // GetTwitterLogoOk returns a tuple with the TwitterLogo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Page) GetTwitterLogoOk() (*interface{}, bool) {
-	if o == nil || o.TwitterLogo == nil {
+func (o *Page) GetTwitterLogoOk() (*string, bool) {
+	if o == nil || IsNil(o.TwitterLogo) {
 		return nil, false
 	}
 	return o.TwitterLogo, true
@@ -1539,7 +1542,7 @@ func (o *Page) GetTwitterLogoOk() (*interface{}, bool) {
 
 // HasTwitterLogo returns a boolean if a field has been set.
 func (o *Page) HasTwitterLogo() bool {
-	if o != nil && o.TwitterLogo != nil {
+	if o != nil && !IsNil(o.TwitterLogo) {
 		return true
 	}
 
@@ -1547,148 +1550,156 @@ func (o *Page) HasTwitterLogo() bool {
 }
 
 // SetTwitterLogo gets a reference to the given string and assigns it to the TwitterLogo field.
-func (o *Page) SetTwitterLogo(v interface{}) {
+func (o *Page) SetTwitterLogo(v string) {
 	o.TwitterLogo = &v
 }
 
 func (o Page) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if o.UpdatedAt != nil {
-		toSerialize["updated_at"] = o.UpdatedAt
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.PageDescription != nil {
-		toSerialize["page_description"] = o.PageDescription
-	}
-	if o.Headline != nil {
-		toSerialize["headline"] = o.Headline
-	}
-	if o.Branding != nil {
-		toSerialize["branding"] = o.Branding
-	}
-	if o.Subdomain != nil {
-		toSerialize["subdomain"] = o.Subdomain
-	}
-	if o.Domain != nil {
-		toSerialize["domain"] = o.Domain
-	}
-	if o.Url != nil {
-		toSerialize["url"] = o.Url
-	}
-	if o.SupportUrl != nil {
-		toSerialize["support_url"] = o.SupportUrl
-	}
-	if o.HiddenFromSearch != nil {
-		toSerialize["hidden_from_search"] = o.HiddenFromSearch
-	}
-	if o.AllowPageSubscribers != nil {
-		toSerialize["allow_page_subscribers"] = o.AllowPageSubscribers
-	}
-	if o.AllowIncidentSubscribers != nil {
-		toSerialize["allow_incident_subscribers"] = o.AllowIncidentSubscribers
-	}
-	if o.AllowEmailSubscribers != nil {
-		toSerialize["allow_email_subscribers"] = o.AllowEmailSubscribers
-	}
-	if o.AllowSmsSubscribers != nil {
-		toSerialize["allow_sms_subscribers"] = o.AllowSmsSubscribers
-	}
-	if o.AllowRssAtomFeeds != nil {
-		toSerialize["allow_rss_atom_feeds"] = o.AllowRssAtomFeeds
-	}
-	if o.AllowWebhookSubscribers != nil {
-		toSerialize["allow_webhook_subscribers"] = o.AllowWebhookSubscribers
-	}
-	if o.NotificationsFromEmail != nil {
-		toSerialize["notifications_from_email"] = o.NotificationsFromEmail
-	}
-	if o.NotificationsEmailFooter != nil {
-		toSerialize["notifications_email_footer"] = o.NotificationsEmailFooter
-	}
-	if o.ActivityScore != nil {
-		toSerialize["activity_score"] = o.ActivityScore
-	}
-	if o.TwitterUsername != nil {
-		toSerialize["twitter_username"] = o.TwitterUsername
-	}
-	if o.ViewersMustBeTeamMembers != nil {
-		toSerialize["viewers_must_be_team_members"] = o.ViewersMustBeTeamMembers
-	}
-	if o.IpRestrictions != nil {
-		toSerialize["ip_restrictions"] = o.IpRestrictions
-	}
-	if o.City != nil {
-		toSerialize["city"] = o.City
-	}
-	if o.State != nil {
-		toSerialize["state"] = o.State
-	}
-	if o.Country != nil {
-		toSerialize["country"] = o.Country
-	}
-	if o.TimeZone != nil {
-		toSerialize["time_zone"] = o.TimeZone
-	}
-	if o.CssBodyBackgroundColor != nil {
-		toSerialize["css_body_background_color"] = o.CssBodyBackgroundColor
-	}
-	if o.CssFontColor != nil {
-		toSerialize["css_font_color"] = o.CssFontColor
-	}
-	if o.CssLightFontColor != nil {
-		toSerialize["css_light_font_color"] = o.CssLightFontColor
-	}
-	if o.CssGreens != nil {
-		toSerialize["css_greens"] = o.CssGreens
-	}
-	if o.CssYellows != nil {
-		toSerialize["css_yellows"] = o.CssYellows
-	}
-	if o.CssOranges != nil {
-		toSerialize["css_oranges"] = o.CssOranges
-	}
-	if o.CssBlues != nil {
-		toSerialize["css_blues"] = o.CssBlues
-	}
-	if o.CssReds != nil {
-		toSerialize["css_reds"] = o.CssReds
-	}
-	if o.CssBorderColor != nil {
-		toSerialize["css_border_color"] = o.CssBorderColor
-	}
-	if o.CssGraphColor != nil {
-		toSerialize["css_graph_color"] = o.CssGraphColor
-	}
-	if o.CssLinkColor != nil {
-		toSerialize["css_link_color"] = o.CssLinkColor
-	}
-	if o.CssNoData != nil {
-		toSerialize["css_no_data"] = o.CssNoData
-	}
-	if o.FaviconLogo != nil {
-		toSerialize["favicon_logo"] = o.FaviconLogo
-	}
-	if o.TransactionalLogo != nil {
-		toSerialize["transactional_logo"] = o.TransactionalLogo
-	}
-	if o.HeroCover != nil {
-		toSerialize["hero_cover"] = o.HeroCover
-	}
-	if o.EmailLogo != nil {
-		toSerialize["email_logo"] = o.EmailLogo
-	}
-	if o.TwitterLogo != nil {
-		toSerialize["twitter_logo"] = o.TwitterLogo
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Page) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.PageDescription) {
+		toSerialize["page_description"] = o.PageDescription
+	}
+	if !IsNil(o.Headline) {
+		toSerialize["headline"] = o.Headline
+	}
+	if !IsNil(o.Branding) {
+		toSerialize["branding"] = o.Branding
+	}
+	if !IsNil(o.Subdomain) {
+		toSerialize["subdomain"] = o.Subdomain
+	}
+	if !IsNil(o.Domain) {
+		toSerialize["domain"] = o.Domain
+	}
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
+	if !IsNil(o.SupportUrl) {
+		toSerialize["support_url"] = o.SupportUrl
+	}
+	if !IsNil(o.HiddenFromSearch) {
+		toSerialize["hidden_from_search"] = o.HiddenFromSearch
+	}
+	if !IsNil(o.AllowPageSubscribers) {
+		toSerialize["allow_page_subscribers"] = o.AllowPageSubscribers
+	}
+	if !IsNil(o.AllowIncidentSubscribers) {
+		toSerialize["allow_incident_subscribers"] = o.AllowIncidentSubscribers
+	}
+	if !IsNil(o.AllowEmailSubscribers) {
+		toSerialize["allow_email_subscribers"] = o.AllowEmailSubscribers
+	}
+	if !IsNil(o.AllowSmsSubscribers) {
+		toSerialize["allow_sms_subscribers"] = o.AllowSmsSubscribers
+	}
+	if !IsNil(o.AllowRssAtomFeeds) {
+		toSerialize["allow_rss_atom_feeds"] = o.AllowRssAtomFeeds
+	}
+	if !IsNil(o.AllowWebhookSubscribers) {
+		toSerialize["allow_webhook_subscribers"] = o.AllowWebhookSubscribers
+	}
+	if !IsNil(o.NotificationsFromEmail) {
+		toSerialize["notifications_from_email"] = o.NotificationsFromEmail
+	}
+	if !IsNil(o.NotificationsEmailFooter) {
+		toSerialize["notifications_email_footer"] = o.NotificationsEmailFooter
+	}
+	if !IsNil(o.ActivityScore) {
+		toSerialize["activity_score"] = o.ActivityScore
+	}
+	if !IsNil(o.TwitterUsername) {
+		toSerialize["twitter_username"] = o.TwitterUsername
+	}
+	if !IsNil(o.ViewersMustBeTeamMembers) {
+		toSerialize["viewers_must_be_team_members"] = o.ViewersMustBeTeamMembers
+	}
+	if !IsNil(o.IpRestrictions) {
+		toSerialize["ip_restrictions"] = o.IpRestrictions
+	}
+	if !IsNil(o.City) {
+		toSerialize["city"] = o.City
+	}
+	if !IsNil(o.State) {
+		toSerialize["state"] = o.State
+	}
+	if !IsNil(o.Country) {
+		toSerialize["country"] = o.Country
+	}
+	if !IsNil(o.TimeZone) {
+		toSerialize["time_zone"] = o.TimeZone
+	}
+	if !IsNil(o.CssBodyBackgroundColor) {
+		toSerialize["css_body_background_color"] = o.CssBodyBackgroundColor
+	}
+	if !IsNil(o.CssFontColor) {
+		toSerialize["css_font_color"] = o.CssFontColor
+	}
+	if !IsNil(o.CssLightFontColor) {
+		toSerialize["css_light_font_color"] = o.CssLightFontColor
+	}
+	if !IsNil(o.CssGreens) {
+		toSerialize["css_greens"] = o.CssGreens
+	}
+	if !IsNil(o.CssYellows) {
+		toSerialize["css_yellows"] = o.CssYellows
+	}
+	if !IsNil(o.CssOranges) {
+		toSerialize["css_oranges"] = o.CssOranges
+	}
+	if !IsNil(o.CssBlues) {
+		toSerialize["css_blues"] = o.CssBlues
+	}
+	if !IsNil(o.CssReds) {
+		toSerialize["css_reds"] = o.CssReds
+	}
+	if !IsNil(o.CssBorderColor) {
+		toSerialize["css_border_color"] = o.CssBorderColor
+	}
+	if !IsNil(o.CssGraphColor) {
+		toSerialize["css_graph_color"] = o.CssGraphColor
+	}
+	if !IsNil(o.CssLinkColor) {
+		toSerialize["css_link_color"] = o.CssLinkColor
+	}
+	if !IsNil(o.CssNoData) {
+		toSerialize["css_no_data"] = o.CssNoData
+	}
+	if !IsNil(o.FaviconLogo) {
+		toSerialize["favicon_logo"] = o.FaviconLogo
+	}
+	if !IsNil(o.TransactionalLogo) {
+		toSerialize["transactional_logo"] = o.TransactionalLogo
+	}
+	if !IsNil(o.HeroCover) {
+		toSerialize["hero_cover"] = o.HeroCover
+	}
+	if !IsNil(o.EmailLogo) {
+		toSerialize["email_logo"] = o.EmailLogo
+	}
+	if !IsNil(o.TwitterLogo) {
+		toSerialize["twitter_logo"] = o.TwitterLogo
+	}
+	return toSerialize, nil
 }
 
 type NullablePage struct {
@@ -1726,5 +1737,3 @@ func (v *NullablePage) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

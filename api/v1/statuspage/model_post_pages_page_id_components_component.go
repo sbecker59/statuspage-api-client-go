@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PostPagesPageIdComponentsComponent type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PostPagesPageIdComponentsComponent{}
+
 // PostPagesPageIdComponentsComponent struct for PostPagesPageIdComponentsComponent
 type PostPagesPageIdComponentsComponent struct {
 	// More detailed description for component
@@ -51,7 +54,7 @@ func NewPostPagesPageIdComponentsComponentWithDefaults() *PostPagesPageIdCompone
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *PostPagesPageIdComponentsComponent) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -61,7 +64,7 @@ func (o *PostPagesPageIdComponentsComponent) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdComponentsComponent) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -69,7 +72,7 @@ func (o *PostPagesPageIdComponentsComponent) GetDescriptionOk() (*string, bool) 
 
 // HasDescription returns a boolean if a field has been set.
 func (o *PostPagesPageIdComponentsComponent) HasDescription() bool {
-	if o != nil && o.Description != nil {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *PostPagesPageIdComponentsComponent) SetDescription(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *PostPagesPageIdComponentsComponent) GetStatus() string {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret string
 		return ret
 	}
@@ -93,7 +96,7 @@ func (o *PostPagesPageIdComponentsComponent) GetStatus() string {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdComponentsComponent) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -101,7 +104,7 @@ func (o *PostPagesPageIdComponentsComponent) GetStatusOk() (*string, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *PostPagesPageIdComponentsComponent) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -115,7 +118,7 @@ func (o *PostPagesPageIdComponentsComponent) SetStatus(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *PostPagesPageIdComponentsComponent) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -125,7 +128,7 @@ func (o *PostPagesPageIdComponentsComponent) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdComponentsComponent) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -133,7 +136,7 @@ func (o *PostPagesPageIdComponentsComponent) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *PostPagesPageIdComponentsComponent) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -147,7 +150,7 @@ func (o *PostPagesPageIdComponentsComponent) SetName(v string) {
 
 // GetOnlyShowIfDegraded returns the OnlyShowIfDegraded field value if set, zero value otherwise.
 func (o *PostPagesPageIdComponentsComponent) GetOnlyShowIfDegraded() bool {
-	if o == nil || o.OnlyShowIfDegraded == nil {
+	if o == nil || IsNil(o.OnlyShowIfDegraded) {
 		var ret bool
 		return ret
 	}
@@ -157,7 +160,7 @@ func (o *PostPagesPageIdComponentsComponent) GetOnlyShowIfDegraded() bool {
 // GetOnlyShowIfDegradedOk returns a tuple with the OnlyShowIfDegraded field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdComponentsComponent) GetOnlyShowIfDegradedOk() (*bool, bool) {
-	if o == nil || o.OnlyShowIfDegraded == nil {
+	if o == nil || IsNil(o.OnlyShowIfDegraded) {
 		return nil, false
 	}
 	return o.OnlyShowIfDegraded, true
@@ -165,7 +168,7 @@ func (o *PostPagesPageIdComponentsComponent) GetOnlyShowIfDegradedOk() (*bool, b
 
 // HasOnlyShowIfDegraded returns a boolean if a field has been set.
 func (o *PostPagesPageIdComponentsComponent) HasOnlyShowIfDegraded() bool {
-	if o != nil && o.OnlyShowIfDegraded != nil {
+	if o != nil && !IsNil(o.OnlyShowIfDegraded) {
 		return true
 	}
 
@@ -179,7 +182,7 @@ func (o *PostPagesPageIdComponentsComponent) SetOnlyShowIfDegraded(v bool) {
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *PostPagesPageIdComponentsComponent) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -189,7 +192,7 @@ func (o *PostPagesPageIdComponentsComponent) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdComponentsComponent) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -197,7 +200,7 @@ func (o *PostPagesPageIdComponentsComponent) GetGroupIdOk() (*string, bool) {
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *PostPagesPageIdComponentsComponent) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -211,7 +214,7 @@ func (o *PostPagesPageIdComponentsComponent) SetGroupId(v string) {
 
 // GetShowcase returns the Showcase field value if set, zero value otherwise.
 func (o *PostPagesPageIdComponentsComponent) GetShowcase() bool {
-	if o == nil || o.Showcase == nil {
+	if o == nil || IsNil(o.Showcase) {
 		var ret bool
 		return ret
 	}
@@ -221,7 +224,7 @@ func (o *PostPagesPageIdComponentsComponent) GetShowcase() bool {
 // GetShowcaseOk returns a tuple with the Showcase field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdComponentsComponent) GetShowcaseOk() (*bool, bool) {
-	if o == nil || o.Showcase == nil {
+	if o == nil || IsNil(o.Showcase) {
 		return nil, false
 	}
 	return o.Showcase, true
@@ -229,7 +232,7 @@ func (o *PostPagesPageIdComponentsComponent) GetShowcaseOk() (*bool, bool) {
 
 // HasShowcase returns a boolean if a field has been set.
 func (o *PostPagesPageIdComponentsComponent) HasShowcase() bool {
-	if o != nil && o.Showcase != nil {
+	if o != nil && !IsNil(o.Showcase) {
 		return true
 	}
 
@@ -243,7 +246,7 @@ func (o *PostPagesPageIdComponentsComponent) SetShowcase(v bool) {
 
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
 func (o *PostPagesPageIdComponentsComponent) GetStartDate() string {
-	if o == nil || o.StartDate == nil {
+	if o == nil || IsNil(o.StartDate) {
 		var ret string
 		return ret
 	}
@@ -253,7 +256,7 @@ func (o *PostPagesPageIdComponentsComponent) GetStartDate() string {
 // GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdComponentsComponent) GetStartDateOk() (*string, bool) {
-	if o == nil || o.StartDate == nil {
+	if o == nil || IsNil(o.StartDate) {
 		return nil, false
 	}
 	return o.StartDate, true
@@ -261,7 +264,7 @@ func (o *PostPagesPageIdComponentsComponent) GetStartDateOk() (*string, bool) {
 
 // HasStartDate returns a boolean if a field has been set.
 func (o *PostPagesPageIdComponentsComponent) HasStartDate() bool {
-	if o != nil && o.StartDate != nil {
+	if o != nil && !IsNil(o.StartDate) {
 		return true
 	}
 
@@ -274,29 +277,37 @@ func (o *PostPagesPageIdComponentsComponent) SetStartDate(v string) {
 }
 
 func (o PostPagesPageIdComponentsComponent) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.OnlyShowIfDegraded != nil {
-		toSerialize["only_show_if_degraded"] = o.OnlyShowIfDegraded
-	}
-	if o.GroupId != nil {
-		toSerialize["group_id"] = o.GroupId
-	}
-	if o.Showcase != nil {
-		toSerialize["showcase"] = o.Showcase
-	}
-	if o.StartDate != nil {
-		toSerialize["start_date"] = o.StartDate
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PostPagesPageIdComponentsComponent) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.OnlyShowIfDegraded) {
+		toSerialize["only_show_if_degraded"] = o.OnlyShowIfDegraded
+	}
+	if !IsNil(o.GroupId) {
+		toSerialize["group_id"] = o.GroupId
+	}
+	if !IsNil(o.Showcase) {
+		toSerialize["showcase"] = o.Showcase
+	}
+	if !IsNil(o.StartDate) {
+		toSerialize["start_date"] = o.StartDate
+	}
+	return toSerialize, nil
 }
 
 type NullablePostPagesPageIdComponentsComponent struct {
@@ -334,5 +345,3 @@ func (v *NullablePostPagesPageIdComponentsComponent) UnmarshalJSON(src []byte) e
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

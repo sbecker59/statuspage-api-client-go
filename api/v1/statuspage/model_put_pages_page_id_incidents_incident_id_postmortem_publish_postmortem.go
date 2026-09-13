@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem{}
+
 // PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem struct for PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem
 type PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem struct {
 	// Whether to notify Twitter followers
@@ -43,7 +46,7 @@ func NewPutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortemWithDefaults
 
 // GetNotifyTwitter returns the NotifyTwitter field value if set, zero value otherwise.
 func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem) GetNotifyTwitter() bool {
-	if o == nil || o.NotifyTwitter == nil {
+	if o == nil || IsNil(o.NotifyTwitter) {
 		var ret bool
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem) GetNotify
 // GetNotifyTwitterOk returns a tuple with the NotifyTwitter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem) GetNotifyTwitterOk() (*bool, bool) {
-	if o == nil || o.NotifyTwitter == nil {
+	if o == nil || IsNil(o.NotifyTwitter) {
 		return nil, false
 	}
 	return o.NotifyTwitter, true
@@ -61,7 +64,7 @@ func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem) GetNotify
 
 // HasNotifyTwitter returns a boolean if a field has been set.
 func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem) HasNotifyTwitter() bool {
-	if o != nil && o.NotifyTwitter != nil {
+	if o != nil && !IsNil(o.NotifyTwitter) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem) SetNotify
 
 // GetNotifySubscribers returns the NotifySubscribers field value if set, zero value otherwise.
 func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem) GetNotifySubscribers() bool {
-	if o == nil || o.NotifySubscribers == nil {
+	if o == nil || IsNil(o.NotifySubscribers) {
 		var ret bool
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem) GetNotify
 // GetNotifySubscribersOk returns a tuple with the NotifySubscribers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem) GetNotifySubscribersOk() (*bool, bool) {
-	if o == nil || o.NotifySubscribers == nil {
+	if o == nil || IsNil(o.NotifySubscribers) {
 		return nil, false
 	}
 	return o.NotifySubscribers, true
@@ -93,7 +96,7 @@ func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem) GetNotify
 
 // HasNotifySubscribers returns a boolean if a field has been set.
 func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem) HasNotifySubscribers() bool {
-	if o != nil && o.NotifySubscribers != nil {
+	if o != nil && !IsNil(o.NotifySubscribers) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem) SetNotify
 
 // GetCustomTweet returns the CustomTweet field value if set, zero value otherwise.
 func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem) GetCustomTweet() string {
-	if o == nil || o.CustomTweet == nil {
+	if o == nil || IsNil(o.CustomTweet) {
 		var ret string
 		return ret
 	}
@@ -117,7 +120,7 @@ func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem) GetCustom
 // GetCustomTweetOk returns a tuple with the CustomTweet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem) GetCustomTweetOk() (*string, bool) {
-	if o == nil || o.CustomTweet == nil {
+	if o == nil || IsNil(o.CustomTweet) {
 		return nil, false
 	}
 	return o.CustomTweet, true
@@ -125,7 +128,7 @@ func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem) GetCustom
 
 // HasCustomTweet returns a boolean if a field has been set.
 func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem) HasCustomTweet() bool {
-	if o != nil && o.CustomTweet != nil {
+	if o != nil && !IsNil(o.CustomTweet) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem) SetCustom
 }
 
 func (o PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.NotifyTwitter != nil {
-		toSerialize["notify_twitter"] = o.NotifyTwitter
-	}
-	if o.NotifySubscribers != nil {
-		toSerialize["notify_subscribers"] = o.NotifySubscribers
-	}
-	if o.CustomTweet != nil {
-		toSerialize["custom_tweet"] = o.CustomTweet
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.NotifyTwitter) {
+		toSerialize["notify_twitter"] = o.NotifyTwitter
+	}
+	if !IsNil(o.NotifySubscribers) {
+		toSerialize["notify_subscribers"] = o.NotifySubscribers
+	}
+	if !IsNil(o.CustomTweet) {
+		toSerialize["custom_tweet"] = o.CustomTweet
+	}
+	return toSerialize, nil
 }
 
 type NullablePutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem struct {
@@ -186,5 +197,3 @@ func (v *NullablePutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem) U
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

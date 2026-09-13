@@ -1,12 +1,12 @@
-# \StatusEmbedConfigApi
+# \StatusEmbedConfigAPI
 
 All URIs are relative to *https://api.statuspage.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetPagesPageIdStatusEmbedConfig**](StatusEmbedConfigApi.md#GetPagesPageIdStatusEmbedConfig) | **Get** /pages/{page_id}/status_embed_config | Get status embed config settings
-[**PatchPagesPageIdStatusEmbedConfig**](StatusEmbedConfigApi.md#PatchPagesPageIdStatusEmbedConfig) | **Patch** /pages/{page_id}/status_embed_config | Update status embed config settings
-[**PutPagesPageIdStatusEmbedConfig**](StatusEmbedConfigApi.md#PutPagesPageIdStatusEmbedConfig) | **Put** /pages/{page_id}/status_embed_config | Update status embed config settings
+[**GetPagesPageIdStatusEmbedConfig**](StatusEmbedConfigAPI.md#GetPagesPageIdStatusEmbedConfig) | **Get** /pages/{page_id}/status_embed_config | Get status embed config settings
+[**PatchPagesPageIdStatusEmbedConfig**](StatusEmbedConfigAPI.md#PatchPagesPageIdStatusEmbedConfig) | **Patch** /pages/{page_id}/status_embed_config | Update status embed config settings
+[**PutPagesPageIdStatusEmbedConfig**](StatusEmbedConfigAPI.md#PutPagesPageIdStatusEmbedConfig) | **Put** /pages/{page_id}/status_embed_config | Update status embed config settings
 
 
 
@@ -24,24 +24,24 @@ Get status embed config settings
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
+	pageId := "pageId_example" // string | Page identifier
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.StatusEmbedConfigApi.GetPagesPageIdStatusEmbedConfig(context.Background(), pageId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StatusEmbedConfigApi.GetPagesPageIdStatusEmbedConfig``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPagesPageIdStatusEmbedConfig`: StatusEmbedConfig
-    fmt.Fprintf(os.Stdout, "Response from `StatusEmbedConfigApi.GetPagesPageIdStatusEmbedConfig`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.StatusEmbedConfigAPI.GetPagesPageIdStatusEmbedConfig(context.Background(), pageId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `StatusEmbedConfigAPI.GetPagesPageIdStatusEmbedConfig``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPagesPageIdStatusEmbedConfig`: StatusEmbedConfig
+	fmt.Fprintf(os.Stdout, "Response from `StatusEmbedConfigAPI.GetPagesPageIdStatusEmbedConfig`: %v\n", resp)
 }
 ```
 
@@ -94,25 +94,25 @@ Update status embed config settings
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    patchPagesPageIdStatusEmbedConfig := *openapiclient.NewPatchPagesPageIdStatusEmbedConfig() // PatchPagesPageIdStatusEmbedConfig | 
+	pageId := "pageId_example" // string | Page identifier
+	patchPagesPageIdStatusEmbedConfig := *openapiclient.NewPatchPagesPageIdStatusEmbedConfig() // PatchPagesPageIdStatusEmbedConfig | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.StatusEmbedConfigApi.PatchPagesPageIdStatusEmbedConfig(context.Background(), pageId).PatchPagesPageIdStatusEmbedConfig(patchPagesPageIdStatusEmbedConfig).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StatusEmbedConfigApi.PatchPagesPageIdStatusEmbedConfig``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PatchPagesPageIdStatusEmbedConfig`: StatusEmbedConfig
-    fmt.Fprintf(os.Stdout, "Response from `StatusEmbedConfigApi.PatchPagesPageIdStatusEmbedConfig`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.StatusEmbedConfigAPI.PatchPagesPageIdStatusEmbedConfig(context.Background(), pageId).PatchPagesPageIdStatusEmbedConfig(patchPagesPageIdStatusEmbedConfig).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `StatusEmbedConfigAPI.PatchPagesPageIdStatusEmbedConfig``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PatchPagesPageIdStatusEmbedConfig`: StatusEmbedConfig
+	fmt.Fprintf(os.Stdout, "Response from `StatusEmbedConfigAPI.PatchPagesPageIdStatusEmbedConfig`: %v\n", resp)
 }
 ```
 
@@ -166,25 +166,25 @@ Update status embed config settings
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    putPagesPageIdStatusEmbedConfig := *openapiclient.NewPutPagesPageIdStatusEmbedConfig() // PutPagesPageIdStatusEmbedConfig | 
+	pageId := "pageId_example" // string | Page identifier
+	putPagesPageIdStatusEmbedConfig := *openapiclient.NewPutPagesPageIdStatusEmbedConfig() // PutPagesPageIdStatusEmbedConfig | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.StatusEmbedConfigApi.PutPagesPageIdStatusEmbedConfig(context.Background(), pageId).PutPagesPageIdStatusEmbedConfig(putPagesPageIdStatusEmbedConfig).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `StatusEmbedConfigApi.PutPagesPageIdStatusEmbedConfig``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutPagesPageIdStatusEmbedConfig`: StatusEmbedConfig
-    fmt.Fprintf(os.Stdout, "Response from `StatusEmbedConfigApi.PutPagesPageIdStatusEmbedConfig`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.StatusEmbedConfigAPI.PutPagesPageIdStatusEmbedConfig(context.Background(), pageId).PutPagesPageIdStatusEmbedConfig(putPagesPageIdStatusEmbedConfig).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `StatusEmbedConfigAPI.PutPagesPageIdStatusEmbedConfig``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutPagesPageIdStatusEmbedConfig`: StatusEmbedConfig
+	fmt.Fprintf(os.Stdout, "Response from `StatusEmbedConfigAPI.PutPagesPageIdStatusEmbedConfig`: %v\n", resp)
 }
 ```
 

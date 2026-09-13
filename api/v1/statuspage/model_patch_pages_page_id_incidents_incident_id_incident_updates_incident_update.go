@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate{}
+
 // PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate struct for PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate
 type PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate struct {
 	// Controls whether to create twitter update.
@@ -46,7 +49,7 @@ func NewPatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateWithDefa
 
 // GetWantsTwitterUpdate returns the WantsTwitterUpdate field value if set, zero value otherwise.
 func (o *PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate) GetWantsTwitterUpdate() bool {
-	if o == nil || o.WantsTwitterUpdate == nil {
+	if o == nil || IsNil(o.WantsTwitterUpdate) {
 		var ret bool
 		return ret
 	}
@@ -56,7 +59,7 @@ func (o *PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate) GetWa
 // GetWantsTwitterUpdateOk returns a tuple with the WantsTwitterUpdate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate) GetWantsTwitterUpdateOk() (*bool, bool) {
-	if o == nil || o.WantsTwitterUpdate == nil {
+	if o == nil || IsNil(o.WantsTwitterUpdate) {
 		return nil, false
 	}
 	return o.WantsTwitterUpdate, true
@@ -64,7 +67,7 @@ func (o *PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate) GetWa
 
 // HasWantsTwitterUpdate returns a boolean if a field has been set.
 func (o *PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate) HasWantsTwitterUpdate() bool {
-	if o != nil && o.WantsTwitterUpdate != nil {
+	if o != nil && !IsNil(o.WantsTwitterUpdate) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate) SetWa
 
 // GetBody returns the Body field value if set, zero value otherwise.
 func (o *PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate) GetBody() string {
-	if o == nil || o.Body == nil {
+	if o == nil || IsNil(o.Body) {
 		var ret string
 		return ret
 	}
@@ -88,7 +91,7 @@ func (o *PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate) GetBo
 // GetBodyOk returns a tuple with the Body field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate) GetBodyOk() (*string, bool) {
-	if o == nil || o.Body == nil {
+	if o == nil || IsNil(o.Body) {
 		return nil, false
 	}
 	return o.Body, true
@@ -96,7 +99,7 @@ func (o *PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate) GetBo
 
 // HasBody returns a boolean if a field has been set.
 func (o *PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate) HasBody() bool {
-	if o != nil && o.Body != nil {
+	if o != nil && !IsNil(o.Body) {
 		return true
 	}
 
@@ -110,7 +113,7 @@ func (o *PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate) SetBo
 
 // GetDisplayAt returns the DisplayAt field value if set, zero value otherwise.
 func (o *PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate) GetDisplayAt() time.Time {
-	if o == nil || o.DisplayAt == nil {
+	if o == nil || IsNil(o.DisplayAt) {
 		var ret time.Time
 		return ret
 	}
@@ -120,7 +123,7 @@ func (o *PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate) GetDi
 // GetDisplayAtOk returns a tuple with the DisplayAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate) GetDisplayAtOk() (*time.Time, bool) {
-	if o == nil || o.DisplayAt == nil {
+	if o == nil || IsNil(o.DisplayAt) {
 		return nil, false
 	}
 	return o.DisplayAt, true
@@ -128,7 +131,7 @@ func (o *PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate) GetDi
 
 // HasDisplayAt returns a boolean if a field has been set.
 func (o *PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate) HasDisplayAt() bool {
-	if o != nil && o.DisplayAt != nil {
+	if o != nil && !IsNil(o.DisplayAt) {
 		return true
 	}
 
@@ -142,7 +145,7 @@ func (o *PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate) SetDi
 
 // GetDeliverNotifications returns the DeliverNotifications field value if set, zero value otherwise.
 func (o *PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate) GetDeliverNotifications() bool {
-	if o == nil || o.DeliverNotifications == nil {
+	if o == nil || IsNil(o.DeliverNotifications) {
 		var ret bool
 		return ret
 	}
@@ -152,7 +155,7 @@ func (o *PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate) GetDe
 // GetDeliverNotificationsOk returns a tuple with the DeliverNotifications field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate) GetDeliverNotificationsOk() (*bool, bool) {
-	if o == nil || o.DeliverNotifications == nil {
+	if o == nil || IsNil(o.DeliverNotifications) {
 		return nil, false
 	}
 	return o.DeliverNotifications, true
@@ -160,7 +163,7 @@ func (o *PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate) GetDe
 
 // HasDeliverNotifications returns a boolean if a field has been set.
 func (o *PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate) HasDeliverNotifications() bool {
-	if o != nil && o.DeliverNotifications != nil {
+	if o != nil && !IsNil(o.DeliverNotifications) {
 		return true
 	}
 
@@ -173,20 +176,28 @@ func (o *PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate) SetDe
 }
 
 func (o PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.WantsTwitterUpdate != nil {
-		toSerialize["wants_twitter_update"] = o.WantsTwitterUpdate
-	}
-	if o.Body != nil {
-		toSerialize["body"] = o.Body
-	}
-	if o.DisplayAt != nil {
-		toSerialize["display_at"] = o.DisplayAt
-	}
-	if o.DeliverNotifications != nil {
-		toSerialize["deliver_notifications"] = o.DeliverNotifications
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.WantsTwitterUpdate) {
+		toSerialize["wants_twitter_update"] = o.WantsTwitterUpdate
+	}
+	if !IsNil(o.Body) {
+		toSerialize["body"] = o.Body
+	}
+	if !IsNil(o.DisplayAt) {
+		toSerialize["display_at"] = o.DisplayAt
+	}
+	if !IsNil(o.DeliverNotifications) {
+		toSerialize["deliver_notifications"] = o.DeliverNotifications
+	}
+	return toSerialize, nil
 }
 
 type NullablePatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdate struct {
@@ -224,5 +235,3 @@ func (v *NullablePatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdat
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

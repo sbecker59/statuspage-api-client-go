@@ -1,11 +1,11 @@
-# \TemplatesApi
+# \TemplatesAPI
 
 All URIs are relative to *https://api.statuspage.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**GetPagesPageIdIncidentTemplates**](TemplatesApi.md#GetPagesPageIdIncidentTemplates) | **Get** /pages/{page_id}/incident_templates | Get a list of templates
-[**PostPagesPageIdIncidentTemplates**](TemplatesApi.md#PostPagesPageIdIncidentTemplates) | **Post** /pages/{page_id}/incident_templates | Create a template
+[**GetPagesPageIdIncidentTemplates**](TemplatesAPI.md#GetPagesPageIdIncidentTemplates) | **Get** /pages/{page_id}/incident_templates | Get a list of templates
+[**PostPagesPageIdIncidentTemplates**](TemplatesAPI.md#PostPagesPageIdIncidentTemplates) | **Post** /pages/{page_id}/incident_templates | Create a template
 
 
 
@@ -23,26 +23,26 @@ Get a list of templates
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    page := int32(56) // int32 | Page offset to fetch. (optional) (default to 1)
-    perPage := int32(56) // int32 | Number of results to return per page. (optional) (default to 100)
+	pageId := "pageId_example" // string | Page identifier
+	page := int32(56) // int32 | Page offset to fetch. (optional) (default to 1)
+	perPage := int32(56) // int32 | Number of results to return per page. (optional) (default to 100)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TemplatesApi.GetPagesPageIdIncidentTemplates(context.Background(), pageId).Page(page).PerPage(perPage).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.GetPagesPageIdIncidentTemplates``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPagesPageIdIncidentTemplates`: []IncidentTemplate
-    fmt.Fprintf(os.Stdout, "Response from `TemplatesApi.GetPagesPageIdIncidentTemplates`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TemplatesAPI.GetPagesPageIdIncidentTemplates(context.Background(), pageId).Page(page).PerPage(perPage).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TemplatesAPI.GetPagesPageIdIncidentTemplates``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPagesPageIdIncidentTemplates`: []IncidentTemplate
+	fmt.Fprintf(os.Stdout, "Response from `TemplatesAPI.GetPagesPageIdIncidentTemplates`: %v\n", resp)
 }
 ```
 
@@ -97,25 +97,25 @@ Create a template
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    postPagesPageIdIncidentTemplates := *openapiclient.NewPostPagesPageIdIncidentTemplates() // PostPagesPageIdIncidentTemplates | 
+	pageId := "pageId_example" // string | Page identifier
+	postPagesPageIdIncidentTemplates := *openapiclient.NewPostPagesPageIdIncidentTemplates() // PostPagesPageIdIncidentTemplates | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.TemplatesApi.PostPagesPageIdIncidentTemplates(context.Background(), pageId).PostPagesPageIdIncidentTemplates(postPagesPageIdIncidentTemplates).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `TemplatesApi.PostPagesPageIdIncidentTemplates``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostPagesPageIdIncidentTemplates`: IncidentTemplate
-    fmt.Fprintf(os.Stdout, "Response from `TemplatesApi.PostPagesPageIdIncidentTemplates`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TemplatesAPI.PostPagesPageIdIncidentTemplates(context.Background(), pageId).PostPagesPageIdIncidentTemplates(postPagesPageIdIncidentTemplates).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TemplatesAPI.PostPagesPageIdIncidentTemplates``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostPagesPageIdIncidentTemplates`: IncidentTemplate
+	fmt.Fprintf(os.Stdout, "Response from `TemplatesAPI.PostPagesPageIdIncidentTemplates`: %v\n", resp)
 }
 ```
 

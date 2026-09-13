@@ -12,30 +12,24 @@ package openapi
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// IncidentPostmortemApiService IncidentPostmortemApi service
-type IncidentPostmortemApiService service
+// IncidentPostmortemAPIService IncidentPostmortemAPI service
+type IncidentPostmortemAPIService service
 
 type ApiDeletePagesPageIdIncidentsIncidentIdPostmortemRequest struct {
-	ctx _context.Context
-	ApiService *IncidentPostmortemApiService
-	pageId string
+	ctx        context.Context
+	ApiService *IncidentPostmortemAPIService
+	pageId     string
 	incidentId string
 }
 
-
-func (r ApiDeletePagesPageIdIncidentsIncidentIdPostmortemRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiDeletePagesPageIdIncidentsIncidentIdPostmortemRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeletePagesPageIdIncidentsIncidentIdPostmortemExecute(r)
 }
 
@@ -44,42 +38,40 @@ DeletePagesPageIdIncidentsIncidentIdPostmortem Delete Postmortem
 
 Delete Postmortem
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @param incidentId Incident Identifier
- @return ApiDeletePagesPageIdIncidentsIncidentIdPostmortemRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@param incidentId Incident Identifier
+	@return ApiDeletePagesPageIdIncidentsIncidentIdPostmortemRequest
 */
-func (a *IncidentPostmortemApiService) DeletePagesPageIdIncidentsIncidentIdPostmortem(ctx _context.Context, pageId string, incidentId string) ApiDeletePagesPageIdIncidentsIncidentIdPostmortemRequest {
+func (a *IncidentPostmortemAPIService) DeletePagesPageIdIncidentsIncidentIdPostmortem(ctx context.Context, pageId string, incidentId string) ApiDeletePagesPageIdIncidentsIncidentIdPostmortemRequest {
 	return ApiDeletePagesPageIdIncidentsIncidentIdPostmortemRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ctx:        ctx,
+		pageId:     pageId,
 		incidentId: incidentId,
 	}
 }
 
 // Execute executes the request
-func (a *IncidentPostmortemApiService) DeletePagesPageIdIncidentsIncidentIdPostmortemExecute(r ApiDeletePagesPageIdIncidentsIncidentIdPostmortemRequest) (*_nethttp.Response, error) {
+func (a *IncidentPostmortemAPIService) DeletePagesPageIdIncidentsIncidentIdPostmortemExecute(r ApiDeletePagesPageIdIncidentsIncidentIdPostmortemRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentPostmortemApiService.DeletePagesPageIdIncidentsIncidentIdPostmortem")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentPostmortemAPIService.DeletePagesPageIdIncidentsIncidentIdPostmortem")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/incidents/{incident_id}/postmortem"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"incident_id"+"}", _neturl.PathEscape(parameterToString(r.incidentId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"incident_id"+"}", url.PathEscape(parameterValueToString(r.incidentId, "incidentId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -112,7 +104,7 @@ func (a *IncidentPostmortemApiService) DeletePagesPageIdIncidentsIncidentIdPostm
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -122,15 +114,15 @@ func (a *IncidentPostmortemApiService) DeletePagesPageIdIncidentsIncidentIdPostm
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -141,6 +133,7 @@ func (a *IncidentPostmortemApiService) DeletePagesPageIdIncidentsIncidentIdPostm
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
@@ -151,6 +144,7 @@ func (a *IncidentPostmortemApiService) DeletePagesPageIdIncidentsIncidentIdPostm
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
@@ -160,14 +154,13 @@ func (a *IncidentPostmortemApiService) DeletePagesPageIdIncidentsIncidentIdPostm
 }
 
 type ApiGetPagesPageIdIncidentsIncidentIdPostmortemRequest struct {
-	ctx _context.Context
-	ApiService *IncidentPostmortemApiService
-	pageId string
+	ctx        context.Context
+	ApiService *IncidentPostmortemAPIService
+	pageId     string
 	incidentId string
 }
 
-
-func (r ApiGetPagesPageIdIncidentsIncidentIdPostmortemRequest) Execute() (Postmortem, *_nethttp.Response, error) {
+func (r ApiGetPagesPageIdIncidentsIncidentIdPostmortemRequest) Execute() (*Postmortem, *http.Response, error) {
 	return r.ApiService.GetPagesPageIdIncidentsIncidentIdPostmortemExecute(r)
 }
 
@@ -176,44 +169,43 @@ GetPagesPageIdIncidentsIncidentIdPostmortem Get Postmortem
 
 Get Postmortem
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @param incidentId Incident Identifier
- @return ApiGetPagesPageIdIncidentsIncidentIdPostmortemRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@param incidentId Incident Identifier
+	@return ApiGetPagesPageIdIncidentsIncidentIdPostmortemRequest
 */
-func (a *IncidentPostmortemApiService) GetPagesPageIdIncidentsIncidentIdPostmortem(ctx _context.Context, pageId string, incidentId string) ApiGetPagesPageIdIncidentsIncidentIdPostmortemRequest {
+func (a *IncidentPostmortemAPIService) GetPagesPageIdIncidentsIncidentIdPostmortem(ctx context.Context, pageId string, incidentId string) ApiGetPagesPageIdIncidentsIncidentIdPostmortemRequest {
 	return ApiGetPagesPageIdIncidentsIncidentIdPostmortemRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ctx:        ctx,
+		pageId:     pageId,
 		incidentId: incidentId,
 	}
 }
 
 // Execute executes the request
-//  @return Postmortem
-func (a *IncidentPostmortemApiService) GetPagesPageIdIncidentsIncidentIdPostmortemExecute(r ApiGetPagesPageIdIncidentsIncidentIdPostmortemRequest) (Postmortem, *_nethttp.Response, error) {
+//
+//	@return Postmortem
+func (a *IncidentPostmortemAPIService) GetPagesPageIdIncidentsIncidentIdPostmortemExecute(r ApiGetPagesPageIdIncidentsIncidentIdPostmortemRequest) (*Postmortem, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Postmortem
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Postmortem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentPostmortemApiService.GetPagesPageIdIncidentsIncidentIdPostmortem")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentPostmortemAPIService.GetPagesPageIdIncidentsIncidentIdPostmortem")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/incidents/{incident_id}/postmortem"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"incident_id"+"}", _neturl.PathEscape(parameterToString(r.incidentId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"incident_id"+"}", url.PathEscape(parameterValueToString(r.incidentId, "incidentId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -246,7 +238,7 @@ func (a *IncidentPostmortemApiService) GetPagesPageIdIncidentsIncidentIdPostmort
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -256,15 +248,15 @@ func (a *IncidentPostmortemApiService) GetPagesPageIdIncidentsIncidentIdPostmort
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -275,6 +267,7 @@ func (a *IncidentPostmortemApiService) GetPagesPageIdIncidentsIncidentIdPostmort
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -285,6 +278,7 @@ func (a *IncidentPostmortemApiService) GetPagesPageIdIncidentsIncidentIdPostmort
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -292,7 +286,7 @@ func (a *IncidentPostmortemApiService) GetPagesPageIdIncidentsIncidentIdPostmort
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -303,10 +297,10 @@ func (a *IncidentPostmortemApiService) GetPagesPageIdIncidentsIncidentIdPostmort
 }
 
 type ApiPutPagesPageIdIncidentsIncidentIdPostmortemRequest struct {
-	ctx _context.Context
-	ApiService *IncidentPostmortemApiService
-	pageId string
-	incidentId string
+	ctx                                         context.Context
+	ApiService                                  *IncidentPostmortemAPIService
+	pageId                                      string
+	incidentId                                  string
 	putPagesPageIdIncidentsIncidentIdPostmortem *PutPagesPageIdIncidentsIncidentIdPostmortem
 }
 
@@ -315,7 +309,7 @@ func (r ApiPutPagesPageIdIncidentsIncidentIdPostmortemRequest) PutPagesPageIdInc
 	return r
 }
 
-func (r ApiPutPagesPageIdIncidentsIncidentIdPostmortemRequest) Execute() (Postmortem, *_nethttp.Response, error) {
+func (r ApiPutPagesPageIdIncidentsIncidentIdPostmortemRequest) Execute() (*Postmortem, *http.Response, error) {
 	return r.ApiService.PutPagesPageIdIncidentsIncidentIdPostmortemExecute(r)
 }
 
@@ -324,44 +318,43 @@ PutPagesPageIdIncidentsIncidentIdPostmortem Create Postmortem
 
 Create Postmortem
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @param incidentId Incident Identifier
- @return ApiPutPagesPageIdIncidentsIncidentIdPostmortemRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@param incidentId Incident Identifier
+	@return ApiPutPagesPageIdIncidentsIncidentIdPostmortemRequest
 */
-func (a *IncidentPostmortemApiService) PutPagesPageIdIncidentsIncidentIdPostmortem(ctx _context.Context, pageId string, incidentId string) ApiPutPagesPageIdIncidentsIncidentIdPostmortemRequest {
+func (a *IncidentPostmortemAPIService) PutPagesPageIdIncidentsIncidentIdPostmortem(ctx context.Context, pageId string, incidentId string) ApiPutPagesPageIdIncidentsIncidentIdPostmortemRequest {
 	return ApiPutPagesPageIdIncidentsIncidentIdPostmortemRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ctx:        ctx,
+		pageId:     pageId,
 		incidentId: incidentId,
 	}
 }
 
 // Execute executes the request
-//  @return Postmortem
-func (a *IncidentPostmortemApiService) PutPagesPageIdIncidentsIncidentIdPostmortemExecute(r ApiPutPagesPageIdIncidentsIncidentIdPostmortemRequest) (Postmortem, *_nethttp.Response, error) {
+//
+//	@return Postmortem
+func (a *IncidentPostmortemAPIService) PutPagesPageIdIncidentsIncidentIdPostmortemExecute(r ApiPutPagesPageIdIncidentsIncidentIdPostmortemRequest) (*Postmortem, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Postmortem
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Postmortem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentPostmortemApiService.PutPagesPageIdIncidentsIncidentIdPostmortem")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentPostmortemAPIService.PutPagesPageIdIncidentsIncidentIdPostmortem")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/incidents/{incident_id}/postmortem"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"incident_id"+"}", _neturl.PathEscape(parameterToString(r.incidentId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"incident_id"+"}", url.PathEscape(parameterValueToString(r.incidentId, "incidentId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.putPagesPageIdIncidentsIncidentIdPostmortem == nil {
 		return localVarReturnValue, nil, reportError("putPagesPageIdIncidentsIncidentIdPostmortem is required and must be specified")
 	}
@@ -399,7 +392,7 @@ func (a *IncidentPostmortemApiService) PutPagesPageIdIncidentsIncidentIdPostmort
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -409,15 +402,15 @@ func (a *IncidentPostmortemApiService) PutPagesPageIdIncidentsIncidentIdPostmort
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -428,6 +421,7 @@ func (a *IncidentPostmortemApiService) PutPagesPageIdIncidentsIncidentIdPostmort
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -438,6 +432,7 @@ func (a *IncidentPostmortemApiService) PutPagesPageIdIncidentsIncidentIdPostmort
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -445,7 +440,7 @@ func (a *IncidentPostmortemApiService) PutPagesPageIdIncidentsIncidentIdPostmort
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -456,10 +451,10 @@ func (a *IncidentPostmortemApiService) PutPagesPageIdIncidentsIncidentIdPostmort
 }
 
 type ApiPutPagesPageIdIncidentsIncidentIdPostmortemPublishRequest struct {
-	ctx _context.Context
-	ApiService *IncidentPostmortemApiService
-	pageId string
-	incidentId string
+	ctx                                                context.Context
+	ApiService                                         *IncidentPostmortemAPIService
+	pageId                                             string
+	incidentId                                         string
 	putPagesPageIdIncidentsIncidentIdPostmortemPublish *PutPagesPageIdIncidentsIncidentIdPostmortemPublish
 }
 
@@ -468,7 +463,7 @@ func (r ApiPutPagesPageIdIncidentsIncidentIdPostmortemPublishRequest) PutPagesPa
 	return r
 }
 
-func (r ApiPutPagesPageIdIncidentsIncidentIdPostmortemPublishRequest) Execute() (Postmortem, *_nethttp.Response, error) {
+func (r ApiPutPagesPageIdIncidentsIncidentIdPostmortemPublishRequest) Execute() (*Postmortem, *http.Response, error) {
 	return r.ApiService.PutPagesPageIdIncidentsIncidentIdPostmortemPublishExecute(r)
 }
 
@@ -477,44 +472,43 @@ PutPagesPageIdIncidentsIncidentIdPostmortemPublish Publish Postmortem
 
 Publish Postmortem
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @param incidentId Incident Identifier
- @return ApiPutPagesPageIdIncidentsIncidentIdPostmortemPublishRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@param incidentId Incident Identifier
+	@return ApiPutPagesPageIdIncidentsIncidentIdPostmortemPublishRequest
 */
-func (a *IncidentPostmortemApiService) PutPagesPageIdIncidentsIncidentIdPostmortemPublish(ctx _context.Context, pageId string, incidentId string) ApiPutPagesPageIdIncidentsIncidentIdPostmortemPublishRequest {
+func (a *IncidentPostmortemAPIService) PutPagesPageIdIncidentsIncidentIdPostmortemPublish(ctx context.Context, pageId string, incidentId string) ApiPutPagesPageIdIncidentsIncidentIdPostmortemPublishRequest {
 	return ApiPutPagesPageIdIncidentsIncidentIdPostmortemPublishRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ctx:        ctx,
+		pageId:     pageId,
 		incidentId: incidentId,
 	}
 }
 
 // Execute executes the request
-//  @return Postmortem
-func (a *IncidentPostmortemApiService) PutPagesPageIdIncidentsIncidentIdPostmortemPublishExecute(r ApiPutPagesPageIdIncidentsIncidentIdPostmortemPublishRequest) (Postmortem, *_nethttp.Response, error) {
+//
+//	@return Postmortem
+func (a *IncidentPostmortemAPIService) PutPagesPageIdIncidentsIncidentIdPostmortemPublishExecute(r ApiPutPagesPageIdIncidentsIncidentIdPostmortemPublishRequest) (*Postmortem, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Postmortem
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Postmortem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentPostmortemApiService.PutPagesPageIdIncidentsIncidentIdPostmortemPublish")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentPostmortemAPIService.PutPagesPageIdIncidentsIncidentIdPostmortemPublish")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/incidents/{incident_id}/postmortem/publish"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"incident_id"+"}", _neturl.PathEscape(parameterToString(r.incidentId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"incident_id"+"}", url.PathEscape(parameterValueToString(r.incidentId, "incidentId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.putPagesPageIdIncidentsIncidentIdPostmortemPublish == nil {
 		return localVarReturnValue, nil, reportError("putPagesPageIdIncidentsIncidentIdPostmortemPublish is required and must be specified")
 	}
@@ -552,7 +546,7 @@ func (a *IncidentPostmortemApiService) PutPagesPageIdIncidentsIncidentIdPostmort
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -562,15 +556,15 @@ func (a *IncidentPostmortemApiService) PutPagesPageIdIncidentsIncidentIdPostmort
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -581,6 +575,7 @@ func (a *IncidentPostmortemApiService) PutPagesPageIdIncidentsIncidentIdPostmort
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -591,6 +586,7 @@ func (a *IncidentPostmortemApiService) PutPagesPageIdIncidentsIncidentIdPostmort
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -601,6 +597,7 @@ func (a *IncidentPostmortemApiService) PutPagesPageIdIncidentsIncidentIdPostmort
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -608,7 +605,7 @@ func (a *IncidentPostmortemApiService) PutPagesPageIdIncidentsIncidentIdPostmort
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -619,14 +616,13 @@ func (a *IncidentPostmortemApiService) PutPagesPageIdIncidentsIncidentIdPostmort
 }
 
 type ApiPutPagesPageIdIncidentsIncidentIdPostmortemRevertRequest struct {
-	ctx _context.Context
-	ApiService *IncidentPostmortemApiService
-	pageId string
+	ctx        context.Context
+	ApiService *IncidentPostmortemAPIService
+	pageId     string
 	incidentId string
 }
 
-
-func (r ApiPutPagesPageIdIncidentsIncidentIdPostmortemRevertRequest) Execute() (Postmortem, *_nethttp.Response, error) {
+func (r ApiPutPagesPageIdIncidentsIncidentIdPostmortemRevertRequest) Execute() (*Postmortem, *http.Response, error) {
 	return r.ApiService.PutPagesPageIdIncidentsIncidentIdPostmortemRevertExecute(r)
 }
 
@@ -635,44 +631,43 @@ PutPagesPageIdIncidentsIncidentIdPostmortemRevert Revert Postmortem
 
 Revert Postmortem
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @param incidentId Incident Identifier
- @return ApiPutPagesPageIdIncidentsIncidentIdPostmortemRevertRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@param incidentId Incident Identifier
+	@return ApiPutPagesPageIdIncidentsIncidentIdPostmortemRevertRequest
 */
-func (a *IncidentPostmortemApiService) PutPagesPageIdIncidentsIncidentIdPostmortemRevert(ctx _context.Context, pageId string, incidentId string) ApiPutPagesPageIdIncidentsIncidentIdPostmortemRevertRequest {
+func (a *IncidentPostmortemAPIService) PutPagesPageIdIncidentsIncidentIdPostmortemRevert(ctx context.Context, pageId string, incidentId string) ApiPutPagesPageIdIncidentsIncidentIdPostmortemRevertRequest {
 	return ApiPutPagesPageIdIncidentsIncidentIdPostmortemRevertRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ctx:        ctx,
+		pageId:     pageId,
 		incidentId: incidentId,
 	}
 }
 
 // Execute executes the request
-//  @return Postmortem
-func (a *IncidentPostmortemApiService) PutPagesPageIdIncidentsIncidentIdPostmortemRevertExecute(r ApiPutPagesPageIdIncidentsIncidentIdPostmortemRevertRequest) (Postmortem, *_nethttp.Response, error) {
+//
+//	@return Postmortem
+func (a *IncidentPostmortemAPIService) PutPagesPageIdIncidentsIncidentIdPostmortemRevertExecute(r ApiPutPagesPageIdIncidentsIncidentIdPostmortemRevertRequest) (*Postmortem, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Postmortem
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Postmortem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentPostmortemApiService.PutPagesPageIdIncidentsIncidentIdPostmortemRevert")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentPostmortemAPIService.PutPagesPageIdIncidentsIncidentIdPostmortemRevert")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/incidents/{incident_id}/postmortem/revert"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"incident_id"+"}", _neturl.PathEscape(parameterToString(r.incidentId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"incident_id"+"}", url.PathEscape(parameterValueToString(r.incidentId, "incidentId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -705,7 +700,7 @@ func (a *IncidentPostmortemApiService) PutPagesPageIdIncidentsIncidentIdPostmort
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -715,15 +710,15 @@ func (a *IncidentPostmortemApiService) PutPagesPageIdIncidentsIncidentIdPostmort
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -734,6 +729,7 @@ func (a *IncidentPostmortemApiService) PutPagesPageIdIncidentsIncidentIdPostmort
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -744,6 +740,7 @@ func (a *IncidentPostmortemApiService) PutPagesPageIdIncidentsIncidentIdPostmort
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -754,6 +751,7 @@ func (a *IncidentPostmortemApiService) PutPagesPageIdIncidentsIncidentIdPostmort
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -761,7 +759,7 @@ func (a *IncidentPostmortemApiService) PutPagesPageIdIncidentsIncidentIdPostmort
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

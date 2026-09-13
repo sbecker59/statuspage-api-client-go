@@ -1,15 +1,15 @@
-# \PageAccessUsersApi
+# \PageAccessUsersAPI
 
 All URIs are relative to *https://api.statuspage.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeletePagesPageIdPageAccessUsersPageAccessUserId**](PageAccessUsersApi.md#DeletePagesPageIdPageAccessUsersPageAccessUserId) | **Delete** /pages/{page_id}/page_access_users/{page_access_user_id} | Delete page access user
-[**GetPagesPageIdPageAccessUsers**](PageAccessUsersApi.md#GetPagesPageIdPageAccessUsers) | **Get** /pages/{page_id}/page_access_users | Get a list of page access users
-[**GetPagesPageIdPageAccessUsersPageAccessUserId**](PageAccessUsersApi.md#GetPagesPageIdPageAccessUsersPageAccessUserId) | **Get** /pages/{page_id}/page_access_users/{page_access_user_id} | Get page access user
-[**PatchPagesPageIdPageAccessUsersPageAccessUserId**](PageAccessUsersApi.md#PatchPagesPageIdPageAccessUsersPageAccessUserId) | **Patch** /pages/{page_id}/page_access_users/{page_access_user_id} | Update page access user
-[**PostPagesPageIdPageAccessUsers**](PageAccessUsersApi.md#PostPagesPageIdPageAccessUsers) | **Post** /pages/{page_id}/page_access_users | Add a page access user
-[**PutPagesPageIdPageAccessUsersPageAccessUserId**](PageAccessUsersApi.md#PutPagesPageIdPageAccessUsersPageAccessUserId) | **Put** /pages/{page_id}/page_access_users/{page_access_user_id} | Update page access user
+[**DeletePagesPageIdPageAccessUsersPageAccessUserId**](PageAccessUsersAPI.md#DeletePagesPageIdPageAccessUsersPageAccessUserId) | **Delete** /pages/{page_id}/page_access_users/{page_access_user_id} | Delete page access user
+[**GetPagesPageIdPageAccessUsers**](PageAccessUsersAPI.md#GetPagesPageIdPageAccessUsers) | **Get** /pages/{page_id}/page_access_users | Get a list of page access users
+[**GetPagesPageIdPageAccessUsersPageAccessUserId**](PageAccessUsersAPI.md#GetPagesPageIdPageAccessUsersPageAccessUserId) | **Get** /pages/{page_id}/page_access_users/{page_access_user_id} | Get page access user
+[**PatchPagesPageIdPageAccessUsersPageAccessUserId**](PageAccessUsersAPI.md#PatchPagesPageIdPageAccessUsersPageAccessUserId) | **Patch** /pages/{page_id}/page_access_users/{page_access_user_id} | Update page access user
+[**PostPagesPageIdPageAccessUsers**](PageAccessUsersAPI.md#PostPagesPageIdPageAccessUsers) | **Post** /pages/{page_id}/page_access_users | Add a page access user
+[**PutPagesPageIdPageAccessUsersPageAccessUserId**](PageAccessUsersAPI.md#PutPagesPageIdPageAccessUsersPageAccessUserId) | **Put** /pages/{page_id}/page_access_users/{page_access_user_id} | Update page access user
 
 
 
@@ -27,23 +27,23 @@ Delete page access user
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    pageAccessUserId := "pageAccessUserId_example" // string | Page Access User Identifier
+	pageId := "pageId_example" // string | Page identifier
+	pageAccessUserId := "pageAccessUserId_example" // string | Page Access User Identifier
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PageAccessUsersApi.DeletePagesPageIdPageAccessUsersPageAccessUserId(context.Background(), pageId, pageAccessUserId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUsersApi.DeletePagesPageIdPageAccessUsersPageAccessUserId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.PageAccessUsersAPI.DeletePagesPageIdPageAccessUsersPageAccessUserId(context.Background(), pageId, pageAccessUserId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUsersAPI.DeletePagesPageIdPageAccessUsersPageAccessUserId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
 }
 ```
 
@@ -98,27 +98,27 @@ Get a list of page access users
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    email := "email_example" // string | Email address to search for (optional)
-    page := int32(56) // int32 | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. (optional)
-    perPage := int32(56) // int32 | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. (optional)
+	pageId := "pageId_example" // string | Page identifier
+	email := "email_example" // string | Email address to search for (optional)
+	page := int32(56) // int32 | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. (optional)
+	perPage := int32(56) // int32 | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PageAccessUsersApi.GetPagesPageIdPageAccessUsers(context.Background(), pageId).Email(email).Page(page).PerPage(perPage).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUsersApi.GetPagesPageIdPageAccessUsers``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPagesPageIdPageAccessUsers`: []PageAccessUser
-    fmt.Fprintf(os.Stdout, "Response from `PageAccessUsersApi.GetPagesPageIdPageAccessUsers`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PageAccessUsersAPI.GetPagesPageIdPageAccessUsers(context.Background(), pageId).Email(email).Page(page).PerPage(perPage).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUsersAPI.GetPagesPageIdPageAccessUsers``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPagesPageIdPageAccessUsers`: []PageAccessUser
+	fmt.Fprintf(os.Stdout, "Response from `PageAccessUsersAPI.GetPagesPageIdPageAccessUsers`: %v\n", resp)
 }
 ```
 
@@ -174,25 +174,25 @@ Get page access user
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    pageAccessUserId := "pageAccessUserId_example" // string | Page Access User Identifier
+	pageId := "pageId_example" // string | Page identifier
+	pageAccessUserId := "pageAccessUserId_example" // string | Page Access User Identifier
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PageAccessUsersApi.GetPagesPageIdPageAccessUsersPageAccessUserId(context.Background(), pageId, pageAccessUserId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUsersApi.GetPagesPageIdPageAccessUsersPageAccessUserId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPagesPageIdPageAccessUsersPageAccessUserId`: PageAccessUser
-    fmt.Fprintf(os.Stdout, "Response from `PageAccessUsersApi.GetPagesPageIdPageAccessUsersPageAccessUserId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PageAccessUsersAPI.GetPagesPageIdPageAccessUsersPageAccessUserId(context.Background(), pageId, pageAccessUserId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUsersAPI.GetPagesPageIdPageAccessUsersPageAccessUserId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPagesPageIdPageAccessUsersPageAccessUserId`: PageAccessUser
+	fmt.Fprintf(os.Stdout, "Response from `PageAccessUsersAPI.GetPagesPageIdPageAccessUsersPageAccessUserId`: %v\n", resp)
 }
 ```
 
@@ -247,25 +247,25 @@ Update page access user
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    pageAccessUserId := "pageAccessUserId_example" // string | Page Access User Identifier
+	pageId := "pageId_example" // string | Page identifier
+	pageAccessUserId := "pageAccessUserId_example" // string | Page Access User Identifier
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PageAccessUsersApi.PatchPagesPageIdPageAccessUsersPageAccessUserId(context.Background(), pageId, pageAccessUserId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUsersApi.PatchPagesPageIdPageAccessUsersPageAccessUserId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PatchPagesPageIdPageAccessUsersPageAccessUserId`: PageAccessUser
-    fmt.Fprintf(os.Stdout, "Response from `PageAccessUsersApi.PatchPagesPageIdPageAccessUsersPageAccessUserId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PageAccessUsersAPI.PatchPagesPageIdPageAccessUsersPageAccessUserId(context.Background(), pageId, pageAccessUserId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUsersAPI.PatchPagesPageIdPageAccessUsersPageAccessUserId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PatchPagesPageIdPageAccessUsersPageAccessUserId`: PageAccessUser
+	fmt.Fprintf(os.Stdout, "Response from `PageAccessUsersAPI.PatchPagesPageIdPageAccessUsersPageAccessUserId`: %v\n", resp)
 }
 ```
 
@@ -320,25 +320,25 @@ Add a page access user
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    postPagesPageIdPageAccessUsers := *openapiclient.NewPostPagesPageIdPageAccessUsers() // PostPagesPageIdPageAccessUsers | 
+	pageId := "pageId_example" // string | Page identifier
+	postPagesPageIdPageAccessUsers := *openapiclient.NewPostPagesPageIdPageAccessUsers() // PostPagesPageIdPageAccessUsers | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PageAccessUsersApi.PostPagesPageIdPageAccessUsers(context.Background(), pageId).PostPagesPageIdPageAccessUsers(postPagesPageIdPageAccessUsers).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUsersApi.PostPagesPageIdPageAccessUsers``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostPagesPageIdPageAccessUsers`: PageAccessUser
-    fmt.Fprintf(os.Stdout, "Response from `PageAccessUsersApi.PostPagesPageIdPageAccessUsers`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PageAccessUsersAPI.PostPagesPageIdPageAccessUsers(context.Background(), pageId).PostPagesPageIdPageAccessUsers(postPagesPageIdPageAccessUsers).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUsersAPI.PostPagesPageIdPageAccessUsers``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostPagesPageIdPageAccessUsers`: PageAccessUser
+	fmt.Fprintf(os.Stdout, "Response from `PageAccessUsersAPI.PostPagesPageIdPageAccessUsers`: %v\n", resp)
 }
 ```
 
@@ -392,25 +392,25 @@ Update page access user
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    pageAccessUserId := "pageAccessUserId_example" // string | Page Access User Identifier
+	pageId := "pageId_example" // string | Page identifier
+	pageAccessUserId := "pageAccessUserId_example" // string | Page Access User Identifier
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PageAccessUsersApi.PutPagesPageIdPageAccessUsersPageAccessUserId(context.Background(), pageId, pageAccessUserId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUsersApi.PutPagesPageIdPageAccessUsersPageAccessUserId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutPagesPageIdPageAccessUsersPageAccessUserId`: PageAccessUser
-    fmt.Fprintf(os.Stdout, "Response from `PageAccessUsersApi.PutPagesPageIdPageAccessUsersPageAccessUserId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PageAccessUsersAPI.PutPagesPageIdPageAccessUsersPageAccessUserId(context.Background(), pageId, pageAccessUserId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUsersAPI.PutPagesPageIdPageAccessUsersPageAccessUserId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutPagesPageIdPageAccessUsersPageAccessUserId`: PageAccessUser
+	fmt.Fprintf(os.Stdout, "Response from `PageAccessUsersAPI.PutPagesPageIdPageAccessUsersPageAccessUserId`: %v\n", resp)
 }
 ```
 

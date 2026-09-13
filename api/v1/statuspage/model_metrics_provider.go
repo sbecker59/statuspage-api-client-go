@@ -15,17 +15,20 @@ import (
 	"time"
 )
 
+// checks if the MetricsProvider type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MetricsProvider{}
+
 // MetricsProvider Delete a metric provider
 type MetricsProvider struct {
 	// Identifier for Metrics Provider
-	Id *string `json:"id,omitempty"`
-	Type *string `json:"type,omitempty"`
-	Disabled *bool `json:"disabled,omitempty"`
-	MetricBaseUri *string `json:"metric_base_uri,omitempty"`
+	Id                *string    `json:"id,omitempty"`
+	Type              *string    `json:"type,omitempty"`
+	Disabled          *bool      `json:"disabled,omitempty"`
+	MetricBaseUri     *string    `json:"metric_base_uri,omitempty"`
 	LastRevalidatedAt *time.Time `json:"last_revalidated_at,omitempty"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-	PageId *string `json:"page_id,omitempty"`
+	CreatedAt         *time.Time `json:"created_at,omitempty"`
+	UpdatedAt         *time.Time `json:"updated_at,omitempty"`
+	PageId            *int32     `json:"page_id,omitempty"`
 }
 
 // NewMetricsProvider instantiates a new MetricsProvider object
@@ -47,7 +50,7 @@ func NewMetricsProviderWithDefaults() *MetricsProvider {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *MetricsProvider) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -57,7 +60,7 @@ func (o *MetricsProvider) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetricsProvider) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -65,7 +68,7 @@ func (o *MetricsProvider) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *MetricsProvider) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *MetricsProvider) SetId(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *MetricsProvider) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -89,7 +92,7 @@ func (o *MetricsProvider) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetricsProvider) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -97,7 +100,7 @@ func (o *MetricsProvider) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *MetricsProvider) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *MetricsProvider) SetType(v string) {
 
 // GetDisabled returns the Disabled field value if set, zero value otherwise.
 func (o *MetricsProvider) GetDisabled() bool {
-	if o == nil || o.Disabled == nil {
+	if o == nil || IsNil(o.Disabled) {
 		var ret bool
 		return ret
 	}
@@ -121,7 +124,7 @@ func (o *MetricsProvider) GetDisabled() bool {
 // GetDisabledOk returns a tuple with the Disabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetricsProvider) GetDisabledOk() (*bool, bool) {
-	if o == nil || o.Disabled == nil {
+	if o == nil || IsNil(o.Disabled) {
 		return nil, false
 	}
 	return o.Disabled, true
@@ -129,7 +132,7 @@ func (o *MetricsProvider) GetDisabledOk() (*bool, bool) {
 
 // HasDisabled returns a boolean if a field has been set.
 func (o *MetricsProvider) HasDisabled() bool {
-	if o != nil && o.Disabled != nil {
+	if o != nil && !IsNil(o.Disabled) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *MetricsProvider) SetDisabled(v bool) {
 
 // GetMetricBaseUri returns the MetricBaseUri field value if set, zero value otherwise.
 func (o *MetricsProvider) GetMetricBaseUri() string {
-	if o == nil || o.MetricBaseUri == nil {
+	if o == nil || IsNil(o.MetricBaseUri) {
 		var ret string
 		return ret
 	}
@@ -153,7 +156,7 @@ func (o *MetricsProvider) GetMetricBaseUri() string {
 // GetMetricBaseUriOk returns a tuple with the MetricBaseUri field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetricsProvider) GetMetricBaseUriOk() (*string, bool) {
-	if o == nil || o.MetricBaseUri == nil {
+	if o == nil || IsNil(o.MetricBaseUri) {
 		return nil, false
 	}
 	return o.MetricBaseUri, true
@@ -161,7 +164,7 @@ func (o *MetricsProvider) GetMetricBaseUriOk() (*string, bool) {
 
 // HasMetricBaseUri returns a boolean if a field has been set.
 func (o *MetricsProvider) HasMetricBaseUri() bool {
-	if o != nil && o.MetricBaseUri != nil {
+	if o != nil && !IsNil(o.MetricBaseUri) {
 		return true
 	}
 
@@ -175,7 +178,7 @@ func (o *MetricsProvider) SetMetricBaseUri(v string) {
 
 // GetLastRevalidatedAt returns the LastRevalidatedAt field value if set, zero value otherwise.
 func (o *MetricsProvider) GetLastRevalidatedAt() time.Time {
-	if o == nil || o.LastRevalidatedAt == nil {
+	if o == nil || IsNil(o.LastRevalidatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -185,7 +188,7 @@ func (o *MetricsProvider) GetLastRevalidatedAt() time.Time {
 // GetLastRevalidatedAtOk returns a tuple with the LastRevalidatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetricsProvider) GetLastRevalidatedAtOk() (*time.Time, bool) {
-	if o == nil || o.LastRevalidatedAt == nil {
+	if o == nil || IsNil(o.LastRevalidatedAt) {
 		return nil, false
 	}
 	return o.LastRevalidatedAt, true
@@ -193,7 +196,7 @@ func (o *MetricsProvider) GetLastRevalidatedAtOk() (*time.Time, bool) {
 
 // HasLastRevalidatedAt returns a boolean if a field has been set.
 func (o *MetricsProvider) HasLastRevalidatedAt() bool {
-	if o != nil && o.LastRevalidatedAt != nil {
+	if o != nil && !IsNil(o.LastRevalidatedAt) {
 		return true
 	}
 
@@ -207,7 +210,7 @@ func (o *MetricsProvider) SetLastRevalidatedAt(v time.Time) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *MetricsProvider) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -217,7 +220,7 @@ func (o *MetricsProvider) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetricsProvider) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -225,7 +228,7 @@ func (o *MetricsProvider) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *MetricsProvider) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -239,7 +242,7 @@ func (o *MetricsProvider) SetCreatedAt(v time.Time) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *MetricsProvider) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -249,7 +252,7 @@ func (o *MetricsProvider) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MetricsProvider) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -257,7 +260,7 @@ func (o *MetricsProvider) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *MetricsProvider) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -270,9 +273,9 @@ func (o *MetricsProvider) SetUpdatedAt(v time.Time) {
 }
 
 // GetPageId returns the PageId field value if set, zero value otherwise.
-func (o *MetricsProvider) GetPageId() string {
-	if o == nil || o.PageId == nil {
-		var ret string
+func (o *MetricsProvider) GetPageId() int32 {
+	if o == nil || IsNil(o.PageId) {
+		var ret int32
 		return ret
 	}
 	return *o.PageId
@@ -280,8 +283,8 @@ func (o *MetricsProvider) GetPageId() string {
 
 // GetPageIdOk returns a tuple with the PageId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricsProvider) GetPageIdOk() (*string, bool) {
-	if o == nil || o.PageId == nil {
+func (o *MetricsProvider) GetPageIdOk() (*int32, bool) {
+	if o == nil || IsNil(o.PageId) {
 		return nil, false
 	}
 	return o.PageId, true
@@ -289,7 +292,7 @@ func (o *MetricsProvider) GetPageIdOk() (*string, bool) {
 
 // HasPageId returns a boolean if a field has been set.
 func (o *MetricsProvider) HasPageId() bool {
-	if o != nil && o.PageId != nil {
+	if o != nil && !IsNil(o.PageId) {
 		return true
 	}
 
@@ -297,37 +300,45 @@ func (o *MetricsProvider) HasPageId() bool {
 }
 
 // SetPageId gets a reference to the given int32 and assigns it to the PageId field.
-func (o *MetricsProvider) SetPageId(v string) {
+func (o *MetricsProvider) SetPageId(v int32) {
 	o.PageId = &v
 }
 
 func (o MetricsProvider) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
-	if o.Disabled != nil {
-		toSerialize["disabled"] = o.Disabled
-	}
-	if o.MetricBaseUri != nil {
-		toSerialize["metric_base_uri"] = o.MetricBaseUri
-	}
-	if o.LastRevalidatedAt != nil {
-		toSerialize["last_revalidated_at"] = o.LastRevalidatedAt
-	}
-	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if o.UpdatedAt != nil {
-		toSerialize["updated_at"] = o.UpdatedAt
-	}
-	if o.PageId != nil {
-		toSerialize["page_id"] = o.PageId
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o MetricsProvider) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.Disabled) {
+		toSerialize["disabled"] = o.Disabled
+	}
+	if !IsNil(o.MetricBaseUri) {
+		toSerialize["metric_base_uri"] = o.MetricBaseUri
+	}
+	if !IsNil(o.LastRevalidatedAt) {
+		toSerialize["last_revalidated_at"] = o.LastRevalidatedAt
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if !IsNil(o.PageId) {
+		toSerialize["page_id"] = o.PageId
+	}
+	return toSerialize, nil
 }
 
 type NullableMetricsProvider struct {
@@ -365,5 +376,3 @@ func (v *NullableMetricsProvider) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

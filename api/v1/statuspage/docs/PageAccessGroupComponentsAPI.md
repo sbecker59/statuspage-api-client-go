@@ -1,15 +1,15 @@
-# \PageAccessGroupComponentsApi
+# \PageAccessGroupComponentsAPI
 
 All URIs are relative to *https://api.statuspage.io/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents**](PageAccessGroupComponentsApi.md#DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents) | **Delete** /pages/{page_id}/page_access_groups/{page_access_group_id}/components | Delete components for a page access group
-[**DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponentsComponentId**](PageAccessGroupComponentsApi.md#DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponentsComponentId) | **Delete** /pages/{page_id}/page_access_groups/{page_access_group_id}/components/{component_id} | Remove a component from a page access group
-[**GetPagesPageIdPageAccessGroupsPageAccessGroupIdComponents**](PageAccessGroupComponentsApi.md#GetPagesPageIdPageAccessGroupsPageAccessGroupIdComponents) | **Get** /pages/{page_id}/page_access_groups/{page_access_group_id}/components | List components for a page access group
-[**PatchPagesPageIdPageAccessGroupsPageAccessGroupIdComponents**](PageAccessGroupComponentsApi.md#PatchPagesPageIdPageAccessGroupsPageAccessGroupIdComponents) | **Patch** /pages/{page_id}/page_access_groups/{page_access_group_id}/components | Add components to page access group
-[**PostPagesPageIdPageAccessGroupsPageAccessGroupIdComponents**](PageAccessGroupComponentsApi.md#PostPagesPageIdPageAccessGroupsPageAccessGroupIdComponents) | **Post** /pages/{page_id}/page_access_groups/{page_access_group_id}/components | Replace components for a page access group
-[**PutPagesPageIdPageAccessGroupsPageAccessGroupIdComponents**](PageAccessGroupComponentsApi.md#PutPagesPageIdPageAccessGroupsPageAccessGroupIdComponents) | **Put** /pages/{page_id}/page_access_groups/{page_access_group_id}/components | Add components to page access group
+[**DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents**](PageAccessGroupComponentsAPI.md#DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents) | **Delete** /pages/{page_id}/page_access_groups/{page_access_group_id}/components | Delete components for a page access group
+[**DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponentsComponentId**](PageAccessGroupComponentsAPI.md#DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponentsComponentId) | **Delete** /pages/{page_id}/page_access_groups/{page_access_group_id}/components/{component_id} | Remove a component from a page access group
+[**GetPagesPageIdPageAccessGroupsPageAccessGroupIdComponents**](PageAccessGroupComponentsAPI.md#GetPagesPageIdPageAccessGroupsPageAccessGroupIdComponents) | **Get** /pages/{page_id}/page_access_groups/{page_access_group_id}/components | List components for a page access group
+[**PatchPagesPageIdPageAccessGroupsPageAccessGroupIdComponents**](PageAccessGroupComponentsAPI.md#PatchPagesPageIdPageAccessGroupsPageAccessGroupIdComponents) | **Patch** /pages/{page_id}/page_access_groups/{page_access_group_id}/components | Add components to page access group
+[**PostPagesPageIdPageAccessGroupsPageAccessGroupIdComponents**](PageAccessGroupComponentsAPI.md#PostPagesPageIdPageAccessGroupsPageAccessGroupIdComponents) | **Post** /pages/{page_id}/page_access_groups/{page_access_group_id}/components | Replace components for a page access group
+[**PutPagesPageIdPageAccessGroupsPageAccessGroupIdComponents**](PageAccessGroupComponentsAPI.md#PutPagesPageIdPageAccessGroupsPageAccessGroupIdComponents) | **Put** /pages/{page_id}/page_access_groups/{page_access_group_id}/components | Add components to page access group
 
 
 
@@ -27,26 +27,26 @@ Delete components for a page access group
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    pageAccessGroupId := "pageAccessGroupId_example" // string | Page Access Group Identifier
-    deletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents := *openapiclient.NewDeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents() // DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents | 
+	pageId := "pageId_example" // string | Page identifier
+	pageAccessGroupId := "pageAccessGroupId_example" // string | Page Access Group Identifier
+	deletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents := *openapiclient.NewDeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents() // DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PageAccessGroupComponentsApi.DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents(context.Background(), pageId, pageAccessGroupId).DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents(deletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupComponentsApi.DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents`: PageAccessGroup
-    fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupComponentsApi.DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PageAccessGroupComponentsAPI.DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents(context.Background(), pageId, pageAccessGroupId).DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents(deletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupComponentsAPI.DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents`: PageAccessGroup
+	fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupComponentsAPI.DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents`: %v\n", resp)
 }
 ```
 
@@ -102,26 +102,26 @@ Remove a component from a page access group
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    pageAccessGroupId := "pageAccessGroupId_example" // string | Page Access Group Identifier
-    componentId := "componentId_example" // string | Component identifier
+	pageId := "pageId_example" // string | Page identifier
+	pageAccessGroupId := "pageAccessGroupId_example" // string | Page Access Group Identifier
+	componentId := "componentId_example" // string | Component identifier
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PageAccessGroupComponentsApi.DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponentsComponentId(context.Background(), pageId, pageAccessGroupId, componentId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupComponentsApi.DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponentsComponentId``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponentsComponentId`: PageAccessGroup
-    fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupComponentsApi.DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponentsComponentId`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PageAccessGroupComponentsAPI.DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponentsComponentId(context.Background(), pageId, pageAccessGroupId, componentId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupComponentsAPI.DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponentsComponentId``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponentsComponentId`: PageAccessGroup
+	fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupComponentsAPI.DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponentsComponentId`: %v\n", resp)
 }
 ```
 
@@ -178,27 +178,27 @@ List components for a page access group
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    pageAccessGroupId := "pageAccessGroupId_example" // string | Page Access Group Identifier
-    page := int32(56) // int32 | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. (optional)
-    perPage := int32(56) // int32 | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. (optional)
+	pageId := "pageId_example" // string | Page identifier
+	pageAccessGroupId := "pageAccessGroupId_example" // string | Page Access Group Identifier
+	page := int32(56) // int32 | Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided. (optional)
+	perPage := int32(56) // int32 | Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided. (optional)
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PageAccessGroupComponentsApi.GetPagesPageIdPageAccessGroupsPageAccessGroupIdComponents(context.Background(), pageId, pageAccessGroupId).Page(page).PerPage(perPage).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupComponentsApi.GetPagesPageIdPageAccessGroupsPageAccessGroupIdComponents``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetPagesPageIdPageAccessGroupsPageAccessGroupIdComponents`: []Component
-    fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupComponentsApi.GetPagesPageIdPageAccessGroupsPageAccessGroupIdComponents`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PageAccessGroupComponentsAPI.GetPagesPageIdPageAccessGroupsPageAccessGroupIdComponents(context.Background(), pageId, pageAccessGroupId).Page(page).PerPage(perPage).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupComponentsAPI.GetPagesPageIdPageAccessGroupsPageAccessGroupIdComponents``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPagesPageIdPageAccessGroupsPageAccessGroupIdComponents`: []Component
+	fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupComponentsAPI.GetPagesPageIdPageAccessGroupsPageAccessGroupIdComponents`: %v\n", resp)
 }
 ```
 
@@ -255,26 +255,26 @@ Add components to page access group
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    pageAccessGroupId := "pageAccessGroupId_example" // string | Page Access Group Identifier
-    patchPagesPageIdPageAccessGroupsPageAccessGroupIdComponents := *openapiclient.NewPatchPagesPageIdPageAccessGroupsPageAccessGroupIdComponents() // PatchPagesPageIdPageAccessGroupsPageAccessGroupIdComponents | 
+	pageId := "pageId_example" // string | Page identifier
+	pageAccessGroupId := "pageAccessGroupId_example" // string | Page Access Group Identifier
+	patchPagesPageIdPageAccessGroupsPageAccessGroupIdComponents := *openapiclient.NewPatchPagesPageIdPageAccessGroupsPageAccessGroupIdComponents() // PatchPagesPageIdPageAccessGroupsPageAccessGroupIdComponents | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PageAccessGroupComponentsApi.PatchPagesPageIdPageAccessGroupsPageAccessGroupIdComponents(context.Background(), pageId, pageAccessGroupId).PatchPagesPageIdPageAccessGroupsPageAccessGroupIdComponents(patchPagesPageIdPageAccessGroupsPageAccessGroupIdComponents).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupComponentsApi.PatchPagesPageIdPageAccessGroupsPageAccessGroupIdComponents``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PatchPagesPageIdPageAccessGroupsPageAccessGroupIdComponents`: PageAccessGroup
-    fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupComponentsApi.PatchPagesPageIdPageAccessGroupsPageAccessGroupIdComponents`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PageAccessGroupComponentsAPI.PatchPagesPageIdPageAccessGroupsPageAccessGroupIdComponents(context.Background(), pageId, pageAccessGroupId).PatchPagesPageIdPageAccessGroupsPageAccessGroupIdComponents(patchPagesPageIdPageAccessGroupsPageAccessGroupIdComponents).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupComponentsAPI.PatchPagesPageIdPageAccessGroupsPageAccessGroupIdComponents``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PatchPagesPageIdPageAccessGroupsPageAccessGroupIdComponents`: PageAccessGroup
+	fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupComponentsAPI.PatchPagesPageIdPageAccessGroupsPageAccessGroupIdComponents`: %v\n", resp)
 }
 ```
 
@@ -330,26 +330,26 @@ Replace components for a page access group
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    pageAccessGroupId := "pageAccessGroupId_example" // string | Page Access Group Identifier
-    postPagesPageIdPageAccessGroupsPageAccessGroupIdComponents := *openapiclient.NewPostPagesPageIdPageAccessGroupsPageAccessGroupIdComponents([]string{"ComponentIds_example"}) // PostPagesPageIdPageAccessGroupsPageAccessGroupIdComponents | 
+	pageId := "pageId_example" // string | Page identifier
+	pageAccessGroupId := "pageAccessGroupId_example" // string | Page Access Group Identifier
+	postPagesPageIdPageAccessGroupsPageAccessGroupIdComponents := *openapiclient.NewPostPagesPageIdPageAccessGroupsPageAccessGroupIdComponents([]string{"ComponentIds_example"}) // PostPagesPageIdPageAccessGroupsPageAccessGroupIdComponents | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PageAccessGroupComponentsApi.PostPagesPageIdPageAccessGroupsPageAccessGroupIdComponents(context.Background(), pageId, pageAccessGroupId).PostPagesPageIdPageAccessGroupsPageAccessGroupIdComponents(postPagesPageIdPageAccessGroupsPageAccessGroupIdComponents).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupComponentsApi.PostPagesPageIdPageAccessGroupsPageAccessGroupIdComponents``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PostPagesPageIdPageAccessGroupsPageAccessGroupIdComponents`: PageAccessGroup
-    fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupComponentsApi.PostPagesPageIdPageAccessGroupsPageAccessGroupIdComponents`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PageAccessGroupComponentsAPI.PostPagesPageIdPageAccessGroupsPageAccessGroupIdComponents(context.Background(), pageId, pageAccessGroupId).PostPagesPageIdPageAccessGroupsPageAccessGroupIdComponents(postPagesPageIdPageAccessGroupsPageAccessGroupIdComponents).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupComponentsAPI.PostPagesPageIdPageAccessGroupsPageAccessGroupIdComponents``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PostPagesPageIdPageAccessGroupsPageAccessGroupIdComponents`: PageAccessGroup
+	fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupComponentsAPI.PostPagesPageIdPageAccessGroupsPageAccessGroupIdComponents`: %v\n", resp)
 }
 ```
 
@@ -405,26 +405,26 @@ Add components to page access group
 package main
 
 import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID"
 )
 
 func main() {
-    pageId := "pageId_example" // string | Page identifier
-    pageAccessGroupId := "pageAccessGroupId_example" // string | Page Access Group Identifier
-    putPagesPageIdPageAccessGroupsPageAccessGroupIdComponents := *openapiclient.NewPutPagesPageIdPageAccessGroupsPageAccessGroupIdComponents() // PutPagesPageIdPageAccessGroupsPageAccessGroupIdComponents | 
+	pageId := "pageId_example" // string | Page identifier
+	pageAccessGroupId := "pageAccessGroupId_example" // string | Page Access Group Identifier
+	putPagesPageIdPageAccessGroupsPageAccessGroupIdComponents := *openapiclient.NewPutPagesPageIdPageAccessGroupsPageAccessGroupIdComponents() // PutPagesPageIdPageAccessGroupsPageAccessGroupIdComponents | 
 
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.PageAccessGroupComponentsApi.PutPagesPageIdPageAccessGroupsPageAccessGroupIdComponents(context.Background(), pageId, pageAccessGroupId).PutPagesPageIdPageAccessGroupsPageAccessGroupIdComponents(putPagesPageIdPageAccessGroupsPageAccessGroupIdComponents).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupComponentsApi.PutPagesPageIdPageAccessGroupsPageAccessGroupIdComponents``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PutPagesPageIdPageAccessGroupsPageAccessGroupIdComponents`: PageAccessGroup
-    fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupComponentsApi.PutPagesPageIdPageAccessGroupsPageAccessGroupIdComponents`: %v\n", resp)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PageAccessGroupComponentsAPI.PutPagesPageIdPageAccessGroupsPageAccessGroupIdComponents(context.Background(), pageId, pageAccessGroupId).PutPagesPageIdPageAccessGroupsPageAccessGroupIdComponents(putPagesPageIdPageAccessGroupsPageAccessGroupIdComponents).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupComponentsAPI.PutPagesPageIdPageAccessGroupsPageAccessGroupIdComponents``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PutPagesPageIdPageAccessGroupsPageAccessGroupIdComponents`: PageAccessGroup
+	fmt.Fprintf(os.Stdout, "Response from `PageAccessGroupComponentsAPI.PutPagesPageIdPageAccessGroupsPageAccessGroupIdComponents`: %v\n", resp)
 }
 ```
 

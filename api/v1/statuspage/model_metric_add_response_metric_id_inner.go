@@ -14,32 +14,35 @@ import (
 	"encoding/json"
 )
 
-// MetricAddResponseMetricId struct for MetricAddResponseMetricId
-type MetricAddResponseMetricId struct {
-	Timestamp *int32 `json:"timestamp,omitempty"`
-	Value *float32 `json:"value,omitempty"`
+// checks if the MetricAddResponseMetricIdInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MetricAddResponseMetricIdInner{}
+
+// MetricAddResponseMetricIdInner struct for MetricAddResponseMetricIdInner
+type MetricAddResponseMetricIdInner struct {
+	Timestamp *int32   `json:"timestamp,omitempty"`
+	Value     *float32 `json:"value,omitempty"`
 }
 
-// NewMetricAddResponseMetricId instantiates a new MetricAddResponseMetricId object
+// NewMetricAddResponseMetricIdInner instantiates a new MetricAddResponseMetricIdInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMetricAddResponseMetricId() *MetricAddResponseMetricId {
-	this := MetricAddResponseMetricId{}
+func NewMetricAddResponseMetricIdInner() *MetricAddResponseMetricIdInner {
+	this := MetricAddResponseMetricIdInner{}
 	return &this
 }
 
-// NewMetricAddResponseMetricIdWithDefaults instantiates a new MetricAddResponseMetricId object
+// NewMetricAddResponseMetricIdInnerWithDefaults instantiates a new MetricAddResponseMetricIdInner object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewMetricAddResponseMetricIdWithDefaults() *MetricAddResponseMetricId {
-	this := MetricAddResponseMetricId{}
+func NewMetricAddResponseMetricIdInnerWithDefaults() *MetricAddResponseMetricIdInner {
+	this := MetricAddResponseMetricIdInner{}
 	return &this
 }
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
-func (o *MetricAddResponseMetricId) GetTimestamp() int32 {
-	if o == nil || o.Timestamp == nil {
+func (o *MetricAddResponseMetricIdInner) GetTimestamp() int32 {
+	if o == nil || IsNil(o.Timestamp) {
 		var ret int32
 		return ret
 	}
@@ -48,16 +51,16 @@ func (o *MetricAddResponseMetricId) GetTimestamp() int32 {
 
 // GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricAddResponseMetricId) GetTimestampOk() (*int32, bool) {
-	if o == nil || o.Timestamp == nil {
+func (o *MetricAddResponseMetricIdInner) GetTimestampOk() (*int32, bool) {
+	if o == nil || IsNil(o.Timestamp) {
 		return nil, false
 	}
 	return o.Timestamp, true
 }
 
 // HasTimestamp returns a boolean if a field has been set.
-func (o *MetricAddResponseMetricId) HasTimestamp() bool {
-	if o != nil && o.Timestamp != nil {
+func (o *MetricAddResponseMetricIdInner) HasTimestamp() bool {
+	if o != nil && !IsNil(o.Timestamp) {
 		return true
 	}
 
@@ -65,13 +68,13 @@ func (o *MetricAddResponseMetricId) HasTimestamp() bool {
 }
 
 // SetTimestamp gets a reference to the given int32 and assigns it to the Timestamp field.
-func (o *MetricAddResponseMetricId) SetTimestamp(v int32) {
+func (o *MetricAddResponseMetricIdInner) SetTimestamp(v int32) {
 	o.Timestamp = &v
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
-func (o *MetricAddResponseMetricId) GetValue() float32 {
-	if o == nil || o.Value == nil {
+func (o *MetricAddResponseMetricIdInner) GetValue() float32 {
+	if o == nil || IsNil(o.Value) {
 		var ret float32
 		return ret
 	}
@@ -80,16 +83,16 @@ func (o *MetricAddResponseMetricId) GetValue() float32 {
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricAddResponseMetricId) GetValueOk() (*float32, bool) {
-	if o == nil || o.Value == nil {
+func (o *MetricAddResponseMetricIdInner) GetValueOk() (*float32, bool) {
+	if o == nil || IsNil(o.Value) {
 		return nil, false
 	}
 	return o.Value, true
 }
 
 // HasValue returns a boolean if a field has been set.
-func (o *MetricAddResponseMetricId) HasValue() bool {
-	if o != nil && o.Value != nil {
+func (o *MetricAddResponseMetricIdInner) HasValue() bool {
+	if o != nil && !IsNil(o.Value) {
 		return true
 	}
 
@@ -97,55 +100,61 @@ func (o *MetricAddResponseMetricId) HasValue() bool {
 }
 
 // SetValue gets a reference to the given float32 and assigns it to the Value field.
-func (o *MetricAddResponseMetricId) SetValue(v float32) {
+func (o *MetricAddResponseMetricIdInner) SetValue(v float32) {
 	o.Value = &v
 }
 
-func (o MetricAddResponseMetricId) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Timestamp != nil {
-		toSerialize["timestamp"] = o.Timestamp
-	}
-	if o.Value != nil {
-		toSerialize["value"] = o.Value
+func (o MetricAddResponseMetricIdInner) MarshalJSON() ([]byte, error) {
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
 }
 
-type NullableMetricAddResponseMetricId struct {
-	value *MetricAddResponseMetricId
+func (o MetricAddResponseMetricIdInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Timestamp) {
+		toSerialize["timestamp"] = o.Timestamp
+	}
+	if !IsNil(o.Value) {
+		toSerialize["value"] = o.Value
+	}
+	return toSerialize, nil
+}
+
+type NullableMetricAddResponseMetricIdInner struct {
+	value *MetricAddResponseMetricIdInner
 	isSet bool
 }
 
-func (v NullableMetricAddResponseMetricId) Get() *MetricAddResponseMetricId {
+func (v NullableMetricAddResponseMetricIdInner) Get() *MetricAddResponseMetricIdInner {
 	return v.value
 }
 
-func (v *NullableMetricAddResponseMetricId) Set(val *MetricAddResponseMetricId) {
+func (v *NullableMetricAddResponseMetricIdInner) Set(val *MetricAddResponseMetricIdInner) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableMetricAddResponseMetricId) IsSet() bool {
+func (v NullableMetricAddResponseMetricIdInner) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableMetricAddResponseMetricId) Unset() {
+func (v *NullableMetricAddResponseMetricIdInner) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableMetricAddResponseMetricId(val *MetricAddResponseMetricId) *NullableMetricAddResponseMetricId {
-	return &NullableMetricAddResponseMetricId{value: val, isSet: true}
+func NewNullableMetricAddResponseMetricIdInner(val *MetricAddResponseMetricIdInner) *NullableMetricAddResponseMetricIdInner {
+	return &NullableMetricAddResponseMetricIdInner{value: val, isSet: true}
 }
 
-func (v NullableMetricAddResponseMetricId) MarshalJSON() ([]byte, error) {
+func (v NullableMetricAddResponseMetricIdInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableMetricAddResponseMetricId) UnmarshalJSON(src []byte) error {
+func (v *NullableMetricAddResponseMetricIdInner) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

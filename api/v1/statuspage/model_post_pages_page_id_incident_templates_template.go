@@ -11,8 +11,13 @@ API version: 1.0.0
 package openapi
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the PostPagesPageIdIncidentTemplatesTemplate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PostPagesPageIdIncidentTemplatesTemplate{}
 
 // PostPagesPageIdIncidentTemplatesTemplate struct for PostPagesPageIdIncidentTemplatesTemplate
 type PostPagesPageIdIncidentTemplatesTemplate struct {
@@ -31,8 +36,10 @@ type PostPagesPageIdIncidentTemplatesTemplate struct {
 	// Whether the \"deliver notifications\" checkbox should be selected when selecting this template
 	ShouldSendNotifications *bool `json:"should_send_notifications,omitempty"`
 	// List of component_ids affected by this incident
-	ComponentIds *[]string `json:"component_ids,omitempty"`
+	ComponentIds []string `json:"component_ids,omitempty"`
 }
+
+type _PostPagesPageIdIncidentTemplatesTemplate PostPagesPageIdIncidentTemplatesTemplate
 
 // NewPostPagesPageIdIncidentTemplatesTemplate instantiates a new PostPagesPageIdIncidentTemplatesTemplate object
 // This constructor will assign default values to properties that have it defined,
@@ -67,7 +74,7 @@ func (o *PostPagesPageIdIncidentTemplatesTemplate) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdIncidentTemplatesTemplate) GetNameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Name, true
@@ -91,7 +98,7 @@ func (o *PostPagesPageIdIncidentTemplatesTemplate) GetTitle() string {
 // GetTitleOk returns a tuple with the Title field value
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdIncidentTemplatesTemplate) GetTitleOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Title, true
@@ -115,7 +122,7 @@ func (o *PostPagesPageIdIncidentTemplatesTemplate) GetBody() string {
 // GetBodyOk returns a tuple with the Body field value
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdIncidentTemplatesTemplate) GetBodyOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Body, true
@@ -128,7 +135,7 @@ func (o *PostPagesPageIdIncidentTemplatesTemplate) SetBody(v string) {
 
 // GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *PostPagesPageIdIncidentTemplatesTemplate) GetGroupId() string {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret string
 		return ret
 	}
@@ -138,7 +145,7 @@ func (o *PostPagesPageIdIncidentTemplatesTemplate) GetGroupId() string {
 // GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdIncidentTemplatesTemplate) GetGroupIdOk() (*string, bool) {
-	if o == nil || o.GroupId == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
 	return o.GroupId, true
@@ -146,7 +153,7 @@ func (o *PostPagesPageIdIncidentTemplatesTemplate) GetGroupIdOk() (*string, bool
 
 // HasGroupId returns a boolean if a field has been set.
 func (o *PostPagesPageIdIncidentTemplatesTemplate) HasGroupId() bool {
-	if o != nil && o.GroupId != nil {
+	if o != nil && !IsNil(o.GroupId) {
 		return true
 	}
 
@@ -160,7 +167,7 @@ func (o *PostPagesPageIdIncidentTemplatesTemplate) SetGroupId(v string) {
 
 // GetUpdateStatus returns the UpdateStatus field value if set, zero value otherwise.
 func (o *PostPagesPageIdIncidentTemplatesTemplate) GetUpdateStatus() string {
-	if o == nil || o.UpdateStatus == nil {
+	if o == nil || IsNil(o.UpdateStatus) {
 		var ret string
 		return ret
 	}
@@ -170,7 +177,7 @@ func (o *PostPagesPageIdIncidentTemplatesTemplate) GetUpdateStatus() string {
 // GetUpdateStatusOk returns a tuple with the UpdateStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdIncidentTemplatesTemplate) GetUpdateStatusOk() (*string, bool) {
-	if o == nil || o.UpdateStatus == nil {
+	if o == nil || IsNil(o.UpdateStatus) {
 		return nil, false
 	}
 	return o.UpdateStatus, true
@@ -178,7 +185,7 @@ func (o *PostPagesPageIdIncidentTemplatesTemplate) GetUpdateStatusOk() (*string,
 
 // HasUpdateStatus returns a boolean if a field has been set.
 func (o *PostPagesPageIdIncidentTemplatesTemplate) HasUpdateStatus() bool {
-	if o != nil && o.UpdateStatus != nil {
+	if o != nil && !IsNil(o.UpdateStatus) {
 		return true
 	}
 
@@ -192,7 +199,7 @@ func (o *PostPagesPageIdIncidentTemplatesTemplate) SetUpdateStatus(v string) {
 
 // GetShouldTweet returns the ShouldTweet field value if set, zero value otherwise.
 func (o *PostPagesPageIdIncidentTemplatesTemplate) GetShouldTweet() bool {
-	if o == nil || o.ShouldTweet == nil {
+	if o == nil || IsNil(o.ShouldTweet) {
 		var ret bool
 		return ret
 	}
@@ -202,7 +209,7 @@ func (o *PostPagesPageIdIncidentTemplatesTemplate) GetShouldTweet() bool {
 // GetShouldTweetOk returns a tuple with the ShouldTweet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdIncidentTemplatesTemplate) GetShouldTweetOk() (*bool, bool) {
-	if o == nil || o.ShouldTweet == nil {
+	if o == nil || IsNil(o.ShouldTweet) {
 		return nil, false
 	}
 	return o.ShouldTweet, true
@@ -210,7 +217,7 @@ func (o *PostPagesPageIdIncidentTemplatesTemplate) GetShouldTweetOk() (*bool, bo
 
 // HasShouldTweet returns a boolean if a field has been set.
 func (o *PostPagesPageIdIncidentTemplatesTemplate) HasShouldTweet() bool {
-	if o != nil && o.ShouldTweet != nil {
+	if o != nil && !IsNil(o.ShouldTweet) {
 		return true
 	}
 
@@ -224,7 +231,7 @@ func (o *PostPagesPageIdIncidentTemplatesTemplate) SetShouldTweet(v bool) {
 
 // GetShouldSendNotifications returns the ShouldSendNotifications field value if set, zero value otherwise.
 func (o *PostPagesPageIdIncidentTemplatesTemplate) GetShouldSendNotifications() bool {
-	if o == nil || o.ShouldSendNotifications == nil {
+	if o == nil || IsNil(o.ShouldSendNotifications) {
 		var ret bool
 		return ret
 	}
@@ -234,7 +241,7 @@ func (o *PostPagesPageIdIncidentTemplatesTemplate) GetShouldSendNotifications() 
 // GetShouldSendNotificationsOk returns a tuple with the ShouldSendNotifications field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdIncidentTemplatesTemplate) GetShouldSendNotificationsOk() (*bool, bool) {
-	if o == nil || o.ShouldSendNotifications == nil {
+	if o == nil || IsNil(o.ShouldSendNotifications) {
 		return nil, false
 	}
 	return o.ShouldSendNotifications, true
@@ -242,7 +249,7 @@ func (o *PostPagesPageIdIncidentTemplatesTemplate) GetShouldSendNotificationsOk(
 
 // HasShouldSendNotifications returns a boolean if a field has been set.
 func (o *PostPagesPageIdIncidentTemplatesTemplate) HasShouldSendNotifications() bool {
-	if o != nil && o.ShouldSendNotifications != nil {
+	if o != nil && !IsNil(o.ShouldSendNotifications) {
 		return true
 	}
 
@@ -256,17 +263,17 @@ func (o *PostPagesPageIdIncidentTemplatesTemplate) SetShouldSendNotifications(v 
 
 // GetComponentIds returns the ComponentIds field value if set, zero value otherwise.
 func (o *PostPagesPageIdIncidentTemplatesTemplate) GetComponentIds() []string {
-	if o == nil || o.ComponentIds == nil {
+	if o == nil || IsNil(o.ComponentIds) {
 		var ret []string
 		return ret
 	}
-	return *o.ComponentIds
+	return o.ComponentIds
 }
 
 // GetComponentIdsOk returns a tuple with the ComponentIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostPagesPageIdIncidentTemplatesTemplate) GetComponentIdsOk() (*[]string, bool) {
-	if o == nil || o.ComponentIds == nil {
+func (o *PostPagesPageIdIncidentTemplatesTemplate) GetComponentIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.ComponentIds) {
 		return nil, false
 	}
 	return o.ComponentIds, true
@@ -274,7 +281,7 @@ func (o *PostPagesPageIdIncidentTemplatesTemplate) GetComponentIdsOk() (*[]strin
 
 // HasComponentIds returns a boolean if a field has been set.
 func (o *PostPagesPageIdIncidentTemplatesTemplate) HasComponentIds() bool {
-	if o != nil && o.ComponentIds != nil {
+	if o != nil && !IsNil(o.ComponentIds) {
 		return true
 	}
 
@@ -283,36 +290,77 @@ func (o *PostPagesPageIdIncidentTemplatesTemplate) HasComponentIds() bool {
 
 // SetComponentIds gets a reference to the given []string and assigns it to the ComponentIds field.
 func (o *PostPagesPageIdIncidentTemplatesTemplate) SetComponentIds(v []string) {
-	o.ComponentIds = &v
+	o.ComponentIds = v
 }
 
 func (o PostPagesPageIdIncidentTemplatesTemplate) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["title"] = o.Title
-	}
-	if true {
-		toSerialize["body"] = o.Body
-	}
-	if o.GroupId != nil {
-		toSerialize["group_id"] = o.GroupId
-	}
-	if o.UpdateStatus != nil {
-		toSerialize["update_status"] = o.UpdateStatus
-	}
-	if o.ShouldTweet != nil {
-		toSerialize["should_tweet"] = o.ShouldTweet
-	}
-	if o.ShouldSendNotifications != nil {
-		toSerialize["should_send_notifications"] = o.ShouldSendNotifications
-	}
-	if o.ComponentIds != nil {
-		toSerialize["component_ids"] = o.ComponentIds
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PostPagesPageIdIncidentTemplatesTemplate) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["name"] = o.Name
+	toSerialize["title"] = o.Title
+	toSerialize["body"] = o.Body
+	if !IsNil(o.GroupId) {
+		toSerialize["group_id"] = o.GroupId
+	}
+	if !IsNil(o.UpdateStatus) {
+		toSerialize["update_status"] = o.UpdateStatus
+	}
+	if !IsNil(o.ShouldTweet) {
+		toSerialize["should_tweet"] = o.ShouldTweet
+	}
+	if !IsNil(o.ShouldSendNotifications) {
+		toSerialize["should_send_notifications"] = o.ShouldSendNotifications
+	}
+	if !IsNil(o.ComponentIds) {
+		toSerialize["component_ids"] = o.ComponentIds
+	}
+	return toSerialize, nil
+}
+
+func (o *PostPagesPageIdIncidentTemplatesTemplate) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"name",
+		"title",
+		"body",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPostPagesPageIdIncidentTemplatesTemplate := _PostPagesPageIdIncidentTemplatesTemplate{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varPostPagesPageIdIncidentTemplatesTemplate)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PostPagesPageIdIncidentTemplatesTemplate(varPostPagesPageIdIncidentTemplatesTemplate)
+
+	return err
 }
 
 type NullablePostPagesPageIdIncidentTemplatesTemplate struct {
@@ -350,5 +398,3 @@ func (v *NullablePostPagesPageIdIncidentTemplatesTemplate) UnmarshalJSON(src []b
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

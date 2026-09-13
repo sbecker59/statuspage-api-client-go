@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the PageAccessGroup type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PageAccessGroup{}
+
 // PageAccessGroup Remove a component from a page access group
 type PageAccessGroup struct {
 	// Page Access Group Identifier
@@ -22,14 +25,14 @@ type PageAccessGroup struct {
 	// Page Identifier.
 	PageId *string `json:"page_id,omitempty"`
 	// Name for this Group.
-	Name *string `json:"name,omitempty"`
-	PageAccessUserIds *[]string `json:"page_access_user_ids,omitempty"`
+	Name              *string  `json:"name,omitempty"`
+	PageAccessUserIds []string `json:"page_access_user_ids,omitempty"`
 	// Associates group with external group.
-	ExternalIdentifier *string `json:"external_identifier,omitempty"`
-	MetricIds *[]string `json:"metric_ids,omitempty"`
-	ComponentIds *[]string `json:"component_ids,omitempty"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	ExternalIdentifier *string    `json:"external_identifier,omitempty"`
+	MetricIds          []string   `json:"metric_ids,omitempty"`
+	ComponentIds       []string   `json:"component_ids,omitempty"`
+	CreatedAt          *time.Time `json:"created_at,omitempty"`
+	UpdatedAt          *time.Time `json:"updated_at,omitempty"`
 }
 
 // NewPageAccessGroup instantiates a new PageAccessGroup object
@@ -51,7 +54,7 @@ func NewPageAccessGroupWithDefaults() *PageAccessGroup {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *PageAccessGroup) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -61,7 +64,7 @@ func (o *PageAccessGroup) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PageAccessGroup) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -69,7 +72,7 @@ func (o *PageAccessGroup) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *PageAccessGroup) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -83,7 +86,7 @@ func (o *PageAccessGroup) SetId(v string) {
 
 // GetPageId returns the PageId field value if set, zero value otherwise.
 func (o *PageAccessGroup) GetPageId() string {
-	if o == nil || o.PageId == nil {
+	if o == nil || IsNil(o.PageId) {
 		var ret string
 		return ret
 	}
@@ -93,7 +96,7 @@ func (o *PageAccessGroup) GetPageId() string {
 // GetPageIdOk returns a tuple with the PageId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PageAccessGroup) GetPageIdOk() (*string, bool) {
-	if o == nil || o.PageId == nil {
+	if o == nil || IsNil(o.PageId) {
 		return nil, false
 	}
 	return o.PageId, true
@@ -101,7 +104,7 @@ func (o *PageAccessGroup) GetPageIdOk() (*string, bool) {
 
 // HasPageId returns a boolean if a field has been set.
 func (o *PageAccessGroup) HasPageId() bool {
-	if o != nil && o.PageId != nil {
+	if o != nil && !IsNil(o.PageId) {
 		return true
 	}
 
@@ -115,7 +118,7 @@ func (o *PageAccessGroup) SetPageId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *PageAccessGroup) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -125,7 +128,7 @@ func (o *PageAccessGroup) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PageAccessGroup) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -133,7 +136,7 @@ func (o *PageAccessGroup) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *PageAccessGroup) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -147,17 +150,17 @@ func (o *PageAccessGroup) SetName(v string) {
 
 // GetPageAccessUserIds returns the PageAccessUserIds field value if set, zero value otherwise.
 func (o *PageAccessGroup) GetPageAccessUserIds() []string {
-	if o == nil || o.PageAccessUserIds == nil {
+	if o == nil || IsNil(o.PageAccessUserIds) {
 		var ret []string
 		return ret
 	}
-	return *o.PageAccessUserIds
+	return o.PageAccessUserIds
 }
 
 // GetPageAccessUserIdsOk returns a tuple with the PageAccessUserIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PageAccessGroup) GetPageAccessUserIdsOk() (*[]string, bool) {
-	if o == nil || o.PageAccessUserIds == nil {
+func (o *PageAccessGroup) GetPageAccessUserIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.PageAccessUserIds) {
 		return nil, false
 	}
 	return o.PageAccessUserIds, true
@@ -165,7 +168,7 @@ func (o *PageAccessGroup) GetPageAccessUserIdsOk() (*[]string, bool) {
 
 // HasPageAccessUserIds returns a boolean if a field has been set.
 func (o *PageAccessGroup) HasPageAccessUserIds() bool {
-	if o != nil && o.PageAccessUserIds != nil {
+	if o != nil && !IsNil(o.PageAccessUserIds) {
 		return true
 	}
 
@@ -174,12 +177,12 @@ func (o *PageAccessGroup) HasPageAccessUserIds() bool {
 
 // SetPageAccessUserIds gets a reference to the given []string and assigns it to the PageAccessUserIds field.
 func (o *PageAccessGroup) SetPageAccessUserIds(v []string) {
-	o.PageAccessUserIds = &v
+	o.PageAccessUserIds = v
 }
 
 // GetExternalIdentifier returns the ExternalIdentifier field value if set, zero value otherwise.
 func (o *PageAccessGroup) GetExternalIdentifier() string {
-	if o == nil || o.ExternalIdentifier == nil {
+	if o == nil || IsNil(o.ExternalIdentifier) {
 		var ret string
 		return ret
 	}
@@ -189,7 +192,7 @@ func (o *PageAccessGroup) GetExternalIdentifier() string {
 // GetExternalIdentifierOk returns a tuple with the ExternalIdentifier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PageAccessGroup) GetExternalIdentifierOk() (*string, bool) {
-	if o == nil || o.ExternalIdentifier == nil {
+	if o == nil || IsNil(o.ExternalIdentifier) {
 		return nil, false
 	}
 	return o.ExternalIdentifier, true
@@ -197,7 +200,7 @@ func (o *PageAccessGroup) GetExternalIdentifierOk() (*string, bool) {
 
 // HasExternalIdentifier returns a boolean if a field has been set.
 func (o *PageAccessGroup) HasExternalIdentifier() bool {
-	if o != nil && o.ExternalIdentifier != nil {
+	if o != nil && !IsNil(o.ExternalIdentifier) {
 		return true
 	}
 
@@ -211,17 +214,17 @@ func (o *PageAccessGroup) SetExternalIdentifier(v string) {
 
 // GetMetricIds returns the MetricIds field value if set, zero value otherwise.
 func (o *PageAccessGroup) GetMetricIds() []string {
-	if o == nil || o.MetricIds == nil {
+	if o == nil || IsNil(o.MetricIds) {
 		var ret []string
 		return ret
 	}
-	return *o.MetricIds
+	return o.MetricIds
 }
 
 // GetMetricIdsOk returns a tuple with the MetricIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PageAccessGroup) GetMetricIdsOk() (*[]string, bool) {
-	if o == nil || o.MetricIds == nil {
+func (o *PageAccessGroup) GetMetricIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.MetricIds) {
 		return nil, false
 	}
 	return o.MetricIds, true
@@ -229,7 +232,7 @@ func (o *PageAccessGroup) GetMetricIdsOk() (*[]string, bool) {
 
 // HasMetricIds returns a boolean if a field has been set.
 func (o *PageAccessGroup) HasMetricIds() bool {
-	if o != nil && o.MetricIds != nil {
+	if o != nil && !IsNil(o.MetricIds) {
 		return true
 	}
 
@@ -238,22 +241,22 @@ func (o *PageAccessGroup) HasMetricIds() bool {
 
 // SetMetricIds gets a reference to the given []string and assigns it to the MetricIds field.
 func (o *PageAccessGroup) SetMetricIds(v []string) {
-	o.MetricIds = &v
+	o.MetricIds = v
 }
 
 // GetComponentIds returns the ComponentIds field value if set, zero value otherwise.
 func (o *PageAccessGroup) GetComponentIds() []string {
-	if o == nil || o.ComponentIds == nil {
+	if o == nil || IsNil(o.ComponentIds) {
 		var ret []string
 		return ret
 	}
-	return *o.ComponentIds
+	return o.ComponentIds
 }
 
 // GetComponentIdsOk returns a tuple with the ComponentIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PageAccessGroup) GetComponentIdsOk() (*[]string, bool) {
-	if o == nil || o.ComponentIds == nil {
+func (o *PageAccessGroup) GetComponentIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.ComponentIds) {
 		return nil, false
 	}
 	return o.ComponentIds, true
@@ -261,7 +264,7 @@ func (o *PageAccessGroup) GetComponentIdsOk() (*[]string, bool) {
 
 // HasComponentIds returns a boolean if a field has been set.
 func (o *PageAccessGroup) HasComponentIds() bool {
-	if o != nil && o.ComponentIds != nil {
+	if o != nil && !IsNil(o.ComponentIds) {
 		return true
 	}
 
@@ -270,12 +273,12 @@ func (o *PageAccessGroup) HasComponentIds() bool {
 
 // SetComponentIds gets a reference to the given []string and assigns it to the ComponentIds field.
 func (o *PageAccessGroup) SetComponentIds(v []string) {
-	o.ComponentIds = &v
+	o.ComponentIds = v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *PageAccessGroup) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -285,7 +288,7 @@ func (o *PageAccessGroup) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PageAccessGroup) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -293,7 +296,7 @@ func (o *PageAccessGroup) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *PageAccessGroup) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -307,7 +310,7 @@ func (o *PageAccessGroup) SetCreatedAt(v time.Time) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *PageAccessGroup) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -317,7 +320,7 @@ func (o *PageAccessGroup) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PageAccessGroup) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -325,7 +328,7 @@ func (o *PageAccessGroup) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *PageAccessGroup) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -338,35 +341,43 @@ func (o *PageAccessGroup) SetUpdatedAt(v time.Time) {
 }
 
 func (o PageAccessGroup) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.PageId != nil {
-		toSerialize["page_id"] = o.PageId
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.PageAccessUserIds != nil {
-		toSerialize["page_access_user_ids"] = o.PageAccessUserIds
-	}
-	if o.ExternalIdentifier != nil {
-		toSerialize["external_identifier"] = o.ExternalIdentifier
-	}
-	if o.MetricIds != nil {
-		toSerialize["metric_ids"] = o.MetricIds
-	}
-	if o.ComponentIds != nil {
-		toSerialize["component_ids"] = o.ComponentIds
-	}
-	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if o.UpdatedAt != nil {
-		toSerialize["updated_at"] = o.UpdatedAt
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PageAccessGroup) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.PageId) {
+		toSerialize["page_id"] = o.PageId
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.PageAccessUserIds) {
+		toSerialize["page_access_user_ids"] = o.PageAccessUserIds
+	}
+	if !IsNil(o.ExternalIdentifier) {
+		toSerialize["external_identifier"] = o.ExternalIdentifier
+	}
+	if !IsNil(o.MetricIds) {
+		toSerialize["metric_ids"] = o.MetricIds
+	}
+	if !IsNil(o.ComponentIds) {
+		toSerialize["component_ids"] = o.ComponentIds
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	return toSerialize, nil
 }
 
 type NullablePageAccessGroup struct {
@@ -404,5 +415,3 @@ func (v *NullablePageAccessGroup) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

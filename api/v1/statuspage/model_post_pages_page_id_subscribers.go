@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PostPagesPageIdSubscribers type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PostPagesPageIdSubscribers{}
+
 // PostPagesPageIdSubscribers Create a subscriber. Not applicable for Slack subscribers.
 type PostPagesPageIdSubscribers struct {
 	Subscriber *PostPagesPageIdSubscribersSubscriber `json:"subscriber,omitempty"`
@@ -38,7 +41,7 @@ func NewPostPagesPageIdSubscribersWithDefaults() *PostPagesPageIdSubscribers {
 
 // GetSubscriber returns the Subscriber field value if set, zero value otherwise.
 func (o *PostPagesPageIdSubscribers) GetSubscriber() PostPagesPageIdSubscribersSubscriber {
-	if o == nil || o.Subscriber == nil {
+	if o == nil || IsNil(o.Subscriber) {
 		var ret PostPagesPageIdSubscribersSubscriber
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *PostPagesPageIdSubscribers) GetSubscriber() PostPagesPageIdSubscribersS
 // GetSubscriberOk returns a tuple with the Subscriber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdSubscribers) GetSubscriberOk() (*PostPagesPageIdSubscribersSubscriber, bool) {
-	if o == nil || o.Subscriber == nil {
+	if o == nil || IsNil(o.Subscriber) {
 		return nil, false
 	}
 	return o.Subscriber, true
@@ -56,7 +59,7 @@ func (o *PostPagesPageIdSubscribers) GetSubscriberOk() (*PostPagesPageIdSubscrib
 
 // HasSubscriber returns a boolean if a field has been set.
 func (o *PostPagesPageIdSubscribers) HasSubscriber() bool {
-	if o != nil && o.Subscriber != nil {
+	if o != nil && !IsNil(o.Subscriber) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *PostPagesPageIdSubscribers) SetSubscriber(v PostPagesPageIdSubscribersS
 }
 
 func (o PostPagesPageIdSubscribers) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Subscriber != nil {
-		toSerialize["subscriber"] = o.Subscriber
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PostPagesPageIdSubscribers) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Subscriber) {
+		toSerialize["subscriber"] = o.Subscriber
+	}
+	return toSerialize, nil
 }
 
 type NullablePostPagesPageIdSubscribers struct {
@@ -111,5 +122,3 @@ func (v *NullablePostPagesPageIdSubscribers) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
