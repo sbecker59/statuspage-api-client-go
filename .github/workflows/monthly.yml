@@ -45,6 +45,9 @@ jobs:
         working-directory: scripts
         run: node extract-spec.js
 
+      - name: Remove previous generated client
+        run: rm -rf api/v1/statuspage
+
       - name: Generate Go client
         run: |
           npx --yes @openapitools/openapi-generator-cli generate \
