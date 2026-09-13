@@ -54,6 +54,9 @@ jobs:
             --skip-validate-spec \
             --enable-post-process-file
 
+      - name: Remove generated module files
+        run: rm -f api/v1/statuspage/go.mod api/v1/statuspage/go.sum
+
       - name: Format generated Go code
         run: gofmt -w api/v1/statuspage
 
