@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PatchPagesPage type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PatchPagesPage{}
+
 // PatchPagesPage struct for PatchPagesPage
 type PatchPagesPage struct {
 	// Name of your page to be displayed
@@ -51,7 +54,7 @@ type PatchPagesPage struct {
 	// CSS Color
 	CssNoData *string `json:"css_no_data,omitempty"`
 	// Should your page hide itself from search engines
-	HiddenFromSearch *bool `json:"hidden_from_search,omitempty"`
+	HiddenFromSearch         *bool `json:"hidden_from_search,omitempty"`
 	ViewersMustBeTeamMembers *bool `json:"viewers_must_be_team_members,omitempty"`
 	// Can your users subscribe to all notifications on the page
 	AllowPageSubscribers *bool `json:"allow_page_subscribers,omitempty"`
@@ -92,7 +95,7 @@ func NewPatchPagesPageWithDefaults() *PatchPagesPage {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *PatchPagesPage) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -102,7 +105,7 @@ func (o *PatchPagesPage) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPage) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -110,7 +113,7 @@ func (o *PatchPagesPage) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *PatchPagesPage) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -124,7 +127,7 @@ func (o *PatchPagesPage) SetName(v string) {
 
 // GetDomain returns the Domain field value if set, zero value otherwise.
 func (o *PatchPagesPage) GetDomain() string {
-	if o == nil || o.Domain == nil {
+	if o == nil || IsNil(o.Domain) {
 		var ret string
 		return ret
 	}
@@ -134,7 +137,7 @@ func (o *PatchPagesPage) GetDomain() string {
 // GetDomainOk returns a tuple with the Domain field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPage) GetDomainOk() (*string, bool) {
-	if o == nil || o.Domain == nil {
+	if o == nil || IsNil(o.Domain) {
 		return nil, false
 	}
 	return o.Domain, true
@@ -142,7 +145,7 @@ func (o *PatchPagesPage) GetDomainOk() (*string, bool) {
 
 // HasDomain returns a boolean if a field has been set.
 func (o *PatchPagesPage) HasDomain() bool {
-	if o != nil && o.Domain != nil {
+	if o != nil && !IsNil(o.Domain) {
 		return true
 	}
 
@@ -156,7 +159,7 @@ func (o *PatchPagesPage) SetDomain(v string) {
 
 // GetSubdomain returns the Subdomain field value if set, zero value otherwise.
 func (o *PatchPagesPage) GetSubdomain() string {
-	if o == nil || o.Subdomain == nil {
+	if o == nil || IsNil(o.Subdomain) {
 		var ret string
 		return ret
 	}
@@ -166,7 +169,7 @@ func (o *PatchPagesPage) GetSubdomain() string {
 // GetSubdomainOk returns a tuple with the Subdomain field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPage) GetSubdomainOk() (*string, bool) {
-	if o == nil || o.Subdomain == nil {
+	if o == nil || IsNil(o.Subdomain) {
 		return nil, false
 	}
 	return o.Subdomain, true
@@ -174,7 +177,7 @@ func (o *PatchPagesPage) GetSubdomainOk() (*string, bool) {
 
 // HasSubdomain returns a boolean if a field has been set.
 func (o *PatchPagesPage) HasSubdomain() bool {
-	if o != nil && o.Subdomain != nil {
+	if o != nil && !IsNil(o.Subdomain) {
 		return true
 	}
 
@@ -188,7 +191,7 @@ func (o *PatchPagesPage) SetSubdomain(v string) {
 
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *PatchPagesPage) GetUrl() string {
-	if o == nil || o.Url == nil {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
@@ -198,7 +201,7 @@ func (o *PatchPagesPage) GetUrl() string {
 // GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPage) GetUrlOk() (*string, bool) {
-	if o == nil || o.Url == nil {
+	if o == nil || IsNil(o.Url) {
 		return nil, false
 	}
 	return o.Url, true
@@ -206,7 +209,7 @@ func (o *PatchPagesPage) GetUrlOk() (*string, bool) {
 
 // HasUrl returns a boolean if a field has been set.
 func (o *PatchPagesPage) HasUrl() bool {
-	if o != nil && o.Url != nil {
+	if o != nil && !IsNil(o.Url) {
 		return true
 	}
 
@@ -220,7 +223,7 @@ func (o *PatchPagesPage) SetUrl(v string) {
 
 // GetBranding returns the Branding field value if set, zero value otherwise.
 func (o *PatchPagesPage) GetBranding() string {
-	if o == nil || o.Branding == nil {
+	if o == nil || IsNil(o.Branding) {
 		var ret string
 		return ret
 	}
@@ -230,7 +233,7 @@ func (o *PatchPagesPage) GetBranding() string {
 // GetBrandingOk returns a tuple with the Branding field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPage) GetBrandingOk() (*string, bool) {
-	if o == nil || o.Branding == nil {
+	if o == nil || IsNil(o.Branding) {
 		return nil, false
 	}
 	return o.Branding, true
@@ -238,7 +241,7 @@ func (o *PatchPagesPage) GetBrandingOk() (*string, bool) {
 
 // HasBranding returns a boolean if a field has been set.
 func (o *PatchPagesPage) HasBranding() bool {
-	if o != nil && o.Branding != nil {
+	if o != nil && !IsNil(o.Branding) {
 		return true
 	}
 
@@ -252,7 +255,7 @@ func (o *PatchPagesPage) SetBranding(v string) {
 
 // GetCssBodyBackgroundColor returns the CssBodyBackgroundColor field value if set, zero value otherwise.
 func (o *PatchPagesPage) GetCssBodyBackgroundColor() string {
-	if o == nil || o.CssBodyBackgroundColor == nil {
+	if o == nil || IsNil(o.CssBodyBackgroundColor) {
 		var ret string
 		return ret
 	}
@@ -262,7 +265,7 @@ func (o *PatchPagesPage) GetCssBodyBackgroundColor() string {
 // GetCssBodyBackgroundColorOk returns a tuple with the CssBodyBackgroundColor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPage) GetCssBodyBackgroundColorOk() (*string, bool) {
-	if o == nil || o.CssBodyBackgroundColor == nil {
+	if o == nil || IsNil(o.CssBodyBackgroundColor) {
 		return nil, false
 	}
 	return o.CssBodyBackgroundColor, true
@@ -270,7 +273,7 @@ func (o *PatchPagesPage) GetCssBodyBackgroundColorOk() (*string, bool) {
 
 // HasCssBodyBackgroundColor returns a boolean if a field has been set.
 func (o *PatchPagesPage) HasCssBodyBackgroundColor() bool {
-	if o != nil && o.CssBodyBackgroundColor != nil {
+	if o != nil && !IsNil(o.CssBodyBackgroundColor) {
 		return true
 	}
 
@@ -284,7 +287,7 @@ func (o *PatchPagesPage) SetCssBodyBackgroundColor(v string) {
 
 // GetCssFontColor returns the CssFontColor field value if set, zero value otherwise.
 func (o *PatchPagesPage) GetCssFontColor() string {
-	if o == nil || o.CssFontColor == nil {
+	if o == nil || IsNil(o.CssFontColor) {
 		var ret string
 		return ret
 	}
@@ -294,7 +297,7 @@ func (o *PatchPagesPage) GetCssFontColor() string {
 // GetCssFontColorOk returns a tuple with the CssFontColor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPage) GetCssFontColorOk() (*string, bool) {
-	if o == nil || o.CssFontColor == nil {
+	if o == nil || IsNil(o.CssFontColor) {
 		return nil, false
 	}
 	return o.CssFontColor, true
@@ -302,7 +305,7 @@ func (o *PatchPagesPage) GetCssFontColorOk() (*string, bool) {
 
 // HasCssFontColor returns a boolean if a field has been set.
 func (o *PatchPagesPage) HasCssFontColor() bool {
-	if o != nil && o.CssFontColor != nil {
+	if o != nil && !IsNil(o.CssFontColor) {
 		return true
 	}
 
@@ -316,7 +319,7 @@ func (o *PatchPagesPage) SetCssFontColor(v string) {
 
 // GetCssLightFontColor returns the CssLightFontColor field value if set, zero value otherwise.
 func (o *PatchPagesPage) GetCssLightFontColor() string {
-	if o == nil || o.CssLightFontColor == nil {
+	if o == nil || IsNil(o.CssLightFontColor) {
 		var ret string
 		return ret
 	}
@@ -326,7 +329,7 @@ func (o *PatchPagesPage) GetCssLightFontColor() string {
 // GetCssLightFontColorOk returns a tuple with the CssLightFontColor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPage) GetCssLightFontColorOk() (*string, bool) {
-	if o == nil || o.CssLightFontColor == nil {
+	if o == nil || IsNil(o.CssLightFontColor) {
 		return nil, false
 	}
 	return o.CssLightFontColor, true
@@ -334,7 +337,7 @@ func (o *PatchPagesPage) GetCssLightFontColorOk() (*string, bool) {
 
 // HasCssLightFontColor returns a boolean if a field has been set.
 func (o *PatchPagesPage) HasCssLightFontColor() bool {
-	if o != nil && o.CssLightFontColor != nil {
+	if o != nil && !IsNil(o.CssLightFontColor) {
 		return true
 	}
 
@@ -348,7 +351,7 @@ func (o *PatchPagesPage) SetCssLightFontColor(v string) {
 
 // GetCssGreens returns the CssGreens field value if set, zero value otherwise.
 func (o *PatchPagesPage) GetCssGreens() string {
-	if o == nil || o.CssGreens == nil {
+	if o == nil || IsNil(o.CssGreens) {
 		var ret string
 		return ret
 	}
@@ -358,7 +361,7 @@ func (o *PatchPagesPage) GetCssGreens() string {
 // GetCssGreensOk returns a tuple with the CssGreens field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPage) GetCssGreensOk() (*string, bool) {
-	if o == nil || o.CssGreens == nil {
+	if o == nil || IsNil(o.CssGreens) {
 		return nil, false
 	}
 	return o.CssGreens, true
@@ -366,7 +369,7 @@ func (o *PatchPagesPage) GetCssGreensOk() (*string, bool) {
 
 // HasCssGreens returns a boolean if a field has been set.
 func (o *PatchPagesPage) HasCssGreens() bool {
-	if o != nil && o.CssGreens != nil {
+	if o != nil && !IsNil(o.CssGreens) {
 		return true
 	}
 
@@ -380,7 +383,7 @@ func (o *PatchPagesPage) SetCssGreens(v string) {
 
 // GetCssYellows returns the CssYellows field value if set, zero value otherwise.
 func (o *PatchPagesPage) GetCssYellows() string {
-	if o == nil || o.CssYellows == nil {
+	if o == nil || IsNil(o.CssYellows) {
 		var ret string
 		return ret
 	}
@@ -390,7 +393,7 @@ func (o *PatchPagesPage) GetCssYellows() string {
 // GetCssYellowsOk returns a tuple with the CssYellows field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPage) GetCssYellowsOk() (*string, bool) {
-	if o == nil || o.CssYellows == nil {
+	if o == nil || IsNil(o.CssYellows) {
 		return nil, false
 	}
 	return o.CssYellows, true
@@ -398,7 +401,7 @@ func (o *PatchPagesPage) GetCssYellowsOk() (*string, bool) {
 
 // HasCssYellows returns a boolean if a field has been set.
 func (o *PatchPagesPage) HasCssYellows() bool {
-	if o != nil && o.CssYellows != nil {
+	if o != nil && !IsNil(o.CssYellows) {
 		return true
 	}
 
@@ -412,7 +415,7 @@ func (o *PatchPagesPage) SetCssYellows(v string) {
 
 // GetCssOranges returns the CssOranges field value if set, zero value otherwise.
 func (o *PatchPagesPage) GetCssOranges() string {
-	if o == nil || o.CssOranges == nil {
+	if o == nil || IsNil(o.CssOranges) {
 		var ret string
 		return ret
 	}
@@ -422,7 +425,7 @@ func (o *PatchPagesPage) GetCssOranges() string {
 // GetCssOrangesOk returns a tuple with the CssOranges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPage) GetCssOrangesOk() (*string, bool) {
-	if o == nil || o.CssOranges == nil {
+	if o == nil || IsNil(o.CssOranges) {
 		return nil, false
 	}
 	return o.CssOranges, true
@@ -430,7 +433,7 @@ func (o *PatchPagesPage) GetCssOrangesOk() (*string, bool) {
 
 // HasCssOranges returns a boolean if a field has been set.
 func (o *PatchPagesPage) HasCssOranges() bool {
-	if o != nil && o.CssOranges != nil {
+	if o != nil && !IsNil(o.CssOranges) {
 		return true
 	}
 
@@ -444,7 +447,7 @@ func (o *PatchPagesPage) SetCssOranges(v string) {
 
 // GetCssReds returns the CssReds field value if set, zero value otherwise.
 func (o *PatchPagesPage) GetCssReds() string {
-	if o == nil || o.CssReds == nil {
+	if o == nil || IsNil(o.CssReds) {
 		var ret string
 		return ret
 	}
@@ -454,7 +457,7 @@ func (o *PatchPagesPage) GetCssReds() string {
 // GetCssRedsOk returns a tuple with the CssReds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPage) GetCssRedsOk() (*string, bool) {
-	if o == nil || o.CssReds == nil {
+	if o == nil || IsNil(o.CssReds) {
 		return nil, false
 	}
 	return o.CssReds, true
@@ -462,7 +465,7 @@ func (o *PatchPagesPage) GetCssRedsOk() (*string, bool) {
 
 // HasCssReds returns a boolean if a field has been set.
 func (o *PatchPagesPage) HasCssReds() bool {
-	if o != nil && o.CssReds != nil {
+	if o != nil && !IsNil(o.CssReds) {
 		return true
 	}
 
@@ -476,7 +479,7 @@ func (o *PatchPagesPage) SetCssReds(v string) {
 
 // GetCssBlues returns the CssBlues field value if set, zero value otherwise.
 func (o *PatchPagesPage) GetCssBlues() string {
-	if o == nil || o.CssBlues == nil {
+	if o == nil || IsNil(o.CssBlues) {
 		var ret string
 		return ret
 	}
@@ -486,7 +489,7 @@ func (o *PatchPagesPage) GetCssBlues() string {
 // GetCssBluesOk returns a tuple with the CssBlues field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPage) GetCssBluesOk() (*string, bool) {
-	if o == nil || o.CssBlues == nil {
+	if o == nil || IsNil(o.CssBlues) {
 		return nil, false
 	}
 	return o.CssBlues, true
@@ -494,7 +497,7 @@ func (o *PatchPagesPage) GetCssBluesOk() (*string, bool) {
 
 // HasCssBlues returns a boolean if a field has been set.
 func (o *PatchPagesPage) HasCssBlues() bool {
-	if o != nil && o.CssBlues != nil {
+	if o != nil && !IsNil(o.CssBlues) {
 		return true
 	}
 
@@ -508,7 +511,7 @@ func (o *PatchPagesPage) SetCssBlues(v string) {
 
 // GetCssBorderColor returns the CssBorderColor field value if set, zero value otherwise.
 func (o *PatchPagesPage) GetCssBorderColor() string {
-	if o == nil || o.CssBorderColor == nil {
+	if o == nil || IsNil(o.CssBorderColor) {
 		var ret string
 		return ret
 	}
@@ -518,7 +521,7 @@ func (o *PatchPagesPage) GetCssBorderColor() string {
 // GetCssBorderColorOk returns a tuple with the CssBorderColor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPage) GetCssBorderColorOk() (*string, bool) {
-	if o == nil || o.CssBorderColor == nil {
+	if o == nil || IsNil(o.CssBorderColor) {
 		return nil, false
 	}
 	return o.CssBorderColor, true
@@ -526,7 +529,7 @@ func (o *PatchPagesPage) GetCssBorderColorOk() (*string, bool) {
 
 // HasCssBorderColor returns a boolean if a field has been set.
 func (o *PatchPagesPage) HasCssBorderColor() bool {
-	if o != nil && o.CssBorderColor != nil {
+	if o != nil && !IsNil(o.CssBorderColor) {
 		return true
 	}
 
@@ -540,7 +543,7 @@ func (o *PatchPagesPage) SetCssBorderColor(v string) {
 
 // GetCssGraphColor returns the CssGraphColor field value if set, zero value otherwise.
 func (o *PatchPagesPage) GetCssGraphColor() string {
-	if o == nil || o.CssGraphColor == nil {
+	if o == nil || IsNil(o.CssGraphColor) {
 		var ret string
 		return ret
 	}
@@ -550,7 +553,7 @@ func (o *PatchPagesPage) GetCssGraphColor() string {
 // GetCssGraphColorOk returns a tuple with the CssGraphColor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPage) GetCssGraphColorOk() (*string, bool) {
-	if o == nil || o.CssGraphColor == nil {
+	if o == nil || IsNil(o.CssGraphColor) {
 		return nil, false
 	}
 	return o.CssGraphColor, true
@@ -558,7 +561,7 @@ func (o *PatchPagesPage) GetCssGraphColorOk() (*string, bool) {
 
 // HasCssGraphColor returns a boolean if a field has been set.
 func (o *PatchPagesPage) HasCssGraphColor() bool {
-	if o != nil && o.CssGraphColor != nil {
+	if o != nil && !IsNil(o.CssGraphColor) {
 		return true
 	}
 
@@ -572,7 +575,7 @@ func (o *PatchPagesPage) SetCssGraphColor(v string) {
 
 // GetCssLinkColor returns the CssLinkColor field value if set, zero value otherwise.
 func (o *PatchPagesPage) GetCssLinkColor() string {
-	if o == nil || o.CssLinkColor == nil {
+	if o == nil || IsNil(o.CssLinkColor) {
 		var ret string
 		return ret
 	}
@@ -582,7 +585,7 @@ func (o *PatchPagesPage) GetCssLinkColor() string {
 // GetCssLinkColorOk returns a tuple with the CssLinkColor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPage) GetCssLinkColorOk() (*string, bool) {
-	if o == nil || o.CssLinkColor == nil {
+	if o == nil || IsNil(o.CssLinkColor) {
 		return nil, false
 	}
 	return o.CssLinkColor, true
@@ -590,7 +593,7 @@ func (o *PatchPagesPage) GetCssLinkColorOk() (*string, bool) {
 
 // HasCssLinkColor returns a boolean if a field has been set.
 func (o *PatchPagesPage) HasCssLinkColor() bool {
-	if o != nil && o.CssLinkColor != nil {
+	if o != nil && !IsNil(o.CssLinkColor) {
 		return true
 	}
 
@@ -604,7 +607,7 @@ func (o *PatchPagesPage) SetCssLinkColor(v string) {
 
 // GetCssNoData returns the CssNoData field value if set, zero value otherwise.
 func (o *PatchPagesPage) GetCssNoData() string {
-	if o == nil || o.CssNoData == nil {
+	if o == nil || IsNil(o.CssNoData) {
 		var ret string
 		return ret
 	}
@@ -614,7 +617,7 @@ func (o *PatchPagesPage) GetCssNoData() string {
 // GetCssNoDataOk returns a tuple with the CssNoData field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPage) GetCssNoDataOk() (*string, bool) {
-	if o == nil || o.CssNoData == nil {
+	if o == nil || IsNil(o.CssNoData) {
 		return nil, false
 	}
 	return o.CssNoData, true
@@ -622,7 +625,7 @@ func (o *PatchPagesPage) GetCssNoDataOk() (*string, bool) {
 
 // HasCssNoData returns a boolean if a field has been set.
 func (o *PatchPagesPage) HasCssNoData() bool {
-	if o != nil && o.CssNoData != nil {
+	if o != nil && !IsNil(o.CssNoData) {
 		return true
 	}
 
@@ -636,7 +639,7 @@ func (o *PatchPagesPage) SetCssNoData(v string) {
 
 // GetHiddenFromSearch returns the HiddenFromSearch field value if set, zero value otherwise.
 func (o *PatchPagesPage) GetHiddenFromSearch() bool {
-	if o == nil || o.HiddenFromSearch == nil {
+	if o == nil || IsNil(o.HiddenFromSearch) {
 		var ret bool
 		return ret
 	}
@@ -646,7 +649,7 @@ func (o *PatchPagesPage) GetHiddenFromSearch() bool {
 // GetHiddenFromSearchOk returns a tuple with the HiddenFromSearch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPage) GetHiddenFromSearchOk() (*bool, bool) {
-	if o == nil || o.HiddenFromSearch == nil {
+	if o == nil || IsNil(o.HiddenFromSearch) {
 		return nil, false
 	}
 	return o.HiddenFromSearch, true
@@ -654,7 +657,7 @@ func (o *PatchPagesPage) GetHiddenFromSearchOk() (*bool, bool) {
 
 // HasHiddenFromSearch returns a boolean if a field has been set.
 func (o *PatchPagesPage) HasHiddenFromSearch() bool {
-	if o != nil && o.HiddenFromSearch != nil {
+	if o != nil && !IsNil(o.HiddenFromSearch) {
 		return true
 	}
 
@@ -668,7 +671,7 @@ func (o *PatchPagesPage) SetHiddenFromSearch(v bool) {
 
 // GetViewersMustBeTeamMembers returns the ViewersMustBeTeamMembers field value if set, zero value otherwise.
 func (o *PatchPagesPage) GetViewersMustBeTeamMembers() bool {
-	if o == nil || o.ViewersMustBeTeamMembers == nil {
+	if o == nil || IsNil(o.ViewersMustBeTeamMembers) {
 		var ret bool
 		return ret
 	}
@@ -678,7 +681,7 @@ func (o *PatchPagesPage) GetViewersMustBeTeamMembers() bool {
 // GetViewersMustBeTeamMembersOk returns a tuple with the ViewersMustBeTeamMembers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPage) GetViewersMustBeTeamMembersOk() (*bool, bool) {
-	if o == nil || o.ViewersMustBeTeamMembers == nil {
+	if o == nil || IsNil(o.ViewersMustBeTeamMembers) {
 		return nil, false
 	}
 	return o.ViewersMustBeTeamMembers, true
@@ -686,7 +689,7 @@ func (o *PatchPagesPage) GetViewersMustBeTeamMembersOk() (*bool, bool) {
 
 // HasViewersMustBeTeamMembers returns a boolean if a field has been set.
 func (o *PatchPagesPage) HasViewersMustBeTeamMembers() bool {
-	if o != nil && o.ViewersMustBeTeamMembers != nil {
+	if o != nil && !IsNil(o.ViewersMustBeTeamMembers) {
 		return true
 	}
 
@@ -700,7 +703,7 @@ func (o *PatchPagesPage) SetViewersMustBeTeamMembers(v bool) {
 
 // GetAllowPageSubscribers returns the AllowPageSubscribers field value if set, zero value otherwise.
 func (o *PatchPagesPage) GetAllowPageSubscribers() bool {
-	if o == nil || o.AllowPageSubscribers == nil {
+	if o == nil || IsNil(o.AllowPageSubscribers) {
 		var ret bool
 		return ret
 	}
@@ -710,7 +713,7 @@ func (o *PatchPagesPage) GetAllowPageSubscribers() bool {
 // GetAllowPageSubscribersOk returns a tuple with the AllowPageSubscribers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPage) GetAllowPageSubscribersOk() (*bool, bool) {
-	if o == nil || o.AllowPageSubscribers == nil {
+	if o == nil || IsNil(o.AllowPageSubscribers) {
 		return nil, false
 	}
 	return o.AllowPageSubscribers, true
@@ -718,7 +721,7 @@ func (o *PatchPagesPage) GetAllowPageSubscribersOk() (*bool, bool) {
 
 // HasAllowPageSubscribers returns a boolean if a field has been set.
 func (o *PatchPagesPage) HasAllowPageSubscribers() bool {
-	if o != nil && o.AllowPageSubscribers != nil {
+	if o != nil && !IsNil(o.AllowPageSubscribers) {
 		return true
 	}
 
@@ -732,7 +735,7 @@ func (o *PatchPagesPage) SetAllowPageSubscribers(v bool) {
 
 // GetAllowIncidentSubscribers returns the AllowIncidentSubscribers field value if set, zero value otherwise.
 func (o *PatchPagesPage) GetAllowIncidentSubscribers() bool {
-	if o == nil || o.AllowIncidentSubscribers == nil {
+	if o == nil || IsNil(o.AllowIncidentSubscribers) {
 		var ret bool
 		return ret
 	}
@@ -742,7 +745,7 @@ func (o *PatchPagesPage) GetAllowIncidentSubscribers() bool {
 // GetAllowIncidentSubscribersOk returns a tuple with the AllowIncidentSubscribers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPage) GetAllowIncidentSubscribersOk() (*bool, bool) {
-	if o == nil || o.AllowIncidentSubscribers == nil {
+	if o == nil || IsNil(o.AllowIncidentSubscribers) {
 		return nil, false
 	}
 	return o.AllowIncidentSubscribers, true
@@ -750,7 +753,7 @@ func (o *PatchPagesPage) GetAllowIncidentSubscribersOk() (*bool, bool) {
 
 // HasAllowIncidentSubscribers returns a boolean if a field has been set.
 func (o *PatchPagesPage) HasAllowIncidentSubscribers() bool {
-	if o != nil && o.AllowIncidentSubscribers != nil {
+	if o != nil && !IsNil(o.AllowIncidentSubscribers) {
 		return true
 	}
 
@@ -764,7 +767,7 @@ func (o *PatchPagesPage) SetAllowIncidentSubscribers(v bool) {
 
 // GetAllowEmailSubscribers returns the AllowEmailSubscribers field value if set, zero value otherwise.
 func (o *PatchPagesPage) GetAllowEmailSubscribers() bool {
-	if o == nil || o.AllowEmailSubscribers == nil {
+	if o == nil || IsNil(o.AllowEmailSubscribers) {
 		var ret bool
 		return ret
 	}
@@ -774,7 +777,7 @@ func (o *PatchPagesPage) GetAllowEmailSubscribers() bool {
 // GetAllowEmailSubscribersOk returns a tuple with the AllowEmailSubscribers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPage) GetAllowEmailSubscribersOk() (*bool, bool) {
-	if o == nil || o.AllowEmailSubscribers == nil {
+	if o == nil || IsNil(o.AllowEmailSubscribers) {
 		return nil, false
 	}
 	return o.AllowEmailSubscribers, true
@@ -782,7 +785,7 @@ func (o *PatchPagesPage) GetAllowEmailSubscribersOk() (*bool, bool) {
 
 // HasAllowEmailSubscribers returns a boolean if a field has been set.
 func (o *PatchPagesPage) HasAllowEmailSubscribers() bool {
-	if o != nil && o.AllowEmailSubscribers != nil {
+	if o != nil && !IsNil(o.AllowEmailSubscribers) {
 		return true
 	}
 
@@ -796,7 +799,7 @@ func (o *PatchPagesPage) SetAllowEmailSubscribers(v bool) {
 
 // GetAllowSmsSubscribers returns the AllowSmsSubscribers field value if set, zero value otherwise.
 func (o *PatchPagesPage) GetAllowSmsSubscribers() bool {
-	if o == nil || o.AllowSmsSubscribers == nil {
+	if o == nil || IsNil(o.AllowSmsSubscribers) {
 		var ret bool
 		return ret
 	}
@@ -806,7 +809,7 @@ func (o *PatchPagesPage) GetAllowSmsSubscribers() bool {
 // GetAllowSmsSubscribersOk returns a tuple with the AllowSmsSubscribers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPage) GetAllowSmsSubscribersOk() (*bool, bool) {
-	if o == nil || o.AllowSmsSubscribers == nil {
+	if o == nil || IsNil(o.AllowSmsSubscribers) {
 		return nil, false
 	}
 	return o.AllowSmsSubscribers, true
@@ -814,7 +817,7 @@ func (o *PatchPagesPage) GetAllowSmsSubscribersOk() (*bool, bool) {
 
 // HasAllowSmsSubscribers returns a boolean if a field has been set.
 func (o *PatchPagesPage) HasAllowSmsSubscribers() bool {
-	if o != nil && o.AllowSmsSubscribers != nil {
+	if o != nil && !IsNil(o.AllowSmsSubscribers) {
 		return true
 	}
 
@@ -828,7 +831,7 @@ func (o *PatchPagesPage) SetAllowSmsSubscribers(v bool) {
 
 // GetAllowRssAtomFeeds returns the AllowRssAtomFeeds field value if set, zero value otherwise.
 func (o *PatchPagesPage) GetAllowRssAtomFeeds() bool {
-	if o == nil || o.AllowRssAtomFeeds == nil {
+	if o == nil || IsNil(o.AllowRssAtomFeeds) {
 		var ret bool
 		return ret
 	}
@@ -838,7 +841,7 @@ func (o *PatchPagesPage) GetAllowRssAtomFeeds() bool {
 // GetAllowRssAtomFeedsOk returns a tuple with the AllowRssAtomFeeds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPage) GetAllowRssAtomFeedsOk() (*bool, bool) {
-	if o == nil || o.AllowRssAtomFeeds == nil {
+	if o == nil || IsNil(o.AllowRssAtomFeeds) {
 		return nil, false
 	}
 	return o.AllowRssAtomFeeds, true
@@ -846,7 +849,7 @@ func (o *PatchPagesPage) GetAllowRssAtomFeedsOk() (*bool, bool) {
 
 // HasAllowRssAtomFeeds returns a boolean if a field has been set.
 func (o *PatchPagesPage) HasAllowRssAtomFeeds() bool {
-	if o != nil && o.AllowRssAtomFeeds != nil {
+	if o != nil && !IsNil(o.AllowRssAtomFeeds) {
 		return true
 	}
 
@@ -860,7 +863,7 @@ func (o *PatchPagesPage) SetAllowRssAtomFeeds(v bool) {
 
 // GetAllowWebhookSubscribers returns the AllowWebhookSubscribers field value if set, zero value otherwise.
 func (o *PatchPagesPage) GetAllowWebhookSubscribers() bool {
-	if o == nil || o.AllowWebhookSubscribers == nil {
+	if o == nil || IsNil(o.AllowWebhookSubscribers) {
 		var ret bool
 		return ret
 	}
@@ -870,7 +873,7 @@ func (o *PatchPagesPage) GetAllowWebhookSubscribers() bool {
 // GetAllowWebhookSubscribersOk returns a tuple with the AllowWebhookSubscribers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPage) GetAllowWebhookSubscribersOk() (*bool, bool) {
-	if o == nil || o.AllowWebhookSubscribers == nil {
+	if o == nil || IsNil(o.AllowWebhookSubscribers) {
 		return nil, false
 	}
 	return o.AllowWebhookSubscribers, true
@@ -878,7 +881,7 @@ func (o *PatchPagesPage) GetAllowWebhookSubscribersOk() (*bool, bool) {
 
 // HasAllowWebhookSubscribers returns a boolean if a field has been set.
 func (o *PatchPagesPage) HasAllowWebhookSubscribers() bool {
-	if o != nil && o.AllowWebhookSubscribers != nil {
+	if o != nil && !IsNil(o.AllowWebhookSubscribers) {
 		return true
 	}
 
@@ -892,7 +895,7 @@ func (o *PatchPagesPage) SetAllowWebhookSubscribers(v bool) {
 
 // GetNotificationsFromEmail returns the NotificationsFromEmail field value if set, zero value otherwise.
 func (o *PatchPagesPage) GetNotificationsFromEmail() string {
-	if o == nil || o.NotificationsFromEmail == nil {
+	if o == nil || IsNil(o.NotificationsFromEmail) {
 		var ret string
 		return ret
 	}
@@ -902,7 +905,7 @@ func (o *PatchPagesPage) GetNotificationsFromEmail() string {
 // GetNotificationsFromEmailOk returns a tuple with the NotificationsFromEmail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPage) GetNotificationsFromEmailOk() (*string, bool) {
-	if o == nil || o.NotificationsFromEmail == nil {
+	if o == nil || IsNil(o.NotificationsFromEmail) {
 		return nil, false
 	}
 	return o.NotificationsFromEmail, true
@@ -910,7 +913,7 @@ func (o *PatchPagesPage) GetNotificationsFromEmailOk() (*string, bool) {
 
 // HasNotificationsFromEmail returns a boolean if a field has been set.
 func (o *PatchPagesPage) HasNotificationsFromEmail() bool {
-	if o != nil && o.NotificationsFromEmail != nil {
+	if o != nil && !IsNil(o.NotificationsFromEmail) {
 		return true
 	}
 
@@ -924,7 +927,7 @@ func (o *PatchPagesPage) SetNotificationsFromEmail(v string) {
 
 // GetTimeZone returns the TimeZone field value if set, zero value otherwise.
 func (o *PatchPagesPage) GetTimeZone() string {
-	if o == nil || o.TimeZone == nil {
+	if o == nil || IsNil(o.TimeZone) {
 		var ret string
 		return ret
 	}
@@ -934,7 +937,7 @@ func (o *PatchPagesPage) GetTimeZone() string {
 // GetTimeZoneOk returns a tuple with the TimeZone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPage) GetTimeZoneOk() (*string, bool) {
-	if o == nil || o.TimeZone == nil {
+	if o == nil || IsNil(o.TimeZone) {
 		return nil, false
 	}
 	return o.TimeZone, true
@@ -942,7 +945,7 @@ func (o *PatchPagesPage) GetTimeZoneOk() (*string, bool) {
 
 // HasTimeZone returns a boolean if a field has been set.
 func (o *PatchPagesPage) HasTimeZone() bool {
-	if o != nil && o.TimeZone != nil {
+	if o != nil && !IsNil(o.TimeZone) {
 		return true
 	}
 
@@ -956,7 +959,7 @@ func (o *PatchPagesPage) SetTimeZone(v string) {
 
 // GetNotificationsEmailFooter returns the NotificationsEmailFooter field value if set, zero value otherwise.
 func (o *PatchPagesPage) GetNotificationsEmailFooter() string {
-	if o == nil || o.NotificationsEmailFooter == nil {
+	if o == nil || IsNil(o.NotificationsEmailFooter) {
 		var ret string
 		return ret
 	}
@@ -966,7 +969,7 @@ func (o *PatchPagesPage) GetNotificationsEmailFooter() string {
 // GetNotificationsEmailFooterOk returns a tuple with the NotificationsEmailFooter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPage) GetNotificationsEmailFooterOk() (*string, bool) {
-	if o == nil || o.NotificationsEmailFooter == nil {
+	if o == nil || IsNil(o.NotificationsEmailFooter) {
 		return nil, false
 	}
 	return o.NotificationsEmailFooter, true
@@ -974,7 +977,7 @@ func (o *PatchPagesPage) GetNotificationsEmailFooterOk() (*string, bool) {
 
 // HasNotificationsEmailFooter returns a boolean if a field has been set.
 func (o *PatchPagesPage) HasNotificationsEmailFooter() bool {
-	if o != nil && o.NotificationsEmailFooter != nil {
+	if o != nil && !IsNil(o.NotificationsEmailFooter) {
 		return true
 	}
 
@@ -987,92 +990,100 @@ func (o *PatchPagesPage) SetNotificationsEmailFooter(v string) {
 }
 
 func (o PatchPagesPage) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.Domain != nil {
-		toSerialize["domain"] = o.Domain
-	}
-	if o.Subdomain != nil {
-		toSerialize["subdomain"] = o.Subdomain
-	}
-	if o.Url != nil {
-		toSerialize["url"] = o.Url
-	}
-	if o.Branding != nil {
-		toSerialize["branding"] = o.Branding
-	}
-	if o.CssBodyBackgroundColor != nil {
-		toSerialize["css_body_background_color"] = o.CssBodyBackgroundColor
-	}
-	if o.CssFontColor != nil {
-		toSerialize["css_font_color"] = o.CssFontColor
-	}
-	if o.CssLightFontColor != nil {
-		toSerialize["css_light_font_color"] = o.CssLightFontColor
-	}
-	if o.CssGreens != nil {
-		toSerialize["css_greens"] = o.CssGreens
-	}
-	if o.CssYellows != nil {
-		toSerialize["css_yellows"] = o.CssYellows
-	}
-	if o.CssOranges != nil {
-		toSerialize["css_oranges"] = o.CssOranges
-	}
-	if o.CssReds != nil {
-		toSerialize["css_reds"] = o.CssReds
-	}
-	if o.CssBlues != nil {
-		toSerialize["css_blues"] = o.CssBlues
-	}
-	if o.CssBorderColor != nil {
-		toSerialize["css_border_color"] = o.CssBorderColor
-	}
-	if o.CssGraphColor != nil {
-		toSerialize["css_graph_color"] = o.CssGraphColor
-	}
-	if o.CssLinkColor != nil {
-		toSerialize["css_link_color"] = o.CssLinkColor
-	}
-	if o.CssNoData != nil {
-		toSerialize["css_no_data"] = o.CssNoData
-	}
-	if o.HiddenFromSearch != nil {
-		toSerialize["hidden_from_search"] = o.HiddenFromSearch
-	}
-	if o.ViewersMustBeTeamMembers != nil {
-		toSerialize["viewers_must_be_team_members"] = o.ViewersMustBeTeamMembers
-	}
-	if o.AllowPageSubscribers != nil {
-		toSerialize["allow_page_subscribers"] = o.AllowPageSubscribers
-	}
-	if o.AllowIncidentSubscribers != nil {
-		toSerialize["allow_incident_subscribers"] = o.AllowIncidentSubscribers
-	}
-	if o.AllowEmailSubscribers != nil {
-		toSerialize["allow_email_subscribers"] = o.AllowEmailSubscribers
-	}
-	if o.AllowSmsSubscribers != nil {
-		toSerialize["allow_sms_subscribers"] = o.AllowSmsSubscribers
-	}
-	if o.AllowRssAtomFeeds != nil {
-		toSerialize["allow_rss_atom_feeds"] = o.AllowRssAtomFeeds
-	}
-	if o.AllowWebhookSubscribers != nil {
-		toSerialize["allow_webhook_subscribers"] = o.AllowWebhookSubscribers
-	}
-	if o.NotificationsFromEmail != nil {
-		toSerialize["notifications_from_email"] = o.NotificationsFromEmail
-	}
-	if o.TimeZone != nil {
-		toSerialize["time_zone"] = o.TimeZone
-	}
-	if o.NotificationsEmailFooter != nil {
-		toSerialize["notifications_email_footer"] = o.NotificationsEmailFooter
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PatchPagesPage) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Domain) {
+		toSerialize["domain"] = o.Domain
+	}
+	if !IsNil(o.Subdomain) {
+		toSerialize["subdomain"] = o.Subdomain
+	}
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
+	if !IsNil(o.Branding) {
+		toSerialize["branding"] = o.Branding
+	}
+	if !IsNil(o.CssBodyBackgroundColor) {
+		toSerialize["css_body_background_color"] = o.CssBodyBackgroundColor
+	}
+	if !IsNil(o.CssFontColor) {
+		toSerialize["css_font_color"] = o.CssFontColor
+	}
+	if !IsNil(o.CssLightFontColor) {
+		toSerialize["css_light_font_color"] = o.CssLightFontColor
+	}
+	if !IsNil(o.CssGreens) {
+		toSerialize["css_greens"] = o.CssGreens
+	}
+	if !IsNil(o.CssYellows) {
+		toSerialize["css_yellows"] = o.CssYellows
+	}
+	if !IsNil(o.CssOranges) {
+		toSerialize["css_oranges"] = o.CssOranges
+	}
+	if !IsNil(o.CssReds) {
+		toSerialize["css_reds"] = o.CssReds
+	}
+	if !IsNil(o.CssBlues) {
+		toSerialize["css_blues"] = o.CssBlues
+	}
+	if !IsNil(o.CssBorderColor) {
+		toSerialize["css_border_color"] = o.CssBorderColor
+	}
+	if !IsNil(o.CssGraphColor) {
+		toSerialize["css_graph_color"] = o.CssGraphColor
+	}
+	if !IsNil(o.CssLinkColor) {
+		toSerialize["css_link_color"] = o.CssLinkColor
+	}
+	if !IsNil(o.CssNoData) {
+		toSerialize["css_no_data"] = o.CssNoData
+	}
+	if !IsNil(o.HiddenFromSearch) {
+		toSerialize["hidden_from_search"] = o.HiddenFromSearch
+	}
+	if !IsNil(o.ViewersMustBeTeamMembers) {
+		toSerialize["viewers_must_be_team_members"] = o.ViewersMustBeTeamMembers
+	}
+	if !IsNil(o.AllowPageSubscribers) {
+		toSerialize["allow_page_subscribers"] = o.AllowPageSubscribers
+	}
+	if !IsNil(o.AllowIncidentSubscribers) {
+		toSerialize["allow_incident_subscribers"] = o.AllowIncidentSubscribers
+	}
+	if !IsNil(o.AllowEmailSubscribers) {
+		toSerialize["allow_email_subscribers"] = o.AllowEmailSubscribers
+	}
+	if !IsNil(o.AllowSmsSubscribers) {
+		toSerialize["allow_sms_subscribers"] = o.AllowSmsSubscribers
+	}
+	if !IsNil(o.AllowRssAtomFeeds) {
+		toSerialize["allow_rss_atom_feeds"] = o.AllowRssAtomFeeds
+	}
+	if !IsNil(o.AllowWebhookSubscribers) {
+		toSerialize["allow_webhook_subscribers"] = o.AllowWebhookSubscribers
+	}
+	if !IsNil(o.NotificationsFromEmail) {
+		toSerialize["notifications_from_email"] = o.NotificationsFromEmail
+	}
+	if !IsNil(o.TimeZone) {
+		toSerialize["time_zone"] = o.TimeZone
+	}
+	if !IsNil(o.NotificationsEmailFooter) {
+		toSerialize["notifications_email_footer"] = o.NotificationsEmailFooter
+	}
+	return toSerialize, nil
 }
 
 type NullablePatchPagesPage struct {
@@ -1110,5 +1121,3 @@ func (v *NullablePatchPagesPage) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

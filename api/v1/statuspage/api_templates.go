@@ -12,27 +12,22 @@ package openapi
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// TemplatesApiService TemplatesApi service
-type TemplatesApiService service
+// TemplatesAPIService TemplatesAPI service
+type TemplatesAPIService service
 
 type ApiGetPagesPageIdIncidentTemplatesRequest struct {
-	ctx _context.Context
-	ApiService *TemplatesApiService
-	pageId string
-	page *int32
-	perPage *int32
+	ctx        context.Context
+	ApiService *TemplatesAPIService
+	pageId     string
+	page       *int32
+	perPage    *int32
 }
 
 // Page offset to fetch.
@@ -40,13 +35,14 @@ func (r ApiGetPagesPageIdIncidentTemplatesRequest) Page(page int32) ApiGetPagesP
 	r.page = &page
 	return r
 }
+
 // Number of results to return per page.
 func (r ApiGetPagesPageIdIncidentTemplatesRequest) PerPage(perPage int32) ApiGetPagesPageIdIncidentTemplatesRequest {
 	r.perPage = &perPage
 	return r
 }
 
-func (r ApiGetPagesPageIdIncidentTemplatesRequest) Execute() ([]IncidentTemplate, *_nethttp.Response, error) {
+func (r ApiGetPagesPageIdIncidentTemplatesRequest) Execute() ([]IncidentTemplate, *http.Response, error) {
 	return r.ApiService.GetPagesPageIdIncidentTemplatesExecute(r)
 }
 
@@ -55,47 +51,54 @@ GetPagesPageIdIncidentTemplates Get a list of templates
 
 Get a list of templates
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @return ApiGetPagesPageIdIncidentTemplatesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@return ApiGetPagesPageIdIncidentTemplatesRequest
 */
-func (a *TemplatesApiService) GetPagesPageIdIncidentTemplates(ctx _context.Context, pageId string) ApiGetPagesPageIdIncidentTemplatesRequest {
+func (a *TemplatesAPIService) GetPagesPageIdIncidentTemplates(ctx context.Context, pageId string) ApiGetPagesPageIdIncidentTemplatesRequest {
 	return ApiGetPagesPageIdIncidentTemplatesRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ctx:        ctx,
+		pageId:     pageId,
 	}
 }
 
 // Execute executes the request
-//  @return []IncidentTemplate
-func (a *TemplatesApiService) GetPagesPageIdIncidentTemplatesExecute(r ApiGetPagesPageIdIncidentTemplatesRequest) ([]IncidentTemplate, *_nethttp.Response, error) {
+//
+//	@return []IncidentTemplate
+func (a *TemplatesAPIService) GetPagesPageIdIncidentTemplatesExecute(r ApiGetPagesPageIdIncidentTemplatesRequest) ([]IncidentTemplate, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  []IncidentTemplate
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []IncidentTemplate
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TemplatesApiService.GetPagesPageIdIncidentTemplates")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TemplatesAPIService.GetPagesPageIdIncidentTemplates")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/incident_templates"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	} else {
+		var defaultValue int32 = 1
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", defaultValue, "form", "")
+		r.page = &defaultValue
 	}
 	if r.perPage != nil {
-		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", r.perPage, "form", "")
+	} else {
+		var defaultValue int32 = 100
+		parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", defaultValue, "form", "")
+		r.perPage = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -128,7 +131,7 @@ func (a *TemplatesApiService) GetPagesPageIdIncidentTemplatesExecute(r ApiGetPag
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -138,15 +141,15 @@ func (a *TemplatesApiService) GetPagesPageIdIncidentTemplatesExecute(r ApiGetPag
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -157,6 +160,7 @@ func (a *TemplatesApiService) GetPagesPageIdIncidentTemplatesExecute(r ApiGetPag
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -164,7 +168,7 @@ func (a *TemplatesApiService) GetPagesPageIdIncidentTemplatesExecute(r ApiGetPag
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -175,9 +179,9 @@ func (a *TemplatesApiService) GetPagesPageIdIncidentTemplatesExecute(r ApiGetPag
 }
 
 type ApiPostPagesPageIdIncidentTemplatesRequest struct {
-	ctx _context.Context
-	ApiService *TemplatesApiService
-	pageId string
+	ctx                              context.Context
+	ApiService                       *TemplatesAPIService
+	pageId                           string
 	postPagesPageIdIncidentTemplates *PostPagesPageIdIncidentTemplates
 }
 
@@ -186,7 +190,7 @@ func (r ApiPostPagesPageIdIncidentTemplatesRequest) PostPagesPageIdIncidentTempl
 	return r
 }
 
-func (r ApiPostPagesPageIdIncidentTemplatesRequest) Execute() (IncidentTemplate, *_nethttp.Response, error) {
+func (r ApiPostPagesPageIdIncidentTemplatesRequest) Execute() (*IncidentTemplate, *http.Response, error) {
 	return r.ApiService.PostPagesPageIdIncidentTemplatesExecute(r)
 }
 
@@ -195,41 +199,40 @@ PostPagesPageIdIncidentTemplates Create a template
 
 Create a template
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @return ApiPostPagesPageIdIncidentTemplatesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@return ApiPostPagesPageIdIncidentTemplatesRequest
 */
-func (a *TemplatesApiService) PostPagesPageIdIncidentTemplates(ctx _context.Context, pageId string) ApiPostPagesPageIdIncidentTemplatesRequest {
+func (a *TemplatesAPIService) PostPagesPageIdIncidentTemplates(ctx context.Context, pageId string) ApiPostPagesPageIdIncidentTemplatesRequest {
 	return ApiPostPagesPageIdIncidentTemplatesRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ctx:        ctx,
+		pageId:     pageId,
 	}
 }
 
 // Execute executes the request
-//  @return IncidentTemplate
-func (a *TemplatesApiService) PostPagesPageIdIncidentTemplatesExecute(r ApiPostPagesPageIdIncidentTemplatesRequest) (IncidentTemplate, *_nethttp.Response, error) {
+//
+//	@return IncidentTemplate
+func (a *TemplatesAPIService) PostPagesPageIdIncidentTemplatesExecute(r ApiPostPagesPageIdIncidentTemplatesRequest) (*IncidentTemplate, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  IncidentTemplate
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *IncidentTemplate
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TemplatesApiService.PostPagesPageIdIncidentTemplates")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TemplatesAPIService.PostPagesPageIdIncidentTemplates")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/incident_templates"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.postPagesPageIdIncidentTemplates == nil {
 		return localVarReturnValue, nil, reportError("postPagesPageIdIncidentTemplates is required and must be specified")
 	}
@@ -267,7 +270,7 @@ func (a *TemplatesApiService) PostPagesPageIdIncidentTemplatesExecute(r ApiPostP
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -277,15 +280,15 @@ func (a *TemplatesApiService) PostPagesPageIdIncidentTemplatesExecute(r ApiPostP
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -296,6 +299,7 @@ func (a *TemplatesApiService) PostPagesPageIdIncidentTemplatesExecute(r ApiPostP
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -306,6 +310,7 @@ func (a *TemplatesApiService) PostPagesPageIdIncidentTemplatesExecute(r ApiPostP
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -316,6 +321,7 @@ func (a *TemplatesApiService) PostPagesPageIdIncidentTemplatesExecute(r ApiPostP
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -326,6 +332,7 @@ func (a *TemplatesApiService) PostPagesPageIdIncidentTemplatesExecute(r ApiPostP
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -333,7 +340,7 @@ func (a *TemplatesApiService) PostPagesPageIdIncidentTemplatesExecute(r ApiPostP
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

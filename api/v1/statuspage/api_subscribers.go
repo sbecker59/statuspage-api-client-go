@@ -12,26 +12,21 @@ package openapi
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// SubscribersApiService SubscribersApi service
-type SubscribersApiService service
+// SubscribersAPIService SubscribersAPI service
+type SubscribersAPIService service
 
 type ApiDeletePagesPageIdSubscribersSubscriberIdRequest struct {
-	ctx _context.Context
-	ApiService *SubscribersApiService
-	pageId string
-	subscriberId string
+	ctx                            context.Context
+	ApiService                     *SubscribersAPIService
+	pageId                         string
+	subscriberId                   string
 	skipUnsubscriptionNotification *bool
 }
 
@@ -41,7 +36,7 @@ func (r ApiDeletePagesPageIdSubscribersSubscriberIdRequest) SkipUnsubscriptionNo
 	return r
 }
 
-func (r ApiDeletePagesPageIdSubscribersSubscriberIdRequest) Execute() (Subscriber, *_nethttp.Response, error) {
+func (r ApiDeletePagesPageIdSubscribersSubscriberIdRequest) Execute() (*Subscriber, *http.Response, error) {
 	return r.ApiService.DeletePagesPageIdSubscribersSubscriberIdExecute(r)
 }
 
@@ -50,47 +45,46 @@ DeletePagesPageIdSubscribersSubscriberId Unsubscribe a subscriber
 
 Unsubscribe a subscriber
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @param subscriberId Subscriber Identifier
- @return ApiDeletePagesPageIdSubscribersSubscriberIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@param subscriberId Subscriber Identifier
+	@return ApiDeletePagesPageIdSubscribersSubscriberIdRequest
 */
-func (a *SubscribersApiService) DeletePagesPageIdSubscribersSubscriberId(ctx _context.Context, pageId string, subscriberId string) ApiDeletePagesPageIdSubscribersSubscriberIdRequest {
+func (a *SubscribersAPIService) DeletePagesPageIdSubscribersSubscriberId(ctx context.Context, pageId string, subscriberId string) ApiDeletePagesPageIdSubscribersSubscriberIdRequest {
 	return ApiDeletePagesPageIdSubscribersSubscriberIdRequest{
-		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ApiService:   a,
+		ctx:          ctx,
+		pageId:       pageId,
 		subscriberId: subscriberId,
 	}
 }
 
 // Execute executes the request
-//  @return Subscriber
-func (a *SubscribersApiService) DeletePagesPageIdSubscribersSubscriberIdExecute(r ApiDeletePagesPageIdSubscribersSubscriberIdRequest) (Subscriber, *_nethttp.Response, error) {
+//
+//	@return Subscriber
+func (a *SubscribersAPIService) DeletePagesPageIdSubscribersSubscriberIdExecute(r ApiDeletePagesPageIdSubscribersSubscriberIdRequest) (*Subscriber, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Subscriber
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Subscriber
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersApiService.DeletePagesPageIdSubscribersSubscriberId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersAPIService.DeletePagesPageIdSubscribersSubscriberId")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/subscribers/{subscriber_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"subscriber_id"+"}", _neturl.PathEscape(parameterToString(r.subscriberId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"subscriber_id"+"}", url.PathEscape(parameterValueToString(r.subscriberId, "subscriberId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.skipUnsubscriptionNotification != nil {
-		localVarQueryParams.Add("skip_unsubscription_notification", parameterToString(*r.skipUnsubscriptionNotification, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip_unsubscription_notification", r.skipUnsubscriptionNotification, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -123,7 +117,7 @@ func (a *SubscribersApiService) DeletePagesPageIdSubscribersSubscriberIdExecute(
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -133,15 +127,15 @@ func (a *SubscribersApiService) DeletePagesPageIdSubscribersSubscriberIdExecute(
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -152,6 +146,7 @@ func (a *SubscribersApiService) DeletePagesPageIdSubscribersSubscriberIdExecute(
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -162,6 +157,7 @@ func (a *SubscribersApiService) DeletePagesPageIdSubscribersSubscriberIdExecute(
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -169,7 +165,7 @@ func (a *SubscribersApiService) DeletePagesPageIdSubscribersSubscriberIdExecute(
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -180,15 +176,15 @@ func (a *SubscribersApiService) DeletePagesPageIdSubscribersSubscriberIdExecute(
 }
 
 type ApiGetPagesPageIdSubscribersRequest struct {
-	ctx _context.Context
-	ApiService *SubscribersApiService
-	pageId string
-	q *string
-	type_ *string
-	state *string
-	limit *int32
-	page *int32
-	sortField *string
+	ctx           context.Context
+	ApiService    *SubscribersAPIService
+	pageId        string
+	q             *string
+	type_         *string
+	state         *string
+	limit         *int32
+	page          *int32
+	sortField     *string
 	sortDirection *string
 }
 
@@ -197,38 +193,44 @@ func (r ApiGetPagesPageIdSubscribersRequest) Q(q string) ApiGetPagesPageIdSubscr
 	r.q = &q
 	return r
 }
+
 // If specified, only return subscribers of the indicated type.
 func (r ApiGetPagesPageIdSubscribersRequest) Type_(type_ string) ApiGetPagesPageIdSubscribersRequest {
 	r.type_ = &type_
 	return r
 }
+
 // If this is present, only return subscribers in this state. Specify state \&quot;all\&quot; to find subscribers in any states.
 func (r ApiGetPagesPageIdSubscribersRequest) State(state string) ApiGetPagesPageIdSubscribersRequest {
 	r.state = &state
 	return r
 }
+
 // The maximum number of rows to return. If a text query string is specified (q&#x3D;), the default and maximum limit is 100. If the text query string is not specified, the default and maximum limit are not set, and not providing a limit will return all the subscribers. Beginning February 28, 2023, a default limit of 100 will be imposed and this endpoint will return paginated data (i.e. will no longer return all subscribers) even if this query parameter is not provided.
 func (r ApiGetPagesPageIdSubscribersRequest) Limit(limit int32) ApiGetPagesPageIdSubscribersRequest {
 	r.limit = &limit
 	return r
 }
+
 // The page offset of subscribers. The first page is page 0, the second page 1, etc. This skips page * limit subscribers. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided.
 func (r ApiGetPagesPageIdSubscribersRequest) Page(page int32) ApiGetPagesPageIdSubscribersRequest {
 	r.page = &page
 	return r
 }
+
 // The field on which to sort: &#39;primary&#39; to indicate sorting by the identifying field, &#39;created_at&#39; for sorting by creation timestamp, &#39;quarantined_at&#39; for sorting by quarantine timestamp, and &#39;relevance&#39; which sorts by the relevancy of the search text. &#39;relevance&#39; is not a valid parameter if no search text is supplied.
 func (r ApiGetPagesPageIdSubscribersRequest) SortField(sortField string) ApiGetPagesPageIdSubscribersRequest {
 	r.sortField = &sortField
 	return r
 }
+
 // The sort direction of the listing.
 func (r ApiGetPagesPageIdSubscribersRequest) SortDirection(sortDirection string) ApiGetPagesPageIdSubscribersRequest {
 	r.sortDirection = &sortDirection
 	return r
 }
 
-func (r ApiGetPagesPageIdSubscribersRequest) Execute() ([]Subscriber, *_nethttp.Response, error) {
+func (r ApiGetPagesPageIdSubscribersRequest) Execute() ([]Subscriber, *http.Response, error) {
 	return r.ApiService.GetPagesPageIdSubscribersExecute(r)
 }
 
@@ -237,62 +239,77 @@ GetPagesPageIdSubscribers Get a list of subscribers
 
 Get a list of subscribers
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @return ApiGetPagesPageIdSubscribersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@return ApiGetPagesPageIdSubscribersRequest
 */
-func (a *SubscribersApiService) GetPagesPageIdSubscribers(ctx _context.Context, pageId string) ApiGetPagesPageIdSubscribersRequest {
+func (a *SubscribersAPIService) GetPagesPageIdSubscribers(ctx context.Context, pageId string) ApiGetPagesPageIdSubscribersRequest {
 	return ApiGetPagesPageIdSubscribersRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ctx:        ctx,
+		pageId:     pageId,
 	}
 }
 
 // Execute executes the request
-//  @return []Subscriber
-func (a *SubscribersApiService) GetPagesPageIdSubscribersExecute(r ApiGetPagesPageIdSubscribersRequest) ([]Subscriber, *_nethttp.Response, error) {
+//
+//	@return []Subscriber
+func (a *SubscribersAPIService) GetPagesPageIdSubscribersExecute(r ApiGetPagesPageIdSubscribersRequest) ([]Subscriber, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  []Subscriber
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []Subscriber
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersApiService.GetPagesPageIdSubscribers")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersAPIService.GetPagesPageIdSubscribers")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/subscribers"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.q != nil {
-		localVarQueryParams.Add("q", parameterToString(*r.q, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "q", r.q, "form", "")
 	}
 	if r.type_ != nil {
-		localVarQueryParams.Add("type", parameterToString(*r.type_, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "form", "")
 	}
 	if r.state != nil {
-		localVarQueryParams.Add("state", parameterToString(*r.state, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "state", r.state, "form", "")
+	} else {
+		var defaultValue string = "active"
+		parameterAddToHeaderOrQuery(localVarQueryParams, "state", defaultValue, "form", "")
+		r.state = &defaultValue
 	}
 	if r.limit != nil {
-		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
 	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
+	} else {
+		var defaultValue int32 = 0
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", defaultValue, "form", "")
+		r.page = &defaultValue
 	}
 	if r.sortField != nil {
-		localVarQueryParams.Add("sort_field", parameterToString(*r.sortField, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sort_field", r.sortField, "form", "")
+	} else {
+		var defaultValue string = "primary"
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sort_field", defaultValue, "form", "")
+		r.sortField = &defaultValue
 	}
 	if r.sortDirection != nil {
-		localVarQueryParams.Add("sort_direction", parameterToString(*r.sortDirection, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sort_direction", r.sortDirection, "form", "")
+	} else {
+		var defaultValue string = "asc"
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sort_direction", defaultValue, "form", "")
+		r.sortDirection = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -325,7 +342,7 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersExecute(r ApiGetPagesPa
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -335,15 +352,15 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersExecute(r ApiGetPagesPa
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -354,6 +371,7 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersExecute(r ApiGetPagesPa
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -364,6 +382,7 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersExecute(r ApiGetPagesPa
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -374,6 +393,7 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersExecute(r ApiGetPagesPa
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -384,6 +404,7 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersExecute(r ApiGetPagesPa
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -394,6 +415,7 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersExecute(r ApiGetPagesPa
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -401,7 +423,7 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersExecute(r ApiGetPagesPa
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -412,11 +434,11 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersExecute(r ApiGetPagesPa
 }
 
 type ApiGetPagesPageIdSubscribersCountRequest struct {
-	ctx _context.Context
-	ApiService *SubscribersApiService
-	pageId string
-	type_ *string
-	state *string
+	ctx        context.Context
+	ApiService *SubscribersAPIService
+	pageId     string
+	type_      *string
+	state      *string
 }
 
 // If this is present, only count subscribers of this type.
@@ -424,13 +446,14 @@ func (r ApiGetPagesPageIdSubscribersCountRequest) Type_(type_ string) ApiGetPage
 	r.type_ = &type_
 	return r
 }
+
 // If this is present, only count subscribers in this state. Specify state \&quot;all\&quot; to count subscribers in any states.
 func (r ApiGetPagesPageIdSubscribersCountRequest) State(state string) ApiGetPagesPageIdSubscribersCountRequest {
 	r.state = &state
 	return r
 }
 
-func (r ApiGetPagesPageIdSubscribersCountRequest) Execute() (SubscriberCountByType, *_nethttp.Response, error) {
+func (r ApiGetPagesPageIdSubscribersCountRequest) Execute() (*SubscriberCountByType, *http.Response, error) {
 	return r.ApiService.GetPagesPageIdSubscribersCountExecute(r)
 }
 
@@ -439,47 +462,50 @@ GetPagesPageIdSubscribersCount Get a count of subscribers by type
 
 Get a count of subscribers by type
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @return ApiGetPagesPageIdSubscribersCountRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@return ApiGetPagesPageIdSubscribersCountRequest
 */
-func (a *SubscribersApiService) GetPagesPageIdSubscribersCount(ctx _context.Context, pageId string) ApiGetPagesPageIdSubscribersCountRequest {
+func (a *SubscribersAPIService) GetPagesPageIdSubscribersCount(ctx context.Context, pageId string) ApiGetPagesPageIdSubscribersCountRequest {
 	return ApiGetPagesPageIdSubscribersCountRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ctx:        ctx,
+		pageId:     pageId,
 	}
 }
 
 // Execute executes the request
-//  @return SubscriberCountByType
-func (a *SubscribersApiService) GetPagesPageIdSubscribersCountExecute(r ApiGetPagesPageIdSubscribersCountRequest) (SubscriberCountByType, *_nethttp.Response, error) {
+//
+//	@return SubscriberCountByType
+func (a *SubscribersAPIService) GetPagesPageIdSubscribersCountExecute(r ApiGetPagesPageIdSubscribersCountRequest) (*SubscriberCountByType, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SubscriberCountByType
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SubscriberCountByType
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersApiService.GetPagesPageIdSubscribersCount")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersAPIService.GetPagesPageIdSubscribersCount")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/subscribers/count"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.type_ != nil {
-		localVarQueryParams.Add("type", parameterToString(*r.type_, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "type", r.type_, "form", "")
 	}
 	if r.state != nil {
-		localVarQueryParams.Add("state", parameterToString(*r.state, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "state", r.state, "form", "")
+	} else {
+		var defaultValue string = "active"
+		parameterAddToHeaderOrQuery(localVarQueryParams, "state", defaultValue, "form", "")
+		r.state = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -512,7 +538,7 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersCountExecute(r ApiGetPa
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -522,15 +548,15 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersCountExecute(r ApiGetPa
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -541,6 +567,7 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersCountExecute(r ApiGetPa
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -551,6 +578,7 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersCountExecute(r ApiGetPa
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -561,6 +589,7 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersCountExecute(r ApiGetPa
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -568,7 +597,7 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersCountExecute(r ApiGetPa
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -579,13 +608,12 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersCountExecute(r ApiGetPa
 }
 
 type ApiGetPagesPageIdSubscribersHistogramByStateRequest struct {
-	ctx _context.Context
-	ApiService *SubscribersApiService
-	pageId string
+	ctx        context.Context
+	ApiService *SubscribersAPIService
+	pageId     string
 }
 
-
-func (r ApiGetPagesPageIdSubscribersHistogramByStateRequest) Execute() (SubscriberCountByTypeAndState, *_nethttp.Response, error) {
+func (r ApiGetPagesPageIdSubscribersHistogramByStateRequest) Execute() (*SubscriberCountByTypeAndState, *http.Response, error) {
 	return r.ApiService.GetPagesPageIdSubscribersHistogramByStateExecute(r)
 }
 
@@ -594,41 +622,40 @@ GetPagesPageIdSubscribersHistogramByState Get a histogram of subscribers by type
 
 Get a histogram of subscribers by type and then state
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @return ApiGetPagesPageIdSubscribersHistogramByStateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@return ApiGetPagesPageIdSubscribersHistogramByStateRequest
 */
-func (a *SubscribersApiService) GetPagesPageIdSubscribersHistogramByState(ctx _context.Context, pageId string) ApiGetPagesPageIdSubscribersHistogramByStateRequest {
+func (a *SubscribersAPIService) GetPagesPageIdSubscribersHistogramByState(ctx context.Context, pageId string) ApiGetPagesPageIdSubscribersHistogramByStateRequest {
 	return ApiGetPagesPageIdSubscribersHistogramByStateRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ctx:        ctx,
+		pageId:     pageId,
 	}
 }
 
 // Execute executes the request
-//  @return SubscriberCountByTypeAndState
-func (a *SubscribersApiService) GetPagesPageIdSubscribersHistogramByStateExecute(r ApiGetPagesPageIdSubscribersHistogramByStateRequest) (SubscriberCountByTypeAndState, *_nethttp.Response, error) {
+//
+//	@return SubscriberCountByTypeAndState
+func (a *SubscribersAPIService) GetPagesPageIdSubscribersHistogramByStateExecute(r ApiGetPagesPageIdSubscribersHistogramByStateRequest) (*SubscriberCountByTypeAndState, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SubscriberCountByTypeAndState
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SubscriberCountByTypeAndState
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersApiService.GetPagesPageIdSubscribersHistogramByState")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersAPIService.GetPagesPageIdSubscribersHistogramByState")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/subscribers/histogram_by_state"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -661,7 +688,7 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersHistogramByStateExecute
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -671,15 +698,15 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersHistogramByStateExecute
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -690,6 +717,7 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersHistogramByStateExecute
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -700,6 +728,7 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersHistogramByStateExecute
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -710,6 +739,7 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersHistogramByStateExecute
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -717,7 +747,7 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersHistogramByStateExecute
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -728,14 +758,13 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersHistogramByStateExecute
 }
 
 type ApiGetPagesPageIdSubscribersSubscriberIdRequest struct {
-	ctx _context.Context
-	ApiService *SubscribersApiService
-	pageId string
+	ctx          context.Context
+	ApiService   *SubscribersAPIService
+	pageId       string
 	subscriberId string
 }
 
-
-func (r ApiGetPagesPageIdSubscribersSubscriberIdRequest) Execute() (Subscriber, *_nethttp.Response, error) {
+func (r ApiGetPagesPageIdSubscribersSubscriberIdRequest) Execute() (*Subscriber, *http.Response, error) {
 	return r.ApiService.GetPagesPageIdSubscribersSubscriberIdExecute(r)
 }
 
@@ -744,44 +773,43 @@ GetPagesPageIdSubscribersSubscriberId Get a subscriber
 
 Get a subscriber
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @param subscriberId Subscriber Identifier
- @return ApiGetPagesPageIdSubscribersSubscriberIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@param subscriberId Subscriber Identifier
+	@return ApiGetPagesPageIdSubscribersSubscriberIdRequest
 */
-func (a *SubscribersApiService) GetPagesPageIdSubscribersSubscriberId(ctx _context.Context, pageId string, subscriberId string) ApiGetPagesPageIdSubscribersSubscriberIdRequest {
+func (a *SubscribersAPIService) GetPagesPageIdSubscribersSubscriberId(ctx context.Context, pageId string, subscriberId string) ApiGetPagesPageIdSubscribersSubscriberIdRequest {
 	return ApiGetPagesPageIdSubscribersSubscriberIdRequest{
-		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ApiService:   a,
+		ctx:          ctx,
+		pageId:       pageId,
 		subscriberId: subscriberId,
 	}
 }
 
 // Execute executes the request
-//  @return Subscriber
-func (a *SubscribersApiService) GetPagesPageIdSubscribersSubscriberIdExecute(r ApiGetPagesPageIdSubscribersSubscriberIdRequest) (Subscriber, *_nethttp.Response, error) {
+//
+//	@return Subscriber
+func (a *SubscribersAPIService) GetPagesPageIdSubscribersSubscriberIdExecute(r ApiGetPagesPageIdSubscribersSubscriberIdRequest) (*Subscriber, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Subscriber
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Subscriber
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersApiService.GetPagesPageIdSubscribersSubscriberId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersAPIService.GetPagesPageIdSubscribersSubscriberId")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/subscribers/{subscriber_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"subscriber_id"+"}", _neturl.PathEscape(parameterToString(r.subscriberId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"subscriber_id"+"}", url.PathEscape(parameterValueToString(r.subscriberId, "subscriberId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -814,7 +842,7 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersSubscriberIdExecute(r A
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -824,15 +852,15 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersSubscriberIdExecute(r A
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -843,6 +871,7 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersSubscriberIdExecute(r A
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -853,6 +882,7 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersSubscriberIdExecute(r A
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -860,7 +890,7 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersSubscriberIdExecute(r A
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -871,11 +901,11 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersSubscriberIdExecute(r A
 }
 
 type ApiGetPagesPageIdSubscribersUnsubscribedRequest struct {
-	ctx _context.Context
-	ApiService *SubscribersApiService
-	pageId string
-	page *int32
-	perPage *int32
+	ctx        context.Context
+	ApiService *SubscribersAPIService
+	pageId     string
+	page       *int32
+	perPage    *int32
 }
 
 // Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided.
@@ -883,13 +913,14 @@ func (r ApiGetPagesPageIdSubscribersUnsubscribedRequest) Page(page int32) ApiGet
 	r.page = &page
 	return r
 }
+
 // Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided.
 func (r ApiGetPagesPageIdSubscribersUnsubscribedRequest) PerPage(perPage int32) ApiGetPagesPageIdSubscribersUnsubscribedRequest {
 	r.perPage = &perPage
 	return r
 }
 
-func (r ApiGetPagesPageIdSubscribersUnsubscribedRequest) Execute() ([]Subscriber, *_nethttp.Response, error) {
+func (r ApiGetPagesPageIdSubscribersUnsubscribedRequest) Execute() ([]Subscriber, *http.Response, error) {
 	return r.ApiService.GetPagesPageIdSubscribersUnsubscribedExecute(r)
 }
 
@@ -898,47 +929,46 @@ GetPagesPageIdSubscribersUnsubscribed Get a list of unsubscribed subscribers
 
 Get a list of unsubscribed subscribers
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @return ApiGetPagesPageIdSubscribersUnsubscribedRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@return ApiGetPagesPageIdSubscribersUnsubscribedRequest
 */
-func (a *SubscribersApiService) GetPagesPageIdSubscribersUnsubscribed(ctx _context.Context, pageId string) ApiGetPagesPageIdSubscribersUnsubscribedRequest {
+func (a *SubscribersAPIService) GetPagesPageIdSubscribersUnsubscribed(ctx context.Context, pageId string) ApiGetPagesPageIdSubscribersUnsubscribedRequest {
 	return ApiGetPagesPageIdSubscribersUnsubscribedRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ctx:        ctx,
+		pageId:     pageId,
 	}
 }
 
 // Execute executes the request
-//  @return []Subscriber
-func (a *SubscribersApiService) GetPagesPageIdSubscribersUnsubscribedExecute(r ApiGetPagesPageIdSubscribersUnsubscribedRequest) ([]Subscriber, *_nethttp.Response, error) {
+//
+//	@return []Subscriber
+func (a *SubscribersAPIService) GetPagesPageIdSubscribersUnsubscribedExecute(r ApiGetPagesPageIdSubscribersUnsubscribedRequest) ([]Subscriber, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  []Subscriber
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []Subscriber
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersApiService.GetPagesPageIdSubscribersUnsubscribed")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersAPIService.GetPagesPageIdSubscribersUnsubscribed")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/subscribers/unsubscribed"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "page", r.page, "form", "")
 	}
 	if r.perPage != nil {
-		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "per_page", r.perPage, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -971,7 +1001,7 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersUnsubscribedExecute(r A
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -981,15 +1011,15 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersUnsubscribedExecute(r A
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1000,6 +1030,7 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersUnsubscribedExecute(r A
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -1010,6 +1041,7 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersUnsubscribedExecute(r A
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1017,7 +1049,7 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersUnsubscribedExecute(r A
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1028,10 +1060,10 @@ func (a *SubscribersApiService) GetPagesPageIdSubscribersUnsubscribedExecute(r A
 }
 
 type ApiPatchPagesPageIdSubscribersSubscriberIdRequest struct {
-	ctx _context.Context
-	ApiService *SubscribersApiService
-	pageId string
-	subscriberId string
+	ctx                         context.Context
+	ApiService                  *SubscribersAPIService
+	pageId                      string
+	subscriberId                string
 	patchPagesPageIdSubscribers *PatchPagesPageIdSubscribers
 }
 
@@ -1040,7 +1072,7 @@ func (r ApiPatchPagesPageIdSubscribersSubscriberIdRequest) PatchPagesPageIdSubsc
 	return r
 }
 
-func (r ApiPatchPagesPageIdSubscribersSubscriberIdRequest) Execute() (Subscriber, *_nethttp.Response, error) {
+func (r ApiPatchPagesPageIdSubscribersSubscriberIdRequest) Execute() (*Subscriber, *http.Response, error) {
 	return r.ApiService.PatchPagesPageIdSubscribersSubscriberIdExecute(r)
 }
 
@@ -1049,44 +1081,43 @@ PatchPagesPageIdSubscribersSubscriberId Update a subscriber
 
 Update a subscriber
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @param subscriberId Subscriber Identifier
- @return ApiPatchPagesPageIdSubscribersSubscriberIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@param subscriberId Subscriber Identifier
+	@return ApiPatchPagesPageIdSubscribersSubscriberIdRequest
 */
-func (a *SubscribersApiService) PatchPagesPageIdSubscribersSubscriberId(ctx _context.Context, pageId string, subscriberId string) ApiPatchPagesPageIdSubscribersSubscriberIdRequest {
+func (a *SubscribersAPIService) PatchPagesPageIdSubscribersSubscriberId(ctx context.Context, pageId string, subscriberId string) ApiPatchPagesPageIdSubscribersSubscriberIdRequest {
 	return ApiPatchPagesPageIdSubscribersSubscriberIdRequest{
-		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ApiService:   a,
+		ctx:          ctx,
+		pageId:       pageId,
 		subscriberId: subscriberId,
 	}
 }
 
 // Execute executes the request
-//  @return Subscriber
-func (a *SubscribersApiService) PatchPagesPageIdSubscribersSubscriberIdExecute(r ApiPatchPagesPageIdSubscribersSubscriberIdRequest) (Subscriber, *_nethttp.Response, error) {
+//
+//	@return Subscriber
+func (a *SubscribersAPIService) PatchPagesPageIdSubscribersSubscriberIdExecute(r ApiPatchPagesPageIdSubscribersSubscriberIdRequest) (*Subscriber, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Subscriber
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Subscriber
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersApiService.PatchPagesPageIdSubscribersSubscriberId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersAPIService.PatchPagesPageIdSubscribersSubscriberId")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/subscribers/{subscriber_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"subscriber_id"+"}", _neturl.PathEscape(parameterToString(r.subscriberId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"subscriber_id"+"}", url.PathEscape(parameterValueToString(r.subscriberId, "subscriberId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.patchPagesPageIdSubscribers == nil {
 		return localVarReturnValue, nil, reportError("patchPagesPageIdSubscribers is required and must be specified")
 	}
@@ -1124,7 +1155,7 @@ func (a *SubscribersApiService) PatchPagesPageIdSubscribersSubscriberIdExecute(r
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1134,15 +1165,15 @@ func (a *SubscribersApiService) PatchPagesPageIdSubscribersSubscriberIdExecute(r
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1153,6 +1184,7 @@ func (a *SubscribersApiService) PatchPagesPageIdSubscribersSubscriberIdExecute(r
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -1163,6 +1195,7 @@ func (a *SubscribersApiService) PatchPagesPageIdSubscribersSubscriberIdExecute(r
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -1173,6 +1206,7 @@ func (a *SubscribersApiService) PatchPagesPageIdSubscribersSubscriberIdExecute(r
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1180,7 +1214,7 @@ func (a *SubscribersApiService) PatchPagesPageIdSubscribersSubscriberIdExecute(r
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1191,9 +1225,9 @@ func (a *SubscribersApiService) PatchPagesPageIdSubscribersSubscriberIdExecute(r
 }
 
 type ApiPostPagesPageIdSubscribersRequest struct {
-	ctx _context.Context
-	ApiService *SubscribersApiService
-	pageId string
+	ctx                        context.Context
+	ApiService                 *SubscribersAPIService
+	pageId                     string
 	postPagesPageIdSubscribers *PostPagesPageIdSubscribers
 }
 
@@ -1202,7 +1236,7 @@ func (r ApiPostPagesPageIdSubscribersRequest) PostPagesPageIdSubscribers(postPag
 	return r
 }
 
-func (r ApiPostPagesPageIdSubscribersRequest) Execute() (Subscriber, *_nethttp.Response, error) {
+func (r ApiPostPagesPageIdSubscribersRequest) Execute() (*Subscriber, *http.Response, error) {
 	return r.ApiService.PostPagesPageIdSubscribersExecute(r)
 }
 
@@ -1211,41 +1245,40 @@ PostPagesPageIdSubscribers Create a subscriber
 
 Create a subscriber. Not applicable for Slack subscribers.
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @return ApiPostPagesPageIdSubscribersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@return ApiPostPagesPageIdSubscribersRequest
 */
-func (a *SubscribersApiService) PostPagesPageIdSubscribers(ctx _context.Context, pageId string) ApiPostPagesPageIdSubscribersRequest {
+func (a *SubscribersAPIService) PostPagesPageIdSubscribers(ctx context.Context, pageId string) ApiPostPagesPageIdSubscribersRequest {
 	return ApiPostPagesPageIdSubscribersRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ctx:        ctx,
+		pageId:     pageId,
 	}
 }
 
 // Execute executes the request
-//  @return Subscriber
-func (a *SubscribersApiService) PostPagesPageIdSubscribersExecute(r ApiPostPagesPageIdSubscribersRequest) (Subscriber, *_nethttp.Response, error) {
+//
+//	@return Subscriber
+func (a *SubscribersAPIService) PostPagesPageIdSubscribersExecute(r ApiPostPagesPageIdSubscribersRequest) (*Subscriber, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Subscriber
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Subscriber
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersApiService.PostPagesPageIdSubscribers")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersAPIService.PostPagesPageIdSubscribers")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/subscribers"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.postPagesPageIdSubscribers == nil {
 		return localVarReturnValue, nil, reportError("postPagesPageIdSubscribers is required and must be specified")
 	}
@@ -1283,7 +1316,7 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersExecute(r ApiPostPages
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1293,15 +1326,15 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersExecute(r ApiPostPages
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1312,6 +1345,7 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersExecute(r ApiPostPages
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -1322,6 +1356,7 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersExecute(r ApiPostPages
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -1332,6 +1367,7 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersExecute(r ApiPostPages
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -1342,6 +1378,7 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersExecute(r ApiPostPages
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -1352,6 +1389,7 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersExecute(r ApiPostPages
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1359,7 +1397,7 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersExecute(r ApiPostPages
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1370,9 +1408,9 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersExecute(r ApiPostPages
 }
 
 type ApiPostPagesPageIdSubscribersReactivateRequest struct {
-	ctx _context.Context
-	ApiService *SubscribersApiService
-	pageId string
+	ctx                                  context.Context
+	ApiService                           *SubscribersAPIService
+	pageId                               string
 	postPagesPageIdSubscribersReactivate *PostPagesPageIdSubscribersReactivate
 }
 
@@ -1381,7 +1419,7 @@ func (r ApiPostPagesPageIdSubscribersReactivateRequest) PostPagesPageIdSubscribe
 	return r
 }
 
-func (r ApiPostPagesPageIdSubscribersReactivateRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiPostPagesPageIdSubscribersReactivateRequest) Execute() (*http.Response, error) {
 	return r.ApiService.PostPagesPageIdSubscribersReactivateExecute(r)
 }
 
@@ -1390,39 +1428,37 @@ PostPagesPageIdSubscribersReactivate Reactivate a list of subscribers
 
 Reactivate a list of quarantined subscribers
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @return ApiPostPagesPageIdSubscribersReactivateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@return ApiPostPagesPageIdSubscribersReactivateRequest
 */
-func (a *SubscribersApiService) PostPagesPageIdSubscribersReactivate(ctx _context.Context, pageId string) ApiPostPagesPageIdSubscribersReactivateRequest {
+func (a *SubscribersAPIService) PostPagesPageIdSubscribersReactivate(ctx context.Context, pageId string) ApiPostPagesPageIdSubscribersReactivateRequest {
 	return ApiPostPagesPageIdSubscribersReactivateRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ctx:        ctx,
+		pageId:     pageId,
 	}
 }
 
 // Execute executes the request
-func (a *SubscribersApiService) PostPagesPageIdSubscribersReactivateExecute(r ApiPostPagesPageIdSubscribersReactivateRequest) (*_nethttp.Response, error) {
+func (a *SubscribersAPIService) PostPagesPageIdSubscribersReactivateExecute(r ApiPostPagesPageIdSubscribersReactivateRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersApiService.PostPagesPageIdSubscribersReactivate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersAPIService.PostPagesPageIdSubscribersReactivate")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/subscribers/reactivate"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.postPagesPageIdSubscribersReactivate == nil {
 		return nil, reportError("postPagesPageIdSubscribersReactivate is required and must be specified")
 	}
@@ -1460,7 +1496,7 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersReactivateExecute(r Ap
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -1470,15 +1506,15 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersReactivateExecute(r Ap
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1489,6 +1525,7 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersReactivateExecute(r Ap
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
@@ -1499,6 +1536,7 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersReactivateExecute(r Ap
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
@@ -1509,6 +1547,7 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersReactivateExecute(r Ap
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
@@ -1519,6 +1558,7 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersReactivateExecute(r Ap
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
@@ -1528,9 +1568,9 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersReactivateExecute(r Ap
 }
 
 type ApiPostPagesPageIdSubscribersResendConfirmationRequest struct {
-	ctx _context.Context
-	ApiService *SubscribersApiService
-	pageId string
+	ctx                                          context.Context
+	ApiService                                   *SubscribersAPIService
+	pageId                                       string
 	postPagesPageIdSubscribersResendConfirmation *PostPagesPageIdSubscribersResendConfirmation
 }
 
@@ -1539,7 +1579,7 @@ func (r ApiPostPagesPageIdSubscribersResendConfirmationRequest) PostPagesPageIdS
 	return r
 }
 
-func (r ApiPostPagesPageIdSubscribersResendConfirmationRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiPostPagesPageIdSubscribersResendConfirmationRequest) Execute() (*http.Response, error) {
 	return r.ApiService.PostPagesPageIdSubscribersResendConfirmationExecute(r)
 }
 
@@ -1548,39 +1588,37 @@ PostPagesPageIdSubscribersResendConfirmation Resend confirmations to a list of s
 
 Resend confirmations to a list of subscribers
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @return ApiPostPagesPageIdSubscribersResendConfirmationRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@return ApiPostPagesPageIdSubscribersResendConfirmationRequest
 */
-func (a *SubscribersApiService) PostPagesPageIdSubscribersResendConfirmation(ctx _context.Context, pageId string) ApiPostPagesPageIdSubscribersResendConfirmationRequest {
+func (a *SubscribersAPIService) PostPagesPageIdSubscribersResendConfirmation(ctx context.Context, pageId string) ApiPostPagesPageIdSubscribersResendConfirmationRequest {
 	return ApiPostPagesPageIdSubscribersResendConfirmationRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ctx:        ctx,
+		pageId:     pageId,
 	}
 }
 
 // Execute executes the request
-func (a *SubscribersApiService) PostPagesPageIdSubscribersResendConfirmationExecute(r ApiPostPagesPageIdSubscribersResendConfirmationRequest) (*_nethttp.Response, error) {
+func (a *SubscribersAPIService) PostPagesPageIdSubscribersResendConfirmationExecute(r ApiPostPagesPageIdSubscribersResendConfirmationRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersApiService.PostPagesPageIdSubscribersResendConfirmation")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersAPIService.PostPagesPageIdSubscribersResendConfirmation")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/subscribers/resend_confirmation"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.postPagesPageIdSubscribersResendConfirmation == nil {
 		return nil, reportError("postPagesPageIdSubscribersResendConfirmation is required and must be specified")
 	}
@@ -1618,7 +1656,7 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersResendConfirmationExec
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -1628,15 +1666,15 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersResendConfirmationExec
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1647,6 +1685,7 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersResendConfirmationExec
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
@@ -1657,6 +1696,7 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersResendConfirmationExec
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
@@ -1667,6 +1707,7 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersResendConfirmationExec
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
@@ -1677,6 +1718,7 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersResendConfirmationExec
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
@@ -1686,14 +1728,13 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersResendConfirmationExec
 }
 
 type ApiPostPagesPageIdSubscribersSubscriberIdResendConfirmationRequest struct {
-	ctx _context.Context
-	ApiService *SubscribersApiService
-	pageId string
+	ctx          context.Context
+	ApiService   *SubscribersAPIService
+	pageId       string
 	subscriberId string
 }
 
-
-func (r ApiPostPagesPageIdSubscribersSubscriberIdResendConfirmationRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiPostPagesPageIdSubscribersSubscriberIdResendConfirmationRequest) Execute() (*http.Response, error) {
 	return r.ApiService.PostPagesPageIdSubscribersSubscriberIdResendConfirmationExecute(r)
 }
 
@@ -1702,42 +1743,40 @@ PostPagesPageIdSubscribersSubscriberIdResendConfirmation Resend confirmation to 
 
 Resend confirmation to a subscriber
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @param subscriberId Subscriber Identifier
- @return ApiPostPagesPageIdSubscribersSubscriberIdResendConfirmationRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@param subscriberId Subscriber Identifier
+	@return ApiPostPagesPageIdSubscribersSubscriberIdResendConfirmationRequest
 */
-func (a *SubscribersApiService) PostPagesPageIdSubscribersSubscriberIdResendConfirmation(ctx _context.Context, pageId string, subscriberId string) ApiPostPagesPageIdSubscribersSubscriberIdResendConfirmationRequest {
+func (a *SubscribersAPIService) PostPagesPageIdSubscribersSubscriberIdResendConfirmation(ctx context.Context, pageId string, subscriberId string) ApiPostPagesPageIdSubscribersSubscriberIdResendConfirmationRequest {
 	return ApiPostPagesPageIdSubscribersSubscriberIdResendConfirmationRequest{
-		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ApiService:   a,
+		ctx:          ctx,
+		pageId:       pageId,
 		subscriberId: subscriberId,
 	}
 }
 
 // Execute executes the request
-func (a *SubscribersApiService) PostPagesPageIdSubscribersSubscriberIdResendConfirmationExecute(r ApiPostPagesPageIdSubscribersSubscriberIdResendConfirmationRequest) (*_nethttp.Response, error) {
+func (a *SubscribersAPIService) PostPagesPageIdSubscribersSubscriberIdResendConfirmationExecute(r ApiPostPagesPageIdSubscribersSubscriberIdResendConfirmationRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersApiService.PostPagesPageIdSubscribersSubscriberIdResendConfirmation")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersAPIService.PostPagesPageIdSubscribersSubscriberIdResendConfirmation")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/subscribers/{subscriber_id}/resend_confirmation"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"subscriber_id"+"}", _neturl.PathEscape(parameterToString(r.subscriberId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"subscriber_id"+"}", url.PathEscape(parameterValueToString(r.subscriberId, "subscriberId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1770,7 +1809,7 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersSubscriberIdResendConf
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -1780,15 +1819,15 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersSubscriberIdResendConf
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1799,6 +1838,7 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersSubscriberIdResendConf
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
@@ -1809,6 +1849,7 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersSubscriberIdResendConf
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
@@ -1818,9 +1859,9 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersSubscriberIdResendConf
 }
 
 type ApiPostPagesPageIdSubscribersUnsubscribeRequest struct {
-	ctx _context.Context
-	ApiService *SubscribersApiService
-	pageId string
+	ctx                                   context.Context
+	ApiService                            *SubscribersAPIService
+	pageId                                string
 	postPagesPageIdSubscribersUnsubscribe *PostPagesPageIdSubscribersUnsubscribe
 }
 
@@ -1829,7 +1870,7 @@ func (r ApiPostPagesPageIdSubscribersUnsubscribeRequest) PostPagesPageIdSubscrib
 	return r
 }
 
-func (r ApiPostPagesPageIdSubscribersUnsubscribeRequest) Execute() (*_nethttp.Response, error) {
+func (r ApiPostPagesPageIdSubscribersUnsubscribeRequest) Execute() (*http.Response, error) {
 	return r.ApiService.PostPagesPageIdSubscribersUnsubscribeExecute(r)
 }
 
@@ -1838,39 +1879,37 @@ PostPagesPageIdSubscribersUnsubscribe Unsubscribe a list of subscribers
 
 Unsubscribe a list of subscribers
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @return ApiPostPagesPageIdSubscribersUnsubscribeRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@return ApiPostPagesPageIdSubscribersUnsubscribeRequest
 */
-func (a *SubscribersApiService) PostPagesPageIdSubscribersUnsubscribe(ctx _context.Context, pageId string) ApiPostPagesPageIdSubscribersUnsubscribeRequest {
+func (a *SubscribersAPIService) PostPagesPageIdSubscribersUnsubscribe(ctx context.Context, pageId string) ApiPostPagesPageIdSubscribersUnsubscribeRequest {
 	return ApiPostPagesPageIdSubscribersUnsubscribeRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ctx:        ctx,
+		pageId:     pageId,
 	}
 }
 
 // Execute executes the request
-func (a *SubscribersApiService) PostPagesPageIdSubscribersUnsubscribeExecute(r ApiPostPagesPageIdSubscribersUnsubscribeRequest) (*_nethttp.Response, error) {
+func (a *SubscribersAPIService) PostPagesPageIdSubscribersUnsubscribeExecute(r ApiPostPagesPageIdSubscribersUnsubscribeRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersApiService.PostPagesPageIdSubscribersUnsubscribe")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscribersAPIService.PostPagesPageIdSubscribersUnsubscribe")
 	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/subscribers/unsubscribe"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.postPagesPageIdSubscribersUnsubscribe == nil {
 		return nil, reportError("postPagesPageIdSubscribersUnsubscribe is required and must be specified")
 	}
@@ -1908,7 +1947,7 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersUnsubscribeExecute(r A
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
 	}
@@ -1918,15 +1957,15 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersUnsubscribeExecute(r A
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1937,6 +1976,7 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersUnsubscribeExecute(r A
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
@@ -1947,6 +1987,7 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersUnsubscribeExecute(r A
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
@@ -1957,6 +1998,7 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersUnsubscribeExecute(r A
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
@@ -1967,6 +2009,7 @@ func (a *SubscribersApiService) PostPagesPageIdSubscribersUnsubscribeExecute(r A
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarHTTPResponse, newErr

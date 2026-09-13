@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PatchPagesPageIdMetrics type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PatchPagesPageIdMetrics{}
+
 // PatchPagesPageIdMetrics Update a metric
 type PatchPagesPageIdMetrics struct {
 	Metric *PatchPagesPageIdMetricsMetric `json:"metric,omitempty"`
@@ -38,7 +41,7 @@ func NewPatchPagesPageIdMetricsWithDefaults() *PatchPagesPageIdMetrics {
 
 // GetMetric returns the Metric field value if set, zero value otherwise.
 func (o *PatchPagesPageIdMetrics) GetMetric() PatchPagesPageIdMetricsMetric {
-	if o == nil || o.Metric == nil {
+	if o == nil || IsNil(o.Metric) {
 		var ret PatchPagesPageIdMetricsMetric
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *PatchPagesPageIdMetrics) GetMetric() PatchPagesPageIdMetricsMetric {
 // GetMetricOk returns a tuple with the Metric field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdMetrics) GetMetricOk() (*PatchPagesPageIdMetricsMetric, bool) {
-	if o == nil || o.Metric == nil {
+	if o == nil || IsNil(o.Metric) {
 		return nil, false
 	}
 	return o.Metric, true
@@ -56,7 +59,7 @@ func (o *PatchPagesPageIdMetrics) GetMetricOk() (*PatchPagesPageIdMetricsMetric,
 
 // HasMetric returns a boolean if a field has been set.
 func (o *PatchPagesPageIdMetrics) HasMetric() bool {
-	if o != nil && o.Metric != nil {
+	if o != nil && !IsNil(o.Metric) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *PatchPagesPageIdMetrics) SetMetric(v PatchPagesPageIdMetricsMetric) {
 }
 
 func (o PatchPagesPageIdMetrics) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Metric != nil {
-		toSerialize["metric"] = o.Metric
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PatchPagesPageIdMetrics) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Metric) {
+		toSerialize["metric"] = o.Metric
+	}
+	return toSerialize, nil
 }
 
 type NullablePatchPagesPageIdMetrics struct {
@@ -111,5 +122,3 @@ func (v *NullablePatchPagesPageIdMetrics) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

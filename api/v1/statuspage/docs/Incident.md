@@ -10,7 +10,8 @@ Name | Type | Description | Notes
 **Impact** | Pointer to **string** | The impact of the incident. | [optional] 
 **ImpactOverride** | Pointer to **string** | value to override calculated impact value | [optional] 
 **IncidentUpdates** | Pointer to [**[]IncidentUpdate**](IncidentUpdate.md) | The incident updates for incident. | [optional] 
-**Metadata** | Pointer to [**Object**](Object.md) | Metadata attached to the incident. Top level values must be objects. | [optional] 
+**IncidentImpacts** | Pointer to [**[]IncidentImpact**](IncidentImpact.md) | The incident impacts for the incident (limited to 500). | [optional] 
+**Metadata** | Pointer to **map[string]interface{}** | Metadata attached to the incident. Top level values must be objects. | [optional] 
 **MonitoringAt** | Pointer to **time.Time** | The timestamp when incident entered monitoring state. | [optional] 
 **Name** | Pointer to **string** | Incident Name. There is a maximum limit of 255 characters. | [optional] 
 **PageId** | Pointer to **string** | Incident Page Identifier | [optional] 
@@ -34,6 +35,7 @@ Name | Type | Description | Notes
 **Shortlink** | Pointer to **string** | Incident Shortlink. | [optional] 
 **Status** | Pointer to **string** | The incident status. For realtime incidents, valid values are investigating, identified, monitoring, and resolved. For scheduled incidents, valid values are scheduled, in_progress, verifying, and completed. | [optional] 
 **UpdatedAt** | Pointer to **time.Time** | The timestamp when the incident was updated at. | [optional] 
+**ReminderIntervals** | Pointer to **string** | Custom reminder intervals for unresolved/open incidents. Not applicable for &lt;strong&gt;Scheduled maintenance&lt;/strong&gt;&lt;br&gt;There are 4 possible states for reminder_intervals:&lt;br&gt;&lt;strong&gt;DEFAULT:&lt;/strong&gt; NULL, representing a default behavior with intervals [3, 6, 12, 24].&lt;br&gt;&lt;strong&gt;AFTER:&lt;/strong&gt; A serialized array of strictly increasing intervals, each integer ranges from [1-24] (inclusive). Ex \&quot;[1, 5, 7, 10]\&quot;&lt;br&gt;&lt;strong&gt;EVERY:&lt;/strong&gt; An integer in the range [1-24] as a string, representing equal intervals. Ex \&quot;4\&quot; for [4, 8, 12, 16, 20, 24]&lt;br&gt;&lt;strong&gt;OFF:&lt;/strong&gt; A serialized empty array, for example, \&quot;[]\&quot;, meaning no reminder notifications will be sent. | [optional] 
 
 ## Methods
 
@@ -204,22 +206,47 @@ SetIncidentUpdates sets IncidentUpdates field to given value.
 
 HasIncidentUpdates returns a boolean if a field has been set.
 
+### GetIncidentImpacts
+
+`func (o *Incident) GetIncidentImpacts() []IncidentImpact`
+
+GetIncidentImpacts returns the IncidentImpacts field if non-nil, zero value otherwise.
+
+### GetIncidentImpactsOk
+
+`func (o *Incident) GetIncidentImpactsOk() (*[]IncidentImpact, bool)`
+
+GetIncidentImpactsOk returns a tuple with the IncidentImpacts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIncidentImpacts
+
+`func (o *Incident) SetIncidentImpacts(v []IncidentImpact)`
+
+SetIncidentImpacts sets IncidentImpacts field to given value.
+
+### HasIncidentImpacts
+
+`func (o *Incident) HasIncidentImpacts() bool`
+
+HasIncidentImpacts returns a boolean if a field has been set.
+
 ### GetMetadata
 
-`func (o *Incident) GetMetadata() Object`
+`func (o *Incident) GetMetadata() map[string]interface{}`
 
 GetMetadata returns the Metadata field if non-nil, zero value otherwise.
 
 ### GetMetadataOk
 
-`func (o *Incident) GetMetadataOk() (*Object, bool)`
+`func (o *Incident) GetMetadataOk() (*map[string]interface{}, bool)`
 
 GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetadata
 
-`func (o *Incident) SetMetadata(v Object)`
+`func (o *Incident) SetMetadata(v map[string]interface{})`
 
 SetMetadata sets Metadata field to given value.
 
@@ -803,6 +830,31 @@ SetUpdatedAt sets UpdatedAt field to given value.
 `func (o *Incident) HasUpdatedAt() bool`
 
 HasUpdatedAt returns a boolean if a field has been set.
+
+### GetReminderIntervals
+
+`func (o *Incident) GetReminderIntervals() string`
+
+GetReminderIntervals returns the ReminderIntervals field if non-nil, zero value otherwise.
+
+### GetReminderIntervalsOk
+
+`func (o *Incident) GetReminderIntervalsOk() (*string, bool)`
+
+GetReminderIntervalsOk returns a tuple with the ReminderIntervals field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReminderIntervals
+
+`func (o *Incident) SetReminderIntervals(v string)`
+
+SetReminderIntervals sets ReminderIntervals field to given value.
+
+### HasReminderIntervals
+
+`func (o *Incident) HasReminderIntervals() bool`
+
+HasReminderIntervals returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

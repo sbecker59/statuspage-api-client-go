@@ -12,29 +12,23 @@ package openapi
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// StatusEmbedConfigApiService StatusEmbedConfigApi service
-type StatusEmbedConfigApiService service
+// StatusEmbedConfigAPIService StatusEmbedConfigAPI service
+type StatusEmbedConfigAPIService service
 
 type ApiGetPagesPageIdStatusEmbedConfigRequest struct {
-	ctx _context.Context
-	ApiService *StatusEmbedConfigApiService
-	pageId string
+	ctx        context.Context
+	ApiService *StatusEmbedConfigAPIService
+	pageId     string
 }
 
-
-func (r ApiGetPagesPageIdStatusEmbedConfigRequest) Execute() (StatusEmbedConfig, *_nethttp.Response, error) {
+func (r ApiGetPagesPageIdStatusEmbedConfigRequest) Execute() (*StatusEmbedConfig, *http.Response, error) {
 	return r.ApiService.GetPagesPageIdStatusEmbedConfigExecute(r)
 }
 
@@ -43,41 +37,40 @@ GetPagesPageIdStatusEmbedConfig Get status embed config settings
 
 Get status embed config settings
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @return ApiGetPagesPageIdStatusEmbedConfigRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@return ApiGetPagesPageIdStatusEmbedConfigRequest
 */
-func (a *StatusEmbedConfigApiService) GetPagesPageIdStatusEmbedConfig(ctx _context.Context, pageId string) ApiGetPagesPageIdStatusEmbedConfigRequest {
+func (a *StatusEmbedConfigAPIService) GetPagesPageIdStatusEmbedConfig(ctx context.Context, pageId string) ApiGetPagesPageIdStatusEmbedConfigRequest {
 	return ApiGetPagesPageIdStatusEmbedConfigRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ctx:        ctx,
+		pageId:     pageId,
 	}
 }
 
 // Execute executes the request
-//  @return StatusEmbedConfig
-func (a *StatusEmbedConfigApiService) GetPagesPageIdStatusEmbedConfigExecute(r ApiGetPagesPageIdStatusEmbedConfigRequest) (StatusEmbedConfig, *_nethttp.Response, error) {
+//
+//	@return StatusEmbedConfig
+func (a *StatusEmbedConfigAPIService) GetPagesPageIdStatusEmbedConfigExecute(r ApiGetPagesPageIdStatusEmbedConfigRequest) (*StatusEmbedConfig, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  StatusEmbedConfig
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *StatusEmbedConfig
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatusEmbedConfigApiService.GetPagesPageIdStatusEmbedConfig")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatusEmbedConfigAPIService.GetPagesPageIdStatusEmbedConfig")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/status_embed_config"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -110,7 +103,7 @@ func (a *StatusEmbedConfigApiService) GetPagesPageIdStatusEmbedConfigExecute(r A
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -120,15 +113,15 @@ func (a *StatusEmbedConfigApiService) GetPagesPageIdStatusEmbedConfigExecute(r A
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -139,6 +132,7 @@ func (a *StatusEmbedConfigApiService) GetPagesPageIdStatusEmbedConfigExecute(r A
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -149,6 +143,7 @@ func (a *StatusEmbedConfigApiService) GetPagesPageIdStatusEmbedConfigExecute(r A
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -159,6 +154,7 @@ func (a *StatusEmbedConfigApiService) GetPagesPageIdStatusEmbedConfigExecute(r A
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -166,7 +162,7 @@ func (a *StatusEmbedConfigApiService) GetPagesPageIdStatusEmbedConfigExecute(r A
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -177,9 +173,9 @@ func (a *StatusEmbedConfigApiService) GetPagesPageIdStatusEmbedConfigExecute(r A
 }
 
 type ApiPatchPagesPageIdStatusEmbedConfigRequest struct {
-	ctx _context.Context
-	ApiService *StatusEmbedConfigApiService
-	pageId string
+	ctx                               context.Context
+	ApiService                        *StatusEmbedConfigAPIService
+	pageId                            string
 	patchPagesPageIdStatusEmbedConfig *PatchPagesPageIdStatusEmbedConfig
 }
 
@@ -188,7 +184,7 @@ func (r ApiPatchPagesPageIdStatusEmbedConfigRequest) PatchPagesPageIdStatusEmbed
 	return r
 }
 
-func (r ApiPatchPagesPageIdStatusEmbedConfigRequest) Execute() (StatusEmbedConfig, *_nethttp.Response, error) {
+func (r ApiPatchPagesPageIdStatusEmbedConfigRequest) Execute() (*StatusEmbedConfig, *http.Response, error) {
 	return r.ApiService.PatchPagesPageIdStatusEmbedConfigExecute(r)
 }
 
@@ -197,41 +193,40 @@ PatchPagesPageIdStatusEmbedConfig Update status embed config settings
 
 Update status embed config settings
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @return ApiPatchPagesPageIdStatusEmbedConfigRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@return ApiPatchPagesPageIdStatusEmbedConfigRequest
 */
-func (a *StatusEmbedConfigApiService) PatchPagesPageIdStatusEmbedConfig(ctx _context.Context, pageId string) ApiPatchPagesPageIdStatusEmbedConfigRequest {
+func (a *StatusEmbedConfigAPIService) PatchPagesPageIdStatusEmbedConfig(ctx context.Context, pageId string) ApiPatchPagesPageIdStatusEmbedConfigRequest {
 	return ApiPatchPagesPageIdStatusEmbedConfigRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ctx:        ctx,
+		pageId:     pageId,
 	}
 }
 
 // Execute executes the request
-//  @return StatusEmbedConfig
-func (a *StatusEmbedConfigApiService) PatchPagesPageIdStatusEmbedConfigExecute(r ApiPatchPagesPageIdStatusEmbedConfigRequest) (StatusEmbedConfig, *_nethttp.Response, error) {
+//
+//	@return StatusEmbedConfig
+func (a *StatusEmbedConfigAPIService) PatchPagesPageIdStatusEmbedConfigExecute(r ApiPatchPagesPageIdStatusEmbedConfigRequest) (*StatusEmbedConfig, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  StatusEmbedConfig
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *StatusEmbedConfig
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatusEmbedConfigApiService.PatchPagesPageIdStatusEmbedConfig")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatusEmbedConfigAPIService.PatchPagesPageIdStatusEmbedConfig")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/status_embed_config"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.patchPagesPageIdStatusEmbedConfig == nil {
 		return localVarReturnValue, nil, reportError("patchPagesPageIdStatusEmbedConfig is required and must be specified")
 	}
@@ -269,7 +264,7 @@ func (a *StatusEmbedConfigApiService) PatchPagesPageIdStatusEmbedConfigExecute(r
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -279,15 +274,15 @@ func (a *StatusEmbedConfigApiService) PatchPagesPageIdStatusEmbedConfigExecute(r
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -298,6 +293,7 @@ func (a *StatusEmbedConfigApiService) PatchPagesPageIdStatusEmbedConfigExecute(r
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -308,6 +304,7 @@ func (a *StatusEmbedConfigApiService) PatchPagesPageIdStatusEmbedConfigExecute(r
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -318,6 +315,7 @@ func (a *StatusEmbedConfigApiService) PatchPagesPageIdStatusEmbedConfigExecute(r
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -328,6 +326,7 @@ func (a *StatusEmbedConfigApiService) PatchPagesPageIdStatusEmbedConfigExecute(r
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -338,6 +337,7 @@ func (a *StatusEmbedConfigApiService) PatchPagesPageIdStatusEmbedConfigExecute(r
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -345,7 +345,7 @@ func (a *StatusEmbedConfigApiService) PatchPagesPageIdStatusEmbedConfigExecute(r
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -356,9 +356,9 @@ func (a *StatusEmbedConfigApiService) PatchPagesPageIdStatusEmbedConfigExecute(r
 }
 
 type ApiPutPagesPageIdStatusEmbedConfigRequest struct {
-	ctx _context.Context
-	ApiService *StatusEmbedConfigApiService
-	pageId string
+	ctx                             context.Context
+	ApiService                      *StatusEmbedConfigAPIService
+	pageId                          string
 	putPagesPageIdStatusEmbedConfig *PutPagesPageIdStatusEmbedConfig
 }
 
@@ -367,7 +367,7 @@ func (r ApiPutPagesPageIdStatusEmbedConfigRequest) PutPagesPageIdStatusEmbedConf
 	return r
 }
 
-func (r ApiPutPagesPageIdStatusEmbedConfigRequest) Execute() (StatusEmbedConfig, *_nethttp.Response, error) {
+func (r ApiPutPagesPageIdStatusEmbedConfigRequest) Execute() (*StatusEmbedConfig, *http.Response, error) {
 	return r.ApiService.PutPagesPageIdStatusEmbedConfigExecute(r)
 }
 
@@ -376,41 +376,40 @@ PutPagesPageIdStatusEmbedConfig Update status embed config settings
 
 Update status embed config settings
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @return ApiPutPagesPageIdStatusEmbedConfigRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@return ApiPutPagesPageIdStatusEmbedConfigRequest
 */
-func (a *StatusEmbedConfigApiService) PutPagesPageIdStatusEmbedConfig(ctx _context.Context, pageId string) ApiPutPagesPageIdStatusEmbedConfigRequest {
+func (a *StatusEmbedConfigAPIService) PutPagesPageIdStatusEmbedConfig(ctx context.Context, pageId string) ApiPutPagesPageIdStatusEmbedConfigRequest {
 	return ApiPutPagesPageIdStatusEmbedConfigRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ctx:        ctx,
+		pageId:     pageId,
 	}
 }
 
 // Execute executes the request
-//  @return StatusEmbedConfig
-func (a *StatusEmbedConfigApiService) PutPagesPageIdStatusEmbedConfigExecute(r ApiPutPagesPageIdStatusEmbedConfigRequest) (StatusEmbedConfig, *_nethttp.Response, error) {
+//
+//	@return StatusEmbedConfig
+func (a *StatusEmbedConfigAPIService) PutPagesPageIdStatusEmbedConfigExecute(r ApiPutPagesPageIdStatusEmbedConfigRequest) (*StatusEmbedConfig, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  StatusEmbedConfig
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *StatusEmbedConfig
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatusEmbedConfigApiService.PutPagesPageIdStatusEmbedConfig")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "StatusEmbedConfigAPIService.PutPagesPageIdStatusEmbedConfig")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/status_embed_config"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.putPagesPageIdStatusEmbedConfig == nil {
 		return localVarReturnValue, nil, reportError("putPagesPageIdStatusEmbedConfig is required and must be specified")
 	}
@@ -448,7 +447,7 @@ func (a *StatusEmbedConfigApiService) PutPagesPageIdStatusEmbedConfigExecute(r A
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -458,15 +457,15 @@ func (a *StatusEmbedConfigApiService) PutPagesPageIdStatusEmbedConfigExecute(r A
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -477,6 +476,7 @@ func (a *StatusEmbedConfigApiService) PutPagesPageIdStatusEmbedConfigExecute(r A
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -487,6 +487,7 @@ func (a *StatusEmbedConfigApiService) PutPagesPageIdStatusEmbedConfigExecute(r A
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -497,6 +498,7 @@ func (a *StatusEmbedConfigApiService) PutPagesPageIdStatusEmbedConfigExecute(r A
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -507,6 +509,7 @@ func (a *StatusEmbedConfigApiService) PutPagesPageIdStatusEmbedConfigExecute(r A
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -517,6 +520,7 @@ func (a *StatusEmbedConfigApiService) PutPagesPageIdStatusEmbedConfigExecute(r A
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -524,7 +528,7 @@ func (a *StatusEmbedConfigApiService) PutPagesPageIdStatusEmbedConfigExecute(r A
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

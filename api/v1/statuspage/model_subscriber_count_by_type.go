@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SubscriberCountByType type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SubscriberCountByType{}
+
 // SubscriberCountByType Get a count of subscribers by type
 type SubscriberCountByType struct {
 	// The number of Email subscribers found by the query.
@@ -26,6 +29,8 @@ type SubscriberCountByType struct {
 	IntegrationPartner *int32 `json:"integration_partner,omitempty"`
 	// The number of Slack subscribers found by the query.
 	Slack *int32 `json:"slack,omitempty"`
+	// The number of MS teams subscribers found by the query.
+	Teams *int32 `json:"teams,omitempty"`
 }
 
 // NewSubscriberCountByType instantiates a new SubscriberCountByType object
@@ -47,7 +52,7 @@ func NewSubscriberCountByTypeWithDefaults() *SubscriberCountByType {
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *SubscriberCountByType) GetEmail() int32 {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		var ret int32
 		return ret
 	}
@@ -57,7 +62,7 @@ func (o *SubscriberCountByType) GetEmail() int32 {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriberCountByType) GetEmailOk() (*int32, bool) {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		return nil, false
 	}
 	return o.Email, true
@@ -65,7 +70,7 @@ func (o *SubscriberCountByType) GetEmailOk() (*int32, bool) {
 
 // HasEmail returns a boolean if a field has been set.
 func (o *SubscriberCountByType) HasEmail() bool {
-	if o != nil && o.Email != nil {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -79,7 +84,7 @@ func (o *SubscriberCountByType) SetEmail(v int32) {
 
 // GetSms returns the Sms field value if set, zero value otherwise.
 func (o *SubscriberCountByType) GetSms() int32 {
-	if o == nil || o.Sms == nil {
+	if o == nil || IsNil(o.Sms) {
 		var ret int32
 		return ret
 	}
@@ -89,7 +94,7 @@ func (o *SubscriberCountByType) GetSms() int32 {
 // GetSmsOk returns a tuple with the Sms field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriberCountByType) GetSmsOk() (*int32, bool) {
-	if o == nil || o.Sms == nil {
+	if o == nil || IsNil(o.Sms) {
 		return nil, false
 	}
 	return o.Sms, true
@@ -97,7 +102,7 @@ func (o *SubscriberCountByType) GetSmsOk() (*int32, bool) {
 
 // HasSms returns a boolean if a field has been set.
 func (o *SubscriberCountByType) HasSms() bool {
-	if o != nil && o.Sms != nil {
+	if o != nil && !IsNil(o.Sms) {
 		return true
 	}
 
@@ -111,7 +116,7 @@ func (o *SubscriberCountByType) SetSms(v int32) {
 
 // GetWebhook returns the Webhook field value if set, zero value otherwise.
 func (o *SubscriberCountByType) GetWebhook() int32 {
-	if o == nil || o.Webhook == nil {
+	if o == nil || IsNil(o.Webhook) {
 		var ret int32
 		return ret
 	}
@@ -121,7 +126,7 @@ func (o *SubscriberCountByType) GetWebhook() int32 {
 // GetWebhookOk returns a tuple with the Webhook field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriberCountByType) GetWebhookOk() (*int32, bool) {
-	if o == nil || o.Webhook == nil {
+	if o == nil || IsNil(o.Webhook) {
 		return nil, false
 	}
 	return o.Webhook, true
@@ -129,7 +134,7 @@ func (o *SubscriberCountByType) GetWebhookOk() (*int32, bool) {
 
 // HasWebhook returns a boolean if a field has been set.
 func (o *SubscriberCountByType) HasWebhook() bool {
-	if o != nil && o.Webhook != nil {
+	if o != nil && !IsNil(o.Webhook) {
 		return true
 	}
 
@@ -143,7 +148,7 @@ func (o *SubscriberCountByType) SetWebhook(v int32) {
 
 // GetIntegrationPartner returns the IntegrationPartner field value if set, zero value otherwise.
 func (o *SubscriberCountByType) GetIntegrationPartner() int32 {
-	if o == nil || o.IntegrationPartner == nil {
+	if o == nil || IsNil(o.IntegrationPartner) {
 		var ret int32
 		return ret
 	}
@@ -153,7 +158,7 @@ func (o *SubscriberCountByType) GetIntegrationPartner() int32 {
 // GetIntegrationPartnerOk returns a tuple with the IntegrationPartner field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriberCountByType) GetIntegrationPartnerOk() (*int32, bool) {
-	if o == nil || o.IntegrationPartner == nil {
+	if o == nil || IsNil(o.IntegrationPartner) {
 		return nil, false
 	}
 	return o.IntegrationPartner, true
@@ -161,7 +166,7 @@ func (o *SubscriberCountByType) GetIntegrationPartnerOk() (*int32, bool) {
 
 // HasIntegrationPartner returns a boolean if a field has been set.
 func (o *SubscriberCountByType) HasIntegrationPartner() bool {
-	if o != nil && o.IntegrationPartner != nil {
+	if o != nil && !IsNil(o.IntegrationPartner) {
 		return true
 	}
 
@@ -175,7 +180,7 @@ func (o *SubscriberCountByType) SetIntegrationPartner(v int32) {
 
 // GetSlack returns the Slack field value if set, zero value otherwise.
 func (o *SubscriberCountByType) GetSlack() int32 {
-	if o == nil || o.Slack == nil {
+	if o == nil || IsNil(o.Slack) {
 		var ret int32
 		return ret
 	}
@@ -185,7 +190,7 @@ func (o *SubscriberCountByType) GetSlack() int32 {
 // GetSlackOk returns a tuple with the Slack field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SubscriberCountByType) GetSlackOk() (*int32, bool) {
-	if o == nil || o.Slack == nil {
+	if o == nil || IsNil(o.Slack) {
 		return nil, false
 	}
 	return o.Slack, true
@@ -193,7 +198,7 @@ func (o *SubscriberCountByType) GetSlackOk() (*int32, bool) {
 
 // HasSlack returns a boolean if a field has been set.
 func (o *SubscriberCountByType) HasSlack() bool {
-	if o != nil && o.Slack != nil {
+	if o != nil && !IsNil(o.Slack) {
 		return true
 	}
 
@@ -205,24 +210,67 @@ func (o *SubscriberCountByType) SetSlack(v int32) {
 	o.Slack = &v
 }
 
+// GetTeams returns the Teams field value if set, zero value otherwise.
+func (o *SubscriberCountByType) GetTeams() int32 {
+	if o == nil || IsNil(o.Teams) {
+		var ret int32
+		return ret
+	}
+	return *o.Teams
+}
+
+// GetTeamsOk returns a tuple with the Teams field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SubscriberCountByType) GetTeamsOk() (*int32, bool) {
+	if o == nil || IsNil(o.Teams) {
+		return nil, false
+	}
+	return o.Teams, true
+}
+
+// HasTeams returns a boolean if a field has been set.
+func (o *SubscriberCountByType) HasTeams() bool {
+	if o != nil && !IsNil(o.Teams) {
+		return true
+	}
+
+	return false
+}
+
+// SetTeams gets a reference to the given int32 and assigns it to the Teams field.
+func (o *SubscriberCountByType) SetTeams(v int32) {
+	o.Teams = &v
+}
+
 func (o SubscriberCountByType) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Email != nil {
-		toSerialize["email"] = o.Email
-	}
-	if o.Sms != nil {
-		toSerialize["sms"] = o.Sms
-	}
-	if o.Webhook != nil {
-		toSerialize["webhook"] = o.Webhook
-	}
-	if o.IntegrationPartner != nil {
-		toSerialize["integration_partner"] = o.IntegrationPartner
-	}
-	if o.Slack != nil {
-		toSerialize["slack"] = o.Slack
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o SubscriberCountByType) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
+	}
+	if !IsNil(o.Sms) {
+		toSerialize["sms"] = o.Sms
+	}
+	if !IsNil(o.Webhook) {
+		toSerialize["webhook"] = o.Webhook
+	}
+	if !IsNil(o.IntegrationPartner) {
+		toSerialize["integration_partner"] = o.IntegrationPartner
+	}
+	if !IsNil(o.Slack) {
+		toSerialize["slack"] = o.Slack
+	}
+	if !IsNil(o.Teams) {
+		toSerialize["teams"] = o.Teams
+	}
+	return toSerialize, nil
 }
 
 type NullableSubscriberCountByType struct {
@@ -260,5 +308,3 @@ func (v *NullableSubscriberCountByType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -14,9 +14,13 @@ import (
 	"encoding/json"
 )
 
+// checks if the PostPagesPageIdComponentGroups type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PostPagesPageIdComponentGroups{}
+
 // PostPagesPageIdComponentGroups Create a component group
 type PostPagesPageIdComponentGroups struct {
 	// Description of the component group.
+	Description    *string                                       `json:"description,omitempty"`
 	ComponentGroup *PostPagesPageIdComponentGroupsComponentGroup `json:"component_group,omitempty"`
 }
 
@@ -37,9 +41,41 @@ func NewPostPagesPageIdComponentGroupsWithDefaults() *PostPagesPageIdComponentGr
 	return &this
 }
 
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *PostPagesPageIdComponentGroups) GetDescription() string {
+	if o == nil || IsNil(o.Description) {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PostPagesPageIdComponentGroups) GetDescriptionOk() (*string, bool) {
+	if o == nil || IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *PostPagesPageIdComponentGroups) HasDescription() bool {
+	if o != nil && !IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *PostPagesPageIdComponentGroups) SetDescription(v string) {
+	o.Description = &v
+}
+
 // GetComponentGroup returns the ComponentGroup field value if set, zero value otherwise.
 func (o *PostPagesPageIdComponentGroups) GetComponentGroup() PostPagesPageIdComponentGroupsComponentGroup {
-	if o == nil || o.ComponentGroup == nil {
+	if o == nil || IsNil(o.ComponentGroup) {
 		var ret PostPagesPageIdComponentGroupsComponentGroup
 		return ret
 	}
@@ -49,7 +85,7 @@ func (o *PostPagesPageIdComponentGroups) GetComponentGroup() PostPagesPageIdComp
 // GetComponentGroupOk returns a tuple with the ComponentGroup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdComponentGroups) GetComponentGroupOk() (*PostPagesPageIdComponentGroupsComponentGroup, bool) {
-	if o == nil || o.ComponentGroup == nil {
+	if o == nil || IsNil(o.ComponentGroup) {
 		return nil, false
 	}
 	return o.ComponentGroup, true
@@ -57,7 +93,7 @@ func (o *PostPagesPageIdComponentGroups) GetComponentGroupOk() (*PostPagesPageId
 
 // HasComponentGroup returns a boolean if a field has been set.
 func (o *PostPagesPageIdComponentGroups) HasComponentGroup() bool {
-	if o != nil && o.ComponentGroup != nil {
+	if o != nil && !IsNil(o.ComponentGroup) {
 		return true
 	}
 
@@ -70,11 +106,22 @@ func (o *PostPagesPageIdComponentGroups) SetComponentGroup(v PostPagesPageIdComp
 }
 
 func (o PostPagesPageIdComponentGroups) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ComponentGroup != nil {
-		toSerialize["component_group"] = o.ComponentGroup
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PostPagesPageIdComponentGroups) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.ComponentGroup) {
+		toSerialize["component_group"] = o.ComponentGroup
+	}
+	return toSerialize, nil
 }
 
 type NullablePostPagesPageIdComponentGroups struct {
@@ -112,5 +159,3 @@ func (v *NullablePostPagesPageIdComponentGroups) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -12,27 +12,22 @@ package openapi
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// IncidentUpdatesApiService IncidentUpdatesApi service
-type IncidentUpdatesApiService service
+// IncidentUpdatesAPIService IncidentUpdatesAPI service
+type IncidentUpdatesAPIService service
 
 type ApiPatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest struct {
-	ctx _context.Context
-	ApiService *IncidentUpdatesApiService
-	pageId string
-	incidentId string
-	incidentUpdateId string
+	ctx                                                context.Context
+	ApiService                                         *IncidentUpdatesAPIService
+	pageId                                             string
+	incidentId                                         string
+	incidentUpdateId                                   string
 	patchPagesPageIdIncidentsIncidentIdIncidentUpdates *PatchPagesPageIdIncidentsIncidentIdIncidentUpdates
 }
 
@@ -41,7 +36,7 @@ func (r ApiPatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdReq
 	return r
 }
 
-func (r ApiPatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest) Execute() (IncidentUpdate, *_nethttp.Response, error) {
+func (r ApiPatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest) Execute() (*IncidentUpdate, *http.Response, error) {
 	return r.ApiService.PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdExecute(r)
 }
 
@@ -50,47 +45,46 @@ PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId Update a prev
 
 Update a previous incident update
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @param incidentId Incident Identifier
- @param incidentUpdateId Incident Update Identifier
- @return ApiPatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@param incidentId Incident Identifier
+	@param incidentUpdateId Incident Update Identifier
+	@return ApiPatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest
 */
-func (a *IncidentUpdatesApiService) PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId(ctx _context.Context, pageId string, incidentId string, incidentUpdateId string) ApiPatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest {
+func (a *IncidentUpdatesAPIService) PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId(ctx context.Context, pageId string, incidentId string, incidentUpdateId string) ApiPatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest {
 	return ApiPatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest{
-		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
-		incidentId: incidentId,
+		ApiService:       a,
+		ctx:              ctx,
+		pageId:           pageId,
+		incidentId:       incidentId,
 		incidentUpdateId: incidentUpdateId,
 	}
 }
 
 // Execute executes the request
-//  @return IncidentUpdate
-func (a *IncidentUpdatesApiService) PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdExecute(r ApiPatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest) (IncidentUpdate, *_nethttp.Response, error) {
+//
+//	@return IncidentUpdate
+func (a *IncidentUpdatesAPIService) PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdExecute(r ApiPatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest) (*IncidentUpdate, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  IncidentUpdate
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *IncidentUpdate
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentUpdatesApiService.PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentUpdatesAPIService.PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/incidents/{incident_id}/incident_updates/{incident_update_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"incident_id"+"}", _neturl.PathEscape(parameterToString(r.incidentId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"incident_update_id"+"}", _neturl.PathEscape(parameterToString(r.incidentUpdateId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"incident_id"+"}", url.PathEscape(parameterValueToString(r.incidentId, "incidentId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"incident_update_id"+"}", url.PathEscape(parameterValueToString(r.incidentUpdateId, "incidentUpdateId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.patchPagesPageIdIncidentsIncidentIdIncidentUpdates == nil {
 		return localVarReturnValue, nil, reportError("patchPagesPageIdIncidentsIncidentIdIncidentUpdates is required and must be specified")
 	}
@@ -128,7 +122,7 @@ func (a *IncidentUpdatesApiService) PatchPagesPageIdIncidentsIncidentIdIncidentU
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -138,15 +132,15 @@ func (a *IncidentUpdatesApiService) PatchPagesPageIdIncidentsIncidentIdIncidentU
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -155,7 +149,7 @@ func (a *IncidentUpdatesApiService) PatchPagesPageIdIncidentsIncidentIdIncidentU
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -166,11 +160,11 @@ func (a *IncidentUpdatesApiService) PatchPagesPageIdIncidentsIncidentIdIncidentU
 }
 
 type ApiPutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest struct {
-	ctx _context.Context
-	ApiService *IncidentUpdatesApiService
-	pageId string
-	incidentId string
-	incidentUpdateId string
+	ctx                                              context.Context
+	ApiService                                       *IncidentUpdatesAPIService
+	pageId                                           string
+	incidentId                                       string
+	incidentUpdateId                                 string
 	putPagesPageIdIncidentsIncidentIdIncidentUpdates *PutPagesPageIdIncidentsIncidentIdIncidentUpdates
 }
 
@@ -179,7 +173,7 @@ func (r ApiPutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdReque
 	return r
 }
 
-func (r ApiPutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest) Execute() (IncidentUpdate, *_nethttp.Response, error) {
+func (r ApiPutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest) Execute() (*IncidentUpdate, *http.Response, error) {
 	return r.ApiService.PutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdExecute(r)
 }
 
@@ -188,47 +182,46 @@ PutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId Update a previo
 
 Update a previous incident update
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @param incidentId Incident Identifier
- @param incidentUpdateId Incident Update Identifier
- @return ApiPutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@param incidentId Incident Identifier
+	@param incidentUpdateId Incident Update Identifier
+	@return ApiPutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest
 */
-func (a *IncidentUpdatesApiService) PutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId(ctx _context.Context, pageId string, incidentId string, incidentUpdateId string) ApiPutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest {
+func (a *IncidentUpdatesAPIService) PutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId(ctx context.Context, pageId string, incidentId string, incidentUpdateId string) ApiPutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest {
 	return ApiPutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest{
-		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
-		incidentId: incidentId,
+		ApiService:       a,
+		ctx:              ctx,
+		pageId:           pageId,
+		incidentId:       incidentId,
 		incidentUpdateId: incidentUpdateId,
 	}
 }
 
 // Execute executes the request
-//  @return IncidentUpdate
-func (a *IncidentUpdatesApiService) PutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdExecute(r ApiPutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest) (IncidentUpdate, *_nethttp.Response, error) {
+//
+//	@return IncidentUpdate
+func (a *IncidentUpdatesAPIService) PutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdExecute(r ApiPutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest) (*IncidentUpdate, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  IncidentUpdate
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *IncidentUpdate
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentUpdatesApiService.PutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentUpdatesAPIService.PutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/incidents/{incident_id}/incident_updates/{incident_update_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"incident_id"+"}", _neturl.PathEscape(parameterToString(r.incidentId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"incident_update_id"+"}", _neturl.PathEscape(parameterToString(r.incidentUpdateId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"incident_id"+"}", url.PathEscape(parameterValueToString(r.incidentId, "incidentId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"incident_update_id"+"}", url.PathEscape(parameterValueToString(r.incidentUpdateId, "incidentUpdateId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.putPagesPageIdIncidentsIncidentIdIncidentUpdates == nil {
 		return localVarReturnValue, nil, reportError("putPagesPageIdIncidentsIncidentIdIncidentUpdates is required and must be specified")
 	}
@@ -266,7 +259,7 @@ func (a *IncidentUpdatesApiService) PutPagesPageIdIncidentsIncidentIdIncidentUpd
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -276,15 +269,15 @@ func (a *IncidentUpdatesApiService) PutPagesPageIdIncidentsIncidentIdIncidentUpd
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -293,7 +286,7 @@ func (a *IncidentUpdatesApiService) PutPagesPageIdIncidentsIncidentIdIncidentUpd
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

@@ -12,30 +12,24 @@ package openapi
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// MetricProvidersApiService MetricProvidersApi service
-type MetricProvidersApiService service
+// MetricProvidersAPIService MetricProvidersAPI service
+type MetricProvidersAPIService service
 
 type ApiDeletePagesPageIdMetricsProvidersMetricsProviderIdRequest struct {
-	ctx _context.Context
-	ApiService *MetricProvidersApiService
-	pageId string
+	ctx               context.Context
+	ApiService        *MetricProvidersAPIService
+	pageId            string
 	metricsProviderId string
 }
 
-
-func (r ApiDeletePagesPageIdMetricsProvidersMetricsProviderIdRequest) Execute() (MetricsProvider, *_nethttp.Response, error) {
+func (r ApiDeletePagesPageIdMetricsProvidersMetricsProviderIdRequest) Execute() (*MetricsProvider, *http.Response, error) {
 	return r.ApiService.DeletePagesPageIdMetricsProvidersMetricsProviderIdExecute(r)
 }
 
@@ -44,44 +38,43 @@ DeletePagesPageIdMetricsProvidersMetricsProviderId Delete a metric provider
 
 Delete a metric provider
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @param metricsProviderId Metric Provider Identifier
- @return ApiDeletePagesPageIdMetricsProvidersMetricsProviderIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@param metricsProviderId Metric Provider Identifier
+	@return ApiDeletePagesPageIdMetricsProvidersMetricsProviderIdRequest
 */
-func (a *MetricProvidersApiService) DeletePagesPageIdMetricsProvidersMetricsProviderId(ctx _context.Context, pageId string, metricsProviderId string) ApiDeletePagesPageIdMetricsProvidersMetricsProviderIdRequest {
+func (a *MetricProvidersAPIService) DeletePagesPageIdMetricsProvidersMetricsProviderId(ctx context.Context, pageId string, metricsProviderId string) ApiDeletePagesPageIdMetricsProvidersMetricsProviderIdRequest {
 	return ApiDeletePagesPageIdMetricsProvidersMetricsProviderIdRequest{
-		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ApiService:        a,
+		ctx:               ctx,
+		pageId:            pageId,
 		metricsProviderId: metricsProviderId,
 	}
 }
 
 // Execute executes the request
-//  @return MetricsProvider
-func (a *MetricProvidersApiService) DeletePagesPageIdMetricsProvidersMetricsProviderIdExecute(r ApiDeletePagesPageIdMetricsProvidersMetricsProviderIdRequest) (MetricsProvider, *_nethttp.Response, error) {
+//
+//	@return MetricsProvider
+func (a *MetricProvidersAPIService) DeletePagesPageIdMetricsProvidersMetricsProviderIdExecute(r ApiDeletePagesPageIdMetricsProvidersMetricsProviderIdRequest) (*MetricsProvider, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  MetricsProvider
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *MetricsProvider
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricProvidersApiService.DeletePagesPageIdMetricsProvidersMetricsProviderId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricProvidersAPIService.DeletePagesPageIdMetricsProvidersMetricsProviderId")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/metrics_providers/{metrics_provider_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"metrics_provider_id"+"}", _neturl.PathEscape(parameterToString(r.metricsProviderId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"metrics_provider_id"+"}", url.PathEscape(parameterValueToString(r.metricsProviderId, "metricsProviderId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -114,7 +107,7 @@ func (a *MetricProvidersApiService) DeletePagesPageIdMetricsProvidersMetricsProv
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -124,15 +117,15 @@ func (a *MetricProvidersApiService) DeletePagesPageIdMetricsProvidersMetricsProv
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -143,6 +136,7 @@ func (a *MetricProvidersApiService) DeletePagesPageIdMetricsProvidersMetricsProv
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -153,6 +147,7 @@ func (a *MetricProvidersApiService) DeletePagesPageIdMetricsProvidersMetricsProv
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -163,6 +158,7 @@ func (a *MetricProvidersApiService) DeletePagesPageIdMetricsProvidersMetricsProv
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -170,7 +166,7 @@ func (a *MetricProvidersApiService) DeletePagesPageIdMetricsProvidersMetricsProv
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -181,13 +177,12 @@ func (a *MetricProvidersApiService) DeletePagesPageIdMetricsProvidersMetricsProv
 }
 
 type ApiGetPagesPageIdMetricsProvidersRequest struct {
-	ctx _context.Context
-	ApiService *MetricProvidersApiService
-	pageId string
+	ctx        context.Context
+	ApiService *MetricProvidersAPIService
+	pageId     string
 }
 
-
-func (r ApiGetPagesPageIdMetricsProvidersRequest) Execute() ([]MetricsProvider, *_nethttp.Response, error) {
+func (r ApiGetPagesPageIdMetricsProvidersRequest) Execute() ([]MetricsProvider, *http.Response, error) {
 	return r.ApiService.GetPagesPageIdMetricsProvidersExecute(r)
 }
 
@@ -196,41 +191,40 @@ GetPagesPageIdMetricsProviders Get a list of metric providers
 
 Get a list of metric providers
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @return ApiGetPagesPageIdMetricsProvidersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@return ApiGetPagesPageIdMetricsProvidersRequest
 */
-func (a *MetricProvidersApiService) GetPagesPageIdMetricsProviders(ctx _context.Context, pageId string) ApiGetPagesPageIdMetricsProvidersRequest {
+func (a *MetricProvidersAPIService) GetPagesPageIdMetricsProviders(ctx context.Context, pageId string) ApiGetPagesPageIdMetricsProvidersRequest {
 	return ApiGetPagesPageIdMetricsProvidersRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ctx:        ctx,
+		pageId:     pageId,
 	}
 }
 
 // Execute executes the request
-//  @return []MetricsProvider
-func (a *MetricProvidersApiService) GetPagesPageIdMetricsProvidersExecute(r ApiGetPagesPageIdMetricsProvidersRequest) ([]MetricsProvider, *_nethttp.Response, error) {
+//
+//	@return []MetricsProvider
+func (a *MetricProvidersAPIService) GetPagesPageIdMetricsProvidersExecute(r ApiGetPagesPageIdMetricsProvidersRequest) ([]MetricsProvider, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  []MetricsProvider
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []MetricsProvider
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricProvidersApiService.GetPagesPageIdMetricsProviders")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricProvidersAPIService.GetPagesPageIdMetricsProviders")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/metrics_providers"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -263,7 +257,7 @@ func (a *MetricProvidersApiService) GetPagesPageIdMetricsProvidersExecute(r ApiG
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -273,15 +267,15 @@ func (a *MetricProvidersApiService) GetPagesPageIdMetricsProvidersExecute(r ApiG
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -292,6 +286,7 @@ func (a *MetricProvidersApiService) GetPagesPageIdMetricsProvidersExecute(r ApiG
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -302,6 +297,7 @@ func (a *MetricProvidersApiService) GetPagesPageIdMetricsProvidersExecute(r ApiG
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -312,6 +308,7 @@ func (a *MetricProvidersApiService) GetPagesPageIdMetricsProvidersExecute(r ApiG
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -319,7 +316,7 @@ func (a *MetricProvidersApiService) GetPagesPageIdMetricsProvidersExecute(r ApiG
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -330,14 +327,13 @@ func (a *MetricProvidersApiService) GetPagesPageIdMetricsProvidersExecute(r ApiG
 }
 
 type ApiGetPagesPageIdMetricsProvidersMetricsProviderIdRequest struct {
-	ctx _context.Context
-	ApiService *MetricProvidersApiService
-	pageId string
+	ctx               context.Context
+	ApiService        *MetricProvidersAPIService
+	pageId            string
 	metricsProviderId string
 }
 
-
-func (r ApiGetPagesPageIdMetricsProvidersMetricsProviderIdRequest) Execute() (MetricsProvider, *_nethttp.Response, error) {
+func (r ApiGetPagesPageIdMetricsProvidersMetricsProviderIdRequest) Execute() (*MetricsProvider, *http.Response, error) {
 	return r.ApiService.GetPagesPageIdMetricsProvidersMetricsProviderIdExecute(r)
 }
 
@@ -346,44 +342,43 @@ GetPagesPageIdMetricsProvidersMetricsProviderId Get a metric provider
 
 Get a metric provider
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @param metricsProviderId Metric Provider Identifier
- @return ApiGetPagesPageIdMetricsProvidersMetricsProviderIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@param metricsProviderId Metric Provider Identifier
+	@return ApiGetPagesPageIdMetricsProvidersMetricsProviderIdRequest
 */
-func (a *MetricProvidersApiService) GetPagesPageIdMetricsProvidersMetricsProviderId(ctx _context.Context, pageId string, metricsProviderId string) ApiGetPagesPageIdMetricsProvidersMetricsProviderIdRequest {
+func (a *MetricProvidersAPIService) GetPagesPageIdMetricsProvidersMetricsProviderId(ctx context.Context, pageId string, metricsProviderId string) ApiGetPagesPageIdMetricsProvidersMetricsProviderIdRequest {
 	return ApiGetPagesPageIdMetricsProvidersMetricsProviderIdRequest{
-		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ApiService:        a,
+		ctx:               ctx,
+		pageId:            pageId,
 		metricsProviderId: metricsProviderId,
 	}
 }
 
 // Execute executes the request
-//  @return MetricsProvider
-func (a *MetricProvidersApiService) GetPagesPageIdMetricsProvidersMetricsProviderIdExecute(r ApiGetPagesPageIdMetricsProvidersMetricsProviderIdRequest) (MetricsProvider, *_nethttp.Response, error) {
+//
+//	@return MetricsProvider
+func (a *MetricProvidersAPIService) GetPagesPageIdMetricsProvidersMetricsProviderIdExecute(r ApiGetPagesPageIdMetricsProvidersMetricsProviderIdRequest) (*MetricsProvider, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  MetricsProvider
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *MetricsProvider
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricProvidersApiService.GetPagesPageIdMetricsProvidersMetricsProviderId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricProvidersAPIService.GetPagesPageIdMetricsProvidersMetricsProviderId")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/metrics_providers/{metrics_provider_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"metrics_provider_id"+"}", _neturl.PathEscape(parameterToString(r.metricsProviderId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"metrics_provider_id"+"}", url.PathEscape(parameterValueToString(r.metricsProviderId, "metricsProviderId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -416,7 +411,7 @@ func (a *MetricProvidersApiService) GetPagesPageIdMetricsProvidersMetricsProvide
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -426,15 +421,15 @@ func (a *MetricProvidersApiService) GetPagesPageIdMetricsProvidersMetricsProvide
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -445,6 +440,7 @@ func (a *MetricProvidersApiService) GetPagesPageIdMetricsProvidersMetricsProvide
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -455,6 +451,7 @@ func (a *MetricProvidersApiService) GetPagesPageIdMetricsProvidersMetricsProvide
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -465,6 +462,7 @@ func (a *MetricProvidersApiService) GetPagesPageIdMetricsProvidersMetricsProvide
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -472,178 +470,7 @@ func (a *MetricProvidersApiService) GetPagesPageIdMetricsProvidersMetricsProvide
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiGetPagesPageIdMetricsProvidersMetricsProviderIdMetricsRequest struct {
-	ctx _context.Context
-	ApiService *MetricProvidersApiService
-	pageId string
-	metricsProviderId string
-	page *int32
-	perPage *int32
-}
-
-// Page offset to fetch. Beginning February 28, 2023, this endpoint will return paginated data even if this query parameter is not provided.
-func (r ApiGetPagesPageIdMetricsProvidersMetricsProviderIdMetricsRequest) Page(page int32) ApiGetPagesPageIdMetricsProvidersMetricsProviderIdMetricsRequest {
-	r.page = &page
-	return r
-}
-// Number of results to return per page. Beginning February 28, 2023, a default and maximum limit of 100 will be imposed and this endpoint will return paginated data even if this query parameter is not provided.
-func (r ApiGetPagesPageIdMetricsProvidersMetricsProviderIdMetricsRequest) PerPage(perPage int32) ApiGetPagesPageIdMetricsProvidersMetricsProviderIdMetricsRequest {
-	r.perPage = &perPage
-	return r
-}
-
-func (r ApiGetPagesPageIdMetricsProvidersMetricsProviderIdMetricsRequest) Execute() (Metric, *_nethttp.Response, error) {
-	return r.ApiService.GetPagesPageIdMetricsProvidersMetricsProviderIdMetricsExecute(r)
-}
-
-/*
-GetPagesPageIdMetricsProvidersMetricsProviderIdMetrics List metrics for a metric provider
-
-List metrics for a metric provider
-
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @param metricsProviderId Metric Provider Identifier
- @return ApiGetPagesPageIdMetricsProvidersMetricsProviderIdMetricsRequest
-*/
-func (a *MetricProvidersApiService) GetPagesPageIdMetricsProvidersMetricsProviderIdMetrics(ctx _context.Context, pageId string, metricsProviderId string) ApiGetPagesPageIdMetricsProvidersMetricsProviderIdMetricsRequest {
-	return ApiGetPagesPageIdMetricsProvidersMetricsProviderIdMetricsRequest{
-		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
-		metricsProviderId: metricsProviderId,
-	}
-}
-
-// Execute executes the request
-//  @return Metric
-func (a *MetricProvidersApiService) GetPagesPageIdMetricsProvidersMetricsProviderIdMetricsExecute(r ApiGetPagesPageIdMetricsProvidersMetricsProviderIdMetricsRequest) (Metric, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Metric
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricProvidersApiService.GetPagesPageIdMetricsProvidersMetricsProviderIdMetrics")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/pages/{page_id}/metrics_providers/{metrics_provider_id}/metrics"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"metrics_provider_id"+"}", _neturl.PathEscape(parameterToString(r.metricsProviderId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
-	}
-	if r.perPage != nil {
-		localVarQueryParams.Add("per_page", parameterToString(*r.perPage, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["api_key"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorEntity
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -654,10 +481,10 @@ func (a *MetricProvidersApiService) GetPagesPageIdMetricsProvidersMetricsProvide
 }
 
 type ApiPatchPagesPageIdMetricsProvidersMetricsProviderIdRequest struct {
-	ctx _context.Context
-	ApiService *MetricProvidersApiService
-	pageId string
-	metricsProviderId string
+	ctx                              context.Context
+	ApiService                       *MetricProvidersAPIService
+	pageId                           string
+	metricsProviderId                string
 	patchPagesPageIdMetricsProviders *PatchPagesPageIdMetricsProviders
 }
 
@@ -666,7 +493,7 @@ func (r ApiPatchPagesPageIdMetricsProvidersMetricsProviderIdRequest) PatchPagesP
 	return r
 }
 
-func (r ApiPatchPagesPageIdMetricsProvidersMetricsProviderIdRequest) Execute() (MetricsProvider, *_nethttp.Response, error) {
+func (r ApiPatchPagesPageIdMetricsProvidersMetricsProviderIdRequest) Execute() (*MetricsProvider, *http.Response, error) {
 	return r.ApiService.PatchPagesPageIdMetricsProvidersMetricsProviderIdExecute(r)
 }
 
@@ -675,44 +502,43 @@ PatchPagesPageIdMetricsProvidersMetricsProviderId Update a metric provider
 
 Update a metric provider
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @param metricsProviderId Metric Provider Identifier
- @return ApiPatchPagesPageIdMetricsProvidersMetricsProviderIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@param metricsProviderId Metric Provider Identifier
+	@return ApiPatchPagesPageIdMetricsProvidersMetricsProviderIdRequest
 */
-func (a *MetricProvidersApiService) PatchPagesPageIdMetricsProvidersMetricsProviderId(ctx _context.Context, pageId string, metricsProviderId string) ApiPatchPagesPageIdMetricsProvidersMetricsProviderIdRequest {
+func (a *MetricProvidersAPIService) PatchPagesPageIdMetricsProvidersMetricsProviderId(ctx context.Context, pageId string, metricsProviderId string) ApiPatchPagesPageIdMetricsProvidersMetricsProviderIdRequest {
 	return ApiPatchPagesPageIdMetricsProvidersMetricsProviderIdRequest{
-		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ApiService:        a,
+		ctx:               ctx,
+		pageId:            pageId,
 		metricsProviderId: metricsProviderId,
 	}
 }
 
 // Execute executes the request
-//  @return MetricsProvider
-func (a *MetricProvidersApiService) PatchPagesPageIdMetricsProvidersMetricsProviderIdExecute(r ApiPatchPagesPageIdMetricsProvidersMetricsProviderIdRequest) (MetricsProvider, *_nethttp.Response, error) {
+//
+//	@return MetricsProvider
+func (a *MetricProvidersAPIService) PatchPagesPageIdMetricsProvidersMetricsProviderIdExecute(r ApiPatchPagesPageIdMetricsProvidersMetricsProviderIdRequest) (*MetricsProvider, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  MetricsProvider
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *MetricsProvider
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricProvidersApiService.PatchPagesPageIdMetricsProvidersMetricsProviderId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricProvidersAPIService.PatchPagesPageIdMetricsProvidersMetricsProviderId")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/metrics_providers/{metrics_provider_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"metrics_provider_id"+"}", _neturl.PathEscape(parameterToString(r.metricsProviderId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"metrics_provider_id"+"}", url.PathEscape(parameterValueToString(r.metricsProviderId, "metricsProviderId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.patchPagesPageIdMetricsProviders == nil {
 		return localVarReturnValue, nil, reportError("patchPagesPageIdMetricsProviders is required and must be specified")
 	}
@@ -750,7 +576,7 @@ func (a *MetricProvidersApiService) PatchPagesPageIdMetricsProvidersMetricsProvi
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -760,15 +586,15 @@ func (a *MetricProvidersApiService) PatchPagesPageIdMetricsProvidersMetricsProvi
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -779,6 +605,7 @@ func (a *MetricProvidersApiService) PatchPagesPageIdMetricsProvidersMetricsProvi
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -789,6 +616,7 @@ func (a *MetricProvidersApiService) PatchPagesPageIdMetricsProvidersMetricsProvi
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -799,6 +627,7 @@ func (a *MetricProvidersApiService) PatchPagesPageIdMetricsProvidersMetricsProvi
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -806,7 +635,7 @@ func (a *MetricProvidersApiService) PatchPagesPageIdMetricsProvidersMetricsProvi
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -817,9 +646,9 @@ func (a *MetricProvidersApiService) PatchPagesPageIdMetricsProvidersMetricsProvi
 }
 
 type ApiPostPagesPageIdMetricsProvidersRequest struct {
-	ctx _context.Context
-	ApiService *MetricProvidersApiService
-	pageId string
+	ctx                             context.Context
+	ApiService                      *MetricProvidersAPIService
+	pageId                          string
 	postPagesPageIdMetricsProviders *PostPagesPageIdMetricsProviders
 }
 
@@ -828,7 +657,7 @@ func (r ApiPostPagesPageIdMetricsProvidersRequest) PostPagesPageIdMetricsProvide
 	return r
 }
 
-func (r ApiPostPagesPageIdMetricsProvidersRequest) Execute() (MetricsProvider, *_nethttp.Response, error) {
+func (r ApiPostPagesPageIdMetricsProvidersRequest) Execute() (*MetricsProvider, *http.Response, error) {
 	return r.ApiService.PostPagesPageIdMetricsProvidersExecute(r)
 }
 
@@ -837,41 +666,40 @@ PostPagesPageIdMetricsProviders Create a metric provider
 
 Create a metric provider
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @return ApiPostPagesPageIdMetricsProvidersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@return ApiPostPagesPageIdMetricsProvidersRequest
 */
-func (a *MetricProvidersApiService) PostPagesPageIdMetricsProviders(ctx _context.Context, pageId string) ApiPostPagesPageIdMetricsProvidersRequest {
+func (a *MetricProvidersAPIService) PostPagesPageIdMetricsProviders(ctx context.Context, pageId string) ApiPostPagesPageIdMetricsProvidersRequest {
 	return ApiPostPagesPageIdMetricsProvidersRequest{
 		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ctx:        ctx,
+		pageId:     pageId,
 	}
 }
 
 // Execute executes the request
-//  @return MetricsProvider
-func (a *MetricProvidersApiService) PostPagesPageIdMetricsProvidersExecute(r ApiPostPagesPageIdMetricsProvidersRequest) (MetricsProvider, *_nethttp.Response, error) {
+//
+//	@return MetricsProvider
+func (a *MetricProvidersAPIService) PostPagesPageIdMetricsProvidersExecute(r ApiPostPagesPageIdMetricsProvidersRequest) (*MetricsProvider, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  MetricsProvider
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *MetricsProvider
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricProvidersApiService.PostPagesPageIdMetricsProviders")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricProvidersAPIService.PostPagesPageIdMetricsProviders")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/metrics_providers"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.postPagesPageIdMetricsProviders == nil {
 		return localVarReturnValue, nil, reportError("postPagesPageIdMetricsProviders is required and must be specified")
 	}
@@ -909,7 +737,7 @@ func (a *MetricProvidersApiService) PostPagesPageIdMetricsProvidersExecute(r Api
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -919,15 +747,15 @@ func (a *MetricProvidersApiService) PostPagesPageIdMetricsProvidersExecute(r Api
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -938,6 +766,7 @@ func (a *MetricProvidersApiService) PostPagesPageIdMetricsProvidersExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -948,6 +777,7 @@ func (a *MetricProvidersApiService) PostPagesPageIdMetricsProvidersExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -958,6 +788,7 @@ func (a *MetricProvidersApiService) PostPagesPageIdMetricsProvidersExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -968,6 +799,7 @@ func (a *MetricProvidersApiService) PostPagesPageIdMetricsProvidersExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -978,6 +810,7 @@ func (a *MetricProvidersApiService) PostPagesPageIdMetricsProvidersExecute(r Api
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -985,190 +818,7 @@ func (a *MetricProvidersApiService) PostPagesPageIdMetricsProvidersExecute(r Api
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiPostPagesPageIdMetricsProvidersMetricsProviderIdMetricsRequest struct {
-	ctx _context.Context
-	ApiService *MetricProvidersApiService
-	pageId string
-	metricsProviderId string
-	postPagesPageIdMetricsProvidersMetricsProviderIdMetrics *PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics
-}
-
-func (r ApiPostPagesPageIdMetricsProvidersMetricsProviderIdMetricsRequest) PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics(postPagesPageIdMetricsProvidersMetricsProviderIdMetrics PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics) ApiPostPagesPageIdMetricsProvidersMetricsProviderIdMetricsRequest {
-	r.postPagesPageIdMetricsProvidersMetricsProviderIdMetrics = &postPagesPageIdMetricsProvidersMetricsProviderIdMetrics
-	return r
-}
-
-func (r ApiPostPagesPageIdMetricsProvidersMetricsProviderIdMetricsRequest) Execute() (Metric, *_nethttp.Response, error) {
-	return r.ApiService.PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsExecute(r)
-}
-
-/*
-PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics Create a metric for a metric provider
-
-Create a metric for a metric provider
-
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @param metricsProviderId Metric Provider Identifier
- @return ApiPostPagesPageIdMetricsProvidersMetricsProviderIdMetricsRequest
-*/
-func (a *MetricProvidersApiService) PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics(ctx _context.Context, pageId string, metricsProviderId string) ApiPostPagesPageIdMetricsProvidersMetricsProviderIdMetricsRequest {
-	return ApiPostPagesPageIdMetricsProvidersMetricsProviderIdMetricsRequest{
-		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
-		metricsProviderId: metricsProviderId,
-	}
-}
-
-// Execute executes the request
-//  @return Metric
-func (a *MetricProvidersApiService) PostPagesPageIdMetricsProvidersMetricsProviderIdMetricsExecute(r ApiPostPagesPageIdMetricsProvidersMetricsProviderIdMetricsRequest) (Metric, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Metric
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricProvidersApiService.PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/pages/{page_id}/metrics_providers/{metrics_provider_id}/metrics"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"metrics_provider_id"+"}", _neturl.PathEscape(parameterToString(r.metricsProviderId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-	if r.postPagesPageIdMetricsProvidersMetricsProviderIdMetrics == nil {
-		return localVarReturnValue, nil, reportError("postPagesPageIdMetricsProvidersMetricsProviderIdMetrics is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.postPagesPageIdMetricsProvidersMetricsProviderIdMetrics
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["api_key"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorEntity
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorEntity
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v ErrorEntity
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -1179,10 +829,10 @@ func (a *MetricProvidersApiService) PostPagesPageIdMetricsProvidersMetricsProvid
 }
 
 type ApiPutPagesPageIdMetricsProvidersMetricsProviderIdRequest struct {
-	ctx _context.Context
-	ApiService *MetricProvidersApiService
-	pageId string
-	metricsProviderId string
+	ctx                            context.Context
+	ApiService                     *MetricProvidersAPIService
+	pageId                         string
+	metricsProviderId              string
 	putPagesPageIdMetricsProviders *PutPagesPageIdMetricsProviders
 }
 
@@ -1191,7 +841,7 @@ func (r ApiPutPagesPageIdMetricsProvidersMetricsProviderIdRequest) PutPagesPageI
 	return r
 }
 
-func (r ApiPutPagesPageIdMetricsProvidersMetricsProviderIdRequest) Execute() (MetricsProvider, *_nethttp.Response, error) {
+func (r ApiPutPagesPageIdMetricsProvidersMetricsProviderIdRequest) Execute() (*MetricsProvider, *http.Response, error) {
 	return r.ApiService.PutPagesPageIdMetricsProvidersMetricsProviderIdExecute(r)
 }
 
@@ -1200,44 +850,43 @@ PutPagesPageIdMetricsProvidersMetricsProviderId Update a metric provider
 
 Update a metric provider
 
- @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param pageId Page identifier
- @param metricsProviderId Metric Provider Identifier
- @return ApiPutPagesPageIdMetricsProvidersMetricsProviderIdRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param pageId Page identifier
+	@param metricsProviderId Metric Provider Identifier
+	@return ApiPutPagesPageIdMetricsProvidersMetricsProviderIdRequest
 */
-func (a *MetricProvidersApiService) PutPagesPageIdMetricsProvidersMetricsProviderId(ctx _context.Context, pageId string, metricsProviderId string) ApiPutPagesPageIdMetricsProvidersMetricsProviderIdRequest {
+func (a *MetricProvidersAPIService) PutPagesPageIdMetricsProvidersMetricsProviderId(ctx context.Context, pageId string, metricsProviderId string) ApiPutPagesPageIdMetricsProvidersMetricsProviderIdRequest {
 	return ApiPutPagesPageIdMetricsProvidersMetricsProviderIdRequest{
-		ApiService: a,
-		ctx: ctx,
-		pageId: pageId,
+		ApiService:        a,
+		ctx:               ctx,
+		pageId:            pageId,
 		metricsProviderId: metricsProviderId,
 	}
 }
 
 // Execute executes the request
-//  @return MetricsProvider
-func (a *MetricProvidersApiService) PutPagesPageIdMetricsProvidersMetricsProviderIdExecute(r ApiPutPagesPageIdMetricsProvidersMetricsProviderIdRequest) (MetricsProvider, *_nethttp.Response, error) {
+//
+//	@return MetricsProvider
+func (a *MetricProvidersAPIService) PutPagesPageIdMetricsProvidersMetricsProviderIdExecute(r ApiPutPagesPageIdMetricsProvidersMetricsProviderIdRequest) (*MetricsProvider, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  MetricsProvider
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *MetricsProvider
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricProvidersApiService.PutPagesPageIdMetricsProvidersMetricsProviderId")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricProvidersAPIService.PutPagesPageIdMetricsProvidersMetricsProviderId")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/metrics_providers/{metrics_provider_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", _neturl.PathEscape(parameterToString(r.pageId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"metrics_provider_id"+"}", _neturl.PathEscape(parameterToString(r.metricsProviderId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"page_id"+"}", url.PathEscape(parameterValueToString(r.pageId, "pageId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"metrics_provider_id"+"}", url.PathEscape(parameterValueToString(r.metricsProviderId, "metricsProviderId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if r.putPagesPageIdMetricsProviders == nil {
 		return localVarReturnValue, nil, reportError("putPagesPageIdMetricsProviders is required and must be specified")
 	}
@@ -1275,7 +924,7 @@ func (a *MetricProvidersApiService) PutPagesPageIdMetricsProvidersMetricsProvide
 			}
 		}
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1285,15 +934,15 @@ func (a *MetricProvidersApiService) PutPagesPageIdMetricsProvidersMetricsProvide
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1304,6 +953,7 @@ func (a *MetricProvidersApiService) PutPagesPageIdMetricsProvidersMetricsProvide
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -1314,6 +964,7 @@ func (a *MetricProvidersApiService) PutPagesPageIdMetricsProvidersMetricsProvide
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
@@ -1324,6 +975,7 @@ func (a *MetricProvidersApiService) PutPagesPageIdMetricsProvidersMetricsProvide
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -1331,7 +983,7 @@ func (a *MetricProvidersApiService) PutPagesPageIdMetricsProvidersMetricsProvide
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}

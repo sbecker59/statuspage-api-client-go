@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PatchPagesPageIdMetricsMetric type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PatchPagesPageIdMetricsMetric{}
+
 // PatchPagesPageIdMetricsMetric struct for PatchPagesPageIdMetricsMetric
 type PatchPagesPageIdMetricsMetric struct {
 	// Name of metric
@@ -41,7 +44,7 @@ func NewPatchPagesPageIdMetricsMetricWithDefaults() *PatchPagesPageIdMetricsMetr
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *PatchPagesPageIdMetricsMetric) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *PatchPagesPageIdMetricsMetric) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdMetricsMetric) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -59,7 +62,7 @@ func (o *PatchPagesPageIdMetricsMetric) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *PatchPagesPageIdMetricsMetric) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *PatchPagesPageIdMetricsMetric) SetName(v string) {
 
 // GetMetricIdentifier returns the MetricIdentifier field value if set, zero value otherwise.
 func (o *PatchPagesPageIdMetricsMetric) GetMetricIdentifier() string {
-	if o == nil || o.MetricIdentifier == nil {
+	if o == nil || IsNil(o.MetricIdentifier) {
 		var ret string
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *PatchPagesPageIdMetricsMetric) GetMetricIdentifier() string {
 // GetMetricIdentifierOk returns a tuple with the MetricIdentifier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchPagesPageIdMetricsMetric) GetMetricIdentifierOk() (*string, bool) {
-	if o == nil || o.MetricIdentifier == nil {
+	if o == nil || IsNil(o.MetricIdentifier) {
 		return nil, false
 	}
 	return o.MetricIdentifier, true
@@ -91,7 +94,7 @@ func (o *PatchPagesPageIdMetricsMetric) GetMetricIdentifierOk() (*string, bool) 
 
 // HasMetricIdentifier returns a boolean if a field has been set.
 func (o *PatchPagesPageIdMetricsMetric) HasMetricIdentifier() bool {
-	if o != nil && o.MetricIdentifier != nil {
+	if o != nil && !IsNil(o.MetricIdentifier) {
 		return true
 	}
 
@@ -104,14 +107,22 @@ func (o *PatchPagesPageIdMetricsMetric) SetMetricIdentifier(v string) {
 }
 
 func (o PatchPagesPageIdMetricsMetric) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.MetricIdentifier != nil {
-		toSerialize["metric_identifier"] = o.MetricIdentifier
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PatchPagesPageIdMetricsMetric) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.MetricIdentifier) {
+		toSerialize["metric_identifier"] = o.MetricIdentifier
+	}
+	return toSerialize, nil
 }
 
 type NullablePatchPagesPageIdMetricsMetric struct {
@@ -149,5 +160,3 @@ func (v *NullablePatchPagesPageIdMetricsMetric) UnmarshalJSON(src []byte) error 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -14,10 +14,13 @@ import (
 	"encoding/json"
 )
 
+// checks if the DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents{}
+
 // DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents Remove components for page access user
 type DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents struct {
 	// List of components codes to remove.  If omitted, all components will be removed.
-	ComponentIds *[]string `json:"component_ids,omitempty"`
+	ComponentIds []string `json:"component_ids,omitempty"`
 }
 
 // NewDeletePagesPageIdPageAccessUsersPageAccessUserIdComponents instantiates a new DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents object
@@ -39,17 +42,17 @@ func NewDeletePagesPageIdPageAccessUsersPageAccessUserIdComponentsWithDefaults()
 
 // GetComponentIds returns the ComponentIds field value if set, zero value otherwise.
 func (o *DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents) GetComponentIds() []string {
-	if o == nil || o.ComponentIds == nil {
+	if o == nil || IsNil(o.ComponentIds) {
 		var ret []string
 		return ret
 	}
-	return *o.ComponentIds
+	return o.ComponentIds
 }
 
 // GetComponentIdsOk returns a tuple with the ComponentIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents) GetComponentIdsOk() (*[]string, bool) {
-	if o == nil || o.ComponentIds == nil {
+func (o *DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents) GetComponentIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.ComponentIds) {
 		return nil, false
 	}
 	return o.ComponentIds, true
@@ -57,7 +60,7 @@ func (o *DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents) GetComponen
 
 // HasComponentIds returns a boolean if a field has been set.
 func (o *DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents) HasComponentIds() bool {
-	if o != nil && o.ComponentIds != nil {
+	if o != nil && !IsNil(o.ComponentIds) {
 		return true
 	}
 
@@ -66,15 +69,23 @@ func (o *DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents) HasComponen
 
 // SetComponentIds gets a reference to the given []string and assigns it to the ComponentIds field.
 func (o *DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents) SetComponentIds(v []string) {
-	o.ComponentIds = &v
+	o.ComponentIds = v
 }
 
 func (o DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ComponentIds != nil {
-		toSerialize["component_ids"] = o.ComponentIds
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ComponentIds) {
+		toSerialize["component_ids"] = o.ComponentIds
+	}
+	return toSerialize, nil
 }
 
 type NullableDeletePagesPageIdPageAccessUsersPageAccessUserIdComponents struct {
@@ -112,5 +123,3 @@ func (v *NullableDeletePagesPageIdPageAccessUsersPageAccessUserIdComponents) Unm
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

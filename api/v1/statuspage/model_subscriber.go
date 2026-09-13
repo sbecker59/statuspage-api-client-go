@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the Subscriber type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Subscriber{}
+
 // Subscriber Get an incident subscriber
 type Subscriber struct {
 	// Subscriber Identifier
@@ -44,8 +47,8 @@ type Subscriber struct {
 	// The components for which the subscriber has elected to receive updates.
 	Components *string `json:"components,omitempty"`
 	// The Page Access user this subscriber belongs to (only for audience-specific pages).
-	PageAccessUserId *string `json:"page_access_user_id,omitempty"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	PageAccessUserId *string    `json:"page_access_user_id,omitempty"`
+	CreatedAt        *time.Time `json:"created_at,omitempty"`
 }
 
 // NewSubscriber instantiates a new Subscriber object
@@ -67,7 +70,7 @@ func NewSubscriberWithDefaults() *Subscriber {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Subscriber) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -77,7 +80,7 @@ func (o *Subscriber) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscriber) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -85,7 +88,7 @@ func (o *Subscriber) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Subscriber) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -99,7 +102,7 @@ func (o *Subscriber) SetId(v string) {
 
 // GetSkipConfirmationNotification returns the SkipConfirmationNotification field value if set, zero value otherwise.
 func (o *Subscriber) GetSkipConfirmationNotification() bool {
-	if o == nil || o.SkipConfirmationNotification == nil {
+	if o == nil || IsNil(o.SkipConfirmationNotification) {
 		var ret bool
 		return ret
 	}
@@ -109,7 +112,7 @@ func (o *Subscriber) GetSkipConfirmationNotification() bool {
 // GetSkipConfirmationNotificationOk returns a tuple with the SkipConfirmationNotification field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscriber) GetSkipConfirmationNotificationOk() (*bool, bool) {
-	if o == nil || o.SkipConfirmationNotification == nil {
+	if o == nil || IsNil(o.SkipConfirmationNotification) {
 		return nil, false
 	}
 	return o.SkipConfirmationNotification, true
@@ -117,7 +120,7 @@ func (o *Subscriber) GetSkipConfirmationNotificationOk() (*bool, bool) {
 
 // HasSkipConfirmationNotification returns a boolean if a field has been set.
 func (o *Subscriber) HasSkipConfirmationNotification() bool {
-	if o != nil && o.SkipConfirmationNotification != nil {
+	if o != nil && !IsNil(o.SkipConfirmationNotification) {
 		return true
 	}
 
@@ -131,7 +134,7 @@ func (o *Subscriber) SetSkipConfirmationNotification(v bool) {
 
 // GetMode returns the Mode field value if set, zero value otherwise.
 func (o *Subscriber) GetMode() string {
-	if o == nil || o.Mode == nil {
+	if o == nil || IsNil(o.Mode) {
 		var ret string
 		return ret
 	}
@@ -141,7 +144,7 @@ func (o *Subscriber) GetMode() string {
 // GetModeOk returns a tuple with the Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscriber) GetModeOk() (*string, bool) {
-	if o == nil || o.Mode == nil {
+	if o == nil || IsNil(o.Mode) {
 		return nil, false
 	}
 	return o.Mode, true
@@ -149,7 +152,7 @@ func (o *Subscriber) GetModeOk() (*string, bool) {
 
 // HasMode returns a boolean if a field has been set.
 func (o *Subscriber) HasMode() bool {
-	if o != nil && o.Mode != nil {
+	if o != nil && !IsNil(o.Mode) {
 		return true
 	}
 
@@ -163,7 +166,7 @@ func (o *Subscriber) SetMode(v string) {
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *Subscriber) GetEmail() string {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -173,7 +176,7 @@ func (o *Subscriber) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscriber) GetEmailOk() (*string, bool) {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		return nil, false
 	}
 	return o.Email, true
@@ -181,7 +184,7 @@ func (o *Subscriber) GetEmailOk() (*string, bool) {
 
 // HasEmail returns a boolean if a field has been set.
 func (o *Subscriber) HasEmail() bool {
-	if o != nil && o.Email != nil {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -195,7 +198,7 @@ func (o *Subscriber) SetEmail(v string) {
 
 // GetEndpoint returns the Endpoint field value if set, zero value otherwise.
 func (o *Subscriber) GetEndpoint() string {
-	if o == nil || o.Endpoint == nil {
+	if o == nil || IsNil(o.Endpoint) {
 		var ret string
 		return ret
 	}
@@ -205,7 +208,7 @@ func (o *Subscriber) GetEndpoint() string {
 // GetEndpointOk returns a tuple with the Endpoint field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscriber) GetEndpointOk() (*string, bool) {
-	if o == nil || o.Endpoint == nil {
+	if o == nil || IsNil(o.Endpoint) {
 		return nil, false
 	}
 	return o.Endpoint, true
@@ -213,7 +216,7 @@ func (o *Subscriber) GetEndpointOk() (*string, bool) {
 
 // HasEndpoint returns a boolean if a field has been set.
 func (o *Subscriber) HasEndpoint() bool {
-	if o != nil && o.Endpoint != nil {
+	if o != nil && !IsNil(o.Endpoint) {
 		return true
 	}
 
@@ -227,7 +230,7 @@ func (o *Subscriber) SetEndpoint(v string) {
 
 // GetPhoneNumber returns the PhoneNumber field value if set, zero value otherwise.
 func (o *Subscriber) GetPhoneNumber() string {
-	if o == nil || o.PhoneNumber == nil {
+	if o == nil || IsNil(o.PhoneNumber) {
 		var ret string
 		return ret
 	}
@@ -237,7 +240,7 @@ func (o *Subscriber) GetPhoneNumber() string {
 // GetPhoneNumberOk returns a tuple with the PhoneNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscriber) GetPhoneNumberOk() (*string, bool) {
-	if o == nil || o.PhoneNumber == nil {
+	if o == nil || IsNil(o.PhoneNumber) {
 		return nil, false
 	}
 	return o.PhoneNumber, true
@@ -245,7 +248,7 @@ func (o *Subscriber) GetPhoneNumberOk() (*string, bool) {
 
 // HasPhoneNumber returns a boolean if a field has been set.
 func (o *Subscriber) HasPhoneNumber() bool {
-	if o != nil && o.PhoneNumber != nil {
+	if o != nil && !IsNil(o.PhoneNumber) {
 		return true
 	}
 
@@ -259,7 +262,7 @@ func (o *Subscriber) SetPhoneNumber(v string) {
 
 // GetPhoneCountry returns the PhoneCountry field value if set, zero value otherwise.
 func (o *Subscriber) GetPhoneCountry() string {
-	if o == nil || o.PhoneCountry == nil {
+	if o == nil || IsNil(o.PhoneCountry) {
 		var ret string
 		return ret
 	}
@@ -269,7 +272,7 @@ func (o *Subscriber) GetPhoneCountry() string {
 // GetPhoneCountryOk returns a tuple with the PhoneCountry field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscriber) GetPhoneCountryOk() (*string, bool) {
-	if o == nil || o.PhoneCountry == nil {
+	if o == nil || IsNil(o.PhoneCountry) {
 		return nil, false
 	}
 	return o.PhoneCountry, true
@@ -277,7 +280,7 @@ func (o *Subscriber) GetPhoneCountryOk() (*string, bool) {
 
 // HasPhoneCountry returns a boolean if a field has been set.
 func (o *Subscriber) HasPhoneCountry() bool {
-	if o != nil && o.PhoneCountry != nil {
+	if o != nil && !IsNil(o.PhoneCountry) {
 		return true
 	}
 
@@ -291,7 +294,7 @@ func (o *Subscriber) SetPhoneCountry(v string) {
 
 // GetDisplayPhoneNumber returns the DisplayPhoneNumber field value if set, zero value otherwise.
 func (o *Subscriber) GetDisplayPhoneNumber() string {
-	if o == nil || o.DisplayPhoneNumber == nil {
+	if o == nil || IsNil(o.DisplayPhoneNumber) {
 		var ret string
 		return ret
 	}
@@ -301,7 +304,7 @@ func (o *Subscriber) GetDisplayPhoneNumber() string {
 // GetDisplayPhoneNumberOk returns a tuple with the DisplayPhoneNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscriber) GetDisplayPhoneNumberOk() (*string, bool) {
-	if o == nil || o.DisplayPhoneNumber == nil {
+	if o == nil || IsNil(o.DisplayPhoneNumber) {
 		return nil, false
 	}
 	return o.DisplayPhoneNumber, true
@@ -309,7 +312,7 @@ func (o *Subscriber) GetDisplayPhoneNumberOk() (*string, bool) {
 
 // HasDisplayPhoneNumber returns a boolean if a field has been set.
 func (o *Subscriber) HasDisplayPhoneNumber() bool {
-	if o != nil && o.DisplayPhoneNumber != nil {
+	if o != nil && !IsNil(o.DisplayPhoneNumber) {
 		return true
 	}
 
@@ -323,7 +326,7 @@ func (o *Subscriber) SetDisplayPhoneNumber(v string) {
 
 // GetObfuscatedChannelName returns the ObfuscatedChannelName field value if set, zero value otherwise.
 func (o *Subscriber) GetObfuscatedChannelName() string {
-	if o == nil || o.ObfuscatedChannelName == nil {
+	if o == nil || IsNil(o.ObfuscatedChannelName) {
 		var ret string
 		return ret
 	}
@@ -333,7 +336,7 @@ func (o *Subscriber) GetObfuscatedChannelName() string {
 // GetObfuscatedChannelNameOk returns a tuple with the ObfuscatedChannelName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscriber) GetObfuscatedChannelNameOk() (*string, bool) {
-	if o == nil || o.ObfuscatedChannelName == nil {
+	if o == nil || IsNil(o.ObfuscatedChannelName) {
 		return nil, false
 	}
 	return o.ObfuscatedChannelName, true
@@ -341,7 +344,7 @@ func (o *Subscriber) GetObfuscatedChannelNameOk() (*string, bool) {
 
 // HasObfuscatedChannelName returns a boolean if a field has been set.
 func (o *Subscriber) HasObfuscatedChannelName() bool {
-	if o != nil && o.ObfuscatedChannelName != nil {
+	if o != nil && !IsNil(o.ObfuscatedChannelName) {
 		return true
 	}
 
@@ -355,7 +358,7 @@ func (o *Subscriber) SetObfuscatedChannelName(v string) {
 
 // GetWorkspaceName returns the WorkspaceName field value if set, zero value otherwise.
 func (o *Subscriber) GetWorkspaceName() string {
-	if o == nil || o.WorkspaceName == nil {
+	if o == nil || IsNil(o.WorkspaceName) {
 		var ret string
 		return ret
 	}
@@ -365,7 +368,7 @@ func (o *Subscriber) GetWorkspaceName() string {
 // GetWorkspaceNameOk returns a tuple with the WorkspaceName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscriber) GetWorkspaceNameOk() (*string, bool) {
-	if o == nil || o.WorkspaceName == nil {
+	if o == nil || IsNil(o.WorkspaceName) {
 		return nil, false
 	}
 	return o.WorkspaceName, true
@@ -373,7 +376,7 @@ func (o *Subscriber) GetWorkspaceNameOk() (*string, bool) {
 
 // HasWorkspaceName returns a boolean if a field has been set.
 func (o *Subscriber) HasWorkspaceName() bool {
-	if o != nil && o.WorkspaceName != nil {
+	if o != nil && !IsNil(o.WorkspaceName) {
 		return true
 	}
 
@@ -387,7 +390,7 @@ func (o *Subscriber) SetWorkspaceName(v string) {
 
 // GetQuarantinedAt returns the QuarantinedAt field value if set, zero value otherwise.
 func (o *Subscriber) GetQuarantinedAt() time.Time {
-	if o == nil || o.QuarantinedAt == nil {
+	if o == nil || IsNil(o.QuarantinedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -397,7 +400,7 @@ func (o *Subscriber) GetQuarantinedAt() time.Time {
 // GetQuarantinedAtOk returns a tuple with the QuarantinedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscriber) GetQuarantinedAtOk() (*time.Time, bool) {
-	if o == nil || o.QuarantinedAt == nil {
+	if o == nil || IsNil(o.QuarantinedAt) {
 		return nil, false
 	}
 	return o.QuarantinedAt, true
@@ -405,7 +408,7 @@ func (o *Subscriber) GetQuarantinedAtOk() (*time.Time, bool) {
 
 // HasQuarantinedAt returns a boolean if a field has been set.
 func (o *Subscriber) HasQuarantinedAt() bool {
-	if o != nil && o.QuarantinedAt != nil {
+	if o != nil && !IsNil(o.QuarantinedAt) {
 		return true
 	}
 
@@ -419,7 +422,7 @@ func (o *Subscriber) SetQuarantinedAt(v time.Time) {
 
 // GetPurgeAt returns the PurgeAt field value if set, zero value otherwise.
 func (o *Subscriber) GetPurgeAt() time.Time {
-	if o == nil || o.PurgeAt == nil {
+	if o == nil || IsNil(o.PurgeAt) {
 		var ret time.Time
 		return ret
 	}
@@ -429,7 +432,7 @@ func (o *Subscriber) GetPurgeAt() time.Time {
 // GetPurgeAtOk returns a tuple with the PurgeAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscriber) GetPurgeAtOk() (*time.Time, bool) {
-	if o == nil || o.PurgeAt == nil {
+	if o == nil || IsNil(o.PurgeAt) {
 		return nil, false
 	}
 	return o.PurgeAt, true
@@ -437,7 +440,7 @@ func (o *Subscriber) GetPurgeAtOk() (*time.Time, bool) {
 
 // HasPurgeAt returns a boolean if a field has been set.
 func (o *Subscriber) HasPurgeAt() bool {
-	if o != nil && o.PurgeAt != nil {
+	if o != nil && !IsNil(o.PurgeAt) {
 		return true
 	}
 
@@ -451,7 +454,7 @@ func (o *Subscriber) SetPurgeAt(v time.Time) {
 
 // GetComponents returns the Components field value if set, zero value otherwise.
 func (o *Subscriber) GetComponents() string {
-	if o == nil || o.Components == nil {
+	if o == nil || IsNil(o.Components) {
 		var ret string
 		return ret
 	}
@@ -461,7 +464,7 @@ func (o *Subscriber) GetComponents() string {
 // GetComponentsOk returns a tuple with the Components field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscriber) GetComponentsOk() (*string, bool) {
-	if o == nil || o.Components == nil {
+	if o == nil || IsNil(o.Components) {
 		return nil, false
 	}
 	return o.Components, true
@@ -469,7 +472,7 @@ func (o *Subscriber) GetComponentsOk() (*string, bool) {
 
 // HasComponents returns a boolean if a field has been set.
 func (o *Subscriber) HasComponents() bool {
-	if o != nil && o.Components != nil {
+	if o != nil && !IsNil(o.Components) {
 		return true
 	}
 
@@ -483,7 +486,7 @@ func (o *Subscriber) SetComponents(v string) {
 
 // GetPageAccessUserId returns the PageAccessUserId field value if set, zero value otherwise.
 func (o *Subscriber) GetPageAccessUserId() string {
-	if o == nil || o.PageAccessUserId == nil {
+	if o == nil || IsNil(o.PageAccessUserId) {
 		var ret string
 		return ret
 	}
@@ -493,7 +496,7 @@ func (o *Subscriber) GetPageAccessUserId() string {
 // GetPageAccessUserIdOk returns a tuple with the PageAccessUserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscriber) GetPageAccessUserIdOk() (*string, bool) {
-	if o == nil || o.PageAccessUserId == nil {
+	if o == nil || IsNil(o.PageAccessUserId) {
 		return nil, false
 	}
 	return o.PageAccessUserId, true
@@ -501,7 +504,7 @@ func (o *Subscriber) GetPageAccessUserIdOk() (*string, bool) {
 
 // HasPageAccessUserId returns a boolean if a field has been set.
 func (o *Subscriber) HasPageAccessUserId() bool {
-	if o != nil && o.PageAccessUserId != nil {
+	if o != nil && !IsNil(o.PageAccessUserId) {
 		return true
 	}
 
@@ -515,7 +518,7 @@ func (o *Subscriber) SetPageAccessUserId(v string) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *Subscriber) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -525,7 +528,7 @@ func (o *Subscriber) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Subscriber) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -533,7 +536,7 @@ func (o *Subscriber) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Subscriber) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -546,53 +549,61 @@ func (o *Subscriber) SetCreatedAt(v time.Time) {
 }
 
 func (o Subscriber) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.SkipConfirmationNotification != nil {
-		toSerialize["skip_confirmation_notification"] = o.SkipConfirmationNotification
-	}
-	if o.Mode != nil {
-		toSerialize["mode"] = o.Mode
-	}
-	if o.Email != nil {
-		toSerialize["email"] = o.Email
-	}
-	if o.Endpoint != nil {
-		toSerialize["endpoint"] = o.Endpoint
-	}
-	if o.PhoneNumber != nil {
-		toSerialize["phone_number"] = o.PhoneNumber
-	}
-	if o.PhoneCountry != nil {
-		toSerialize["phone_country"] = o.PhoneCountry
-	}
-	if o.DisplayPhoneNumber != nil {
-		toSerialize["display_phone_number"] = o.DisplayPhoneNumber
-	}
-	if o.ObfuscatedChannelName != nil {
-		toSerialize["obfuscated_channel_name"] = o.ObfuscatedChannelName
-	}
-	if o.WorkspaceName != nil {
-		toSerialize["workspace_name"] = o.WorkspaceName
-	}
-	if o.QuarantinedAt != nil {
-		toSerialize["quarantined_at"] = o.QuarantinedAt
-	}
-	if o.PurgeAt != nil {
-		toSerialize["purge_at"] = o.PurgeAt
-	}
-	if o.Components != nil {
-		toSerialize["components"] = o.Components
-	}
-	if o.PageAccessUserId != nil {
-		toSerialize["page_access_user_id"] = o.PageAccessUserId
-	}
-	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Subscriber) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.SkipConfirmationNotification) {
+		toSerialize["skip_confirmation_notification"] = o.SkipConfirmationNotification
+	}
+	if !IsNil(o.Mode) {
+		toSerialize["mode"] = o.Mode
+	}
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
+	}
+	if !IsNil(o.Endpoint) {
+		toSerialize["endpoint"] = o.Endpoint
+	}
+	if !IsNil(o.PhoneNumber) {
+		toSerialize["phone_number"] = o.PhoneNumber
+	}
+	if !IsNil(o.PhoneCountry) {
+		toSerialize["phone_country"] = o.PhoneCountry
+	}
+	if !IsNil(o.DisplayPhoneNumber) {
+		toSerialize["display_phone_number"] = o.DisplayPhoneNumber
+	}
+	if !IsNil(o.ObfuscatedChannelName) {
+		toSerialize["obfuscated_channel_name"] = o.ObfuscatedChannelName
+	}
+	if !IsNil(o.WorkspaceName) {
+		toSerialize["workspace_name"] = o.WorkspaceName
+	}
+	if !IsNil(o.QuarantinedAt) {
+		toSerialize["quarantined_at"] = o.QuarantinedAt
+	}
+	if !IsNil(o.PurgeAt) {
+		toSerialize["purge_at"] = o.PurgeAt
+	}
+	if !IsNil(o.Components) {
+		toSerialize["components"] = o.Components
+	}
+	if !IsNil(o.PageAccessUserId) {
+		toSerialize["page_access_user_id"] = o.PageAccessUserId
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	return toSerialize, nil
 }
 
 type NullableSubscriber struct {
@@ -630,5 +641,3 @@ func (v *NullableSubscriber) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

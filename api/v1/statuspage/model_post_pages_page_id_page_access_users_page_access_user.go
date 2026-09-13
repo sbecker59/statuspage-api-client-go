@@ -14,13 +14,16 @@ import (
 	"encoding/json"
 )
 
+// checks if the PostPagesPageIdPageAccessUsersPageAccessUser type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PostPagesPageIdPageAccessUsersPageAccessUser{}
+
 // PostPagesPageIdPageAccessUsersPageAccessUser struct for PostPagesPageIdPageAccessUsersPageAccessUser
 type PostPagesPageIdPageAccessUsersPageAccessUser struct {
 	// IDP login user id. Key is typically \"uid\".
-	ExternalLogin *string `json:"external_login,omitempty"`
-	Email *string `json:"email,omitempty"`
-	PageAccessGroupIds *[]string `json:"page_access_group_ids,omitempty"`
-	SubscribeToComponents *bool `json:"subscribe_to_components,omitempty"`
+	ExternalLogin         *string  `json:"external_login,omitempty"`
+	Email                 *string  `json:"email,omitempty"`
+	PageAccessGroupIds    []string `json:"page_access_group_ids,omitempty"`
+	SubscribeToComponents *bool    `json:"subscribe_to_components,omitempty"`
 }
 
 // NewPostPagesPageIdPageAccessUsersPageAccessUser instantiates a new PostPagesPageIdPageAccessUsersPageAccessUser object
@@ -42,7 +45,7 @@ func NewPostPagesPageIdPageAccessUsersPageAccessUserWithDefaults() *PostPagesPag
 
 // GetExternalLogin returns the ExternalLogin field value if set, zero value otherwise.
 func (o *PostPagesPageIdPageAccessUsersPageAccessUser) GetExternalLogin() string {
-	if o == nil || o.ExternalLogin == nil {
+	if o == nil || IsNil(o.ExternalLogin) {
 		var ret string
 		return ret
 	}
@@ -52,7 +55,7 @@ func (o *PostPagesPageIdPageAccessUsersPageAccessUser) GetExternalLogin() string
 // GetExternalLoginOk returns a tuple with the ExternalLogin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdPageAccessUsersPageAccessUser) GetExternalLoginOk() (*string, bool) {
-	if o == nil || o.ExternalLogin == nil {
+	if o == nil || IsNil(o.ExternalLogin) {
 		return nil, false
 	}
 	return o.ExternalLogin, true
@@ -60,7 +63,7 @@ func (o *PostPagesPageIdPageAccessUsersPageAccessUser) GetExternalLoginOk() (*st
 
 // HasExternalLogin returns a boolean if a field has been set.
 func (o *PostPagesPageIdPageAccessUsersPageAccessUser) HasExternalLogin() bool {
-	if o != nil && o.ExternalLogin != nil {
+	if o != nil && !IsNil(o.ExternalLogin) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *PostPagesPageIdPageAccessUsersPageAccessUser) SetExternalLogin(v string
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *PostPagesPageIdPageAccessUsersPageAccessUser) GetEmail() string {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -84,7 +87,7 @@ func (o *PostPagesPageIdPageAccessUsersPageAccessUser) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdPageAccessUsersPageAccessUser) GetEmailOk() (*string, bool) {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		return nil, false
 	}
 	return o.Email, true
@@ -92,7 +95,7 @@ func (o *PostPagesPageIdPageAccessUsersPageAccessUser) GetEmailOk() (*string, bo
 
 // HasEmail returns a boolean if a field has been set.
 func (o *PostPagesPageIdPageAccessUsersPageAccessUser) HasEmail() bool {
-	if o != nil && o.Email != nil {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -106,17 +109,17 @@ func (o *PostPagesPageIdPageAccessUsersPageAccessUser) SetEmail(v string) {
 
 // GetPageAccessGroupIds returns the PageAccessGroupIds field value if set, zero value otherwise.
 func (o *PostPagesPageIdPageAccessUsersPageAccessUser) GetPageAccessGroupIds() []string {
-	if o == nil || o.PageAccessGroupIds == nil {
+	if o == nil || IsNil(o.PageAccessGroupIds) {
 		var ret []string
 		return ret
 	}
-	return *o.PageAccessGroupIds
+	return o.PageAccessGroupIds
 }
 
 // GetPageAccessGroupIdsOk returns a tuple with the PageAccessGroupIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostPagesPageIdPageAccessUsersPageAccessUser) GetPageAccessGroupIdsOk() (*[]string, bool) {
-	if o == nil || o.PageAccessGroupIds == nil {
+func (o *PostPagesPageIdPageAccessUsersPageAccessUser) GetPageAccessGroupIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.PageAccessGroupIds) {
 		return nil, false
 	}
 	return o.PageAccessGroupIds, true
@@ -124,7 +127,7 @@ func (o *PostPagesPageIdPageAccessUsersPageAccessUser) GetPageAccessGroupIdsOk()
 
 // HasPageAccessGroupIds returns a boolean if a field has been set.
 func (o *PostPagesPageIdPageAccessUsersPageAccessUser) HasPageAccessGroupIds() bool {
-	if o != nil && o.PageAccessGroupIds != nil {
+	if o != nil && !IsNil(o.PageAccessGroupIds) {
 		return true
 	}
 
@@ -133,12 +136,12 @@ func (o *PostPagesPageIdPageAccessUsersPageAccessUser) HasPageAccessGroupIds() b
 
 // SetPageAccessGroupIds gets a reference to the given []string and assigns it to the PageAccessGroupIds field.
 func (o *PostPagesPageIdPageAccessUsersPageAccessUser) SetPageAccessGroupIds(v []string) {
-	o.PageAccessGroupIds = &v
+	o.PageAccessGroupIds = v
 }
 
 // GetSubscribeToComponents returns the SubscribeToComponents field value if set, zero value otherwise.
 func (o *PostPagesPageIdPageAccessUsersPageAccessUser) GetSubscribeToComponents() bool {
-	if o == nil || o.SubscribeToComponents == nil {
+	if o == nil || IsNil(o.SubscribeToComponents) {
 		var ret bool
 		return ret
 	}
@@ -148,7 +151,7 @@ func (o *PostPagesPageIdPageAccessUsersPageAccessUser) GetSubscribeToComponents(
 // GetSubscribeToComponentsOk returns a tuple with the SubscribeToComponents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdPageAccessUsersPageAccessUser) GetSubscribeToComponentsOk() (*bool, bool) {
-	if o == nil || o.SubscribeToComponents == nil {
+	if o == nil || IsNil(o.SubscribeToComponents) {
 		return nil, false
 	}
 	return o.SubscribeToComponents, true
@@ -156,7 +159,7 @@ func (o *PostPagesPageIdPageAccessUsersPageAccessUser) GetSubscribeToComponentsO
 
 // HasSubscribeToComponents returns a boolean if a field has been set.
 func (o *PostPagesPageIdPageAccessUsersPageAccessUser) HasSubscribeToComponents() bool {
-	if o != nil && o.SubscribeToComponents != nil {
+	if o != nil && !IsNil(o.SubscribeToComponents) {
 		return true
 	}
 
@@ -169,20 +172,28 @@ func (o *PostPagesPageIdPageAccessUsersPageAccessUser) SetSubscribeToComponents(
 }
 
 func (o PostPagesPageIdPageAccessUsersPageAccessUser) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ExternalLogin != nil {
-		toSerialize["external_login"] = o.ExternalLogin
-	}
-	if o.Email != nil {
-		toSerialize["email"] = o.Email
-	}
-	if o.PageAccessGroupIds != nil {
-		toSerialize["page_access_group_ids"] = o.PageAccessGroupIds
-	}
-	if o.SubscribeToComponents != nil {
-		toSerialize["subscribe_to_components"] = o.SubscribeToComponents
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PostPagesPageIdPageAccessUsersPageAccessUser) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ExternalLogin) {
+		toSerialize["external_login"] = o.ExternalLogin
+	}
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
+	}
+	if !IsNil(o.PageAccessGroupIds) {
+		toSerialize["page_access_group_ids"] = o.PageAccessGroupIds
+	}
+	if !IsNil(o.SubscribeToComponents) {
+		toSerialize["subscribe_to_components"] = o.SubscribeToComponents
+	}
+	return toSerialize, nil
 }
 
 type NullablePostPagesPageIdPageAccessUsersPageAccessUser struct {
@@ -220,5 +231,3 @@ func (v *NullablePostPagesPageIdPageAccessUsersPageAccessUser) UnmarshalJSON(src
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

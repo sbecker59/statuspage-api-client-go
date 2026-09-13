@@ -11,14 +11,21 @@ API version: 1.0.0
 package openapi
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem{}
 
 // PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem struct for PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem
 type PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem struct {
 	// Body of Postmortem to create.
 	BodyDraft string `json:"body_draft"`
 }
+
+type _PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem
 
 // NewPutPagesPageIdIncidentsIncidentIdPostmortemPostmortem instantiates a new PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem object
 // This constructor will assign default values to properties that have it defined,
@@ -51,7 +58,7 @@ func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem) GetBodyDraft() s
 // GetBodyDraftOk returns a tuple with the BodyDraft field value
 // and a boolean to check if the value has been set.
 func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem) GetBodyDraftOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.BodyDraft, true
@@ -63,11 +70,54 @@ func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem) SetBodyDraft(v s
 }
 
 func (o PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["body_draft"] = o.BodyDraft
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["body_draft"] = o.BodyDraft
+	return toSerialize, nil
+}
+
+func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"body_draft",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPutPagesPageIdIncidentsIncidentIdPostmortemPostmortem := _PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varPutPagesPageIdIncidentsIncidentIdPostmortemPostmortem)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem(varPutPagesPageIdIncidentsIncidentIdPostmortemPostmortem)
+
+	return err
 }
 
 type NullablePutPagesPageIdIncidentsIncidentIdPostmortemPostmortem struct {
@@ -105,5 +155,3 @@ func (v *NullablePutPagesPageIdIncidentsIncidentIdPostmortemPostmortem) Unmarsha
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

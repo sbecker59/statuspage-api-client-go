@@ -11,13 +11,20 @@ API version: 1.0.0
 package openapi
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the PostPagesPageIdMetricsMetricIdData type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PostPagesPageIdMetricsMetricIdData{}
 
 // PostPagesPageIdMetricsMetricIdData Add data to a metric
 type PostPagesPageIdMetricsMetricIdData struct {
 	Data PostPagesPageIdMetricsMetricIdDataData `json:"data"`
 }
+
+type _PostPagesPageIdMetricsMetricIdData PostPagesPageIdMetricsMetricIdData
 
 // NewPostPagesPageIdMetricsMetricIdData instantiates a new PostPagesPageIdMetricsMetricIdData object
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +57,7 @@ func (o *PostPagesPageIdMetricsMetricIdData) GetData() PostPagesPageIdMetricsMet
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdMetricsMetricIdData) GetDataOk() (*PostPagesPageIdMetricsMetricIdDataData, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Data, true
@@ -62,11 +69,54 @@ func (o *PostPagesPageIdMetricsMetricIdData) SetData(v PostPagesPageIdMetricsMet
 }
 
 func (o PostPagesPageIdMetricsMetricIdData) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["data"] = o.Data
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PostPagesPageIdMetricsMetricIdData) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["data"] = o.Data
+	return toSerialize, nil
+}
+
+func (o *PostPagesPageIdMetricsMetricIdData) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"data",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPostPagesPageIdMetricsMetricIdData := _PostPagesPageIdMetricsMetricIdData{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varPostPagesPageIdMetricsMetricIdData)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PostPagesPageIdMetricsMetricIdData(varPostPagesPageIdMetricsMetricIdData)
+
+	return err
 }
 
 type NullablePostPagesPageIdMetricsMetricIdData struct {
@@ -104,5 +154,3 @@ func (v *NullablePostPagesPageIdMetricsMetricIdData) UnmarshalJSON(src []byte) e
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

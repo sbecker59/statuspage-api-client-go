@@ -6290,7 +6290,8 @@
             "description": "The start date for uptime calculation (defaults to the component's start_date field or 90 days ago, whichever is more recent).\nThe maximum supported date range is six calendar months. If the year is given, the date defaults to the first day of the year.\nIf the year and month are given, the start date defaults to the first day of that month.\nThe earliest supported date is January 1, 1970.\n",
             "required": false,
             "schema": {
-              "type": "PartialStartDate"
+              "type": "string",
+              "format": "date"
             }
           },
           {
@@ -6299,7 +6300,8 @@
             "description": "The end date for uptime calculation (defaults to today in the page's time zone). The maximum supported date range is six calendar months.\nIf the year is given, the date defaults to the last day of the year. If the year and month are given, the date defaults to the last day of that month.\nThe earliest supported date is January 1, 1970.\n",
             "required": false,
             "schema": {
-              "type": "PartialEndDate"
+              "type": "string",
+              "format": "date"
             }
           }
         ],
@@ -7173,7 +7175,8 @@
             "description": "The start date for uptime calculation (defaults to the date of the component in the group with the earliest start_date, or 90 days ago, whichever is more recent).\nThe maximum supported date range is six calendar months. If the year is given, the date defaults to the first day of the year.\nIf the year and month are given, the start date defaults to the first day of that month.\nThe earliest supported date is January 1, 1970.\n",
             "required": false,
             "schema": {
-              "type": "PartialStartDate"
+              "type": "string",
+              "format": "date"
             }
           },
           {
@@ -7182,7 +7185,8 @@
             "description": "The end date for uptime calculation (defaults to today in the page's time zone). The maximum supported date range is six calendar months.\nIf the year is given, the date defaults to the last day of the year. If the year and month are given, the date defaults to the last day of that month.\nThe earliest supported date is January 1, 1970.\n",
             "required": false,
             "schema": {
-              "type": "PartialEndDate"
+              "type": "string",
+              "format": "date"
             }
           }
         ],
@@ -8466,8 +8470,7 @@
           }
         },
         "tags": [
-          "metrics",
-          "metric providers"
+          "metrics"
         ],
         "operationId": "getPagesPageIdMetricsProvidersMetricsProviderIdMetrics",
         "x-code-samples": [
@@ -8573,8 +8576,7 @@
           }
         },
         "tags": [
-          "metrics",
-          "metric providers"
+          "metrics"
         ],
         "operationId": "postPagesPageIdMetricsProvidersMetricsProviderIdMetrics",
         "x-code-samples": [
@@ -9043,8 +9045,7 @@
           }
         },
         "tags": [
-          "users",
-          "permissions"
+          "users"
         ],
         "operationId": "getOrganizationsOrganizationIdPermissionsUserId",
         "x-code-samples": [
@@ -10755,14 +10756,12 @@
               "scheduled_for": {
                 "type": "string",
                 "format": "date-time",
-                "description": "The timestamp the incident is scheduled for.",
-                "default": "2013-05-07T03:00:00.007Z"
+                "description": "The timestamp the incident is scheduled for."
               },
               "scheduled_until": {
                 "type": "string",
                 "format": "date-time",
-                "description": "The timestamp the incident is scheduled until.",
-                "default": "2013-05-07T06:00:00.007Z"
+                "description": "The timestamp the incident is scheduled until."
               },
               "scheduled_remind_prior": {
                 "type": "boolean",
@@ -10836,19 +10835,8 @@
               "components": {
                 "type": "object",
                 "description": "Map of status changes to apply to affected components",
-                "properties": {
-                  "7bsz4wf6bh17": {
-                    "type": "string",
-                    "description": "Map of status changes to apply to affected components",
-                    "enum": [
-                      "operational",
-                      "under_maintenance",
-                      "degraded_performance",
-                      "partial_outage",
-                      "major_outage",
-                      ""
-                    ]
-                  }
+                "additionalProperties": {
+                  "type": "string"
                 }
               },
               "component_ids": {
@@ -10930,7 +10918,7 @@
             "description": "The incident impacts for the incident (limited to 500)."
           },
           "metadata": {
-            "type": "Object",
+            "type": "object",
             "example": {
               "jira": {
                 "issue_id": "value"
@@ -11301,19 +11289,8 @@
               "components": {
                 "type": "object",
                 "description": "Map of status changes to apply to affected components",
-                "properties": {
-                  "xw9j0mrxmgrv": {
-                    "type": "string",
-                    "description": "Map of status changes to apply to affected components",
-                    "enum": [
-                      "operational",
-                      "under_maintenance",
-                      "degraded_performance",
-                      "partial_outage",
-                      "major_outage",
-                      ""
-                    ]
-                  }
+                "additionalProperties": {
+                  "type": "string"
                 }
               },
               "component_ids": {
@@ -11450,19 +11427,8 @@
               "components": {
                 "type": "object",
                 "description": "Map of status changes to apply to affected components",
-                "properties": {
-                  "xw9j0mrxmgrv": {
-                    "type": "string",
-                    "description": "Map of status changes to apply to affected components",
-                    "enum": [
-                      "operational",
-                      "under_maintenance",
-                      "degraded_performance",
-                      "partial_outage",
-                      "major_outage",
-                      ""
-                    ]
-                  }
+                "additionalProperties": {
+                  "type": "string"
                 }
               },
               "component_ids": {

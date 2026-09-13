@@ -15,25 +15,28 @@ import (
 	"time"
 )
 
+// checks if the Postmortem type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Postmortem{}
+
 // Postmortem Revert Postmortem
 type Postmortem struct {
 	// Preview Key
 	PreviewKey *string `json:"preview_key,omitempty"`
 	// Postmortem body
-	Body *string `json:"body,omitempty"`
+	Body          *string    `json:"body,omitempty"`
 	BodyUpdatedAt *time.Time `json:"body_updated_at,omitempty"`
 	// Body draft
-	BodyDraft *string `json:"body_draft,omitempty"`
+	BodyDraft          *string    `json:"body_draft,omitempty"`
 	BodyDraftUpdatedAt *time.Time `json:"body_draft_updated_at,omitempty"`
-	PublishedAt *time.Time `json:"published_at,omitempty"`
+	PublishedAt        *time.Time `json:"published_at,omitempty"`
 	// Should email subscribers be notified.
 	NotifySubscribers *bool `json:"notify_subscribers,omitempty"`
 	// Should Twitter followers be notified.
 	NotifyTwitter *bool `json:"notify_twitter,omitempty"`
 	// Custom tweet for Incident Postmortem
-	CustomTweet *string `json:"custom_tweet,omitempty"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	CustomTweet *string    `json:"custom_tweet,omitempty"`
+	CreatedAt   *time.Time `json:"created_at,omitempty"`
+	UpdatedAt   *time.Time `json:"updated_at,omitempty"`
 }
 
 // NewPostmortem instantiates a new Postmortem object
@@ -55,7 +58,7 @@ func NewPostmortemWithDefaults() *Postmortem {
 
 // GetPreviewKey returns the PreviewKey field value if set, zero value otherwise.
 func (o *Postmortem) GetPreviewKey() string {
-	if o == nil || o.PreviewKey == nil {
+	if o == nil || IsNil(o.PreviewKey) {
 		var ret string
 		return ret
 	}
@@ -65,7 +68,7 @@ func (o *Postmortem) GetPreviewKey() string {
 // GetPreviewKeyOk returns a tuple with the PreviewKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Postmortem) GetPreviewKeyOk() (*string, bool) {
-	if o == nil || o.PreviewKey == nil {
+	if o == nil || IsNil(o.PreviewKey) {
 		return nil, false
 	}
 	return o.PreviewKey, true
@@ -73,7 +76,7 @@ func (o *Postmortem) GetPreviewKeyOk() (*string, bool) {
 
 // HasPreviewKey returns a boolean if a field has been set.
 func (o *Postmortem) HasPreviewKey() bool {
-	if o != nil && o.PreviewKey != nil {
+	if o != nil && !IsNil(o.PreviewKey) {
 		return true
 	}
 
@@ -87,7 +90,7 @@ func (o *Postmortem) SetPreviewKey(v string) {
 
 // GetBody returns the Body field value if set, zero value otherwise.
 func (o *Postmortem) GetBody() string {
-	if o == nil || o.Body == nil {
+	if o == nil || IsNil(o.Body) {
 		var ret string
 		return ret
 	}
@@ -97,7 +100,7 @@ func (o *Postmortem) GetBody() string {
 // GetBodyOk returns a tuple with the Body field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Postmortem) GetBodyOk() (*string, bool) {
-	if o == nil || o.Body == nil {
+	if o == nil || IsNil(o.Body) {
 		return nil, false
 	}
 	return o.Body, true
@@ -105,7 +108,7 @@ func (o *Postmortem) GetBodyOk() (*string, bool) {
 
 // HasBody returns a boolean if a field has been set.
 func (o *Postmortem) HasBody() bool {
-	if o != nil && o.Body != nil {
+	if o != nil && !IsNil(o.Body) {
 		return true
 	}
 
@@ -119,7 +122,7 @@ func (o *Postmortem) SetBody(v string) {
 
 // GetBodyUpdatedAt returns the BodyUpdatedAt field value if set, zero value otherwise.
 func (o *Postmortem) GetBodyUpdatedAt() time.Time {
-	if o == nil || o.BodyUpdatedAt == nil {
+	if o == nil || IsNil(o.BodyUpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -129,7 +132,7 @@ func (o *Postmortem) GetBodyUpdatedAt() time.Time {
 // GetBodyUpdatedAtOk returns a tuple with the BodyUpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Postmortem) GetBodyUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.BodyUpdatedAt == nil {
+	if o == nil || IsNil(o.BodyUpdatedAt) {
 		return nil, false
 	}
 	return o.BodyUpdatedAt, true
@@ -137,7 +140,7 @@ func (o *Postmortem) GetBodyUpdatedAtOk() (*time.Time, bool) {
 
 // HasBodyUpdatedAt returns a boolean if a field has been set.
 func (o *Postmortem) HasBodyUpdatedAt() bool {
-	if o != nil && o.BodyUpdatedAt != nil {
+	if o != nil && !IsNil(o.BodyUpdatedAt) {
 		return true
 	}
 
@@ -151,7 +154,7 @@ func (o *Postmortem) SetBodyUpdatedAt(v time.Time) {
 
 // GetBodyDraft returns the BodyDraft field value if set, zero value otherwise.
 func (o *Postmortem) GetBodyDraft() string {
-	if o == nil || o.BodyDraft == nil {
+	if o == nil || IsNil(o.BodyDraft) {
 		var ret string
 		return ret
 	}
@@ -161,7 +164,7 @@ func (o *Postmortem) GetBodyDraft() string {
 // GetBodyDraftOk returns a tuple with the BodyDraft field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Postmortem) GetBodyDraftOk() (*string, bool) {
-	if o == nil || o.BodyDraft == nil {
+	if o == nil || IsNil(o.BodyDraft) {
 		return nil, false
 	}
 	return o.BodyDraft, true
@@ -169,7 +172,7 @@ func (o *Postmortem) GetBodyDraftOk() (*string, bool) {
 
 // HasBodyDraft returns a boolean if a field has been set.
 func (o *Postmortem) HasBodyDraft() bool {
-	if o != nil && o.BodyDraft != nil {
+	if o != nil && !IsNil(o.BodyDraft) {
 		return true
 	}
 
@@ -183,7 +186,7 @@ func (o *Postmortem) SetBodyDraft(v string) {
 
 // GetBodyDraftUpdatedAt returns the BodyDraftUpdatedAt field value if set, zero value otherwise.
 func (o *Postmortem) GetBodyDraftUpdatedAt() time.Time {
-	if o == nil || o.BodyDraftUpdatedAt == nil {
+	if o == nil || IsNil(o.BodyDraftUpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -193,7 +196,7 @@ func (o *Postmortem) GetBodyDraftUpdatedAt() time.Time {
 // GetBodyDraftUpdatedAtOk returns a tuple with the BodyDraftUpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Postmortem) GetBodyDraftUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.BodyDraftUpdatedAt == nil {
+	if o == nil || IsNil(o.BodyDraftUpdatedAt) {
 		return nil, false
 	}
 	return o.BodyDraftUpdatedAt, true
@@ -201,7 +204,7 @@ func (o *Postmortem) GetBodyDraftUpdatedAtOk() (*time.Time, bool) {
 
 // HasBodyDraftUpdatedAt returns a boolean if a field has been set.
 func (o *Postmortem) HasBodyDraftUpdatedAt() bool {
-	if o != nil && o.BodyDraftUpdatedAt != nil {
+	if o != nil && !IsNil(o.BodyDraftUpdatedAt) {
 		return true
 	}
 
@@ -215,7 +218,7 @@ func (o *Postmortem) SetBodyDraftUpdatedAt(v time.Time) {
 
 // GetPublishedAt returns the PublishedAt field value if set, zero value otherwise.
 func (o *Postmortem) GetPublishedAt() time.Time {
-	if o == nil || o.PublishedAt == nil {
+	if o == nil || IsNil(o.PublishedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -225,7 +228,7 @@ func (o *Postmortem) GetPublishedAt() time.Time {
 // GetPublishedAtOk returns a tuple with the PublishedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Postmortem) GetPublishedAtOk() (*time.Time, bool) {
-	if o == nil || o.PublishedAt == nil {
+	if o == nil || IsNil(o.PublishedAt) {
 		return nil, false
 	}
 	return o.PublishedAt, true
@@ -233,7 +236,7 @@ func (o *Postmortem) GetPublishedAtOk() (*time.Time, bool) {
 
 // HasPublishedAt returns a boolean if a field has been set.
 func (o *Postmortem) HasPublishedAt() bool {
-	if o != nil && o.PublishedAt != nil {
+	if o != nil && !IsNil(o.PublishedAt) {
 		return true
 	}
 
@@ -247,7 +250,7 @@ func (o *Postmortem) SetPublishedAt(v time.Time) {
 
 // GetNotifySubscribers returns the NotifySubscribers field value if set, zero value otherwise.
 func (o *Postmortem) GetNotifySubscribers() bool {
-	if o == nil || o.NotifySubscribers == nil {
+	if o == nil || IsNil(o.NotifySubscribers) {
 		var ret bool
 		return ret
 	}
@@ -257,7 +260,7 @@ func (o *Postmortem) GetNotifySubscribers() bool {
 // GetNotifySubscribersOk returns a tuple with the NotifySubscribers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Postmortem) GetNotifySubscribersOk() (*bool, bool) {
-	if o == nil || o.NotifySubscribers == nil {
+	if o == nil || IsNil(o.NotifySubscribers) {
 		return nil, false
 	}
 	return o.NotifySubscribers, true
@@ -265,7 +268,7 @@ func (o *Postmortem) GetNotifySubscribersOk() (*bool, bool) {
 
 // HasNotifySubscribers returns a boolean if a field has been set.
 func (o *Postmortem) HasNotifySubscribers() bool {
-	if o != nil && o.NotifySubscribers != nil {
+	if o != nil && !IsNil(o.NotifySubscribers) {
 		return true
 	}
 
@@ -279,7 +282,7 @@ func (o *Postmortem) SetNotifySubscribers(v bool) {
 
 // GetNotifyTwitter returns the NotifyTwitter field value if set, zero value otherwise.
 func (o *Postmortem) GetNotifyTwitter() bool {
-	if o == nil || o.NotifyTwitter == nil {
+	if o == nil || IsNil(o.NotifyTwitter) {
 		var ret bool
 		return ret
 	}
@@ -289,7 +292,7 @@ func (o *Postmortem) GetNotifyTwitter() bool {
 // GetNotifyTwitterOk returns a tuple with the NotifyTwitter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Postmortem) GetNotifyTwitterOk() (*bool, bool) {
-	if o == nil || o.NotifyTwitter == nil {
+	if o == nil || IsNil(o.NotifyTwitter) {
 		return nil, false
 	}
 	return o.NotifyTwitter, true
@@ -297,7 +300,7 @@ func (o *Postmortem) GetNotifyTwitterOk() (*bool, bool) {
 
 // HasNotifyTwitter returns a boolean if a field has been set.
 func (o *Postmortem) HasNotifyTwitter() bool {
-	if o != nil && o.NotifyTwitter != nil {
+	if o != nil && !IsNil(o.NotifyTwitter) {
 		return true
 	}
 
@@ -311,7 +314,7 @@ func (o *Postmortem) SetNotifyTwitter(v bool) {
 
 // GetCustomTweet returns the CustomTweet field value if set, zero value otherwise.
 func (o *Postmortem) GetCustomTweet() string {
-	if o == nil || o.CustomTweet == nil {
+	if o == nil || IsNil(o.CustomTweet) {
 		var ret string
 		return ret
 	}
@@ -321,7 +324,7 @@ func (o *Postmortem) GetCustomTweet() string {
 // GetCustomTweetOk returns a tuple with the CustomTweet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Postmortem) GetCustomTweetOk() (*string, bool) {
-	if o == nil || o.CustomTweet == nil {
+	if o == nil || IsNil(o.CustomTweet) {
 		return nil, false
 	}
 	return o.CustomTweet, true
@@ -329,7 +332,7 @@ func (o *Postmortem) GetCustomTweetOk() (*string, bool) {
 
 // HasCustomTweet returns a boolean if a field has been set.
 func (o *Postmortem) HasCustomTweet() bool {
-	if o != nil && o.CustomTweet != nil {
+	if o != nil && !IsNil(o.CustomTweet) {
 		return true
 	}
 
@@ -343,7 +346,7 @@ func (o *Postmortem) SetCustomTweet(v string) {
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *Postmortem) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -353,7 +356,7 @@ func (o *Postmortem) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Postmortem) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -361,7 +364,7 @@ func (o *Postmortem) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *Postmortem) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -375,7 +378,7 @@ func (o *Postmortem) SetCreatedAt(v time.Time) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *Postmortem) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -385,7 +388,7 @@ func (o *Postmortem) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Postmortem) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -393,7 +396,7 @@ func (o *Postmortem) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *Postmortem) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -406,41 +409,49 @@ func (o *Postmortem) SetUpdatedAt(v time.Time) {
 }
 
 func (o Postmortem) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.PreviewKey != nil {
-		toSerialize["preview_key"] = o.PreviewKey
-	}
-	if o.Body != nil {
-		toSerialize["body"] = o.Body
-	}
-	if o.BodyUpdatedAt != nil {
-		toSerialize["body_updated_at"] = o.BodyUpdatedAt
-	}
-	if o.BodyDraft != nil {
-		toSerialize["body_draft"] = o.BodyDraft
-	}
-	if o.BodyDraftUpdatedAt != nil {
-		toSerialize["body_draft_updated_at"] = o.BodyDraftUpdatedAt
-	}
-	if o.PublishedAt != nil {
-		toSerialize["published_at"] = o.PublishedAt
-	}
-	if o.NotifySubscribers != nil {
-		toSerialize["notify_subscribers"] = o.NotifySubscribers
-	}
-	if o.NotifyTwitter != nil {
-		toSerialize["notify_twitter"] = o.NotifyTwitter
-	}
-	if o.CustomTweet != nil {
-		toSerialize["custom_tweet"] = o.CustomTweet
-	}
-	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if o.UpdatedAt != nil {
-		toSerialize["updated_at"] = o.UpdatedAt
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Postmortem) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.PreviewKey) {
+		toSerialize["preview_key"] = o.PreviewKey
+	}
+	if !IsNil(o.Body) {
+		toSerialize["body"] = o.Body
+	}
+	if !IsNil(o.BodyUpdatedAt) {
+		toSerialize["body_updated_at"] = o.BodyUpdatedAt
+	}
+	if !IsNil(o.BodyDraft) {
+		toSerialize["body_draft"] = o.BodyDraft
+	}
+	if !IsNil(o.BodyDraftUpdatedAt) {
+		toSerialize["body_draft_updated_at"] = o.BodyDraftUpdatedAt
+	}
+	if !IsNil(o.PublishedAt) {
+		toSerialize["published_at"] = o.PublishedAt
+	}
+	if !IsNil(o.NotifySubscribers) {
+		toSerialize["notify_subscribers"] = o.NotifySubscribers
+	}
+	if !IsNil(o.NotifyTwitter) {
+		toSerialize["notify_twitter"] = o.NotifyTwitter
+	}
+	if !IsNil(o.CustomTweet) {
+		toSerialize["custom_tweet"] = o.CustomTweet
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	return toSerialize, nil
 }
 
 type NullablePostmortem struct {
@@ -478,5 +489,3 @@ func (v *NullablePostmortem) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

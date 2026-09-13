@@ -14,11 +14,14 @@ import (
 	"encoding/json"
 )
 
+// checks if the PostPagesPageIdMetricsMetricIdDataData type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PostPagesPageIdMetricsMetricIdDataData{}
+
 // PostPagesPageIdMetricsMetricIdDataData struct for PostPagesPageIdMetricsMetricIdDataData
 type PostPagesPageIdMetricsMetricIdDataData struct {
 	// Time to store the metric against
-	Timestamp *int32 `json:"timestamp,omitempty"`
-	Value *float32 `json:"value,omitempty"`
+	Timestamp *int32   `json:"timestamp,omitempty"`
+	Value     *float32 `json:"value,omitempty"`
 }
 
 // NewPostPagesPageIdMetricsMetricIdDataData instantiates a new PostPagesPageIdMetricsMetricIdDataData object
@@ -40,7 +43,7 @@ func NewPostPagesPageIdMetricsMetricIdDataDataWithDefaults() *PostPagesPageIdMet
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *PostPagesPageIdMetricsMetricIdDataData) GetTimestamp() int32 {
-	if o == nil || o.Timestamp == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		var ret int32
 		return ret
 	}
@@ -50,7 +53,7 @@ func (o *PostPagesPageIdMetricsMetricIdDataData) GetTimestamp() int32 {
 // GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdMetricsMetricIdDataData) GetTimestampOk() (*int32, bool) {
-	if o == nil || o.Timestamp == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		return nil, false
 	}
 	return o.Timestamp, true
@@ -58,7 +61,7 @@ func (o *PostPagesPageIdMetricsMetricIdDataData) GetTimestampOk() (*int32, bool)
 
 // HasTimestamp returns a boolean if a field has been set.
 func (o *PostPagesPageIdMetricsMetricIdDataData) HasTimestamp() bool {
-	if o != nil && o.Timestamp != nil {
+	if o != nil && !IsNil(o.Timestamp) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *PostPagesPageIdMetricsMetricIdDataData) SetTimestamp(v int32) {
 
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *PostPagesPageIdMetricsMetricIdDataData) GetValue() float32 {
-	if o == nil || o.Value == nil {
+	if o == nil || IsNil(o.Value) {
 		var ret float32
 		return ret
 	}
@@ -82,7 +85,7 @@ func (o *PostPagesPageIdMetricsMetricIdDataData) GetValue() float32 {
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdMetricsMetricIdDataData) GetValueOk() (*float32, bool) {
-	if o == nil || o.Value == nil {
+	if o == nil || IsNil(o.Value) {
 		return nil, false
 	}
 	return o.Value, true
@@ -90,7 +93,7 @@ func (o *PostPagesPageIdMetricsMetricIdDataData) GetValueOk() (*float32, bool) {
 
 // HasValue returns a boolean if a field has been set.
 func (o *PostPagesPageIdMetricsMetricIdDataData) HasValue() bool {
-	if o != nil && o.Value != nil {
+	if o != nil && !IsNil(o.Value) {
 		return true
 	}
 
@@ -103,14 +106,22 @@ func (o *PostPagesPageIdMetricsMetricIdDataData) SetValue(v float32) {
 }
 
 func (o PostPagesPageIdMetricsMetricIdDataData) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Timestamp != nil {
-		toSerialize["timestamp"] = o.Timestamp
-	}
-	if o.Value != nil {
-		toSerialize["value"] = o.Value
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PostPagesPageIdMetricsMetricIdDataData) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Timestamp) {
+		toSerialize["timestamp"] = o.Timestamp
+	}
+	if !IsNil(o.Value) {
+		toSerialize["value"] = o.Value
+	}
+	return toSerialize, nil
 }
 
 type NullablePostPagesPageIdMetricsMetricIdDataData struct {
@@ -148,5 +159,3 @@ func (v *NullablePostPagesPageIdMetricsMetricIdDataData) UnmarshalJSON(src []byt
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

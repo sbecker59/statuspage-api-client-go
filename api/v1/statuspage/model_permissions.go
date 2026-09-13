@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Permissions type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Permissions{}
+
 // Permissions Get a user's permissions
 type Permissions struct {
 	Data *PermissionsData `json:"data,omitempty"`
@@ -38,7 +41,7 @@ func NewPermissionsWithDefaults() *Permissions {
 
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *Permissions) GetData() PermissionsData {
-	if o == nil || o.Data == nil {
+	if o == nil || IsNil(o.Data) {
 		var ret PermissionsData
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *Permissions) GetData() PermissionsData {
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Permissions) GetDataOk() (*PermissionsData, bool) {
-	if o == nil || o.Data == nil {
+	if o == nil || IsNil(o.Data) {
 		return nil, false
 	}
 	return o.Data, true
@@ -56,7 +59,7 @@ func (o *Permissions) GetDataOk() (*PermissionsData, bool) {
 
 // HasData returns a boolean if a field has been set.
 func (o *Permissions) HasData() bool {
-	if o != nil && o.Data != nil {
+	if o != nil && !IsNil(o.Data) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *Permissions) SetData(v PermissionsData) {
 }
 
 func (o Permissions) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Data != nil {
-		toSerialize["data"] = o.Data
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Permissions) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Data) {
+		toSerialize["data"] = o.Data
+	}
+	return toSerialize, nil
 }
 
 type NullablePermissions struct {
@@ -111,5 +122,3 @@ func (v *NullablePermissions) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

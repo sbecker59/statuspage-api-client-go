@@ -15,6 +15,9 @@ import (
 	"time"
 )
 
+// checks if the ComponentGroupUptime type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ComponentGroupUptime{}
+
 // ComponentGroupUptime Get uptime data for a component group that has uptime showcase enabled for at least one component.
 type ComponentGroupUptime struct {
 	// Start date used for uptime calculation (see the warnings field in the response if this value does not match the start parameter you provided).
@@ -32,7 +35,7 @@ type ComponentGroupUptime struct {
 	// Component group identifier
 	Id *string `json:"id,omitempty"`
 	// Component group display name
-	Name *string `json:"name,omitempty"`
+	Name          *string                            `json:"name,omitempty"`
 	RelatedEvents *ComponentGroupUptimeRelatedEvents `json:"related_events,omitempty"`
 }
 
@@ -55,7 +58,7 @@ func NewComponentGroupUptimeWithDefaults() *ComponentGroupUptime {
 
 // GetRangeStart returns the RangeStart field value if set, zero value otherwise.
 func (o *ComponentGroupUptime) GetRangeStart() time.Time {
-	if o == nil || o.RangeStart == nil {
+	if o == nil || IsNil(o.RangeStart) {
 		var ret time.Time
 		return ret
 	}
@@ -65,7 +68,7 @@ func (o *ComponentGroupUptime) GetRangeStart() time.Time {
 // GetRangeStartOk returns a tuple with the RangeStart field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ComponentGroupUptime) GetRangeStartOk() (*time.Time, bool) {
-	if o == nil || o.RangeStart == nil {
+	if o == nil || IsNil(o.RangeStart) {
 		return nil, false
 	}
 	return o.RangeStart, true
@@ -73,7 +76,7 @@ func (o *ComponentGroupUptime) GetRangeStartOk() (*time.Time, bool) {
 
 // HasRangeStart returns a boolean if a field has been set.
 func (o *ComponentGroupUptime) HasRangeStart() bool {
-	if o != nil && o.RangeStart != nil {
+	if o != nil && !IsNil(o.RangeStart) {
 		return true
 	}
 
@@ -87,7 +90,7 @@ func (o *ComponentGroupUptime) SetRangeStart(v time.Time) {
 
 // GetRangeEnd returns the RangeEnd field value if set, zero value otherwise.
 func (o *ComponentGroupUptime) GetRangeEnd() time.Time {
-	if o == nil || o.RangeEnd == nil {
+	if o == nil || IsNil(o.RangeEnd) {
 		var ret time.Time
 		return ret
 	}
@@ -97,7 +100,7 @@ func (o *ComponentGroupUptime) GetRangeEnd() time.Time {
 // GetRangeEndOk returns a tuple with the RangeEnd field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ComponentGroupUptime) GetRangeEndOk() (*time.Time, bool) {
-	if o == nil || o.RangeEnd == nil {
+	if o == nil || IsNil(o.RangeEnd) {
 		return nil, false
 	}
 	return o.RangeEnd, true
@@ -105,7 +108,7 @@ func (o *ComponentGroupUptime) GetRangeEndOk() (*time.Time, bool) {
 
 // HasRangeEnd returns a boolean if a field has been set.
 func (o *ComponentGroupUptime) HasRangeEnd() bool {
-	if o != nil && o.RangeEnd != nil {
+	if o != nil && !IsNil(o.RangeEnd) {
 		return true
 	}
 
@@ -119,7 +122,7 @@ func (o *ComponentGroupUptime) SetRangeEnd(v time.Time) {
 
 // GetUptimePercentage returns the UptimePercentage field value if set, zero value otherwise.
 func (o *ComponentGroupUptime) GetUptimePercentage() float32 {
-	if o == nil || o.UptimePercentage == nil {
+	if o == nil || IsNil(o.UptimePercentage) {
 		var ret float32
 		return ret
 	}
@@ -129,7 +132,7 @@ func (o *ComponentGroupUptime) GetUptimePercentage() float32 {
 // GetUptimePercentageOk returns a tuple with the UptimePercentage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ComponentGroupUptime) GetUptimePercentageOk() (*float32, bool) {
-	if o == nil || o.UptimePercentage == nil {
+	if o == nil || IsNil(o.UptimePercentage) {
 		return nil, false
 	}
 	return o.UptimePercentage, true
@@ -137,7 +140,7 @@ func (o *ComponentGroupUptime) GetUptimePercentageOk() (*float32, bool) {
 
 // HasUptimePercentage returns a boolean if a field has been set.
 func (o *ComponentGroupUptime) HasUptimePercentage() bool {
-	if o != nil && o.UptimePercentage != nil {
+	if o != nil && !IsNil(o.UptimePercentage) {
 		return true
 	}
 
@@ -151,7 +154,7 @@ func (o *ComponentGroupUptime) SetUptimePercentage(v float32) {
 
 // GetMajorOutage returns the MajorOutage field value if set, zero value otherwise.
 func (o *ComponentGroupUptime) GetMajorOutage() int32 {
-	if o == nil || o.MajorOutage == nil {
+	if o == nil || IsNil(o.MajorOutage) {
 		var ret int32
 		return ret
 	}
@@ -161,7 +164,7 @@ func (o *ComponentGroupUptime) GetMajorOutage() int32 {
 // GetMajorOutageOk returns a tuple with the MajorOutage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ComponentGroupUptime) GetMajorOutageOk() (*int32, bool) {
-	if o == nil || o.MajorOutage == nil {
+	if o == nil || IsNil(o.MajorOutage) {
 		return nil, false
 	}
 	return o.MajorOutage, true
@@ -169,7 +172,7 @@ func (o *ComponentGroupUptime) GetMajorOutageOk() (*int32, bool) {
 
 // HasMajorOutage returns a boolean if a field has been set.
 func (o *ComponentGroupUptime) HasMajorOutage() bool {
-	if o != nil && o.MajorOutage != nil {
+	if o != nil && !IsNil(o.MajorOutage) {
 		return true
 	}
 
@@ -183,7 +186,7 @@ func (o *ComponentGroupUptime) SetMajorOutage(v int32) {
 
 // GetPartialOutage returns the PartialOutage field value if set, zero value otherwise.
 func (o *ComponentGroupUptime) GetPartialOutage() int32 {
-	if o == nil || o.PartialOutage == nil {
+	if o == nil || IsNil(o.PartialOutage) {
 		var ret int32
 		return ret
 	}
@@ -193,7 +196,7 @@ func (o *ComponentGroupUptime) GetPartialOutage() int32 {
 // GetPartialOutageOk returns a tuple with the PartialOutage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ComponentGroupUptime) GetPartialOutageOk() (*int32, bool) {
-	if o == nil || o.PartialOutage == nil {
+	if o == nil || IsNil(o.PartialOutage) {
 		return nil, false
 	}
 	return o.PartialOutage, true
@@ -201,7 +204,7 @@ func (o *ComponentGroupUptime) GetPartialOutageOk() (*int32, bool) {
 
 // HasPartialOutage returns a boolean if a field has been set.
 func (o *ComponentGroupUptime) HasPartialOutage() bool {
-	if o != nil && o.PartialOutage != nil {
+	if o != nil && !IsNil(o.PartialOutage) {
 		return true
 	}
 
@@ -215,7 +218,7 @@ func (o *ComponentGroupUptime) SetPartialOutage(v int32) {
 
 // GetWarnings returns the Warnings field value if set, zero value otherwise.
 func (o *ComponentGroupUptime) GetWarnings() string {
-	if o == nil || o.Warnings == nil {
+	if o == nil || IsNil(o.Warnings) {
 		var ret string
 		return ret
 	}
@@ -225,7 +228,7 @@ func (o *ComponentGroupUptime) GetWarnings() string {
 // GetWarningsOk returns a tuple with the Warnings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ComponentGroupUptime) GetWarningsOk() (*string, bool) {
-	if o == nil || o.Warnings == nil {
+	if o == nil || IsNil(o.Warnings) {
 		return nil, false
 	}
 	return o.Warnings, true
@@ -233,7 +236,7 @@ func (o *ComponentGroupUptime) GetWarningsOk() (*string, bool) {
 
 // HasWarnings returns a boolean if a field has been set.
 func (o *ComponentGroupUptime) HasWarnings() bool {
-	if o != nil && o.Warnings != nil {
+	if o != nil && !IsNil(o.Warnings) {
 		return true
 	}
 
@@ -247,7 +250,7 @@ func (o *ComponentGroupUptime) SetWarnings(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ComponentGroupUptime) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -257,7 +260,7 @@ func (o *ComponentGroupUptime) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ComponentGroupUptime) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -265,7 +268,7 @@ func (o *ComponentGroupUptime) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ComponentGroupUptime) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -279,7 +282,7 @@ func (o *ComponentGroupUptime) SetId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ComponentGroupUptime) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -289,7 +292,7 @@ func (o *ComponentGroupUptime) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ComponentGroupUptime) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -297,7 +300,7 @@ func (o *ComponentGroupUptime) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *ComponentGroupUptime) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -311,7 +314,7 @@ func (o *ComponentGroupUptime) SetName(v string) {
 
 // GetRelatedEvents returns the RelatedEvents field value if set, zero value otherwise.
 func (o *ComponentGroupUptime) GetRelatedEvents() ComponentGroupUptimeRelatedEvents {
-	if o == nil || o.RelatedEvents == nil {
+	if o == nil || IsNil(o.RelatedEvents) {
 		var ret ComponentGroupUptimeRelatedEvents
 		return ret
 	}
@@ -321,7 +324,7 @@ func (o *ComponentGroupUptime) GetRelatedEvents() ComponentGroupUptimeRelatedEve
 // GetRelatedEventsOk returns a tuple with the RelatedEvents field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ComponentGroupUptime) GetRelatedEventsOk() (*ComponentGroupUptimeRelatedEvents, bool) {
-	if o == nil || o.RelatedEvents == nil {
+	if o == nil || IsNil(o.RelatedEvents) {
 		return nil, false
 	}
 	return o.RelatedEvents, true
@@ -329,7 +332,7 @@ func (o *ComponentGroupUptime) GetRelatedEventsOk() (*ComponentGroupUptimeRelate
 
 // HasRelatedEvents returns a boolean if a field has been set.
 func (o *ComponentGroupUptime) HasRelatedEvents() bool {
-	if o != nil && o.RelatedEvents != nil {
+	if o != nil && !IsNil(o.RelatedEvents) {
 		return true
 	}
 
@@ -342,35 +345,43 @@ func (o *ComponentGroupUptime) SetRelatedEvents(v ComponentGroupUptimeRelatedEve
 }
 
 func (o ComponentGroupUptime) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.RangeStart != nil {
-		toSerialize["range_start"] = o.RangeStart
-	}
-	if o.RangeEnd != nil {
-		toSerialize["range_end"] = o.RangeEnd
-	}
-	if o.UptimePercentage != nil {
-		toSerialize["uptime_percentage"] = o.UptimePercentage
-	}
-	if o.MajorOutage != nil {
-		toSerialize["major_outage"] = o.MajorOutage
-	}
-	if o.PartialOutage != nil {
-		toSerialize["partial_outage"] = o.PartialOutage
-	}
-	if o.Warnings != nil {
-		toSerialize["warnings"] = o.Warnings
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.RelatedEvents != nil {
-		toSerialize["related_events"] = o.RelatedEvents
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ComponentGroupUptime) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.RangeStart) {
+		toSerialize["range_start"] = o.RangeStart
+	}
+	if !IsNil(o.RangeEnd) {
+		toSerialize["range_end"] = o.RangeEnd
+	}
+	if !IsNil(o.UptimePercentage) {
+		toSerialize["uptime_percentage"] = o.UptimePercentage
+	}
+	if !IsNil(o.MajorOutage) {
+		toSerialize["major_outage"] = o.MajorOutage
+	}
+	if !IsNil(o.PartialOutage) {
+		toSerialize["partial_outage"] = o.PartialOutage
+	}
+	if !IsNil(o.Warnings) {
+		toSerialize["warnings"] = o.Warnings
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.RelatedEvents) {
+		toSerialize["related_events"] = o.RelatedEvents
+	}
+	return toSerialize, nil
 }
 
 type NullableComponentGroupUptime struct {
@@ -408,5 +419,3 @@ func (v *NullableComponentGroupUptime) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

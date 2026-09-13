@@ -15,17 +15,20 @@ import (
 	"time"
 )
 
+// checks if the GroupComponent type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GroupComponent{}
+
 // GroupComponent Get a component group
 type GroupComponent struct {
 	// Component Group Identifier
-	Id *string `json:"id,omitempty"`
-	PageId *string `json:"page_id,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Description *string `json:"description,omitempty"`
-	Components *[]string `json:"components,omitempty"`
-	Position *int `json:"position,omitempty"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	Id          *string    `json:"id,omitempty"`
+	PageId      *string    `json:"page_id,omitempty"`
+	Name        *string    `json:"name,omitempty"`
+	Description *string    `json:"description,omitempty"`
+	Components  *string    `json:"components,omitempty"`
+	Position    *string    `json:"position,omitempty"`
+	CreatedAt   *time.Time `json:"created_at,omitempty"`
+	UpdatedAt   *time.Time `json:"updated_at,omitempty"`
 }
 
 // NewGroupComponent instantiates a new GroupComponent object
@@ -47,7 +50,7 @@ func NewGroupComponentWithDefaults() *GroupComponent {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GroupComponent) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -57,7 +60,7 @@ func (o *GroupComponent) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupComponent) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -65,7 +68,7 @@ func (o *GroupComponent) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *GroupComponent) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *GroupComponent) SetId(v string) {
 
 // GetPageId returns the PageId field value if set, zero value otherwise.
 func (o *GroupComponent) GetPageId() string {
-	if o == nil || o.PageId == nil {
+	if o == nil || IsNil(o.PageId) {
 		var ret string
 		return ret
 	}
@@ -89,7 +92,7 @@ func (o *GroupComponent) GetPageId() string {
 // GetPageIdOk returns a tuple with the PageId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupComponent) GetPageIdOk() (*string, bool) {
-	if o == nil || o.PageId == nil {
+	if o == nil || IsNil(o.PageId) {
 		return nil, false
 	}
 	return o.PageId, true
@@ -97,7 +100,7 @@ func (o *GroupComponent) GetPageIdOk() (*string, bool) {
 
 // HasPageId returns a boolean if a field has been set.
 func (o *GroupComponent) HasPageId() bool {
-	if o != nil && o.PageId != nil {
+	if o != nil && !IsNil(o.PageId) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *GroupComponent) SetPageId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GroupComponent) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -121,7 +124,7 @@ func (o *GroupComponent) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupComponent) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -129,7 +132,7 @@ func (o *GroupComponent) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *GroupComponent) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *GroupComponent) SetName(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *GroupComponent) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -153,7 +156,7 @@ func (o *GroupComponent) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupComponent) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -161,7 +164,7 @@ func (o *GroupComponent) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *GroupComponent) HasDescription() bool {
-	if o != nil && o.Description != nil {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -174,9 +177,9 @@ func (o *GroupComponent) SetDescription(v string) {
 }
 
 // GetComponents returns the Components field value if set, zero value otherwise.
-func (o *GroupComponent) GetComponents() []string {
-	if o == nil || o.Components == nil {
-		var ret []string
+func (o *GroupComponent) GetComponents() string {
+	if o == nil || IsNil(o.Components) {
+		var ret string
 		return ret
 	}
 	return *o.Components
@@ -184,8 +187,8 @@ func (o *GroupComponent) GetComponents() []string {
 
 // GetComponentsOk returns a tuple with the Components field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GroupComponent) GetComponentsOk() (*[]string, bool) {
-	if o == nil || o.Components == nil {
+func (o *GroupComponent) GetComponentsOk() (*string, bool) {
+	if o == nil || IsNil(o.Components) {
 		return nil, false
 	}
 	return o.Components, true
@@ -193,7 +196,7 @@ func (o *GroupComponent) GetComponentsOk() (*[]string, bool) {
 
 // HasComponents returns a boolean if a field has been set.
 func (o *GroupComponent) HasComponents() bool {
-	if o != nil && o.Components != nil {
+	if o != nil && !IsNil(o.Components) {
 		return true
 	}
 
@@ -201,14 +204,14 @@ func (o *GroupComponent) HasComponents() bool {
 }
 
 // SetComponents gets a reference to the given string and assigns it to the Components field.
-func (o *GroupComponent) SetComponents(v []string) {
+func (o *GroupComponent) SetComponents(v string) {
 	o.Components = &v
 }
 
 // GetPosition returns the Position field value if set, zero value otherwise.
-func (o *GroupComponent) GetPosition() int {
-	if o == nil || o.Position == nil {
-		var ret int
+func (o *GroupComponent) GetPosition() string {
+	if o == nil || IsNil(o.Position) {
+		var ret string
 		return ret
 	}
 	return *o.Position
@@ -216,8 +219,8 @@ func (o *GroupComponent) GetPosition() int {
 
 // GetPositionOk returns a tuple with the Position field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GroupComponent) GetPositionOk() (*int, bool) {
-	if o == nil || o.Position == nil {
+func (o *GroupComponent) GetPositionOk() (*string, bool) {
+	if o == nil || IsNil(o.Position) {
 		return nil, false
 	}
 	return o.Position, true
@@ -225,7 +228,7 @@ func (o *GroupComponent) GetPositionOk() (*int, bool) {
 
 // HasPosition returns a boolean if a field has been set.
 func (o *GroupComponent) HasPosition() bool {
-	if o != nil && o.Position != nil {
+	if o != nil && !IsNil(o.Position) {
 		return true
 	}
 
@@ -233,13 +236,13 @@ func (o *GroupComponent) HasPosition() bool {
 }
 
 // SetPosition gets a reference to the given string and assigns it to the Position field.
-func (o *GroupComponent) SetPosition(v int) {
+func (o *GroupComponent) SetPosition(v string) {
 	o.Position = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *GroupComponent) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -249,7 +252,7 @@ func (o *GroupComponent) GetCreatedAt() time.Time {
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupComponent) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
 	return o.CreatedAt, true
@@ -257,7 +260,7 @@ func (o *GroupComponent) GetCreatedAtOk() (*time.Time, bool) {
 
 // HasCreatedAt returns a boolean if a field has been set.
 func (o *GroupComponent) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
+	if o != nil && !IsNil(o.CreatedAt) {
 		return true
 	}
 
@@ -271,7 +274,7 @@ func (o *GroupComponent) SetCreatedAt(v time.Time) {
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *GroupComponent) GetUpdatedAt() time.Time {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret time.Time
 		return ret
 	}
@@ -281,7 +284,7 @@ func (o *GroupComponent) GetUpdatedAt() time.Time {
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupComponent) GetUpdatedAtOk() (*time.Time, bool) {
-	if o == nil || o.UpdatedAt == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
 	return o.UpdatedAt, true
@@ -289,7 +292,7 @@ func (o *GroupComponent) GetUpdatedAtOk() (*time.Time, bool) {
 
 // HasUpdatedAt returns a boolean if a field has been set.
 func (o *GroupComponent) HasUpdatedAt() bool {
-	if o != nil && o.UpdatedAt != nil {
+	if o != nil && !IsNil(o.UpdatedAt) {
 		return true
 	}
 
@@ -302,32 +305,40 @@ func (o *GroupComponent) SetUpdatedAt(v time.Time) {
 }
 
 func (o GroupComponent) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.PageId != nil {
-		toSerialize["page_id"] = o.PageId
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
-	}
-	if o.Components != nil {
-		toSerialize["components"] = o.Components
-	}
-	if o.Position != nil {
-		toSerialize["position"] = o.Position
-	}
-	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
-	}
-	if o.UpdatedAt != nil {
-		toSerialize["updated_at"] = o.UpdatedAt
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GroupComponent) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.PageId) {
+		toSerialize["page_id"] = o.PageId
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.Components) {
+		toSerialize["components"] = o.Components
+	}
+	if !IsNil(o.Position) {
+		toSerialize["position"] = o.Position
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	return toSerialize, nil
 }
 
 type NullableGroupComponent struct {
@@ -365,5 +376,3 @@ func (v *NullableGroupComponent) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

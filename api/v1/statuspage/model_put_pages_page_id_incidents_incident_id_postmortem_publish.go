@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PutPagesPageIdIncidentsIncidentIdPostmortemPublish type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PutPagesPageIdIncidentsIncidentIdPostmortemPublish{}
+
 // PutPagesPageIdIncidentsIncidentIdPostmortemPublish Publish Postmortem
 type PutPagesPageIdIncidentsIncidentIdPostmortemPublish struct {
 	Postmortem *PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem `json:"postmortem,omitempty"`
@@ -38,7 +41,7 @@ func NewPutPagesPageIdIncidentsIncidentIdPostmortemPublishWithDefaults() *PutPag
 
 // GetPostmortem returns the Postmortem field value if set, zero value otherwise.
 func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPublish) GetPostmortem() PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem {
-	if o == nil || o.Postmortem == nil {
+	if o == nil || IsNil(o.Postmortem) {
 		var ret PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPublish) GetPostmortem() Put
 // GetPostmortemOk returns a tuple with the Postmortem field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPublish) GetPostmortemOk() (*PutPagesPageIdIncidentsIncidentIdPostmortemPublishPostmortem, bool) {
-	if o == nil || o.Postmortem == nil {
+	if o == nil || IsNil(o.Postmortem) {
 		return nil, false
 	}
 	return o.Postmortem, true
@@ -56,7 +59,7 @@ func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPublish) GetPostmortemOk() (
 
 // HasPostmortem returns a boolean if a field has been set.
 func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPublish) HasPostmortem() bool {
-	if o != nil && o.Postmortem != nil {
+	if o != nil && !IsNil(o.Postmortem) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *PutPagesPageIdIncidentsIncidentIdPostmortemPublish) SetPostmortem(v Put
 }
 
 func (o PutPagesPageIdIncidentsIncidentIdPostmortemPublish) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Postmortem != nil {
-		toSerialize["postmortem"] = o.Postmortem
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PutPagesPageIdIncidentsIncidentIdPostmortemPublish) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Postmortem) {
+		toSerialize["postmortem"] = o.Postmortem
+	}
+	return toSerialize, nil
 }
 
 type NullablePutPagesPageIdIncidentsIncidentIdPostmortemPublish struct {
@@ -111,5 +122,3 @@ func (v *NullablePutPagesPageIdIncidentsIncidentIdPostmortemPublish) UnmarshalJS
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

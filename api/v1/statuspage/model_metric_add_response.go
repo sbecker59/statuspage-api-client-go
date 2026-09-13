@@ -14,10 +14,13 @@ import (
 	"encoding/json"
 )
 
+// checks if the MetricAddResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MetricAddResponse{}
+
 // MetricAddResponse Add data points to metrics
 type MetricAddResponse struct {
 	// Metric identifier to add data to
-	MetricId *[]MetricAddResponseMetricId `json:"metric_id,omitempty"`
+	MetricId []MetricAddResponseMetricIdInner `json:"metric_id,omitempty"`
 }
 
 // NewMetricAddResponse instantiates a new MetricAddResponse object
@@ -38,18 +41,18 @@ func NewMetricAddResponseWithDefaults() *MetricAddResponse {
 }
 
 // GetMetricId returns the MetricId field value if set, zero value otherwise.
-func (o *MetricAddResponse) GetMetricId() []MetricAddResponseMetricId {
-	if o == nil || o.MetricId == nil {
-		var ret []MetricAddResponseMetricId
+func (o *MetricAddResponse) GetMetricId() []MetricAddResponseMetricIdInner {
+	if o == nil || IsNil(o.MetricId) {
+		var ret []MetricAddResponseMetricIdInner
 		return ret
 	}
-	return *o.MetricId
+	return o.MetricId
 }
 
 // GetMetricIdOk returns a tuple with the MetricId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MetricAddResponse) GetMetricIdOk() (*[]MetricAddResponseMetricId, bool) {
-	if o == nil || o.MetricId == nil {
+func (o *MetricAddResponse) GetMetricIdOk() ([]MetricAddResponseMetricIdInner, bool) {
+	if o == nil || IsNil(o.MetricId) {
 		return nil, false
 	}
 	return o.MetricId, true
@@ -57,24 +60,32 @@ func (o *MetricAddResponse) GetMetricIdOk() (*[]MetricAddResponseMetricId, bool)
 
 // HasMetricId returns a boolean if a field has been set.
 func (o *MetricAddResponse) HasMetricId() bool {
-	if o != nil && o.MetricId != nil {
+	if o != nil && !IsNil(o.MetricId) {
 		return true
 	}
 
 	return false
 }
 
-// SetMetricId gets a reference to the given []MetricAddResponseMetricId and assigns it to the MetricId field.
-func (o *MetricAddResponse) SetMetricId(v []MetricAddResponseMetricId) {
-	o.MetricId = &v
+// SetMetricId gets a reference to the given []MetricAddResponseMetricIdInner and assigns it to the MetricId field.
+func (o *MetricAddResponse) SetMetricId(v []MetricAddResponseMetricIdInner) {
+	o.MetricId = v
 }
 
 func (o MetricAddResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.MetricId != nil {
-		toSerialize["metric_id"] = o.MetricId
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o MetricAddResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.MetricId) {
+		toSerialize["metric_id"] = o.MetricId
+	}
+	return toSerialize, nil
 }
 
 type NullableMetricAddResponse struct {
@@ -112,5 +123,3 @@ func (v *NullableMetricAddResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

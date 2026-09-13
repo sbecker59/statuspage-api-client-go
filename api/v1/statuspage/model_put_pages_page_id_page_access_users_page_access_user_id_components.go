@@ -11,14 +11,21 @@ API version: 1.0.0
 package openapi
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
+
+// checks if the PutPagesPageIdPageAccessUsersPageAccessUserIdComponents type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PutPagesPageIdPageAccessUsersPageAccessUserIdComponents{}
 
 // PutPagesPageIdPageAccessUsersPageAccessUserIdComponents Add components for page access user
 type PutPagesPageIdPageAccessUsersPageAccessUserIdComponents struct {
 	// List of component codes to allow access to
 	ComponentIds []string `json:"component_ids"`
 }
+
+type _PutPagesPageIdPageAccessUsersPageAccessUserIdComponents PutPagesPageIdPageAccessUsersPageAccessUserIdComponents
 
 // NewPutPagesPageIdPageAccessUsersPageAccessUserIdComponents instantiates a new PutPagesPageIdPageAccessUsersPageAccessUserIdComponents object
 // This constructor will assign default values to properties that have it defined,
@@ -50,11 +57,11 @@ func (o *PutPagesPageIdPageAccessUsersPageAccessUserIdComponents) GetComponentId
 
 // GetComponentIdsOk returns a tuple with the ComponentIds field value
 // and a boolean to check if the value has been set.
-func (o *PutPagesPageIdPageAccessUsersPageAccessUserIdComponents) GetComponentIdsOk() (*[]string, bool) {
-	if o == nil  {
+func (o *PutPagesPageIdPageAccessUsersPageAccessUserIdComponents) GetComponentIdsOk() ([]string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return &o.ComponentIds, true
+	return o.ComponentIds, true
 }
 
 // SetComponentIds sets field value
@@ -63,11 +70,54 @@ func (o *PutPagesPageIdPageAccessUsersPageAccessUserIdComponents) SetComponentId
 }
 
 func (o PutPagesPageIdPageAccessUsersPageAccessUserIdComponents) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["component_ids"] = o.ComponentIds
+	toSerialize, err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PutPagesPageIdPageAccessUsersPageAccessUserIdComponents) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["component_ids"] = o.ComponentIds
+	return toSerialize, nil
+}
+
+func (o *PutPagesPageIdPageAccessUsersPageAccessUserIdComponents) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"component_ids",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPutPagesPageIdPageAccessUsersPageAccessUserIdComponents := _PutPagesPageIdPageAccessUsersPageAccessUserIdComponents{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varPutPagesPageIdPageAccessUsersPageAccessUserIdComponents)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PutPagesPageIdPageAccessUsersPageAccessUserIdComponents(varPutPagesPageIdPageAccessUsersPageAccessUserIdComponents)
+
+	return err
 }
 
 type NullablePutPagesPageIdPageAccessUsersPageAccessUserIdComponents struct {
@@ -105,5 +155,3 @@ func (v *NullablePutPagesPageIdPageAccessUsersPageAccessUserIdComponents) Unmars
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
