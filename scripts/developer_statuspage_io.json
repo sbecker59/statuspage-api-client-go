@@ -6277,6 +6277,15 @@
           },
           {
             "in": "query",
+            "name": "skip_related_events",
+            "description": "Skips supplying the related events data along with the component uptime data.",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
             "name": "start",
             "description": "The start date for uptime calculation (defaults to the component's start_date field or 90 days ago, whichever is more recent).\nThe maximum supported date range is six calendar months. If the year is given, the date defaults to the first day of the year.\nIf the year and month are given, the start date defaults to the first day of that month.\nThe earliest supported date is January 1, 1970.\n",
             "required": false,
@@ -7151,6 +7160,15 @@
           },
           {
             "in": "query",
+            "name": "skip_related_events",
+            "description": "Skips supplying the related events data along with the component uptime data.",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
             "name": "start",
             "description": "The start date for uptime calculation (defaults to the date of the component in the group with the earliest start_date, or 90 days ago, whichever is more recent).\nThe maximum supported date range is six calendar months. If the year is given, the date defaults to the first day of the year.\nIf the year and month are given, the start date defaults to the first day of that month.\nThe earliest supported date is January 1, 1970.\n",
             "required": false,
@@ -7252,9 +7270,9 @@
                 "examples": {
                   "response": {
                     "value": {
-                      "68twrb0k2zhw": [
+                      "c8pfq1jkclgp": [
                         {
-                          "timestamp": 1724137288,
+                          "timestamp": 1789117838,
                           "value": 123.456
                         }
                       ]
@@ -8875,16 +8893,16 @@
                 "examples": {
                   "response": {
                     "value": {
-                      "user_id": "g29kx8h7zs74",
+                      "user_id": "ky7f0mlvv03s",
                       "pages": [
                         {
-                          "page_id": "3gffm23gp2l5",
+                          "page_id": "b73y6kj6z6dv",
                           "page_configuration": false,
                           "incident_manager": true,
                           "maintenance_manager": true
                         },
                         {
-                          "page_id": "6q7n146zxmn7",
+                          "page_id": "krxwt35gm31p",
                           "page_configuration": false,
                           "incident_manager": true,
                           "maintenance_manager": true
@@ -8982,16 +9000,16 @@
                 "examples": {
                   "response": {
                     "value": {
-                      "user_id": "sgcfk9q5t7rd",
+                      "user_id": "k98xgsbwc3f3",
                       "pages": [
                         {
-                          "page_id": "t9tp4vzn45wj",
+                          "page_id": "6sjtbj6vpb76",
                           "page_configuration": false,
                           "incident_manager": true,
                           "maintenance_manager": true
                         },
                         {
-                          "page_id": "mwg7p9kpwl11",
+                          "page_id": "4y372s60q919",
                           "page_configuration": false,
                           "incident_manager": true,
                           "maintenance_manager": true
@@ -9295,7 +9313,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": "2vp47kp8vp10",
+            "example": "xyv3kl6ylqxj",
             "description": "Page identifier"
           },
           "created_at": {
@@ -9764,7 +9782,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": "j8l065dx1jhl",
+            "example": "nc6313gxlk2x",
             "description": "Page Access User Identifier"
           },
           "page_id": {
@@ -10070,7 +10088,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": "2z66jqcchrs9",
+            "example": "tf6s1f7yyfc7",
             "description": "Page Access Group Identifier"
           },
           "page_id": {
@@ -10085,7 +10103,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "example": "9w65kl43xpbw"
+              "example": "hwx50w0qs7rv"
             }
           },
           "external_identifier": {
@@ -10096,14 +10114,14 @@
             "type": "array",
             "items": {
               "type": "string",
-              "example": "g1jdj5wr275p"
+              "example": "4wdk59fd05p0"
             }
           },
           "component_ids": {
             "type": "array",
             "items": {
               "type": "string",
-              "example": "zk8kjfrzsxj8"
+              "example": "b2t5pf36bjtp"
             }
           },
           "created_at": {
@@ -10449,7 +10467,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": "fw1r7z73crqm",
+            "example": "mhr2884cpv4t",
             "description": "Subscriber Identifier"
           },
           "skip_confirmation_notification": {
@@ -10509,13 +10527,13 @@
           "components": {
             "type": "string",
             "example": [
-              "xbdxnfp05hby"
+              "f00glczysv7v"
             ],
             "description": "The components for which the subscriber has elected to receive updates."
           },
           "page_access_user_id": {
             "type": "string",
-            "example": "p09yv4zzpsk9",
+            "example": "yq8v7ckzbf9m",
             "description": "The Page Access user this subscriber belongs to (only for audience-specific pages)."
           },
           "created_at": {
@@ -10629,7 +10647,7 @@
                 "description": "List of component_ids affected by this incident",
                 "items": {
                   "type": "string",
-                  "default": "lmfg605km1bt"
+                  "default": "d0fkpkqzgrx9"
                 }
               }
             },
@@ -10647,7 +10665,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": "889lrjyq1thj",
+            "example": "1y1z8xccbkyy",
             "description": "Incident Template Identifier"
           },
           "components": {
@@ -10671,7 +10689,7 @@
           },
           "group_id": {
             "type": "string",
-            "example": "d0b1h76v33xk",
+            "example": "21cnx22f27p7",
             "description": "Identifier of Template Group this template belongs to"
           },
           "update_status": {
@@ -10819,7 +10837,7 @@
                 "type": "object",
                 "description": "Map of status changes to apply to affected components",
                 "properties": {
-                  "gcvfrw2r8w36": {
+                  "7bsz4wf6bh17": {
                     "type": "string",
                     "description": "Map of status changes to apply to affected components",
                     "enum": [
@@ -10838,7 +10856,7 @@
                 "description": "List of component_ids affected by this incident",
                 "items": {
                   "type": "string",
-                  "default": "hhgf5wl0n69v"
+                  "default": "xkkw5jwfgw3l"
                 }
               },
               "scheduled_auto_transition": {
@@ -10903,6 +10921,13 @@
               "$ref": "#/components/schemas/IncidentUpdate"
             },
             "description": "The incident updates for incident."
+          },
+          "incident_impacts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IncidentImpact"
+            },
+            "description": "The incident impacts for the incident (limited to 500)."
           },
           "metadata": {
             "type": "Object",
@@ -11117,6 +11142,48 @@
         },
         "description": "Update a previous incident update"
       },
+      "IncidentImpact": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "impact-123",
+            "description": "Incident Impact Identifier"
+          },
+          "tenant_id": {
+            "type": "string",
+            "example": "tenant-1",
+            "description": "The tenant ID associated with the impact."
+          },
+          "atlassian_organization_id": {
+            "type": "string",
+            "example": "org-1",
+            "description": "The Atlassian organization ID associated with the impact."
+          },
+          "product_name": {
+            "type": "string",
+            "example": "JIRA",
+            "description": "The product name associated with the impact."
+          },
+          "experiences": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": [
+                "create_issue",
+                "view_page"
+              ]
+            },
+            "description": "The list of experiences impacted."
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2023-01-01T12:00:00Z",
+            "description": "The timestamp when the impact was created."
+          }
+        }
+      },
       "patchPagesPageIdIncidents": {
         "type": "object",
         "properties": {
@@ -11235,7 +11302,7 @@
                 "type": "object",
                 "description": "Map of status changes to apply to affected components",
                 "properties": {
-                  "6p7x5zn55x73": {
+                  "xw9j0mrxmgrv": {
                     "type": "string",
                     "description": "Map of status changes to apply to affected components",
                     "enum": [
@@ -11254,7 +11321,7 @@
                 "description": "List of component_ids affected by this incident",
                 "items": {
                   "type": "string",
-                  "default": "850j0x9zjxlj"
+                  "default": "13mf6l9hpp8d"
                 }
               },
               "scheduled_auto_transition": {
@@ -11384,7 +11451,7 @@
                 "type": "object",
                 "description": "Map of status changes to apply to affected components",
                 "properties": {
-                  "6p7x5zn55x73": {
+                  "xw9j0mrxmgrv": {
                     "type": "string",
                     "description": "Map of status changes to apply to affected components",
                     "enum": [
@@ -11403,7 +11470,7 @@
                 "description": "List of component_ids affected by this incident",
                 "items": {
                   "type": "string",
-                  "default": "850j0x9zjxlj"
+                  "default": "13mf6l9hpp8d"
                 }
               },
               "scheduled_auto_transition": {
@@ -11827,7 +11894,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": "34wb21n3n3mr",
+            "example": "ltm4mt3ggfwg",
             "description": "Component Group Identifier"
           },
           "page_id": {
