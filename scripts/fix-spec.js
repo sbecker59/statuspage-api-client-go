@@ -8,6 +8,7 @@ let fixedTags = 0;
 let fixedDateParamTypes = 0;
 let fixedObjectTypes = 0;
 let fixedDateTimeDefaults = 0;
+let fixedComponentMapTypes = 0;
 
 // Operations tagged with more than one tag get duplicated across multiple
 // generated Go files (one per tag), causing "redeclared in this block" errors.
@@ -52,6 +53,20 @@ function walk(node) {
         fixedDateTimeDefaults++;
     }
 
+    // Component map objects in incident request bodies are documented with dummy
+    // property names (e.g. "7bsz4wf6bh17", "xw9j0mrxmgrv"), causing the generator
+    // to emit rigid structs instead of map[string]string. Convert them to additionalProperties.
+    if (
+        node.type === 'object' &&
+        node.properties &&
+        typeof node.description === 'string' &&
+        node.description.includes('Map of status changes to apply to affected components')
+    ) {
+        delete node.properties;
+        node.additionalProperties = { type: 'string' };
+        fixedComponentMapTypes++;
+    }
+
     for (const value of Object.values(node)) walk(value);
 }
 
@@ -62,6 +77,7 @@ console.log(
     `Deduplicated tags on ${fixedTags} operation(s), ` +
     `fixed ${fixedDateParamTypes} invalid date param type(s), ` +
     `fixed ${fixedObjectTypes} invalid Object type(s), ` +
-    `removed ${fixedDateTimeDefaults} invalid date-time default(s).`
+    `removed ${fixedDateTimeDefaults} invalid date-time default(s), ` +
+    `fixed ${fixedComponentMapTypes} component map type(s).`
 );
 
