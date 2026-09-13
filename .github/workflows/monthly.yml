@@ -1,0 +1,77 @@
+name: Monthly update
+on:
+  schedule:
+    - cron: "0 10 5 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-spec:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+
+      - name: Install dependencies
+        working-directory: scripts
+        run: npm install --no-package-lock
+
+      - name: Install Puppeteer browser
+        working-directory: scripts
+        run: npx puppeteer browsers install chrome
+
+      - name: Setup Java (required by OpenAPI Generator)
+        uses: actions/setup-java@v6
+        with:
+          distribution: 'temurin'
+          java-version: '25'
+
+      - name: Setup Go (required by gofmt)
+        uses: actions/setup-go@v7
+        with:
+          go-version: '1.27'
+
+      - name: Extract OpenAPI spec
+        working-directory: scripts
+        run: node extract-spec.js
+
+      - name: Generate Go client
+        run: |
+          npx --yes @openapitools/openapi-generator-cli generate \
+            -i scripts/developer_statuspage_io.json \
+            -g go \
+            -o api/v1/statuspage \
+            --skip-validate-spec \
+            --enable-post-process-file
+
+      - name: Format generated Go code
+        run: gofmt -w api/v1/statuspage
+
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "build(spec): update developer_statuspage_io.json"
+          branch: dependencies/api/statuspage
+          title: 'build(spec): update developer_statuspage_io.json'
+          add-paths: |
+            api/v1/statuspage
+            scripts/developer_statuspage_io.json
+          body: |
+            Update OpenAPI spec from developer.statuspage.io
+          labels: |
+            dependencies
+            openapi
+
+      - name: Check outputs
+        run: |
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
