@@ -58,6 +58,8 @@ jobs:
             -i scripts/developer_statuspage_io.json \
             -g go \
             -o api/v1/statuspage \
+            --git-user-id sbecker59 \
+            --git-repo-id statuspage-api-client-go \
             --skip-validate-spec \
             --enable-post-process-file
 

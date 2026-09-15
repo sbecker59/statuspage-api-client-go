@@ -275,3 +275,5 @@ vite.config.ts.timestamp-*
 .vite/
 
 scripts/developer_statuspage_io.json
+# Added by goreleaser init:
+dist/

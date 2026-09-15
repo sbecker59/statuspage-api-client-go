@@ -88,6 +88,8 @@ The client is generated from the Statuspage OpenAPI specification using scripts 
      -i scripts/developer_statuspage_io.json \
      -g go \
      -o api/v1/statuspage \
+     --git-user-id sbecker59 \
+     --git-repo-id statuspage-api-client-go \
      --skip-validate-spec \
      --enable-post-process-file
    rm -f api/v1/statuspage/go.mod api/v1/statuspage/go.sum
