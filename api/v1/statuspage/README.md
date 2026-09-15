@@ -73,7 +73,7 @@ For more information, please visit [https://support.atlassian.com/contact](https
 Import the package in a go file in your project and run `go mod tidy`:
 
 ```go
-import openapi "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+import openapi "github.com/sbecker59/statuspage-api-client-go"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
