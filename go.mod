@@ -1,6 +1,6 @@
 module github.com/sbecker59/statuspage-api-client-go
 
-go 1.26.5
+go 1.27
 
 require github.com/stretchr/testify v1.12.1
 
