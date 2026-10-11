@@ -34,7 +34,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -107,7 +107,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -183,7 +183,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -257,7 +257,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -330,7 +330,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -404,7 +404,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -478,7 +478,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -537,7 +537,7 @@ Name | Type | Description  | Notes
 
 ## PatchPagesPageIdIncidentsIncidentId
 
-> Incident PatchPagesPageIdIncidentsIncidentId(ctx, pageId, incidentId).PatchPagesPageIdIncidents(patchPagesPageIdIncidents).Execute()
+> Incident PatchPagesPageIdIncidentsIncidentId(ctx, pageId, incidentId).PatchPagesPageIdIncidentsIncidentId(patchPagesPageIdIncidentsIncidentId).Execute()
 
 Update an incident
 
@@ -552,17 +552,17 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
 	incidentId := "incidentId_example" // string | Incident Identifier
-	patchPagesPageIdIncidents := *openapiclient.NewPatchPagesPageIdIncidents() // PatchPagesPageIdIncidents | 
+	patchPagesPageIdIncidentsIncidentId := *openapiclient.NewPatchPagesPageIdIncidentsIncidentId(*openapiclient.NewPutPagesPageIdIncidentsIncidentIdIncident()) // PatchPagesPageIdIncidentsIncidentId | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.IncidentsAPI.PatchPagesPageIdIncidentsIncidentId(context.Background(), pageId, incidentId).PatchPagesPageIdIncidents(patchPagesPageIdIncidents).Execute()
+	resp, r, err := apiClient.IncidentsAPI.PatchPagesPageIdIncidentsIncidentId(context.Background(), pageId, incidentId).PatchPagesPageIdIncidentsIncidentId(patchPagesPageIdIncidentsIncidentId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsAPI.PatchPagesPageIdIncidentsIncidentId``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -590,7 +590,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **patchPagesPageIdIncidents** | [**PatchPagesPageIdIncidents**](PatchPagesPageIdIncidents.md) |  | 
+ **patchPagesPageIdIncidentsIncidentId** | [**PatchPagesPageIdIncidentsIncidentId**](PatchPagesPageIdIncidentsIncidentId.md) |  | 
 
 ### Return type
 
@@ -627,12 +627,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
-	postPagesPageIdIncidents := *openapiclient.NewPostPagesPageIdIncidents() // PostPagesPageIdIncidents | 
+	postPagesPageIdIncidents := *openapiclient.NewPostPagesPageIdIncidents(*openapiclient.NewPostPagesPageIdIncidentsIncident("Name_example")) // PostPagesPageIdIncidents | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -684,7 +684,7 @@ Name | Type | Description  | Notes
 
 ## PutPagesPageIdIncidentsIncidentId
 
-> Incident PutPagesPageIdIncidentsIncidentId(ctx, pageId, incidentId).PutPagesPageIdIncidents(putPagesPageIdIncidents).Execute()
+> Incident PutPagesPageIdIncidentsIncidentId(ctx, pageId, incidentId).PutPagesPageIdIncidentsIncidentId(putPagesPageIdIncidentsIncidentId).Execute()
 
 Update an incident
 
@@ -699,17 +699,17 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
 	incidentId := "incidentId_example" // string | Incident Identifier
-	putPagesPageIdIncidents := *openapiclient.NewPutPagesPageIdIncidents() // PutPagesPageIdIncidents | 
+	putPagesPageIdIncidentsIncidentId := *openapiclient.NewPutPagesPageIdIncidentsIncidentId(*openapiclient.NewPutPagesPageIdIncidentsIncidentIdIncident()) // PutPagesPageIdIncidentsIncidentId | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.IncidentsAPI.PutPagesPageIdIncidentsIncidentId(context.Background(), pageId, incidentId).PutPagesPageIdIncidents(putPagesPageIdIncidents).Execute()
+	resp, r, err := apiClient.IncidentsAPI.PutPagesPageIdIncidentsIncidentId(context.Background(), pageId, incidentId).PutPagesPageIdIncidentsIncidentId(putPagesPageIdIncidentsIncidentId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsAPI.PutPagesPageIdIncidentsIncidentId``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -737,7 +737,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **putPagesPageIdIncidents** | [**PutPagesPageIdIncidents**](PutPagesPageIdIncidents.md) |  | 
+ **putPagesPageIdIncidentsIncidentId** | [**PutPagesPageIdIncidentsIncidentId**](PutPagesPageIdIncidentsIncidentId.md) |  | 
 
 ### Return type
 

@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Postmortem** | Pointer to [**PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem**](PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem.md) |  | [optional] 
+**Postmortem** | [**PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem**](PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem.md) |  | 
 
 ## Methods
 
 ### NewPutPagesPageIdIncidentsIncidentIdPostmortem
 
-`func NewPutPagesPageIdIncidentsIncidentIdPostmortem() *PutPagesPageIdIncidentsIncidentIdPostmortem`
+`func NewPutPagesPageIdIncidentsIncidentIdPostmortem(postmortem PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem, ) *PutPagesPageIdIncidentsIncidentIdPostmortem`
 
 NewPutPagesPageIdIncidentsIncidentIdPostmortem instantiates a new PutPagesPageIdIncidentsIncidentIdPostmortem object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +44,6 @@ and a boolean to check if the value has been set.
 
 SetPostmortem sets Postmortem field to given value.
 
-### HasPostmortem
-
-`func (o *PutPagesPageIdIncidentsIncidentIdPostmortem) HasPostmortem() bool`
-
-HasPostmortem returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

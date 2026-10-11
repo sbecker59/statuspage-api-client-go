@@ -85,6 +85,10 @@ func (a *SubscribersAPIService) DeletePagesPageIdSubscribersSubscriberIdExecute(
 
 	if r.skipUnsubscriptionNotification != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "skip_unsubscription_notification", r.skipUnsubscriptionNotification, "form", "")
+	} else {
+		var defaultValue bool = false
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skip_unsubscription_notification", defaultValue, "form", "")
+		r.skipUnsubscriptionNotification = &defaultValue
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -140,7 +144,7 @@ func (a *SubscribersAPIService) DeletePagesPageIdSubscribersSubscriberIdExecute(
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -151,7 +155,7 @@ func (a *SubscribersAPIService) DeletePagesPageIdSubscribersSubscriberIdExecute(
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -365,7 +369,7 @@ func (a *SubscribersAPIService) GetPagesPageIdSubscribersExecute(r ApiGetPagesPa
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -376,7 +380,7 @@ func (a *SubscribersAPIService) GetPagesPageIdSubscribersExecute(r ApiGetPagesPa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -387,7 +391,7 @@ func (a *SubscribersAPIService) GetPagesPageIdSubscribersExecute(r ApiGetPagesPa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -398,7 +402,7 @@ func (a *SubscribersAPIService) GetPagesPageIdSubscribersExecute(r ApiGetPagesPa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -409,7 +413,7 @@ func (a *SubscribersAPIService) GetPagesPageIdSubscribersExecute(r ApiGetPagesPa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -561,7 +565,7 @@ func (a *SubscribersAPIService) GetPagesPageIdSubscribersCountExecute(r ApiGetPa
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -572,7 +576,7 @@ func (a *SubscribersAPIService) GetPagesPageIdSubscribersCountExecute(r ApiGetPa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -583,7 +587,7 @@ func (a *SubscribersAPIService) GetPagesPageIdSubscribersCountExecute(r ApiGetPa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -711,7 +715,7 @@ func (a *SubscribersAPIService) GetPagesPageIdSubscribersHistogramByStateExecute
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -722,7 +726,7 @@ func (a *SubscribersAPIService) GetPagesPageIdSubscribersHistogramByStateExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -733,7 +737,7 @@ func (a *SubscribersAPIService) GetPagesPageIdSubscribersHistogramByStateExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -865,7 +869,7 @@ func (a *SubscribersAPIService) GetPagesPageIdSubscribersSubscriberIdExecute(r A
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -876,7 +880,7 @@ func (a *SubscribersAPIService) GetPagesPageIdSubscribersSubscriberIdExecute(r A
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1024,7 +1028,7 @@ func (a *SubscribersAPIService) GetPagesPageIdSubscribersUnsubscribedExecute(r A
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1035,7 +1039,7 @@ func (a *SubscribersAPIService) GetPagesPageIdSubscribersUnsubscribedExecute(r A
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1060,15 +1064,15 @@ func (a *SubscribersAPIService) GetPagesPageIdSubscribersUnsubscribedExecute(r A
 }
 
 type ApiPatchPagesPageIdSubscribersSubscriberIdRequest struct {
-	ctx                         context.Context
-	ApiService                  *SubscribersAPIService
-	pageId                      string
-	subscriberId                string
-	patchPagesPageIdSubscribers *PatchPagesPageIdSubscribers
+	ctx                                     context.Context
+	ApiService                              *SubscribersAPIService
+	pageId                                  string
+	subscriberId                            string
+	patchPagesPageIdSubscribersSubscriberId *PatchPagesPageIdSubscribersSubscriberId
 }
 
-func (r ApiPatchPagesPageIdSubscribersSubscriberIdRequest) PatchPagesPageIdSubscribers(patchPagesPageIdSubscribers PatchPagesPageIdSubscribers) ApiPatchPagesPageIdSubscribersSubscriberIdRequest {
-	r.patchPagesPageIdSubscribers = &patchPagesPageIdSubscribers
+func (r ApiPatchPagesPageIdSubscribersSubscriberIdRequest) PatchPagesPageIdSubscribersSubscriberId(patchPagesPageIdSubscribersSubscriberId PatchPagesPageIdSubscribersSubscriberId) ApiPatchPagesPageIdSubscribersSubscriberIdRequest {
+	r.patchPagesPageIdSubscribersSubscriberId = &patchPagesPageIdSubscribersSubscriberId
 	return r
 }
 
@@ -1118,8 +1122,8 @@ func (a *SubscribersAPIService) PatchPagesPageIdSubscribersSubscriberIdExecute(r
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.patchPagesPageIdSubscribers == nil {
-		return localVarReturnValue, nil, reportError("patchPagesPageIdSubscribers is required and must be specified")
+	if r.patchPagesPageIdSubscribersSubscriberId == nil {
+		return localVarReturnValue, nil, reportError("patchPagesPageIdSubscribersSubscriberId is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1140,7 +1144,7 @@ func (a *SubscribersAPIService) PatchPagesPageIdSubscribersSubscriberIdExecute(r
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.patchPagesPageIdSubscribers
+	localVarPostBody = r.patchPagesPageIdSubscribersSubscriberId
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1178,7 +1182,7 @@ func (a *SubscribersAPIService) PatchPagesPageIdSubscribersSubscriberIdExecute(r
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1189,7 +1193,7 @@ func (a *SubscribersAPIService) PatchPagesPageIdSubscribersSubscriberIdExecute(r
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1200,7 +1204,7 @@ func (a *SubscribersAPIService) PatchPagesPageIdSubscribersSubscriberIdExecute(r
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1339,7 +1343,7 @@ func (a *SubscribersAPIService) PostPagesPageIdSubscribersExecute(r ApiPostPages
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1350,7 +1354,7 @@ func (a *SubscribersAPIService) PostPagesPageIdSubscribersExecute(r ApiPostPages
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1361,7 +1365,7 @@ func (a *SubscribersAPIService) PostPagesPageIdSubscribersExecute(r ApiPostPages
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1372,7 +1376,7 @@ func (a *SubscribersAPIService) PostPagesPageIdSubscribersExecute(r ApiPostPages
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1383,7 +1387,7 @@ func (a *SubscribersAPIService) PostPagesPageIdSubscribersExecute(r ApiPostPages
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1519,7 +1523,7 @@ func (a *SubscribersAPIService) PostPagesPageIdSubscribersReactivateExecute(r Ap
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1530,7 +1534,7 @@ func (a *SubscribersAPIService) PostPagesPageIdSubscribersReactivateExecute(r Ap
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1541,7 +1545,7 @@ func (a *SubscribersAPIService) PostPagesPageIdSubscribersReactivateExecute(r Ap
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1552,7 +1556,7 @@ func (a *SubscribersAPIService) PostPagesPageIdSubscribersReactivateExecute(r Ap
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1679,7 +1683,7 @@ func (a *SubscribersAPIService) PostPagesPageIdSubscribersResendConfirmationExec
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1690,7 +1694,7 @@ func (a *SubscribersAPIService) PostPagesPageIdSubscribersResendConfirmationExec
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1701,7 +1705,7 @@ func (a *SubscribersAPIService) PostPagesPageIdSubscribersResendConfirmationExec
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1712,7 +1716,7 @@ func (a *SubscribersAPIService) PostPagesPageIdSubscribersResendConfirmationExec
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1832,7 +1836,7 @@ func (a *SubscribersAPIService) PostPagesPageIdSubscribersSubscriberIdResendConf
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1843,7 +1847,7 @@ func (a *SubscribersAPIService) PostPagesPageIdSubscribersSubscriberIdResendConf
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1970,7 +1974,7 @@ func (a *SubscribersAPIService) PostPagesPageIdSubscribersUnsubscribeExecute(r A
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1981,7 +1985,7 @@ func (a *SubscribersAPIService) PostPagesPageIdSubscribersUnsubscribeExecute(r A
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1992,7 +1996,7 @@ func (a *SubscribersAPIService) PostPagesPageIdSubscribersUnsubscribeExecute(r A
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2003,7 +2007,7 @@ func (a *SubscribersAPIService) PostPagesPageIdSubscribersUnsubscribeExecute(r A
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents
 
-> PageAccessGroup DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents(ctx, pageId, pageAccessGroupId).DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents(deletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents).Execute()
+> PageAccessGroup DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents(ctx, pageId, pageAccessGroupId).RequestBody(requestBody).Execute()
 
 Delete components for a page access group
 
@@ -30,17 +30,17 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
 	pageAccessGroupId := "pageAccessGroupId_example" // string | Page Access Group Identifier
-	deletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents := *openapiclient.NewDeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents() // DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents | 
+	requestBody := []string{"Property_example"} // []string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PageAccessGroupComponentsAPI.DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents(context.Background(), pageId, pageAccessGroupId).DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents(deletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents).Execute()
+	resp, r, err := apiClient.PageAccessGroupComponentsAPI.DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents(context.Background(), pageId, pageAccessGroupId).RequestBody(requestBody).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupComponentsAPI.DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **deletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents** | [**DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents**](DeletePagesPageIdPageAccessGroupsPageAccessGroupIdComponents.md) |  | 
+ **requestBody** | **[]string** |  | 
 
 ### Return type
 
@@ -105,7 +105,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -181,7 +181,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -258,7 +258,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -333,7 +333,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -408,7 +408,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {

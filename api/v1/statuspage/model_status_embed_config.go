@@ -17,7 +17,7 @@ import (
 // checks if the StatusEmbedConfig type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &StatusEmbedConfig{}
 
-// StatusEmbedConfig Update status embed config settings
+// StatusEmbedConfig StatusEmbedConfig model
 type StatusEmbedConfig struct {
 	// Page identifier
 	PageId *string `json:"page_id,omitempty"`

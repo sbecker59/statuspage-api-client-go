@@ -17,7 +17,7 @@ import (
 // checks if the SubscriberCountByTypeAndState type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &SubscriberCountByTypeAndState{}
 
-// SubscriberCountByTypeAndState Get a histogram of subscribers by type and then state
+// SubscriberCountByTypeAndState SubscriberCountByTypeAndState model
 type SubscriberCountByTypeAndState struct {
 	Email              *SubscriberCountByState `json:"email,omitempty"`
 	Sms                *SubscriberCountByState `json:"sms,omitempty"`

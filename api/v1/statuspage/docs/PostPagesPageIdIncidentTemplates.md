@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Template** | Pointer to [**PostPagesPageIdIncidentTemplatesTemplate**](PostPagesPageIdIncidentTemplatesTemplate.md) |  | [optional] 
+**Template** | [**PostPagesPageIdIncidentTemplatesTemplate**](PostPagesPageIdIncidentTemplatesTemplate.md) |  | 
 
 ## Methods
 
 ### NewPostPagesPageIdIncidentTemplates
 
-`func NewPostPagesPageIdIncidentTemplates() *PostPagesPageIdIncidentTemplates`
+`func NewPostPagesPageIdIncidentTemplates(template PostPagesPageIdIncidentTemplatesTemplate, ) *PostPagesPageIdIncidentTemplates`
 
 NewPostPagesPageIdIncidentTemplates instantiates a new PostPagesPageIdIncidentTemplates object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +44,6 @@ and a boolean to check if the value has been set.
 
 SetTemplate sets Template field to given value.
 
-### HasTemplate
-
-`func (o *PostPagesPageIdIncidentTemplates) HasTemplate() bool`
-
-HasTemplate returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

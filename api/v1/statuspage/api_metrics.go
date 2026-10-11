@@ -130,7 +130,7 @@ func (a *MetricsAPIService) DeletePagesPageIdMetricsMetricIdExecute(r ApiDeleteP
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -141,7 +141,7 @@ func (a *MetricsAPIService) DeletePagesPageIdMetricsMetricIdExecute(r ApiDeleteP
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -273,7 +273,7 @@ func (a *MetricsAPIService) DeletePagesPageIdMetricsMetricIdDataExecute(r ApiDel
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -284,7 +284,7 @@ func (a *MetricsAPIService) DeletePagesPageIdMetricsMetricIdDataExecute(r ApiDel
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -432,7 +432,7 @@ func (a *MetricsAPIService) GetPagesPageIdMetricsExecute(r ApiGetPagesPageIdMetr
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -443,7 +443,7 @@ func (a *MetricsAPIService) GetPagesPageIdMetricsExecute(r ApiGetPagesPageIdMetr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -575,7 +575,7 @@ func (a *MetricsAPIService) GetPagesPageIdMetricsMetricIdExecute(r ApiGetPagesPa
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -586,7 +586,7 @@ func (a *MetricsAPIService) GetPagesPageIdMetricsMetricIdExecute(r ApiGetPagesPa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -738,7 +738,7 @@ func (a *MetricsAPIService) GetPagesPageIdMetricsProvidersMetricsProviderIdMetri
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -749,7 +749,7 @@ func (a *MetricsAPIService) GetPagesPageIdMetricsProvidersMetricsProviderIdMetri
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -760,7 +760,7 @@ func (a *MetricsAPIService) GetPagesPageIdMetricsProvidersMetricsProviderIdMetri
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -785,15 +785,15 @@ func (a *MetricsAPIService) GetPagesPageIdMetricsProvidersMetricsProviderIdMetri
 }
 
 type ApiPatchPagesPageIdMetricsMetricIdRequest struct {
-	ctx                     context.Context
-	ApiService              *MetricsAPIService
-	pageId                  string
-	metricId                string
-	patchPagesPageIdMetrics *PatchPagesPageIdMetrics
+	ctx                             context.Context
+	ApiService                      *MetricsAPIService
+	pageId                          string
+	metricId                        string
+	patchPagesPageIdMetricsMetricId *PatchPagesPageIdMetricsMetricId
 }
 
-func (r ApiPatchPagesPageIdMetricsMetricIdRequest) PatchPagesPageIdMetrics(patchPagesPageIdMetrics PatchPagesPageIdMetrics) ApiPatchPagesPageIdMetricsMetricIdRequest {
-	r.patchPagesPageIdMetrics = &patchPagesPageIdMetrics
+func (r ApiPatchPagesPageIdMetricsMetricIdRequest) PatchPagesPageIdMetricsMetricId(patchPagesPageIdMetricsMetricId PatchPagesPageIdMetricsMetricId) ApiPatchPagesPageIdMetricsMetricIdRequest {
+	r.patchPagesPageIdMetricsMetricId = &patchPagesPageIdMetricsMetricId
 	return r
 }
 
@@ -843,8 +843,8 @@ func (a *MetricsAPIService) PatchPagesPageIdMetricsMetricIdExecute(r ApiPatchPag
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.patchPagesPageIdMetrics == nil {
-		return localVarReturnValue, nil, reportError("patchPagesPageIdMetrics is required and must be specified")
+	if r.patchPagesPageIdMetricsMetricId == nil {
+		return localVarReturnValue, nil, reportError("patchPagesPageIdMetricsMetricId is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -865,7 +865,7 @@ func (a *MetricsAPIService) PatchPagesPageIdMetricsMetricIdExecute(r ApiPatchPag
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.patchPagesPageIdMetrics
+	localVarPostBody = r.patchPagesPageIdMetricsMetricId
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -903,7 +903,7 @@ func (a *MetricsAPIService) PatchPagesPageIdMetricsMetricIdExecute(r ApiPatchPag
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -914,7 +914,7 @@ func (a *MetricsAPIService) PatchPagesPageIdMetricsMetricIdExecute(r ApiPatchPag
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -925,7 +925,7 @@ func (a *MetricsAPIService) PatchPagesPageIdMetricsMetricIdExecute(r ApiPatchPag
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1064,7 +1064,7 @@ func (a *MetricsAPIService) PostPagesPageIdMetricsDataExecute(r ApiPostPagesPage
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1075,7 +1075,7 @@ func (a *MetricsAPIService) PostPagesPageIdMetricsDataExecute(r ApiPostPagesPage
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1086,7 +1086,7 @@ func (a *MetricsAPIService) PostPagesPageIdMetricsDataExecute(r ApiPostPagesPage
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1097,7 +1097,7 @@ func (a *MetricsAPIService) PostPagesPageIdMetricsDataExecute(r ApiPostPagesPage
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1240,7 +1240,7 @@ func (a *MetricsAPIService) PostPagesPageIdMetricsMetricIdDataExecute(r ApiPostP
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1251,7 +1251,7 @@ func (a *MetricsAPIService) PostPagesPageIdMetricsMetricIdDataExecute(r ApiPostP
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1262,7 +1262,7 @@ func (a *MetricsAPIService) PostPagesPageIdMetricsMetricIdDataExecute(r ApiPostP
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 405 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1273,7 +1273,7 @@ func (a *MetricsAPIService) PostPagesPageIdMetricsMetricIdDataExecute(r ApiPostP
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1416,7 +1416,7 @@ func (a *MetricsAPIService) PostPagesPageIdMetricsProvidersMetricsProviderIdMetr
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1427,7 +1427,7 @@ func (a *MetricsAPIService) PostPagesPageIdMetricsProvidersMetricsProviderIdMetr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1438,7 +1438,7 @@ func (a *MetricsAPIService) PostPagesPageIdMetricsProvidersMetricsProviderIdMetr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1449,7 +1449,7 @@ func (a *MetricsAPIService) PostPagesPageIdMetricsProvidersMetricsProviderIdMetr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1460,7 +1460,7 @@ func (a *MetricsAPIService) PostPagesPageIdMetricsProvidersMetricsProviderIdMetr
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1485,15 +1485,15 @@ func (a *MetricsAPIService) PostPagesPageIdMetricsProvidersMetricsProviderIdMetr
 }
 
 type ApiPutPagesPageIdMetricsMetricIdRequest struct {
-	ctx                   context.Context
-	ApiService            *MetricsAPIService
-	pageId                string
-	metricId              string
-	putPagesPageIdMetrics *PutPagesPageIdMetrics
+	ctx                           context.Context
+	ApiService                    *MetricsAPIService
+	pageId                        string
+	metricId                      string
+	putPagesPageIdMetricsMetricId *PutPagesPageIdMetricsMetricId
 }
 
-func (r ApiPutPagesPageIdMetricsMetricIdRequest) PutPagesPageIdMetrics(putPagesPageIdMetrics PutPagesPageIdMetrics) ApiPutPagesPageIdMetricsMetricIdRequest {
-	r.putPagesPageIdMetrics = &putPagesPageIdMetrics
+func (r ApiPutPagesPageIdMetricsMetricIdRequest) PutPagesPageIdMetricsMetricId(putPagesPageIdMetricsMetricId PutPagesPageIdMetricsMetricId) ApiPutPagesPageIdMetricsMetricIdRequest {
+	r.putPagesPageIdMetricsMetricId = &putPagesPageIdMetricsMetricId
 	return r
 }
 
@@ -1543,8 +1543,8 @@ func (a *MetricsAPIService) PutPagesPageIdMetricsMetricIdExecute(r ApiPutPagesPa
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.putPagesPageIdMetrics == nil {
-		return localVarReturnValue, nil, reportError("putPagesPageIdMetrics is required and must be specified")
+	if r.putPagesPageIdMetricsMetricId == nil {
+		return localVarReturnValue, nil, reportError("putPagesPageIdMetricsMetricId is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1565,7 +1565,7 @@ func (a *MetricsAPIService) PutPagesPageIdMetricsMetricIdExecute(r ApiPutPagesPa
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.putPagesPageIdMetrics
+	localVarPostBody = r.putPagesPageIdMetricsMetricId
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1603,7 +1603,7 @@ func (a *MetricsAPIService) PutPagesPageIdMetricsMetricIdExecute(r ApiPutPagesPa
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1614,7 +1614,7 @@ func (a *MetricsAPIService) PutPagesPageIdMetricsMetricIdExecute(r ApiPutPagesPa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1625,7 +1625,7 @@ func (a *MetricsAPIService) PutPagesPageIdMetricsMetricIdExecute(r ApiPutPagesPa
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

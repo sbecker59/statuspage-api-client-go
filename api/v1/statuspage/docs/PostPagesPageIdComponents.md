@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Component** | Pointer to [**PostPagesPageIdComponentsComponent**](PostPagesPageIdComponentsComponent.md) |  | [optional] 
+**Component** | [**PostPagesPageIdComponentsComponent**](PostPagesPageIdComponentsComponent.md) |  | 
 
 ## Methods
 
 ### NewPostPagesPageIdComponents
 
-`func NewPostPagesPageIdComponents() *PostPagesPageIdComponents`
+`func NewPostPagesPageIdComponents(component PostPagesPageIdComponentsComponent, ) *PostPagesPageIdComponents`
 
 NewPostPagesPageIdComponents instantiates a new PostPagesPageIdComponents object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +44,6 @@ and a boolean to check if the value has been set.
 
 SetComponent sets Component field to given value.
 
-### HasComponent
-
-`func (o *PostPagesPageIdComponents) HasComponent() bool`
-
-HasComponent returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

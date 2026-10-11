@@ -18,7 +18,7 @@ import (
 // checks if the ComponentUptime type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ComponentUptime{}
 
-// ComponentUptime Get uptime data for a component that has uptime showcase enabled
+// ComponentUptime ComponentUptime model
 type ComponentUptime struct {
 	// Start date used for uptime calculation (see the warnings field in the response if this value does not match the start parameter you provided).
 	RangeStart *time.Time `json:"range_start,omitempty"`

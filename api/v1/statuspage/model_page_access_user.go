@@ -18,7 +18,7 @@ import (
 // checks if the PageAccessUser type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PageAccessUser{}
 
-// PageAccessUser Delete metric for page access user
+// PageAccessUser PageAccessUser model
 type PageAccessUser struct {
 	// Page Access User Identifier
 	Id     *string `json:"id,omitempty"`

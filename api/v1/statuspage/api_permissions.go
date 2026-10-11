@@ -23,15 +23,15 @@ import (
 type PermissionsAPIService service
 
 type ApiPutOrganizationsOrganizationIdPermissionsUserIdRequest struct {
-	ctx                                       context.Context
-	ApiService                                *PermissionsAPIService
-	organizationId                            string
-	userId                                    string
-	putOrganizationsOrganizationIdPermissions *PutOrganizationsOrganizationIdPermissions
+	ctx                                             context.Context
+	ApiService                                      *PermissionsAPIService
+	organizationId                                  string
+	userId                                          string
+	putOrganizationsOrganizationIdPermissionsUserId *PutOrganizationsOrganizationIdPermissionsUserId
 }
 
-func (r ApiPutOrganizationsOrganizationIdPermissionsUserIdRequest) PutOrganizationsOrganizationIdPermissions(putOrganizationsOrganizationIdPermissions PutOrganizationsOrganizationIdPermissions) ApiPutOrganizationsOrganizationIdPermissionsUserIdRequest {
-	r.putOrganizationsOrganizationIdPermissions = &putOrganizationsOrganizationIdPermissions
+func (r ApiPutOrganizationsOrganizationIdPermissionsUserIdRequest) PutOrganizationsOrganizationIdPermissionsUserId(putOrganizationsOrganizationIdPermissionsUserId PutOrganizationsOrganizationIdPermissionsUserId) ApiPutOrganizationsOrganizationIdPermissionsUserIdRequest {
+	r.putOrganizationsOrganizationIdPermissionsUserId = &putOrganizationsOrganizationIdPermissionsUserId
 	return r
 }
 
@@ -84,8 +84,8 @@ func (a *PermissionsAPIService) PutOrganizationsOrganizationIdPermissionsUserIdE
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.putOrganizationsOrganizationIdPermissions == nil {
-		return localVarReturnValue, nil, reportError("putOrganizationsOrganizationIdPermissions is required and must be specified")
+	if r.putOrganizationsOrganizationIdPermissionsUserId == nil {
+		return localVarReturnValue, nil, reportError("putOrganizationsOrganizationIdPermissionsUserId is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -106,7 +106,7 @@ func (a *PermissionsAPIService) PutOrganizationsOrganizationIdPermissionsUserIdE
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.putOrganizationsOrganizationIdPermissions
+	localVarPostBody = r.putOrganizationsOrganizationIdPermissionsUserId
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -144,7 +144,7 @@ func (a *PermissionsAPIService) PutOrganizationsOrganizationIdPermissionsUserIdE
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -155,7 +155,7 @@ func (a *PermissionsAPIService) PutOrganizationsOrganizationIdPermissionsUserIdE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -166,7 +166,7 @@ func (a *PermissionsAPIService) PutOrganizationsOrganizationIdPermissionsUserIdE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -177,7 +177,7 @@ func (a *PermissionsAPIService) PutOrganizationsOrganizationIdPermissionsUserIdE
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

@@ -23,15 +23,16 @@ import (
 type PageAccessUserMetricsAPIService service
 
 type ApiDeletePagesPageIdPageAccessUsersPageAccessUserIdMetricsRequest struct {
-	ctx                                                     context.Context
-	ApiService                                              *PageAccessUserMetricsAPIService
-	pageId                                                  string
-	pageAccessUserId                                        string
-	deletePagesPageIdPageAccessUsersPageAccessUserIdMetrics *DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics
+	ctx              context.Context
+	ApiService       *PageAccessUserMetricsAPIService
+	pageId           string
+	pageAccessUserId string
+	requestBody      *[]string
 }
 
-func (r ApiDeletePagesPageIdPageAccessUsersPageAccessUserIdMetricsRequest) DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics(deletePagesPageIdPageAccessUsersPageAccessUserIdMetrics DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics) ApiDeletePagesPageIdPageAccessUsersPageAccessUserIdMetricsRequest {
-	r.deletePagesPageIdPageAccessUsersPageAccessUserIdMetrics = &deletePagesPageIdPageAccessUsersPageAccessUserIdMetrics
+// List of metrics to remove
+func (r ApiDeletePagesPageIdPageAccessUsersPageAccessUserIdMetricsRequest) RequestBody(requestBody []string) ApiDeletePagesPageIdPageAccessUsersPageAccessUserIdMetricsRequest {
+	r.requestBody = &requestBody
 	return r
 }
 
@@ -81,9 +82,6 @@ func (a *PageAccessUserMetricsAPIService) DeletePagesPageIdPageAccessUsersPageAc
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.deletePagesPageIdPageAccessUsersPageAccessUserIdMetrics == nil {
-		return localVarReturnValue, nil, reportError("deletePagesPageIdPageAccessUsersPageAccessUserIdMetrics is required and must be specified")
-	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -103,7 +101,7 @@ func (a *PageAccessUserMetricsAPIService) DeletePagesPageIdPageAccessUsersPageAc
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.deletePagesPageIdPageAccessUsersPageAccessUserIdMetrics
+	localVarPostBody = r.requestBody
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -141,7 +139,7 @@ func (a *PageAccessUserMetricsAPIService) DeletePagesPageIdPageAccessUsersPageAc
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -152,7 +150,7 @@ func (a *PageAccessUserMetricsAPIService) DeletePagesPageIdPageAccessUsersPageAc
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -163,7 +161,7 @@ func (a *PageAccessUserMetricsAPIService) DeletePagesPageIdPageAccessUsersPageAc
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -441,7 +439,7 @@ func (a *PageAccessUserMetricsAPIService) GetPagesPageIdPageAccessUsersPageAcces
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -452,7 +450,7 @@ func (a *PageAccessUserMetricsAPIService) GetPagesPageIdPageAccessUsersPageAcces
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -463,7 +461,7 @@ func (a *PageAccessUserMetricsAPIService) GetPagesPageIdPageAccessUsersPageAcces
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -606,7 +604,7 @@ func (a *PageAccessUserMetricsAPIService) PatchPagesPageIdPageAccessUsersPageAcc
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -617,7 +615,7 @@ func (a *PageAccessUserMetricsAPIService) PatchPagesPageIdPageAccessUsersPageAcc
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -628,7 +626,7 @@ func (a *PageAccessUserMetricsAPIService) PatchPagesPageIdPageAccessUsersPageAcc
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -771,7 +769,7 @@ func (a *PageAccessUserMetricsAPIService) PostPagesPageIdPageAccessUsersPageAcce
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -782,7 +780,7 @@ func (a *PageAccessUserMetricsAPIService) PostPagesPageIdPageAccessUsersPageAcce
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -793,7 +791,7 @@ func (a *PageAccessUserMetricsAPIService) PostPagesPageIdPageAccessUsersPageAcce
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -936,7 +934,7 @@ func (a *PageAccessUserMetricsAPIService) PutPagesPageIdPageAccessUsersPageAcces
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -947,7 +945,7 @@ func (a *PageAccessUserMetricsAPIService) PutPagesPageIdPageAccessUsersPageAcces
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -958,7 +956,7 @@ func (a *PageAccessUserMetricsAPIService) PutPagesPageIdPageAccessUsersPageAcces
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

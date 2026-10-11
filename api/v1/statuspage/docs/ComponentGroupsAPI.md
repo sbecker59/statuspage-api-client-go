@@ -31,7 +31,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -104,7 +104,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -178,7 +178,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -251,16 +251,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-    "time"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
 	id := "id_example" // string | Component group identifier
 	skipRelatedEvents := true // bool | Skips supplying the related events data along with the component uptime data. (optional)
-	start := time.Now() // string | The start date for uptime calculation (defaults to the date of the component in the group with the earliest start_date, or 90 days ago, whichever is more recent). The maximum supported date range is six calendar months. If the year is given, the date defaults to the first day of the year. If the year and month are given, the start date defaults to the first day of that month. The earliest supported date is January 1, 1970.  (optional)
-	end := time.Now() // string | The end date for uptime calculation (defaults to today in the page's time zone). The maximum supported date range is six calendar months. If the year is given, the date defaults to the last day of the year. If the year and month are given, the date defaults to the last day of that month. The earliest supported date is January 1, 1970.  (optional)
+	start := TODO // ApiV1TypesPartialStartDate | The start date for uptime calculation (defaults to the date of the component in the group with the earliest start_date, or 90 days ago, whichever is more recent). The maximum supported date range is six calendar months. If the year is given, the date defaults to the first day of the year. If the year and month are given, the start date defaults to the first day of that month. The earliest supported date is January 1, 1970.  (optional)
+	end := TODO // ApiV1TypesPartialEndDate | The end date for uptime calculation (defaults to today in the page's time zone). The maximum supported date range is six calendar months. If the year is given, the date defaults to the last day of the year. If the year and month are given, the date defaults to the last day of that month. The earliest supported date is January 1, 1970.  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -293,8 +292,8 @@ Name | Type | Description  | Notes
 
 
  **skipRelatedEvents** | **bool** | Skips supplying the related events data along with the component uptime data. | 
- **start** | **string** | The start date for uptime calculation (defaults to the date of the component in the group with the earliest start_date, or 90 days ago, whichever is more recent). The maximum supported date range is six calendar months. If the year is given, the date defaults to the first day of the year. If the year and month are given, the start date defaults to the first day of that month. The earliest supported date is January 1, 1970.  | 
- **end** | **string** | The end date for uptime calculation (defaults to today in the page&#39;s time zone). The maximum supported date range is six calendar months. If the year is given, the date defaults to the last day of the year. If the year and month are given, the date defaults to the last day of that month. The earliest supported date is January 1, 1970.  | 
+ **start** | [**ApiV1TypesPartialStartDate**](ApiV1TypesPartialStartDate.md) | The start date for uptime calculation (defaults to the date of the component in the group with the earliest start_date, or 90 days ago, whichever is more recent). The maximum supported date range is six calendar months. If the year is given, the date defaults to the first day of the year. If the year and month are given, the start date defaults to the first day of that month. The earliest supported date is January 1, 1970.  | 
+ **end** | [**ApiV1TypesPartialEndDate**](ApiV1TypesPartialEndDate.md) | The end date for uptime calculation (defaults to today in the page&#39;s time zone). The maximum supported date range is six calendar months. If the year is given, the date defaults to the last day of the year. If the year and month are given, the date defaults to the last day of that month. The earliest supported date is January 1, 1970.  | 
 
 ### Return type
 
@@ -316,7 +315,7 @@ Name | Type | Description  | Notes
 
 ## PatchPagesPageIdComponentGroupsId
 
-> GroupComponent PatchPagesPageIdComponentGroupsId(ctx, pageId, id).PatchPagesPageIdComponentGroups(patchPagesPageIdComponentGroups).Execute()
+> GroupComponent PatchPagesPageIdComponentGroupsId(ctx, pageId, id).PatchPagesPageIdComponentGroupsId(patchPagesPageIdComponentGroupsId).Execute()
 
 Update a component group
 
@@ -331,17 +330,17 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
 	id := "id_example" // string | Component group identifier
-	patchPagesPageIdComponentGroups := *openapiclient.NewPatchPagesPageIdComponentGroups() // PatchPagesPageIdComponentGroups | 
+	patchPagesPageIdComponentGroupsId := *openapiclient.NewPatchPagesPageIdComponentGroupsId(*openapiclient.NewPutPagesPageIdComponentGroupsIdComponentGroup([]string{"Components_example"}, "Name_example")) // PatchPagesPageIdComponentGroupsId | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ComponentGroupsAPI.PatchPagesPageIdComponentGroupsId(context.Background(), pageId, id).PatchPagesPageIdComponentGroups(patchPagesPageIdComponentGroups).Execute()
+	resp, r, err := apiClient.ComponentGroupsAPI.PatchPagesPageIdComponentGroupsId(context.Background(), pageId, id).PatchPagesPageIdComponentGroupsId(patchPagesPageIdComponentGroupsId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ComponentGroupsAPI.PatchPagesPageIdComponentGroupsId``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -369,7 +368,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **patchPagesPageIdComponentGroups** | [**PatchPagesPageIdComponentGroups**](PatchPagesPageIdComponentGroups.md) |  | 
+ **patchPagesPageIdComponentGroupsId** | [**PatchPagesPageIdComponentGroupsId**](PatchPagesPageIdComponentGroupsId.md) |  | 
 
 ### Return type
 
@@ -406,12 +405,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
-	postPagesPageIdComponentGroups := *openapiclient.NewPostPagesPageIdComponentGroups() // PostPagesPageIdComponentGroups | 
+	postPagesPageIdComponentGroups := *openapiclient.NewPostPagesPageIdComponentGroups(*openapiclient.NewPostPagesPageIdComponentGroupsComponentGroup([]string{"Components_example"}, "Name_example")) // PostPagesPageIdComponentGroups | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -463,7 +462,7 @@ Name | Type | Description  | Notes
 
 ## PutPagesPageIdComponentGroupsId
 
-> GroupComponent PutPagesPageIdComponentGroupsId(ctx, pageId, id).PutPagesPageIdComponentGroups(putPagesPageIdComponentGroups).Execute()
+> GroupComponent PutPagesPageIdComponentGroupsId(ctx, pageId, id).PutPagesPageIdComponentGroupsId(putPagesPageIdComponentGroupsId).Execute()
 
 Update a component group
 
@@ -478,17 +477,17 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
 	id := "id_example" // string | Component group identifier
-	putPagesPageIdComponentGroups := *openapiclient.NewPutPagesPageIdComponentGroups() // PutPagesPageIdComponentGroups | 
+	putPagesPageIdComponentGroupsId := *openapiclient.NewPutPagesPageIdComponentGroupsId(*openapiclient.NewPutPagesPageIdComponentGroupsIdComponentGroup([]string{"Components_example"}, "Name_example")) // PutPagesPageIdComponentGroupsId | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ComponentGroupsAPI.PutPagesPageIdComponentGroupsId(context.Background(), pageId, id).PutPagesPageIdComponentGroups(putPagesPageIdComponentGroups).Execute()
+	resp, r, err := apiClient.ComponentGroupsAPI.PutPagesPageIdComponentGroupsId(context.Background(), pageId, id).PutPagesPageIdComponentGroupsId(putPagesPageIdComponentGroupsId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ComponentGroupsAPI.PutPagesPageIdComponentGroupsId``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -516,7 +515,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **putPagesPageIdComponentGroups** | [**PutPagesPageIdComponentGroups**](PutPagesPageIdComponentGroups.md) |  | 
+ **putPagesPageIdComponentGroupsId** | [**PutPagesPageIdComponentGroupsId**](PutPagesPageIdComponentGroupsId.md) |  | 
 
 ### Return type
 
