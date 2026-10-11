@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ComponentGroup** | Pointer to [**PostPagesPageIdComponentGroupsComponentGroup**](PostPagesPageIdComponentGroupsComponentGroup.md) |  | [optional] 
+**ComponentGroup** | [**PostPagesPageIdComponentGroupsComponentGroup**](PostPagesPageIdComponentGroupsComponentGroup.md) |  | 
 
 ## Methods
 
 ### NewPostPagesPageIdComponentGroups
 
-`func NewPostPagesPageIdComponentGroups() *PostPagesPageIdComponentGroups`
+`func NewPostPagesPageIdComponentGroups(componentGroup PostPagesPageIdComponentGroupsComponentGroup, ) *PostPagesPageIdComponentGroups`
 
 NewPostPagesPageIdComponentGroups instantiates a new PostPagesPageIdComponentGroups object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +44,6 @@ and a boolean to check if the value has been set.
 
 SetComponentGroup sets ComponentGroup field to given value.
 
-### HasComponentGroup
-
-`func (o *PostPagesPageIdComponentGroups) HasComponentGroup() bool`
-
-HasComponentGroup returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

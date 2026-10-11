@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PageAccessUser** | Pointer to [**PostPagesPageIdPageAccessUsersPageAccessUser**](PostPagesPageIdPageAccessUsersPageAccessUser.md) |  | [optional] 
+**PageAccessUser** | [**PostPagesPageIdPageAccessUsersPageAccessUser**](PostPagesPageIdPageAccessUsersPageAccessUser.md) |  | 
 
 ## Methods
 
 ### NewPostPagesPageIdPageAccessUsers
 
-`func NewPostPagesPageIdPageAccessUsers() *PostPagesPageIdPageAccessUsers`
+`func NewPostPagesPageIdPageAccessUsers(pageAccessUser PostPagesPageIdPageAccessUsersPageAccessUser, ) *PostPagesPageIdPageAccessUsers`
 
 NewPostPagesPageIdPageAccessUsers instantiates a new PostPagesPageIdPageAccessUsers object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +44,6 @@ and a boolean to check if the value has been set.
 
 SetPageAccessUser sets PageAccessUser field to given value.
 
-### HasPageAccessUser
-
-`func (o *PostPagesPageIdPageAccessUsers) HasPageAccessUser() bool`
-
-HasPageAccessUser returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

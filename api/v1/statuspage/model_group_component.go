@@ -18,18 +18,17 @@ import (
 // checks if the GroupComponent type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &GroupComponent{}
 
-// GroupComponent Get a component group
+// GroupComponent GroupComponent model
 type GroupComponent struct {
 	// Component Group Identifier
-	Id          *string  `json:"id,omitempty"`
-	PageId      *string  `json:"page_id,omitempty"`
-	Name        *string  `json:"name,omitempty"`
-	Description *string  `json:"description,omitempty"`
-	Components  []string `json:"components,omitempty"`
-	// Order the component group will appear on the page
-	Position  *int32     `json:"position,omitempty"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	Id          *string    `json:"id,omitempty"`
+	PageId      *string    `json:"page_id,omitempty"`
+	Name        *string    `json:"name,omitempty"`
+	Description *string    `json:"description,omitempty"`
+	Components  []string   `json:"components,omitempty"`
+	Position    *string    `json:"position,omitempty"`
+	CreatedAt   *time.Time `json:"created_at,omitempty"`
+	UpdatedAt   *time.Time `json:"updated_at,omitempty"`
 }
 
 // NewGroupComponent instantiates a new GroupComponent object
@@ -210,9 +209,9 @@ func (o *GroupComponent) SetComponents(v []string) {
 }
 
 // GetPosition returns the Position field value if set, zero value otherwise.
-func (o *GroupComponent) GetPosition() int32 {
+func (o *GroupComponent) GetPosition() string {
 	if o == nil || IsNil(o.Position) {
-		var ret int32
+		var ret string
 		return ret
 	}
 	return *o.Position
@@ -220,7 +219,7 @@ func (o *GroupComponent) GetPosition() int32 {
 
 // GetPositionOk returns a tuple with the Position field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GroupComponent) GetPositionOk() (*int32, bool) {
+func (o *GroupComponent) GetPositionOk() (*string, bool) {
 	if o == nil || IsNil(o.Position) {
 		return nil, false
 	}
@@ -236,8 +235,8 @@ func (o *GroupComponent) HasPosition() bool {
 	return false
 }
 
-// SetPosition gets a reference to the given int32 and assigns it to the Position field.
-func (o *GroupComponent) SetPosition(v int32) {
+// SetPosition gets a reference to the given string and assigns it to the Position field.
+func (o *GroupComponent) SetPosition(v string) {
 	o.Position = &v
 }
 

@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Subscriber** | Pointer to [**PostPagesPageIdIncidentsIncidentIdSubscribersSubscriber**](PostPagesPageIdIncidentsIncidentIdSubscribersSubscriber.md) |  | [optional] 
+**Subscriber** | [**PostPagesPageIdIncidentsIncidentIdSubscribersSubscriber**](PostPagesPageIdIncidentsIncidentIdSubscribersSubscriber.md) |  | 
 
 ## Methods
 
 ### NewPostPagesPageIdIncidentsIncidentIdSubscribers
 
-`func NewPostPagesPageIdIncidentsIncidentIdSubscribers() *PostPagesPageIdIncidentsIncidentIdSubscribers`
+`func NewPostPagesPageIdIncidentsIncidentIdSubscribers(subscriber PostPagesPageIdIncidentsIncidentIdSubscribersSubscriber, ) *PostPagesPageIdIncidentsIncidentIdSubscribers`
 
 NewPostPagesPageIdIncidentsIncidentIdSubscribers instantiates a new PostPagesPageIdIncidentsIncidentIdSubscribers object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +44,6 @@ and a boolean to check if the value has been set.
 
 SetSubscriber sets Subscriber field to given value.
 
-### HasSubscriber
-
-`func (o *PostPagesPageIdIncidentsIncidentIdSubscribers) HasSubscriber() bool`
-
-HasSubscriber returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

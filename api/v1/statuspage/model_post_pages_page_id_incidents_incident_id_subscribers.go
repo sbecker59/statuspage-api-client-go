@@ -11,7 +11,9 @@ API version: 1.0.0
 package openapi
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the PostPagesPageIdIncidentsIncidentIdSubscribers type satisfies the MappedNullable interface at compile time
@@ -19,15 +21,18 @@ var _ MappedNullable = &PostPagesPageIdIncidentsIncidentIdSubscribers{}
 
 // PostPagesPageIdIncidentsIncidentIdSubscribers Create an incident subscriber
 type PostPagesPageIdIncidentsIncidentIdSubscribers struct {
-	Subscriber *PostPagesPageIdIncidentsIncidentIdSubscribersSubscriber `json:"subscriber,omitempty"`
+	Subscriber PostPagesPageIdIncidentsIncidentIdSubscribersSubscriber `json:"subscriber"`
 }
+
+type _PostPagesPageIdIncidentsIncidentIdSubscribers PostPagesPageIdIncidentsIncidentIdSubscribers
 
 // NewPostPagesPageIdIncidentsIncidentIdSubscribers instantiates a new PostPagesPageIdIncidentsIncidentIdSubscribers object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPostPagesPageIdIncidentsIncidentIdSubscribers() *PostPagesPageIdIncidentsIncidentIdSubscribers {
+func NewPostPagesPageIdIncidentsIncidentIdSubscribers(subscriber PostPagesPageIdIncidentsIncidentIdSubscribersSubscriber) *PostPagesPageIdIncidentsIncidentIdSubscribers {
 	this := PostPagesPageIdIncidentsIncidentIdSubscribers{}
+	this.Subscriber = subscriber
 	return &this
 }
 
@@ -39,36 +44,28 @@ func NewPostPagesPageIdIncidentsIncidentIdSubscribersWithDefaults() *PostPagesPa
 	return &this
 }
 
-// GetSubscriber returns the Subscriber field value if set, zero value otherwise.
+// GetSubscriber returns the Subscriber field value
 func (o *PostPagesPageIdIncidentsIncidentIdSubscribers) GetSubscriber() PostPagesPageIdIncidentsIncidentIdSubscribersSubscriber {
-	if o == nil || IsNil(o.Subscriber) {
+	if o == nil {
 		var ret PostPagesPageIdIncidentsIncidentIdSubscribersSubscriber
 		return ret
 	}
-	return *o.Subscriber
+
+	return o.Subscriber
 }
 
-// GetSubscriberOk returns a tuple with the Subscriber field value if set, nil otherwise
+// GetSubscriberOk returns a tuple with the Subscriber field value
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdIncidentsIncidentIdSubscribers) GetSubscriberOk() (*PostPagesPageIdIncidentsIncidentIdSubscribersSubscriber, bool) {
-	if o == nil || IsNil(o.Subscriber) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Subscriber, true
+	return &o.Subscriber, true
 }
 
-// HasSubscriber returns a boolean if a field has been set.
-func (o *PostPagesPageIdIncidentsIncidentIdSubscribers) HasSubscriber() bool {
-	if o != nil && !IsNil(o.Subscriber) {
-		return true
-	}
-
-	return false
-}
-
-// SetSubscriber gets a reference to the given PostPagesPageIdIncidentsIncidentIdSubscribersSubscriber and assigns it to the Subscriber field.
+// SetSubscriber sets field value
 func (o *PostPagesPageIdIncidentsIncidentIdSubscribers) SetSubscriber(v PostPagesPageIdIncidentsIncidentIdSubscribersSubscriber) {
-	o.Subscriber = &v
+	o.Subscriber = v
 }
 
 func (o PostPagesPageIdIncidentsIncidentIdSubscribers) MarshalJSON() ([]byte, error) {
@@ -81,10 +78,45 @@ func (o PostPagesPageIdIncidentsIncidentIdSubscribers) MarshalJSON() ([]byte, er
 
 func (o PostPagesPageIdIncidentsIncidentIdSubscribers) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Subscriber) {
-		toSerialize["subscriber"] = o.Subscriber
-	}
+	toSerialize["subscriber"] = o.Subscriber
 	return toSerialize, nil
+}
+
+func (o *PostPagesPageIdIncidentsIncidentIdSubscribers) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"subscriber",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPostPagesPageIdIncidentsIncidentIdSubscribers := _PostPagesPageIdIncidentsIncidentIdSubscribers{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varPostPagesPageIdIncidentsIncidentIdSubscribers)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PostPagesPageIdIncidentsIncidentIdSubscribers(varPostPagesPageIdIncidentsIncidentIdSubscribers)
+
+	return err
 }
 
 type NullablePostPagesPageIdIncidentsIncidentIdSubscribers struct {

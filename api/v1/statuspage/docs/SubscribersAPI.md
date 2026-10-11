@@ -36,13 +36,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
 	subscriberId := "subscriberId_example" // string | Subscriber Identifier
-	skipUnsubscriptionNotification := true // bool | If skip_unsubscription_notification is true, the subscriber does not receive any notifications when they are unsubscribed. (optional)
+	skipUnsubscriptionNotification := true // bool | If skip_unsubscription_notification is true, the subscriber does not receive any notifications when they are unsubscribed. (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -74,7 +74,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **skipUnsubscriptionNotification** | **bool** | If skip_unsubscription_notification is true, the subscriber does not receive any notifications when they are unsubscribed. | 
+ **skipUnsubscriptionNotification** | **bool** | If skip_unsubscription_notification is true, the subscriber does not receive any notifications when they are unsubscribed. | [default to false]
 
 ### Return type
 
@@ -111,7 +111,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -195,7 +195,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -269,7 +269,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -339,7 +339,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -412,7 +412,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -471,7 +471,7 @@ Name | Type | Description  | Notes
 
 ## PatchPagesPageIdSubscribersSubscriberId
 
-> Subscriber PatchPagesPageIdSubscribersSubscriberId(ctx, pageId, subscriberId).PatchPagesPageIdSubscribers(patchPagesPageIdSubscribers).Execute()
+> Subscriber PatchPagesPageIdSubscribersSubscriberId(ctx, pageId, subscriberId).PatchPagesPageIdSubscribersSubscriberId(patchPagesPageIdSubscribersSubscriberId).Execute()
 
 Update a subscriber
 
@@ -486,17 +486,17 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
 	subscriberId := "subscriberId_example" // string | Subscriber Identifier
-	patchPagesPageIdSubscribers := *openapiclient.NewPatchPagesPageIdSubscribers() // PatchPagesPageIdSubscribers | 
+	patchPagesPageIdSubscribersSubscriberId := *openapiclient.NewPatchPagesPageIdSubscribersSubscriberId() // PatchPagesPageIdSubscribersSubscriberId | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SubscribersAPI.PatchPagesPageIdSubscribersSubscriberId(context.Background(), pageId, subscriberId).PatchPagesPageIdSubscribers(patchPagesPageIdSubscribers).Execute()
+	resp, r, err := apiClient.SubscribersAPI.PatchPagesPageIdSubscribersSubscriberId(context.Background(), pageId, subscriberId).PatchPagesPageIdSubscribersSubscriberId(patchPagesPageIdSubscribersSubscriberId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscribersAPI.PatchPagesPageIdSubscribersSubscriberId``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -524,7 +524,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **patchPagesPageIdSubscribers** | [**PatchPagesPageIdSubscribers**](PatchPagesPageIdSubscribers.md) |  | 
+ **patchPagesPageIdSubscribersSubscriberId** | [**PatchPagesPageIdSubscribersSubscriberId**](PatchPagesPageIdSubscribersSubscriberId.md) |  | 
 
 ### Return type
 
@@ -561,12 +561,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
-	postPagesPageIdSubscribers := *openapiclient.NewPostPagesPageIdSubscribers() // PostPagesPageIdSubscribers | 
+	postPagesPageIdSubscribers := *openapiclient.NewPostPagesPageIdSubscribers(*openapiclient.NewPostPagesPageIdSubscribersSubscriber()) // PostPagesPageIdSubscribers | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -633,7 +633,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -703,7 +703,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -773,7 +773,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -844,7 +844,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {

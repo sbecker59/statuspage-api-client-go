@@ -11,7 +11,9 @@ API version: 1.0.0
 package openapi
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the PatchPagesPageIdStatusEmbedConfig type satisfies the MappedNullable interface at compile time
@@ -19,15 +21,18 @@ var _ MappedNullable = &PatchPagesPageIdStatusEmbedConfig{}
 
 // PatchPagesPageIdStatusEmbedConfig Update status embed config settings
 type PatchPagesPageIdStatusEmbedConfig struct {
-	StatusEmbedConfig *PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig `json:"status_embed_config,omitempty"`
+	StatusEmbedConfig PutPagesPageIdStatusEmbedConfigStatusEmbedConfig `json:"status_embed_config"`
 }
+
+type _PatchPagesPageIdStatusEmbedConfig PatchPagesPageIdStatusEmbedConfig
 
 // NewPatchPagesPageIdStatusEmbedConfig instantiates a new PatchPagesPageIdStatusEmbedConfig object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPatchPagesPageIdStatusEmbedConfig() *PatchPagesPageIdStatusEmbedConfig {
+func NewPatchPagesPageIdStatusEmbedConfig(statusEmbedConfig PutPagesPageIdStatusEmbedConfigStatusEmbedConfig) *PatchPagesPageIdStatusEmbedConfig {
 	this := PatchPagesPageIdStatusEmbedConfig{}
+	this.StatusEmbedConfig = statusEmbedConfig
 	return &this
 }
 
@@ -39,36 +44,28 @@ func NewPatchPagesPageIdStatusEmbedConfigWithDefaults() *PatchPagesPageIdStatusE
 	return &this
 }
 
-// GetStatusEmbedConfig returns the StatusEmbedConfig field value if set, zero value otherwise.
-func (o *PatchPagesPageIdStatusEmbedConfig) GetStatusEmbedConfig() PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig {
-	if o == nil || IsNil(o.StatusEmbedConfig) {
-		var ret PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig
+// GetStatusEmbedConfig returns the StatusEmbedConfig field value
+func (o *PatchPagesPageIdStatusEmbedConfig) GetStatusEmbedConfig() PutPagesPageIdStatusEmbedConfigStatusEmbedConfig {
+	if o == nil {
+		var ret PutPagesPageIdStatusEmbedConfigStatusEmbedConfig
 		return ret
 	}
-	return *o.StatusEmbedConfig
+
+	return o.StatusEmbedConfig
 }
 
-// GetStatusEmbedConfigOk returns a tuple with the StatusEmbedConfig field value if set, nil otherwise
+// GetStatusEmbedConfigOk returns a tuple with the StatusEmbedConfig field value
 // and a boolean to check if the value has been set.
-func (o *PatchPagesPageIdStatusEmbedConfig) GetStatusEmbedConfigOk() (*PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig, bool) {
-	if o == nil || IsNil(o.StatusEmbedConfig) {
+func (o *PatchPagesPageIdStatusEmbedConfig) GetStatusEmbedConfigOk() (*PutPagesPageIdStatusEmbedConfigStatusEmbedConfig, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.StatusEmbedConfig, true
+	return &o.StatusEmbedConfig, true
 }
 
-// HasStatusEmbedConfig returns a boolean if a field has been set.
-func (o *PatchPagesPageIdStatusEmbedConfig) HasStatusEmbedConfig() bool {
-	if o != nil && !IsNil(o.StatusEmbedConfig) {
-		return true
-	}
-
-	return false
-}
-
-// SetStatusEmbedConfig gets a reference to the given PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig and assigns it to the StatusEmbedConfig field.
-func (o *PatchPagesPageIdStatusEmbedConfig) SetStatusEmbedConfig(v PatchPagesPageIdStatusEmbedConfigStatusEmbedConfig) {
-	o.StatusEmbedConfig = &v
+// SetStatusEmbedConfig sets field value
+func (o *PatchPagesPageIdStatusEmbedConfig) SetStatusEmbedConfig(v PutPagesPageIdStatusEmbedConfigStatusEmbedConfig) {
+	o.StatusEmbedConfig = v
 }
 
 func (o PatchPagesPageIdStatusEmbedConfig) MarshalJSON() ([]byte, error) {
@@ -81,10 +78,45 @@ func (o PatchPagesPageIdStatusEmbedConfig) MarshalJSON() ([]byte, error) {
 
 func (o PatchPagesPageIdStatusEmbedConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.StatusEmbedConfig) {
-		toSerialize["status_embed_config"] = o.StatusEmbedConfig
-	}
+	toSerialize["status_embed_config"] = o.StatusEmbedConfig
 	return toSerialize, nil
+}
+
+func (o *PatchPagesPageIdStatusEmbedConfig) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"status_embed_config",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPatchPagesPageIdStatusEmbedConfig := _PatchPagesPageIdStatusEmbedConfig{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varPatchPagesPageIdStatusEmbedConfig)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PatchPagesPageIdStatusEmbedConfig(varPatchPagesPageIdStatusEmbedConfig)
+
+	return err
 }
 
 type NullablePatchPagesPageIdStatusEmbedConfig struct {

@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId
 
-> IncidentUpdate PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId(ctx, pageId, incidentId, incidentUpdateId).PatchPagesPageIdIncidentsIncidentIdIncidentUpdates(patchPagesPageIdIncidentsIncidentIdIncidentUpdates).Execute()
+> IncidentUpdate PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId(ctx, pageId, incidentId, incidentUpdateId).PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId(patchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId).Execute()
 
 Update a previous incident update
 
@@ -26,18 +26,18 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
 	incidentId := "incidentId_example" // string | Incident Identifier
 	incidentUpdateId := "incidentUpdateId_example" // string | Incident Update Identifier
-	patchPagesPageIdIncidentsIncidentIdIncidentUpdates := *openapiclient.NewPatchPagesPageIdIncidentsIncidentIdIncidentUpdates() // PatchPagesPageIdIncidentsIncidentIdIncidentUpdates | 
+	patchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId := *openapiclient.NewPatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId(*openapiclient.NewPutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdIncidentUpdate()) // PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.IncidentUpdatesAPI.PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId(context.Background(), pageId, incidentId, incidentUpdateId).PatchPagesPageIdIncidentsIncidentIdIncidentUpdates(patchPagesPageIdIncidentsIncidentIdIncidentUpdates).Execute()
+	resp, r, err := apiClient.IncidentUpdatesAPI.PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId(context.Background(), pageId, incidentId, incidentUpdateId).PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId(patchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentUpdatesAPI.PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -67,7 +67,7 @@ Name | Type | Description  | Notes
 
 
 
- **patchPagesPageIdIncidentsIncidentIdIncidentUpdates** | [**PatchPagesPageIdIncidentsIncidentIdIncidentUpdates**](PatchPagesPageIdIncidentsIncidentIdIncidentUpdates.md) |  | 
+ **patchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId** | [**PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId**](PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId.md) |  | 
 
 ### Return type
 
@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 
 ## PutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId
 
-> IncidentUpdate PutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId(ctx, pageId, incidentId, incidentUpdateId).PutPagesPageIdIncidentsIncidentIdIncidentUpdates(putPagesPageIdIncidentsIncidentIdIncidentUpdates).Execute()
+> IncidentUpdate PutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId(ctx, pageId, incidentId, incidentUpdateId).PutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId(putPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId).Execute()
 
 Update a previous incident update
 
@@ -104,18 +104,18 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
 	incidentId := "incidentId_example" // string | Incident Identifier
 	incidentUpdateId := "incidentUpdateId_example" // string | Incident Update Identifier
-	putPagesPageIdIncidentsIncidentIdIncidentUpdates := *openapiclient.NewPutPagesPageIdIncidentsIncidentIdIncidentUpdates() // PutPagesPageIdIncidentsIncidentIdIncidentUpdates | 
+	putPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId := *openapiclient.NewPutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId(*openapiclient.NewPutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdIncidentUpdate()) // PutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.IncidentUpdatesAPI.PutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId(context.Background(), pageId, incidentId, incidentUpdateId).PutPagesPageIdIncidentsIncidentIdIncidentUpdates(putPagesPageIdIncidentsIncidentIdIncidentUpdates).Execute()
+	resp, r, err := apiClient.IncidentUpdatesAPI.PutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId(context.Background(), pageId, incidentId, incidentUpdateId).PutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId(putPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentUpdatesAPI.PutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -145,7 +145,7 @@ Name | Type | Description  | Notes
 
 
 
- **putPagesPageIdIncidentsIncidentIdIncidentUpdates** | [**PutPagesPageIdIncidentsIncidentIdIncidentUpdates**](PutPagesPageIdIncidentsIncidentIdIncidentUpdates.md) |  | 
+ **putPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId** | [**PutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId**](PutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId.md) |  | 
 
 ### Return type
 

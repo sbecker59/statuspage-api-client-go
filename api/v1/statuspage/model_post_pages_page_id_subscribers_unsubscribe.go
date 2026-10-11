@@ -42,6 +42,8 @@ func NewPostPagesPageIdSubscribersUnsubscribe(subscribers string) *PostPagesPage
 	this.Subscribers = subscribers
 	var state string = "active"
 	this.State = &state
+	var skipUnsubscriptionNotification bool = false
+	this.SkipUnsubscriptionNotification = &skipUnsubscriptionNotification
 	return &this
 }
 
@@ -52,6 +54,8 @@ func NewPostPagesPageIdSubscribersUnsubscribeWithDefaults() *PostPagesPageIdSubs
 	this := PostPagesPageIdSubscribersUnsubscribe{}
 	var state string = "active"
 	this.State = &state
+	var skipUnsubscriptionNotification bool = false
+	this.SkipUnsubscriptionNotification = &skipUnsubscriptionNotification
 	return &this
 }
 

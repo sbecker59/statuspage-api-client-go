@@ -17,7 +17,7 @@ import (
 // checks if the Permissions type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Permissions{}
 
-// Permissions Get a user's permissions
+// Permissions Permissions model
 type Permissions struct {
 	Data *PermissionsData `json:"data,omitempty"`
 }

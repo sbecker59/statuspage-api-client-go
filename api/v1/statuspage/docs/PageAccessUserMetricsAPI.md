@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics
 
-> PageAccessUser DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics(ctx, pageId, pageAccessUserId).DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics(deletePagesPageIdPageAccessUsersPageAccessUserIdMetrics).Execute()
+> PageAccessUser DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics(ctx, pageId, pageAccessUserId).RequestBody(requestBody).Execute()
 
 Delete metrics for page access user
 
@@ -30,17 +30,17 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
 	pageAccessUserId := "pageAccessUserId_example" // string | Page Access User Identifier
-	deletePagesPageIdPageAccessUsersPageAccessUserIdMetrics := *openapiclient.NewDeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics() // DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics | 
+	requestBody := []string{"Property_example"} // []string | List of metrics to remove (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PageAccessUserMetricsAPI.DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics(context.Background(), pageId, pageAccessUserId).DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics(deletePagesPageIdPageAccessUsersPageAccessUserIdMetrics).Execute()
+	resp, r, err := apiClient.PageAccessUserMetricsAPI.DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics(context.Background(), pageId, pageAccessUserId).RequestBody(requestBody).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUserMetricsAPI.DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **deletePagesPageIdPageAccessUsersPageAccessUserIdMetrics** | [**DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics**](DeletePagesPageIdPageAccessUsersPageAccessUserIdMetrics.md) |  | 
+ **requestBody** | **[]string** | List of metrics to remove | 
 
 ### Return type
 
@@ -105,7 +105,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -181,7 +181,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -258,7 +258,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -333,7 +333,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -408,7 +408,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {

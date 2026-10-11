@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## DeletePagesPageIdIncidentsIncidentIdPostmortem
 
-> DeletePagesPageIdIncidentsIncidentIdPostmortem(ctx, pageId, incidentId).Execute()
+> Postmortem DeletePagesPageIdIncidentsIncidentIdPostmortem(ctx, pageId, incidentId).Execute()
 
 Delete Postmortem
 
@@ -29,7 +29,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -38,11 +38,13 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.IncidentPostmortemAPI.DeletePagesPageIdIncidentsIncidentIdPostmortem(context.Background(), pageId, incidentId).Execute()
+	resp, r, err := apiClient.IncidentPostmortemAPI.DeletePagesPageIdIncidentsIncidentIdPostmortem(context.Background(), pageId, incidentId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentPostmortemAPI.DeletePagesPageIdIncidentsIncidentIdPostmortem``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+	// response from `DeletePagesPageIdIncidentsIncidentIdPostmortem`: Postmortem
+	fmt.Fprintf(os.Stdout, "Response from `IncidentPostmortemAPI.DeletePagesPageIdIncidentsIncidentIdPostmortem`: %v\n", resp)
 }
 ```
 
@@ -67,7 +69,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
- (empty response body)
+[**Postmortem**](Postmortem.md)
 
 ### Authorization
 
@@ -100,7 +102,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -173,13 +175,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
 	incidentId := "incidentId_example" // string | Incident Identifier
-	putPagesPageIdIncidentsIncidentIdPostmortem := *openapiclient.NewPutPagesPageIdIncidentsIncidentIdPostmortem() // PutPagesPageIdIncidentsIncidentIdPostmortem | 
+	putPagesPageIdIncidentsIncidentIdPostmortem := *openapiclient.NewPutPagesPageIdIncidentsIncidentIdPostmortem(*openapiclient.NewPutPagesPageIdIncidentsIncidentIdPostmortemPostmortem("BodyDraft_example")) // PutPagesPageIdIncidentsIncidentIdPostmortem | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -248,7 +250,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -323,7 +325,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {

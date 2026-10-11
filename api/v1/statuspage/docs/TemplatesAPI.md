@@ -26,7 +26,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -100,12 +100,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
-	postPagesPageIdIncidentTemplates := *openapiclient.NewPostPagesPageIdIncidentTemplates() // PostPagesPageIdIncidentTemplates | 
+	postPagesPageIdIncidentTemplates := *openapiclient.NewPostPagesPageIdIncidentTemplates(*openapiclient.NewPostPagesPageIdIncidentTemplatesTemplate("Name_example", "Title_example", "Body_example")) // PostPagesPageIdIncidentTemplates | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

@@ -17,7 +17,7 @@ import (
 // checks if the MetricAddResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &MetricAddResponse{}
 
-// MetricAddResponse Add data points to metrics
+// MetricAddResponse MetricAddResponse model
 type MetricAddResponse struct {
 	// Metric identifier to add data to
 	MetricId []MetricAddResponseMetricIdInner `json:"metric_id,omitempty"`

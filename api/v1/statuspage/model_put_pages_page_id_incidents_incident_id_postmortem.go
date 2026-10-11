@@ -11,7 +11,9 @@ API version: 1.0.0
 package openapi
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the PutPagesPageIdIncidentsIncidentIdPostmortem type satisfies the MappedNullable interface at compile time
@@ -19,15 +21,18 @@ var _ MappedNullable = &PutPagesPageIdIncidentsIncidentIdPostmortem{}
 
 // PutPagesPageIdIncidentsIncidentIdPostmortem Create Postmortem
 type PutPagesPageIdIncidentsIncidentIdPostmortem struct {
-	Postmortem *PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem `json:"postmortem,omitempty"`
+	Postmortem PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem `json:"postmortem"`
 }
+
+type _PutPagesPageIdIncidentsIncidentIdPostmortem PutPagesPageIdIncidentsIncidentIdPostmortem
 
 // NewPutPagesPageIdIncidentsIncidentIdPostmortem instantiates a new PutPagesPageIdIncidentsIncidentIdPostmortem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPutPagesPageIdIncidentsIncidentIdPostmortem() *PutPagesPageIdIncidentsIncidentIdPostmortem {
+func NewPutPagesPageIdIncidentsIncidentIdPostmortem(postmortem PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem) *PutPagesPageIdIncidentsIncidentIdPostmortem {
 	this := PutPagesPageIdIncidentsIncidentIdPostmortem{}
+	this.Postmortem = postmortem
 	return &this
 }
 
@@ -39,36 +44,28 @@ func NewPutPagesPageIdIncidentsIncidentIdPostmortemWithDefaults() *PutPagesPageI
 	return &this
 }
 
-// GetPostmortem returns the Postmortem field value if set, zero value otherwise.
+// GetPostmortem returns the Postmortem field value
 func (o *PutPagesPageIdIncidentsIncidentIdPostmortem) GetPostmortem() PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem {
-	if o == nil || IsNil(o.Postmortem) {
+	if o == nil {
 		var ret PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem
 		return ret
 	}
-	return *o.Postmortem
+
+	return o.Postmortem
 }
 
-// GetPostmortemOk returns a tuple with the Postmortem field value if set, nil otherwise
+// GetPostmortemOk returns a tuple with the Postmortem field value
 // and a boolean to check if the value has been set.
 func (o *PutPagesPageIdIncidentsIncidentIdPostmortem) GetPostmortemOk() (*PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem, bool) {
-	if o == nil || IsNil(o.Postmortem) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Postmortem, true
+	return &o.Postmortem, true
 }
 
-// HasPostmortem returns a boolean if a field has been set.
-func (o *PutPagesPageIdIncidentsIncidentIdPostmortem) HasPostmortem() bool {
-	if o != nil && !IsNil(o.Postmortem) {
-		return true
-	}
-
-	return false
-}
-
-// SetPostmortem gets a reference to the given PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem and assigns it to the Postmortem field.
+// SetPostmortem sets field value
 func (o *PutPagesPageIdIncidentsIncidentIdPostmortem) SetPostmortem(v PutPagesPageIdIncidentsIncidentIdPostmortemPostmortem) {
-	o.Postmortem = &v
+	o.Postmortem = v
 }
 
 func (o PutPagesPageIdIncidentsIncidentIdPostmortem) MarshalJSON() ([]byte, error) {
@@ -81,10 +78,45 @@ func (o PutPagesPageIdIncidentsIncidentIdPostmortem) MarshalJSON() ([]byte, erro
 
 func (o PutPagesPageIdIncidentsIncidentIdPostmortem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Postmortem) {
-		toSerialize["postmortem"] = o.Postmortem
-	}
+	toSerialize["postmortem"] = o.Postmortem
 	return toSerialize, nil
+}
+
+func (o *PutPagesPageIdIncidentsIncidentIdPostmortem) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"postmortem",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPutPagesPageIdIncidentsIncidentIdPostmortem := _PutPagesPageIdIncidentsIncidentIdPostmortem{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varPutPagesPageIdIncidentsIncidentIdPostmortem)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PutPagesPageIdIncidentsIncidentIdPostmortem(varPutPagesPageIdIncidentsIncidentIdPostmortem)
+
+	return err
 }
 
 type NullablePutPagesPageIdIncidentsIncidentIdPostmortem struct {

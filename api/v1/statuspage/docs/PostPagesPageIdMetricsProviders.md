@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MetricsProvider** | Pointer to [**PostPagesPageIdMetricsProvidersMetricsProvider**](PostPagesPageIdMetricsProvidersMetricsProvider.md) |  | [optional] 
+**MetricsProvider** | [**PostPagesPageIdMetricsProvidersMetricsProvider**](PostPagesPageIdMetricsProvidersMetricsProvider.md) |  | 
 
 ## Methods
 
 ### NewPostPagesPageIdMetricsProviders
 
-`func NewPostPagesPageIdMetricsProviders() *PostPagesPageIdMetricsProviders`
+`func NewPostPagesPageIdMetricsProviders(metricsProvider PostPagesPageIdMetricsProvidersMetricsProvider, ) *PostPagesPageIdMetricsProviders`
 
 NewPostPagesPageIdMetricsProviders instantiates a new PostPagesPageIdMetricsProviders object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +44,6 @@ and a boolean to check if the value has been set.
 
 SetMetricsProvider sets MetricsProvider field to given value.
 
-### HasMetricsProvider
-
-`func (o *PostPagesPageIdMetricsProviders) HasMetricsProvider() bool`
-
-HasMetricsProvider returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
