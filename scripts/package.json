@@ -8,6 +8,6 @@
         "extract": "node extract-spec.js"
     },
     "dependencies": {
-        "puppeteer": "^25.0.0"
+        "puppeteer": "^25.16.0"
     }
 }
