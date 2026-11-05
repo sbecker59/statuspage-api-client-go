@@ -18,7 +18,7 @@ import (
 // checks if the MetricsProvider type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &MetricsProvider{}
 
-// MetricsProvider Delete a metric provider
+// MetricsProvider MetricsProvider model
 type MetricsProvider struct {
 	// Identifier for Metrics Provider
 	Id                *string    `json:"id,omitempty"`

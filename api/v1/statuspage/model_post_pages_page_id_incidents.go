@@ -11,7 +11,9 @@ API version: 1.0.0
 package openapi
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the PostPagesPageIdIncidents type satisfies the MappedNullable interface at compile time
@@ -19,15 +21,18 @@ var _ MappedNullable = &PostPagesPageIdIncidents{}
 
 // PostPagesPageIdIncidents Create an incident
 type PostPagesPageIdIncidents struct {
-	Incident *PostPagesPageIdIncidentsIncident `json:"incident,omitempty"`
+	Incident PostPagesPageIdIncidentsIncident `json:"incident"`
 }
+
+type _PostPagesPageIdIncidents PostPagesPageIdIncidents
 
 // NewPostPagesPageIdIncidents instantiates a new PostPagesPageIdIncidents object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPostPagesPageIdIncidents() *PostPagesPageIdIncidents {
+func NewPostPagesPageIdIncidents(incident PostPagesPageIdIncidentsIncident) *PostPagesPageIdIncidents {
 	this := PostPagesPageIdIncidents{}
+	this.Incident = incident
 	return &this
 }
 
@@ -39,36 +44,28 @@ func NewPostPagesPageIdIncidentsWithDefaults() *PostPagesPageIdIncidents {
 	return &this
 }
 
-// GetIncident returns the Incident field value if set, zero value otherwise.
+// GetIncident returns the Incident field value
 func (o *PostPagesPageIdIncidents) GetIncident() PostPagesPageIdIncidentsIncident {
-	if o == nil || IsNil(o.Incident) {
+	if o == nil {
 		var ret PostPagesPageIdIncidentsIncident
 		return ret
 	}
-	return *o.Incident
+
+	return o.Incident
 }
 
-// GetIncidentOk returns a tuple with the Incident field value if set, nil otherwise
+// GetIncidentOk returns a tuple with the Incident field value
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdIncidents) GetIncidentOk() (*PostPagesPageIdIncidentsIncident, bool) {
-	if o == nil || IsNil(o.Incident) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Incident, true
+	return &o.Incident, true
 }
 
-// HasIncident returns a boolean if a field has been set.
-func (o *PostPagesPageIdIncidents) HasIncident() bool {
-	if o != nil && !IsNil(o.Incident) {
-		return true
-	}
-
-	return false
-}
-
-// SetIncident gets a reference to the given PostPagesPageIdIncidentsIncident and assigns it to the Incident field.
+// SetIncident sets field value
 func (o *PostPagesPageIdIncidents) SetIncident(v PostPagesPageIdIncidentsIncident) {
-	o.Incident = &v
+	o.Incident = v
 }
 
 func (o PostPagesPageIdIncidents) MarshalJSON() ([]byte, error) {
@@ -81,10 +78,45 @@ func (o PostPagesPageIdIncidents) MarshalJSON() ([]byte, error) {
 
 func (o PostPagesPageIdIncidents) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Incident) {
-		toSerialize["incident"] = o.Incident
-	}
+	toSerialize["incident"] = o.Incident
 	return toSerialize, nil
+}
+
+func (o *PostPagesPageIdIncidents) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"incident",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPostPagesPageIdIncidents := _PostPagesPageIdIncidents{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varPostPagesPageIdIncidents)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PostPagesPageIdIncidents(varPostPagesPageIdIncidents)
+
+	return err
 }
 
 type NullablePostPagesPageIdIncidents struct {

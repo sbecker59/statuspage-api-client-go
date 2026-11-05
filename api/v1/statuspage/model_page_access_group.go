@@ -18,7 +18,7 @@ import (
 // checks if the PageAccessGroup type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PageAccessGroup{}
 
-// PageAccessGroup Remove a component from a page access group
+// PageAccessGroup PageAccessGroup model
 type PageAccessGroup struct {
 	// Page Access Group Identifier
 	Id *string `json:"id,omitempty"`

@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## PutOrganizationsOrganizationIdPermissionsUserId
 
-> Permissions PutOrganizationsOrganizationIdPermissionsUserId(ctx, organizationId, userId).PutOrganizationsOrganizationIdPermissions(putOrganizationsOrganizationIdPermissions).Execute()
+> Permissions PutOrganizationsOrganizationIdPermissionsUserId(ctx, organizationId, userId).PutOrganizationsOrganizationIdPermissionsUserId(putOrganizationsOrganizationIdPermissionsUserId).Execute()
 
 Update a user's role permissions
 
@@ -25,17 +25,17 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	organizationId := "organizationId_example" // string | Organization Identifier
 	userId := "userId_example" // string | User identifier
-	putOrganizationsOrganizationIdPermissions := *openapiclient.NewPutOrganizationsOrganizationIdPermissions() // PutOrganizationsOrganizationIdPermissions | 
+	putOrganizationsOrganizationIdPermissionsUserId := *openapiclient.NewPutOrganizationsOrganizationIdPermissionsUserId(*openapiclient.NewPutOrganizationsOrganizationIdPermissionsUserIdPages()) // PutOrganizationsOrganizationIdPermissionsUserId | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PermissionsAPI.PutOrganizationsOrganizationIdPermissionsUserId(context.Background(), organizationId, userId).PutOrganizationsOrganizationIdPermissions(putOrganizationsOrganizationIdPermissions).Execute()
+	resp, r, err := apiClient.PermissionsAPI.PutOrganizationsOrganizationIdPermissionsUserId(context.Background(), organizationId, userId).PutOrganizationsOrganizationIdPermissionsUserId(putOrganizationsOrganizationIdPermissionsUserId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PermissionsAPI.PutOrganizationsOrganizationIdPermissionsUserId``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **putOrganizationsOrganizationIdPermissions** | [**PutOrganizationsOrganizationIdPermissions**](PutOrganizationsOrganizationIdPermissions.md) |  | 
+ **putOrganizationsOrganizationIdPermissionsUserId** | [**PutOrganizationsOrganizationIdPermissionsUserId**](PutOrganizationsOrganizationIdPermissionsUserId.md) |  | 
 
 ### Return type
 

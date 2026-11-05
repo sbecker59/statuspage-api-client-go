@@ -11,7 +11,9 @@ API version: 1.0.0
 package openapi
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the PostPagesPageIdComponentGroups type satisfies the MappedNullable interface at compile time
@@ -19,15 +21,18 @@ var _ MappedNullable = &PostPagesPageIdComponentGroups{}
 
 // PostPagesPageIdComponentGroups Create a component group
 type PostPagesPageIdComponentGroups struct {
-	ComponentGroup *PostPagesPageIdComponentGroupsComponentGroup `json:"component_group,omitempty"`
+	ComponentGroup PostPagesPageIdComponentGroupsComponentGroup `json:"component_group"`
 }
+
+type _PostPagesPageIdComponentGroups PostPagesPageIdComponentGroups
 
 // NewPostPagesPageIdComponentGroups instantiates a new PostPagesPageIdComponentGroups object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPostPagesPageIdComponentGroups() *PostPagesPageIdComponentGroups {
+func NewPostPagesPageIdComponentGroups(componentGroup PostPagesPageIdComponentGroupsComponentGroup) *PostPagesPageIdComponentGroups {
 	this := PostPagesPageIdComponentGroups{}
+	this.ComponentGroup = componentGroup
 	return &this
 }
 
@@ -39,36 +44,28 @@ func NewPostPagesPageIdComponentGroupsWithDefaults() *PostPagesPageIdComponentGr
 	return &this
 }
 
-// GetComponentGroup returns the ComponentGroup field value if set, zero value otherwise.
+// GetComponentGroup returns the ComponentGroup field value
 func (o *PostPagesPageIdComponentGroups) GetComponentGroup() PostPagesPageIdComponentGroupsComponentGroup {
-	if o == nil || IsNil(o.ComponentGroup) {
+	if o == nil {
 		var ret PostPagesPageIdComponentGroupsComponentGroup
 		return ret
 	}
-	return *o.ComponentGroup
+
+	return o.ComponentGroup
 }
 
-// GetComponentGroupOk returns a tuple with the ComponentGroup field value if set, nil otherwise
+// GetComponentGroupOk returns a tuple with the ComponentGroup field value
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdComponentGroups) GetComponentGroupOk() (*PostPagesPageIdComponentGroupsComponentGroup, bool) {
-	if o == nil || IsNil(o.ComponentGroup) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ComponentGroup, true
+	return &o.ComponentGroup, true
 }
 
-// HasComponentGroup returns a boolean if a field has been set.
-func (o *PostPagesPageIdComponentGroups) HasComponentGroup() bool {
-	if o != nil && !IsNil(o.ComponentGroup) {
-		return true
-	}
-
-	return false
-}
-
-// SetComponentGroup gets a reference to the given PostPagesPageIdComponentGroupsComponentGroup and assigns it to the ComponentGroup field.
+// SetComponentGroup sets field value
 func (o *PostPagesPageIdComponentGroups) SetComponentGroup(v PostPagesPageIdComponentGroupsComponentGroup) {
-	o.ComponentGroup = &v
+	o.ComponentGroup = v
 }
 
 func (o PostPagesPageIdComponentGroups) MarshalJSON() ([]byte, error) {
@@ -81,10 +78,45 @@ func (o PostPagesPageIdComponentGroups) MarshalJSON() ([]byte, error) {
 
 func (o PostPagesPageIdComponentGroups) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ComponentGroup) {
-		toSerialize["component_group"] = o.ComponentGroup
-	}
+	toSerialize["component_group"] = o.ComponentGroup
 	return toSerialize, nil
+}
+
+func (o *PostPagesPageIdComponentGroups) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"component_group",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPostPagesPageIdComponentGroups := _PostPagesPageIdComponentGroups{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varPostPagesPageIdComponentGroups)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PostPagesPageIdComponentGroups(varPostPagesPageIdComponentGroups)
+
+	return err
 }
 
 type NullablePostPagesPageIdComponentGroups struct {

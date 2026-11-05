@@ -11,7 +11,7 @@ package openapi
 
 import (
 	"context"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
@@ -29,9 +29,10 @@ func Test_openapi_IncidentPostmortemAPIService(t *testing.T) {
 		var pageId string
 		var incidentId string
 
-		httpRes, err := apiClient.IncidentPostmortemAPI.DeletePagesPageIdIncidentsIncidentIdPostmortem(context.Background(), pageId, incidentId).Execute()
+		resp, httpRes, err := apiClient.IncidentPostmortemAPI.DeletePagesPageIdIncidentsIncidentIdPostmortem(context.Background(), pageId, incidentId).Execute()
 
 		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

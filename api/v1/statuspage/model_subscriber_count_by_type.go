@@ -17,7 +17,7 @@ import (
 // checks if the SubscriberCountByType type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &SubscriberCountByType{}
 
-// SubscriberCountByType Get a count of subscribers by type
+// SubscriberCountByType SubscriberCountByType model
 type SubscriberCountByType struct {
 	// The number of Email subscribers found by the query.
 	Email *int32 `json:"email,omitempty"`

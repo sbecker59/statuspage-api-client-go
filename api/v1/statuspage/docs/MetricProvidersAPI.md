@@ -30,7 +30,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -103,7 +103,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -173,7 +173,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -231,7 +231,7 @@ Name | Type | Description  | Notes
 
 ## PatchPagesPageIdMetricsProvidersMetricsProviderId
 
-> MetricsProvider PatchPagesPageIdMetricsProvidersMetricsProviderId(ctx, pageId, metricsProviderId).PatchPagesPageIdMetricsProviders(patchPagesPageIdMetricsProviders).Execute()
+> MetricsProvider PatchPagesPageIdMetricsProvidersMetricsProviderId(ctx, pageId, metricsProviderId).PatchPagesPageIdMetricsProvidersMetricsProviderId(patchPagesPageIdMetricsProvidersMetricsProviderId).Execute()
 
 Update a metric provider
 
@@ -246,17 +246,17 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
 	metricsProviderId := "metricsProviderId_example" // string | Metric Provider Identifier
-	patchPagesPageIdMetricsProviders := *openapiclient.NewPatchPagesPageIdMetricsProviders() // PatchPagesPageIdMetricsProviders | 
+	patchPagesPageIdMetricsProvidersMetricsProviderId := *openapiclient.NewPatchPagesPageIdMetricsProvidersMetricsProviderId(*openapiclient.NewPutPagesPageIdMetricsProvidersMetricsProviderIdMetricsProvider()) // PatchPagesPageIdMetricsProvidersMetricsProviderId | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricProvidersAPI.PatchPagesPageIdMetricsProvidersMetricsProviderId(context.Background(), pageId, metricsProviderId).PatchPagesPageIdMetricsProviders(patchPagesPageIdMetricsProviders).Execute()
+	resp, r, err := apiClient.MetricProvidersAPI.PatchPagesPageIdMetricsProvidersMetricsProviderId(context.Background(), pageId, metricsProviderId).PatchPagesPageIdMetricsProvidersMetricsProviderId(patchPagesPageIdMetricsProvidersMetricsProviderId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricProvidersAPI.PatchPagesPageIdMetricsProvidersMetricsProviderId``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -284,7 +284,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **patchPagesPageIdMetricsProviders** | [**PatchPagesPageIdMetricsProviders**](PatchPagesPageIdMetricsProviders.md) |  | 
+ **patchPagesPageIdMetricsProvidersMetricsProviderId** | [**PatchPagesPageIdMetricsProvidersMetricsProviderId**](PatchPagesPageIdMetricsProvidersMetricsProviderId.md) |  | 
 
 ### Return type
 
@@ -321,12 +321,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
-	postPagesPageIdMetricsProviders := *openapiclient.NewPostPagesPageIdMetricsProviders() // PostPagesPageIdMetricsProviders | 
+	postPagesPageIdMetricsProviders := *openapiclient.NewPostPagesPageIdMetricsProviders(*openapiclient.NewPostPagesPageIdMetricsProvidersMetricsProvider()) // PostPagesPageIdMetricsProviders | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -378,7 +378,7 @@ Name | Type | Description  | Notes
 
 ## PutPagesPageIdMetricsProvidersMetricsProviderId
 
-> MetricsProvider PutPagesPageIdMetricsProvidersMetricsProviderId(ctx, pageId, metricsProviderId).PutPagesPageIdMetricsProviders(putPagesPageIdMetricsProviders).Execute()
+> MetricsProvider PutPagesPageIdMetricsProvidersMetricsProviderId(ctx, pageId, metricsProviderId).PutPagesPageIdMetricsProvidersMetricsProviderId(putPagesPageIdMetricsProvidersMetricsProviderId).Execute()
 
 Update a metric provider
 
@@ -393,17 +393,17 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
 	metricsProviderId := "metricsProviderId_example" // string | Metric Provider Identifier
-	putPagesPageIdMetricsProviders := *openapiclient.NewPutPagesPageIdMetricsProviders() // PutPagesPageIdMetricsProviders | 
+	putPagesPageIdMetricsProvidersMetricsProviderId := *openapiclient.NewPutPagesPageIdMetricsProvidersMetricsProviderId(*openapiclient.NewPutPagesPageIdMetricsProvidersMetricsProviderIdMetricsProvider()) // PutPagesPageIdMetricsProvidersMetricsProviderId | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricProvidersAPI.PutPagesPageIdMetricsProvidersMetricsProviderId(context.Background(), pageId, metricsProviderId).PutPagesPageIdMetricsProviders(putPagesPageIdMetricsProviders).Execute()
+	resp, r, err := apiClient.MetricProvidersAPI.PutPagesPageIdMetricsProvidersMetricsProviderId(context.Background(), pageId, metricsProviderId).PutPagesPageIdMetricsProvidersMetricsProviderId(putPagesPageIdMetricsProvidersMetricsProviderId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricProvidersAPI.PutPagesPageIdMetricsProvidersMetricsProviderId``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -431,7 +431,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **putPagesPageIdMetricsProviders** | [**PutPagesPageIdMetricsProviders**](PutPagesPageIdMetricsProviders.md) |  | 
+ **putPagesPageIdMetricsProvidersMetricsProviderId** | [**PutPagesPageIdMetricsProvidersMetricsProviderId**](PutPagesPageIdMetricsProvidersMetricsProviderId.md) |  | 
 
 ### Return type
 

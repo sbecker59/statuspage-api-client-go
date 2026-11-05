@@ -18,7 +18,7 @@ import (
 // checks if the Metric type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Metric{}
 
-// Metric Create a metric for a metric provider
+// Metric Metric model
 type Metric struct {
 	// Metric identifier
 	Id *string `json:"id,omitempty"`

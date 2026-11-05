@@ -18,7 +18,7 @@ import (
 // checks if the Component type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Component{}
 
-// Component Add page access groups to a component
+// Component Component model
 type Component struct {
 	// Identifier for component
 	Id *string `json:"id,omitempty"`

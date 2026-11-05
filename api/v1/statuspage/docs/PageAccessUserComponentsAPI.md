@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents
 
-> PageAccessUser DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents(ctx, pageId, pageAccessUserId).DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents(deletePagesPageIdPageAccessUsersPageAccessUserIdComponents).Execute()
+> PageAccessUser DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents(ctx, pageId, pageAccessUserId).RequestBody(requestBody).Execute()
 
 Remove components for page access user
 
@@ -30,17 +30,17 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
 	pageAccessUserId := "pageAccessUserId_example" // string | Page Access User Identifier
-	deletePagesPageIdPageAccessUsersPageAccessUserIdComponents := *openapiclient.NewDeletePagesPageIdPageAccessUsersPageAccessUserIdComponents() // DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents | 
+	requestBody := []string{"Property_example"} // []string | List of components codes to remove.  If omitted, all components will be removed. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PageAccessUserComponentsAPI.DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents(context.Background(), pageId, pageAccessUserId).DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents(deletePagesPageIdPageAccessUsersPageAccessUserIdComponents).Execute()
+	resp, r, err := apiClient.PageAccessUserComponentsAPI.DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents(context.Background(), pageId, pageAccessUserId).RequestBody(requestBody).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PageAccessUserComponentsAPI.DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **deletePagesPageIdPageAccessUsersPageAccessUserIdComponents** | [**DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents**](DeletePagesPageIdPageAccessUsersPageAccessUserIdComponents.md) |  | 
+ **requestBody** | **[]string** | List of components codes to remove.  If omitted, all components will be removed. | 
 
 ### Return type
 
@@ -105,7 +105,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -181,7 +181,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -258,7 +258,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -333,7 +333,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -408,7 +408,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {

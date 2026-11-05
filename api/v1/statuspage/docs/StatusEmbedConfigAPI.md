@@ -27,7 +27,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -97,12 +97,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
-	patchPagesPageIdStatusEmbedConfig := *openapiclient.NewPatchPagesPageIdStatusEmbedConfig() // PatchPagesPageIdStatusEmbedConfig | 
+	patchPagesPageIdStatusEmbedConfig := *openapiclient.NewPatchPagesPageIdStatusEmbedConfig(*openapiclient.NewPutPagesPageIdStatusEmbedConfigStatusEmbedConfig()) // PatchPagesPageIdStatusEmbedConfig | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -169,12 +169,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
-	putPagesPageIdStatusEmbedConfig := *openapiclient.NewPutPagesPageIdStatusEmbedConfig() // PutPagesPageIdStatusEmbedConfig | 
+	putPagesPageIdStatusEmbedConfig := *openapiclient.NewPutPagesPageIdStatusEmbedConfig(*openapiclient.NewPutPagesPageIdStatusEmbedConfigStatusEmbedConfig()) // PutPagesPageIdStatusEmbedConfig | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

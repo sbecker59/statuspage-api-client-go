@@ -17,7 +17,7 @@ import (
 // checks if the IncidentTemplate type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &IncidentTemplate{}
 
-// IncidentTemplate Get a list of templates
+// IncidentTemplate IncidentTemplate model
 type IncidentTemplate struct {
 	// Incident Template Identifier
 	Id *string `json:"id,omitempty"`

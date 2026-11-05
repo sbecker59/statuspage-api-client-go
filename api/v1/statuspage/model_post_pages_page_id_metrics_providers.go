@@ -11,7 +11,9 @@ API version: 1.0.0
 package openapi
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the PostPagesPageIdMetricsProviders type satisfies the MappedNullable interface at compile time
@@ -19,15 +21,18 @@ var _ MappedNullable = &PostPagesPageIdMetricsProviders{}
 
 // PostPagesPageIdMetricsProviders Create a metric provider
 type PostPagesPageIdMetricsProviders struct {
-	MetricsProvider *PostPagesPageIdMetricsProvidersMetricsProvider `json:"metrics_provider,omitempty"`
+	MetricsProvider PostPagesPageIdMetricsProvidersMetricsProvider `json:"metrics_provider"`
 }
+
+type _PostPagesPageIdMetricsProviders PostPagesPageIdMetricsProviders
 
 // NewPostPagesPageIdMetricsProviders instantiates a new PostPagesPageIdMetricsProviders object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPostPagesPageIdMetricsProviders() *PostPagesPageIdMetricsProviders {
+func NewPostPagesPageIdMetricsProviders(metricsProvider PostPagesPageIdMetricsProvidersMetricsProvider) *PostPagesPageIdMetricsProviders {
 	this := PostPagesPageIdMetricsProviders{}
+	this.MetricsProvider = metricsProvider
 	return &this
 }
 
@@ -39,36 +44,28 @@ func NewPostPagesPageIdMetricsProvidersWithDefaults() *PostPagesPageIdMetricsPro
 	return &this
 }
 
-// GetMetricsProvider returns the MetricsProvider field value if set, zero value otherwise.
+// GetMetricsProvider returns the MetricsProvider field value
 func (o *PostPagesPageIdMetricsProviders) GetMetricsProvider() PostPagesPageIdMetricsProvidersMetricsProvider {
-	if o == nil || IsNil(o.MetricsProvider) {
+	if o == nil {
 		var ret PostPagesPageIdMetricsProvidersMetricsProvider
 		return ret
 	}
-	return *o.MetricsProvider
+
+	return o.MetricsProvider
 }
 
-// GetMetricsProviderOk returns a tuple with the MetricsProvider field value if set, nil otherwise
+// GetMetricsProviderOk returns a tuple with the MetricsProvider field value
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdMetricsProviders) GetMetricsProviderOk() (*PostPagesPageIdMetricsProvidersMetricsProvider, bool) {
-	if o == nil || IsNil(o.MetricsProvider) {
+	if o == nil {
 		return nil, false
 	}
-	return o.MetricsProvider, true
+	return &o.MetricsProvider, true
 }
 
-// HasMetricsProvider returns a boolean if a field has been set.
-func (o *PostPagesPageIdMetricsProviders) HasMetricsProvider() bool {
-	if o != nil && !IsNil(o.MetricsProvider) {
-		return true
-	}
-
-	return false
-}
-
-// SetMetricsProvider gets a reference to the given PostPagesPageIdMetricsProvidersMetricsProvider and assigns it to the MetricsProvider field.
+// SetMetricsProvider sets field value
 func (o *PostPagesPageIdMetricsProviders) SetMetricsProvider(v PostPagesPageIdMetricsProvidersMetricsProvider) {
-	o.MetricsProvider = &v
+	o.MetricsProvider = v
 }
 
 func (o PostPagesPageIdMetricsProviders) MarshalJSON() ([]byte, error) {
@@ -81,10 +78,45 @@ func (o PostPagesPageIdMetricsProviders) MarshalJSON() ([]byte, error) {
 
 func (o PostPagesPageIdMetricsProviders) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.MetricsProvider) {
-		toSerialize["metrics_provider"] = o.MetricsProvider
-	}
+	toSerialize["metrics_provider"] = o.MetricsProvider
 	return toSerialize, nil
+}
+
+func (o *PostPagesPageIdMetricsProviders) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"metrics_provider",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPostPagesPageIdMetricsProviders := _PostPagesPageIdMetricsProviders{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varPostPagesPageIdMetricsProviders)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PostPagesPageIdMetricsProviders(varPostPagesPageIdMetricsProviders)
+
+	return err
 }
 
 type NullablePostPagesPageIdMetricsProviders struct {
