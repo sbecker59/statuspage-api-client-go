@@ -35,7 +35,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -106,7 +106,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -179,7 +179,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -252,7 +252,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -326,7 +326,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -399,16 +399,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-    "time"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
 	componentId := "componentId_example" // string | Component identifier
 	skipRelatedEvents := true // bool | Skips supplying the related events data along with the component uptime data. (optional)
-	start := time.Now() // string | The start date for uptime calculation (defaults to the component's start_date field or 90 days ago, whichever is more recent). The maximum supported date range is six calendar months. If the year is given, the date defaults to the first day of the year. If the year and month are given, the start date defaults to the first day of that month. The earliest supported date is January 1, 1970.  (optional)
-	end := time.Now() // string | The end date for uptime calculation (defaults to today in the page's time zone). The maximum supported date range is six calendar months. If the year is given, the date defaults to the last day of the year. If the year and month are given, the date defaults to the last day of that month. The earliest supported date is January 1, 1970.  (optional)
+	start := TODO // ApiV1TypesPartialStartDate | The start date for uptime calculation (defaults to the component's start_date field or 90 days ago, whichever is more recent). The maximum supported date range is six calendar months. If the year is given, the date defaults to the first day of the year. If the year and month are given, the start date defaults to the first day of that month. The earliest supported date is January 1, 1970.  (optional)
+	end := TODO // ApiV1TypesPartialEndDate | The end date for uptime calculation (defaults to today in the page's time zone). The maximum supported date range is six calendar months. If the year is given, the date defaults to the last day of the year. If the year and month are given, the date defaults to the last day of that month. The earliest supported date is January 1, 1970.  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -441,8 +440,8 @@ Name | Type | Description  | Notes
 
 
  **skipRelatedEvents** | **bool** | Skips supplying the related events data along with the component uptime data. | 
- **start** | **string** | The start date for uptime calculation (defaults to the component&#39;s start_date field or 90 days ago, whichever is more recent). The maximum supported date range is six calendar months. If the year is given, the date defaults to the first day of the year. If the year and month are given, the start date defaults to the first day of that month. The earliest supported date is January 1, 1970.  | 
- **end** | **string** | The end date for uptime calculation (defaults to today in the page&#39;s time zone). The maximum supported date range is six calendar months. If the year is given, the date defaults to the last day of the year. If the year and month are given, the date defaults to the last day of that month. The earliest supported date is January 1, 1970.  | 
+ **start** | [**ApiV1TypesPartialStartDate**](ApiV1TypesPartialStartDate.md) | The start date for uptime calculation (defaults to the component&#39;s start_date field or 90 days ago, whichever is more recent). The maximum supported date range is six calendar months. If the year is given, the date defaults to the first day of the year. If the year and month are given, the start date defaults to the first day of that month. The earliest supported date is January 1, 1970.  | 
+ **end** | [**ApiV1TypesPartialEndDate**](ApiV1TypesPartialEndDate.md) | The end date for uptime calculation (defaults to today in the page&#39;s time zone). The maximum supported date range is six calendar months. If the year is given, the date defaults to the last day of the year. If the year and month are given, the date defaults to the last day of that month. The earliest supported date is January 1, 1970.  | 
 
 ### Return type
 
@@ -464,7 +463,7 @@ Name | Type | Description  | Notes
 
 ## PatchPagesPageIdComponentsComponentId
 
-> Component PatchPagesPageIdComponentsComponentId(ctx, pageId, componentId).PatchPagesPageIdComponents(patchPagesPageIdComponents).Execute()
+> Component PatchPagesPageIdComponentsComponentId(ctx, pageId, componentId).PatchPagesPageIdComponentsComponentId(patchPagesPageIdComponentsComponentId).Execute()
 
 Update a component
 
@@ -479,17 +478,17 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
 	componentId := "componentId_example" // string | Component identifier
-	patchPagesPageIdComponents := *openapiclient.NewPatchPagesPageIdComponents() // PatchPagesPageIdComponents | 
+	patchPagesPageIdComponentsComponentId := *openapiclient.NewPatchPagesPageIdComponentsComponentId(*openapiclient.NewPostPagesPageIdComponentsComponent()) // PatchPagesPageIdComponentsComponentId | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ComponentsAPI.PatchPagesPageIdComponentsComponentId(context.Background(), pageId, componentId).PatchPagesPageIdComponents(patchPagesPageIdComponents).Execute()
+	resp, r, err := apiClient.ComponentsAPI.PatchPagesPageIdComponentsComponentId(context.Background(), pageId, componentId).PatchPagesPageIdComponentsComponentId(patchPagesPageIdComponentsComponentId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ComponentsAPI.PatchPagesPageIdComponentsComponentId``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -517,7 +516,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **patchPagesPageIdComponents** | [**PatchPagesPageIdComponents**](PatchPagesPageIdComponents.md) |  | 
+ **patchPagesPageIdComponentsComponentId** | [**PatchPagesPageIdComponentsComponentId**](PatchPagesPageIdComponentsComponentId.md) |  | 
 
 ### Return type
 
@@ -554,12 +553,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
-	postPagesPageIdComponents := *openapiclient.NewPostPagesPageIdComponents() // PostPagesPageIdComponents | 
+	postPagesPageIdComponents := *openapiclient.NewPostPagesPageIdComponents(*openapiclient.NewPostPagesPageIdComponentsComponent()) // PostPagesPageIdComponents | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -626,7 +625,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -684,7 +683,7 @@ Name | Type | Description  | Notes
 
 ## PostPagesPageIdComponentsComponentIdPageAccessUsers
 
-> Component PostPagesPageIdComponentsComponentIdPageAccessUsers(ctx, pageId, componentId).PageAccessUserIds(pageAccessUserIds).Execute()
+> Component PostPagesPageIdComponentsComponentIdPageAccessUsers(ctx, pageId, componentId).PostPagesPageIdComponentsComponentIdPageAccessUsers(postPagesPageIdComponentsComponentIdPageAccessUsers).Execute()
 
 Add page access users to a component
 
@@ -699,17 +698,17 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
 	componentId := "componentId_example" // string | Component identifier
-	pageAccessUserIds := []string{"Inner_example"} // []string | List of page access users to add to component
+	postPagesPageIdComponentsComponentIdPageAccessUsers := *openapiclient.NewPostPagesPageIdComponentsComponentIdPageAccessUsers([]string{"PageAccessUserIds_example"}) // PostPagesPageIdComponentsComponentIdPageAccessUsers | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ComponentsAPI.PostPagesPageIdComponentsComponentIdPageAccessUsers(context.Background(), pageId, componentId).PageAccessUserIds(pageAccessUserIds).Execute()
+	resp, r, err := apiClient.ComponentsAPI.PostPagesPageIdComponentsComponentIdPageAccessUsers(context.Background(), pageId, componentId).PostPagesPageIdComponentsComponentIdPageAccessUsers(postPagesPageIdComponentsComponentIdPageAccessUsers).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ComponentsAPI.PostPagesPageIdComponentsComponentIdPageAccessUsers``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -737,7 +736,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **pageAccessUserIds** | **[]string** | List of page access users to add to component | 
+ **postPagesPageIdComponentsComponentIdPageAccessUsers** | [**PostPagesPageIdComponentsComponentIdPageAccessUsers**](PostPagesPageIdComponentsComponentIdPageAccessUsers.md) |  | 
 
 ### Return type
 
@@ -749,7 +748,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/x-www-form-urlencoded
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -759,7 +758,7 @@ Name | Type | Description  | Notes
 
 ## PutPagesPageIdComponentsComponentId
 
-> Component PutPagesPageIdComponentsComponentId(ctx, pageId, componentId).PutPagesPageIdComponents(putPagesPageIdComponents).Execute()
+> Component PutPagesPageIdComponentsComponentId(ctx, pageId, componentId).PutPagesPageIdComponentsComponentId(putPagesPageIdComponentsComponentId).Execute()
 
 Update a component
 
@@ -774,17 +773,17 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
 	componentId := "componentId_example" // string | Component identifier
-	putPagesPageIdComponents := *openapiclient.NewPutPagesPageIdComponents() // PutPagesPageIdComponents | 
+	putPagesPageIdComponentsComponentId := *openapiclient.NewPutPagesPageIdComponentsComponentId(*openapiclient.NewPostPagesPageIdComponentsComponent()) // PutPagesPageIdComponentsComponentId | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ComponentsAPI.PutPagesPageIdComponentsComponentId(context.Background(), pageId, componentId).PutPagesPageIdComponents(putPagesPageIdComponents).Execute()
+	resp, r, err := apiClient.ComponentsAPI.PutPagesPageIdComponentsComponentId(context.Background(), pageId, componentId).PutPagesPageIdComponentsComponentId(putPagesPageIdComponentsComponentId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ComponentsAPI.PutPagesPageIdComponentsComponentId``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -812,7 +811,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **putPagesPageIdComponents** | [**PutPagesPageIdComponents**](PutPagesPageIdComponents.md) |  | 
+ **putPagesPageIdComponentsComponentId** | [**PutPagesPageIdComponentsComponentId**](PutPagesPageIdComponentsComponentId.md) |  | 
 
 ### Return type
 

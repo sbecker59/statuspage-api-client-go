@@ -18,7 +18,7 @@ import (
 // checks if the Page type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Page{}
 
-// Page Get a page
+// Page Page model
 type Page struct {
 	// Page identifier
 	Id *string `json:"id,omitempty"`

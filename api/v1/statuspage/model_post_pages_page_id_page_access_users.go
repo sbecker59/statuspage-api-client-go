@@ -11,7 +11,9 @@ API version: 1.0.0
 package openapi
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the PostPagesPageIdPageAccessUsers type satisfies the MappedNullable interface at compile time
@@ -19,15 +21,18 @@ var _ MappedNullable = &PostPagesPageIdPageAccessUsers{}
 
 // PostPagesPageIdPageAccessUsers Add a page access user
 type PostPagesPageIdPageAccessUsers struct {
-	PageAccessUser *PostPagesPageIdPageAccessUsersPageAccessUser `json:"page_access_user,omitempty"`
+	PageAccessUser PostPagesPageIdPageAccessUsersPageAccessUser `json:"page_access_user"`
 }
+
+type _PostPagesPageIdPageAccessUsers PostPagesPageIdPageAccessUsers
 
 // NewPostPagesPageIdPageAccessUsers instantiates a new PostPagesPageIdPageAccessUsers object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPostPagesPageIdPageAccessUsers() *PostPagesPageIdPageAccessUsers {
+func NewPostPagesPageIdPageAccessUsers(pageAccessUser PostPagesPageIdPageAccessUsersPageAccessUser) *PostPagesPageIdPageAccessUsers {
 	this := PostPagesPageIdPageAccessUsers{}
+	this.PageAccessUser = pageAccessUser
 	return &this
 }
 
@@ -39,36 +44,28 @@ func NewPostPagesPageIdPageAccessUsersWithDefaults() *PostPagesPageIdPageAccessU
 	return &this
 }
 
-// GetPageAccessUser returns the PageAccessUser field value if set, zero value otherwise.
+// GetPageAccessUser returns the PageAccessUser field value
 func (o *PostPagesPageIdPageAccessUsers) GetPageAccessUser() PostPagesPageIdPageAccessUsersPageAccessUser {
-	if o == nil || IsNil(o.PageAccessUser) {
+	if o == nil {
 		var ret PostPagesPageIdPageAccessUsersPageAccessUser
 		return ret
 	}
-	return *o.PageAccessUser
+
+	return o.PageAccessUser
 }
 
-// GetPageAccessUserOk returns a tuple with the PageAccessUser field value if set, nil otherwise
+// GetPageAccessUserOk returns a tuple with the PageAccessUser field value
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdPageAccessUsers) GetPageAccessUserOk() (*PostPagesPageIdPageAccessUsersPageAccessUser, bool) {
-	if o == nil || IsNil(o.PageAccessUser) {
+	if o == nil {
 		return nil, false
 	}
-	return o.PageAccessUser, true
+	return &o.PageAccessUser, true
 }
 
-// HasPageAccessUser returns a boolean if a field has been set.
-func (o *PostPagesPageIdPageAccessUsers) HasPageAccessUser() bool {
-	if o != nil && !IsNil(o.PageAccessUser) {
-		return true
-	}
-
-	return false
-}
-
-// SetPageAccessUser gets a reference to the given PostPagesPageIdPageAccessUsersPageAccessUser and assigns it to the PageAccessUser field.
+// SetPageAccessUser sets field value
 func (o *PostPagesPageIdPageAccessUsers) SetPageAccessUser(v PostPagesPageIdPageAccessUsersPageAccessUser) {
-	o.PageAccessUser = &v
+	o.PageAccessUser = v
 }
 
 func (o PostPagesPageIdPageAccessUsers) MarshalJSON() ([]byte, error) {
@@ -81,10 +78,45 @@ func (o PostPagesPageIdPageAccessUsers) MarshalJSON() ([]byte, error) {
 
 func (o PostPagesPageIdPageAccessUsers) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.PageAccessUser) {
-		toSerialize["page_access_user"] = o.PageAccessUser
-	}
+	toSerialize["page_access_user"] = o.PageAccessUser
 	return toSerialize, nil
+}
+
+func (o *PostPagesPageIdPageAccessUsers) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"page_access_user",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPostPagesPageIdPageAccessUsers := _PostPagesPageIdPageAccessUsers{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varPostPagesPageIdPageAccessUsers)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PostPagesPageIdPageAccessUsers(varPostPagesPageIdPageAccessUsers)
+
+	return err
 }
 
 type NullablePostPagesPageIdPageAccessUsers struct {

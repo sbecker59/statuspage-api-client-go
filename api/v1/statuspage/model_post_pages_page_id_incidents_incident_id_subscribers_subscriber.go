@@ -35,6 +35,8 @@ type PostPagesPageIdIncidentsIncidentIdSubscribersSubscriber struct {
 // will change when the set of required properties is changed
 func NewPostPagesPageIdIncidentsIncidentIdSubscribersSubscriber() *PostPagesPageIdIncidentsIncidentIdSubscribersSubscriber {
 	this := PostPagesPageIdIncidentsIncidentIdSubscribersSubscriber{}
+	var skipConfirmationNotification bool = false
+	this.SkipConfirmationNotification = &skipConfirmationNotification
 	return &this
 }
 
@@ -43,6 +45,8 @@ func NewPostPagesPageIdIncidentsIncidentIdSubscribersSubscriber() *PostPagesPage
 // but it doesn't guarantee that properties required by API are set
 func NewPostPagesPageIdIncidentsIncidentIdSubscribersSubscriberWithDefaults() *PostPagesPageIdIncidentsIncidentIdSubscribersSubscriber {
 	this := PostPagesPageIdIncidentsIncidentIdSubscribersSubscriber{}
+	var skipConfirmationNotification bool = false
+	this.SkipConfirmationNotification = &skipConfirmationNotification
 	return &this
 }
 

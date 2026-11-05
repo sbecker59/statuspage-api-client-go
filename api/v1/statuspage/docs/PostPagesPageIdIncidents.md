@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Incident** | Pointer to [**PostPagesPageIdIncidentsIncident**](PostPagesPageIdIncidentsIncident.md) |  | [optional] 
+**Incident** | [**PostPagesPageIdIncidentsIncident**](PostPagesPageIdIncidentsIncident.md) |  | 
 
 ## Methods
 
 ### NewPostPagesPageIdIncidents
 
-`func NewPostPagesPageIdIncidents() *PostPagesPageIdIncidents`
+`func NewPostPagesPageIdIncidents(incident PostPagesPageIdIncidentsIncident, ) *PostPagesPageIdIncidents`
 
 NewPostPagesPageIdIncidents instantiates a new PostPagesPageIdIncidents object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +44,6 @@ and a boolean to check if the value has been set.
 
 SetIncident sets Incident field to given value.
 
-### HasIncident
-
-`func (o *PostPagesPageIdIncidents) HasIncident() bool`
-
-HasIncident returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

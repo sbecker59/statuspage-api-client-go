@@ -11,7 +11,9 @@ API version: 1.0.0
 package openapi
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the PostPagesPageIdIncidentTemplates type satisfies the MappedNullable interface at compile time
@@ -19,15 +21,18 @@ var _ MappedNullable = &PostPagesPageIdIncidentTemplates{}
 
 // PostPagesPageIdIncidentTemplates Create a template
 type PostPagesPageIdIncidentTemplates struct {
-	Template *PostPagesPageIdIncidentTemplatesTemplate `json:"template,omitempty"`
+	Template PostPagesPageIdIncidentTemplatesTemplate `json:"template"`
 }
+
+type _PostPagesPageIdIncidentTemplates PostPagesPageIdIncidentTemplates
 
 // NewPostPagesPageIdIncidentTemplates instantiates a new PostPagesPageIdIncidentTemplates object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPostPagesPageIdIncidentTemplates() *PostPagesPageIdIncidentTemplates {
+func NewPostPagesPageIdIncidentTemplates(template PostPagesPageIdIncidentTemplatesTemplate) *PostPagesPageIdIncidentTemplates {
 	this := PostPagesPageIdIncidentTemplates{}
+	this.Template = template
 	return &this
 }
 
@@ -39,36 +44,28 @@ func NewPostPagesPageIdIncidentTemplatesWithDefaults() *PostPagesPageIdIncidentT
 	return &this
 }
 
-// GetTemplate returns the Template field value if set, zero value otherwise.
+// GetTemplate returns the Template field value
 func (o *PostPagesPageIdIncidentTemplates) GetTemplate() PostPagesPageIdIncidentTemplatesTemplate {
-	if o == nil || IsNil(o.Template) {
+	if o == nil {
 		var ret PostPagesPageIdIncidentTemplatesTemplate
 		return ret
 	}
-	return *o.Template
+
+	return o.Template
 }
 
-// GetTemplateOk returns a tuple with the Template field value if set, nil otherwise
+// GetTemplateOk returns a tuple with the Template field value
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdIncidentTemplates) GetTemplateOk() (*PostPagesPageIdIncidentTemplatesTemplate, bool) {
-	if o == nil || IsNil(o.Template) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Template, true
+	return &o.Template, true
 }
 
-// HasTemplate returns a boolean if a field has been set.
-func (o *PostPagesPageIdIncidentTemplates) HasTemplate() bool {
-	if o != nil && !IsNil(o.Template) {
-		return true
-	}
-
-	return false
-}
-
-// SetTemplate gets a reference to the given PostPagesPageIdIncidentTemplatesTemplate and assigns it to the Template field.
+// SetTemplate sets field value
 func (o *PostPagesPageIdIncidentTemplates) SetTemplate(v PostPagesPageIdIncidentTemplatesTemplate) {
-	o.Template = &v
+	o.Template = v
 }
 
 func (o PostPagesPageIdIncidentTemplates) MarshalJSON() ([]byte, error) {
@@ -81,10 +78,45 @@ func (o PostPagesPageIdIncidentTemplates) MarshalJSON() ([]byte, error) {
 
 func (o PostPagesPageIdIncidentTemplates) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Template) {
-		toSerialize["template"] = o.Template
-	}
+	toSerialize["template"] = o.Template
 	return toSerialize, nil
+}
+
+func (o *PostPagesPageIdIncidentTemplates) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"template",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPostPagesPageIdIncidentTemplates := _PostPagesPageIdIncidentTemplates{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varPostPagesPageIdIncidentTemplates)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PostPagesPageIdIncidentTemplates(varPostPagesPageIdIncidentTemplates)
+
+	return err
 }
 
 type NullablePostPagesPageIdIncidentTemplates struct {

@@ -154,7 +154,7 @@ func (a *TemplatesAPIService) GetPagesPageIdIncidentTemplatesExecute(r ApiGetPag
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -293,7 +293,7 @@ func (a *TemplatesAPIService) PostPagesPageIdIncidentTemplatesExecute(r ApiPostP
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -304,7 +304,7 @@ func (a *TemplatesAPIService) PostPagesPageIdIncidentTemplatesExecute(r ApiPostP
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -315,7 +315,7 @@ func (a *TemplatesAPIService) PostPagesPageIdIncidentTemplatesExecute(r ApiPostP
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -326,7 +326,7 @@ func (a *TemplatesAPIService) PostPagesPageIdIncidentTemplatesExecute(r ApiPostP
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

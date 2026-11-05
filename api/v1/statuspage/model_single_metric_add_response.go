@@ -17,7 +17,7 @@ import (
 // checks if the SingleMetricAddResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &SingleMetricAddResponse{}
 
-// SingleMetricAddResponse Add data to a metric
+// SingleMetricAddResponse SingleMetricAddResponse model
 type SingleMetricAddResponse struct {
 	Data *MetricAddResponseMetricIdInner `json:"data,omitempty"`
 }

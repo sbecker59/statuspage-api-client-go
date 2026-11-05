@@ -29,7 +29,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -105,7 +105,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -182,7 +182,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -258,13 +258,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
 	incidentId := "incidentId_example" // string | Incident Identifier
-	postPagesPageIdIncidentsIncidentIdSubscribers := *openapiclient.NewPostPagesPageIdIncidentsIncidentIdSubscribers() // PostPagesPageIdIncidentsIncidentIdSubscribers | 
+	postPagesPageIdIncidentsIncidentIdSubscribers := *openapiclient.NewPostPagesPageIdIncidentsIncidentIdSubscribers(*openapiclient.NewPostPagesPageIdIncidentsIncidentIdSubscribersSubscriber()) // PostPagesPageIdIncidentsIncidentIdSubscribers | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -333,7 +333,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {

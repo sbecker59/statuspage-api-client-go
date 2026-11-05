@@ -34,7 +34,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -107,7 +107,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -180,7 +180,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -254,7 +254,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -327,7 +327,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -389,7 +389,7 @@ Name | Type | Description  | Notes
 
 ## PatchPagesPageIdMetricsMetricId
 
-> Metric PatchPagesPageIdMetricsMetricId(ctx, pageId, metricId).PatchPagesPageIdMetrics(patchPagesPageIdMetrics).Execute()
+> Metric PatchPagesPageIdMetricsMetricId(ctx, pageId, metricId).PatchPagesPageIdMetricsMetricId(patchPagesPageIdMetricsMetricId).Execute()
 
 Update a metric
 
@@ -404,17 +404,17 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
 	metricId := "metricId_example" // string | Metric Identifier
-	patchPagesPageIdMetrics := *openapiclient.NewPatchPagesPageIdMetrics() // PatchPagesPageIdMetrics | 
+	patchPagesPageIdMetricsMetricId := *openapiclient.NewPatchPagesPageIdMetricsMetricId(*openapiclient.NewPutPagesPageIdMetricsMetricIdMetric()) // PatchPagesPageIdMetricsMetricId | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsAPI.PatchPagesPageIdMetricsMetricId(context.Background(), pageId, metricId).PatchPagesPageIdMetrics(patchPagesPageIdMetrics).Execute()
+	resp, r, err := apiClient.MetricsAPI.PatchPagesPageIdMetricsMetricId(context.Background(), pageId, metricId).PatchPagesPageIdMetricsMetricId(patchPagesPageIdMetricsMetricId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsAPI.PatchPagesPageIdMetricsMetricId``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -442,7 +442,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **patchPagesPageIdMetrics** | [**PatchPagesPageIdMetrics**](PatchPagesPageIdMetrics.md) |  | 
+ **patchPagesPageIdMetricsMetricId** | [**PatchPagesPageIdMetricsMetricId**](PatchPagesPageIdMetricsMetricId.md) |  | 
 
 ### Return type
 
@@ -479,7 +479,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -551,7 +551,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -626,13 +626,13 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
 	metricsProviderId := "metricsProviderId_example" // string | Metric Provider Identifier
-	postPagesPageIdMetricsProvidersMetricsProviderIdMetrics := *openapiclient.NewPostPagesPageIdMetricsProvidersMetricsProviderIdMetrics() // PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics | 
+	postPagesPageIdMetricsProvidersMetricsProviderIdMetrics := *openapiclient.NewPostPagesPageIdMetricsProvidersMetricsProviderIdMetrics(*openapiclient.NewPostPagesPageIdMetricsProvidersMetricsProviderIdMetricsMetric()) // PostPagesPageIdMetricsProvidersMetricsProviderIdMetrics | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -686,7 +686,7 @@ Name | Type | Description  | Notes
 
 ## PutPagesPageIdMetricsMetricId
 
-> Metric PutPagesPageIdMetricsMetricId(ctx, pageId, metricId).PutPagesPageIdMetrics(putPagesPageIdMetrics).Execute()
+> Metric PutPagesPageIdMetricsMetricId(ctx, pageId, metricId).PutPagesPageIdMetricsMetricId(putPagesPageIdMetricsMetricId).Execute()
 
 Update a metric
 
@@ -701,17 +701,17 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
 	metricId := "metricId_example" // string | Metric Identifier
-	putPagesPageIdMetrics := *openapiclient.NewPutPagesPageIdMetrics() // PutPagesPageIdMetrics | 
+	putPagesPageIdMetricsMetricId := *openapiclient.NewPutPagesPageIdMetricsMetricId(*openapiclient.NewPutPagesPageIdMetricsMetricIdMetric()) // PutPagesPageIdMetricsMetricId | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsAPI.PutPagesPageIdMetricsMetricId(context.Background(), pageId, metricId).PutPagesPageIdMetrics(putPagesPageIdMetrics).Execute()
+	resp, r, err := apiClient.MetricsAPI.PutPagesPageIdMetricsMetricId(context.Background(), pageId, metricId).PutPagesPageIdMetricsMetricId(putPagesPageIdMetricsMetricId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsAPI.PutPagesPageIdMetricsMetricId``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -739,7 +739,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **putPagesPageIdMetrics** | [**PutPagesPageIdMetrics**](PutPagesPageIdMetrics.md) |  | 
+ **putPagesPageIdMetricsMetricId** | [**PutPagesPageIdMetricsMetricId**](PutPagesPageIdMetricsMetricId.md) |  | 
 
 ### Return type
 

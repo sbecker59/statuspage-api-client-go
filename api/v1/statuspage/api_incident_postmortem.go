@@ -29,7 +29,7 @@ type ApiDeletePagesPageIdIncidentsIncidentIdPostmortemRequest struct {
 	incidentId string
 }
 
-func (r ApiDeletePagesPageIdIncidentsIncidentIdPostmortemRequest) Execute() (*http.Response, error) {
+func (r ApiDeletePagesPageIdIncidentsIncidentIdPostmortemRequest) Execute() (*Postmortem, *http.Response, error) {
 	return r.ApiService.DeletePagesPageIdIncidentsIncidentIdPostmortemExecute(r)
 }
 
@@ -53,16 +53,19 @@ func (a *IncidentPostmortemAPIService) DeletePagesPageIdIncidentsIncidentIdPostm
 }
 
 // Execute executes the request
-func (a *IncidentPostmortemAPIService) DeletePagesPageIdIncidentsIncidentIdPostmortemExecute(r ApiDeletePagesPageIdIncidentsIncidentIdPostmortemRequest) (*http.Response, error) {
+//
+//	@return Postmortem
+func (a *IncidentPostmortemAPIService) DeletePagesPageIdIncidentsIncidentIdPostmortemExecute(r ApiDeletePagesPageIdIncidentsIncidentIdPostmortemRequest) (*Postmortem, *http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod  = http.MethodDelete
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Postmortem
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentPostmortemAPIService.DeletePagesPageIdIncidentsIncidentIdPostmortem")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/pages/{page_id}/incidents/{incident_id}/postmortem"
@@ -106,19 +109,19 @@ func (a *IncidentPostmortemAPIService) DeletePagesPageIdIncidentsIncidentIdPostm
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -127,30 +130,39 @@ func (a *IncidentPostmortemAPIService) DeletePagesPageIdIncidentsIncidentIdPostm
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 			newErr.model = v
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ApiGetPagesPageIdIncidentsIncidentIdPostmortemRequest struct {
@@ -261,7 +273,7 @@ func (a *IncidentPostmortemAPIService) GetPagesPageIdIncidentsIncidentIdPostmort
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -272,7 +284,7 @@ func (a *IncidentPostmortemAPIService) GetPagesPageIdIncidentsIncidentIdPostmort
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -415,7 +427,7 @@ func (a *IncidentPostmortemAPIService) PutPagesPageIdIncidentsIncidentIdPostmort
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -426,7 +438,7 @@ func (a *IncidentPostmortemAPIService) PutPagesPageIdIncidentsIncidentIdPostmort
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -569,7 +581,7 @@ func (a *IncidentPostmortemAPIService) PutPagesPageIdIncidentsIncidentIdPostmort
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -580,7 +592,7 @@ func (a *IncidentPostmortemAPIService) PutPagesPageIdIncidentsIncidentIdPostmort
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -591,7 +603,7 @@ func (a *IncidentPostmortemAPIService) PutPagesPageIdIncidentsIncidentIdPostmort
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -723,7 +735,7 @@ func (a *IncidentPostmortemAPIService) PutPagesPageIdIncidentsIncidentIdPostmort
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -734,7 +746,7 @@ func (a *IncidentPostmortemAPIService) PutPagesPageIdIncidentsIncidentIdPostmort
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -745,7 +757,7 @@ func (a *IncidentPostmortemAPIService) PutPagesPageIdIncidentsIncidentIdPostmort
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

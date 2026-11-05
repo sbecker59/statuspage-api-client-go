@@ -28,7 +28,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -89,7 +89,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -144,7 +144,7 @@ Name | Type | Description  | Notes
 
 ## PatchPagesPageId
 
-> Page PatchPagesPageId(ctx, pageId).PatchPages(patchPages).Execute()
+> Page PatchPagesPageId(ctx, pageId).PatchPagesPageId(patchPagesPageId).Execute()
 
 Update a page
 
@@ -159,16 +159,16 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
-	patchPages := *openapiclient.NewPatchPages() // PatchPages | 
+	patchPagesPageId := *openapiclient.NewPatchPagesPageId(*openapiclient.NewPutPagesPageIdPage()) // PatchPagesPageId | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PagesAPI.PatchPagesPageId(context.Background(), pageId).PatchPages(patchPages).Execute()
+	resp, r, err := apiClient.PagesAPI.PatchPagesPageId(context.Background(), pageId).PatchPagesPageId(patchPagesPageId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PagesAPI.PatchPagesPageId``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -194,7 +194,7 @@ Other parameters are passed through a pointer to a apiPatchPagesPageIdRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **patchPages** | [**PatchPages**](PatchPages.md) |  | 
+ **patchPagesPageId** | [**PatchPagesPageId**](PatchPagesPageId.md) |  | 
 
 ### Return type
 
@@ -216,7 +216,7 @@ Name | Type | Description  | Notes
 
 ## PutPagesPageId
 
-> Page PutPagesPageId(ctx, pageId).PutPages(putPages).Execute()
+> Page PutPagesPageId(ctx, pageId).PutPagesPageId(putPagesPageId).Execute()
 
 Update a page
 
@@ -231,16 +231,16 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
-	putPages := *openapiclient.NewPutPages() // PutPages | 
+	putPagesPageId := *openapiclient.NewPutPagesPageId(*openapiclient.NewPutPagesPageIdPage()) // PutPagesPageId | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PagesAPI.PutPagesPageId(context.Background(), pageId).PutPages(putPages).Execute()
+	resp, r, err := apiClient.PagesAPI.PutPagesPageId(context.Background(), pageId).PutPagesPageId(putPagesPageId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PagesAPI.PutPagesPageId``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -266,7 +266,7 @@ Other parameters are passed through a pointer to a apiPutPagesPageIdRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **putPages** | [**PutPages**](PutPages.md) |  | 
+ **putPagesPageId** | [**PutPagesPageId**](PutPagesPageId.md) |  | 
 
 ### Return type
 

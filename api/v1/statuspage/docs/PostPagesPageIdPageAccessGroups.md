@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PageAccessGroup** | Pointer to [**PostPagesPageIdPageAccessGroupsPageAccessGroup**](PostPagesPageIdPageAccessGroupsPageAccessGroup.md) |  | [optional] 
+**PageAccessGroup** | [**PostPagesPageIdPageAccessGroupsPageAccessGroup**](PostPagesPageIdPageAccessGroupsPageAccessGroup.md) |  | 
 
 ## Methods
 
 ### NewPostPagesPageIdPageAccessGroups
 
-`func NewPostPagesPageIdPageAccessGroups() *PostPagesPageIdPageAccessGroups`
+`func NewPostPagesPageIdPageAccessGroups(pageAccessGroup PostPagesPageIdPageAccessGroupsPageAccessGroup, ) *PostPagesPageIdPageAccessGroups`
 
 NewPostPagesPageIdPageAccessGroups instantiates a new PostPagesPageIdPageAccessGroups object
 This constructor will assign default values to properties that have it defined,
@@ -44,11 +44,6 @@ and a boolean to check if the value has been set.
 
 SetPageAccessGroup sets PageAccessGroup field to given value.
 
-### HasPageAccessGroup
-
-`func (o *PostPagesPageIdPageAccessGroups) HasPageAccessGroup() bool`
-
-HasPageAccessGroup returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

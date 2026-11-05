@@ -18,7 +18,7 @@ import (
 // checks if the Incident type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Incident{}
 
-// Incident Get an incident
+// Incident Incident model
 type Incident struct {
 	// Incident Identifier
 	Id *string `json:"id,omitempty"`

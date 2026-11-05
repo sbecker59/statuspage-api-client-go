@@ -30,7 +30,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -103,7 +103,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -177,7 +177,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
@@ -235,7 +235,7 @@ Name | Type | Description  | Notes
 
 ## PatchPagesPageIdPageAccessGroupsPageAccessGroupId
 
-> PageAccessGroup PatchPagesPageIdPageAccessGroupsPageAccessGroupId(ctx, pageId, pageAccessGroupId).PatchPagesPageIdPageAccessGroups(patchPagesPageIdPageAccessGroups).Execute()
+> PageAccessGroup PatchPagesPageIdPageAccessGroupsPageAccessGroupId(ctx, pageId, pageAccessGroupId).PatchPagesPageIdPageAccessGroupsPageAccessGroupId(patchPagesPageIdPageAccessGroupsPageAccessGroupId).Execute()
 
 Update a page access group
 
@@ -250,17 +250,17 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
 	pageAccessGroupId := "pageAccessGroupId_example" // string | Page Access Group Identifier
-	patchPagesPageIdPageAccessGroups := *openapiclient.NewPatchPagesPageIdPageAccessGroups() // PatchPagesPageIdPageAccessGroups | 
+	patchPagesPageIdPageAccessGroupsPageAccessGroupId := *openapiclient.NewPatchPagesPageIdPageAccessGroupsPageAccessGroupId(*openapiclient.NewPostPagesPageIdPageAccessGroupsPageAccessGroup()) // PatchPagesPageIdPageAccessGroupsPageAccessGroupId | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PageAccessGroupsAPI.PatchPagesPageIdPageAccessGroupsPageAccessGroupId(context.Background(), pageId, pageAccessGroupId).PatchPagesPageIdPageAccessGroups(patchPagesPageIdPageAccessGroups).Execute()
+	resp, r, err := apiClient.PageAccessGroupsAPI.PatchPagesPageIdPageAccessGroupsPageAccessGroupId(context.Background(), pageId, pageAccessGroupId).PatchPagesPageIdPageAccessGroupsPageAccessGroupId(patchPagesPageIdPageAccessGroupsPageAccessGroupId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupsAPI.PatchPagesPageIdPageAccessGroupsPageAccessGroupId``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -288,7 +288,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **patchPagesPageIdPageAccessGroups** | [**PatchPagesPageIdPageAccessGroups**](PatchPagesPageIdPageAccessGroups.md) |  | 
+ **patchPagesPageIdPageAccessGroupsPageAccessGroupId** | [**PatchPagesPageIdPageAccessGroupsPageAccessGroupId**](PatchPagesPageIdPageAccessGroupsPageAccessGroupId.md) |  | 
 
 ### Return type
 
@@ -325,12 +325,12 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
-	postPagesPageIdPageAccessGroups := *openapiclient.NewPostPagesPageIdPageAccessGroups() // PostPagesPageIdPageAccessGroups | 
+	postPagesPageIdPageAccessGroups := *openapiclient.NewPostPagesPageIdPageAccessGroups(*openapiclient.NewPostPagesPageIdPageAccessGroupsPageAccessGroup()) // PostPagesPageIdPageAccessGroups | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -382,7 +382,7 @@ Name | Type | Description  | Notes
 
 ## PutPagesPageIdPageAccessGroupsPageAccessGroupId
 
-> PageAccessGroup PutPagesPageIdPageAccessGroupsPageAccessGroupId(ctx, pageId, pageAccessGroupId).PutPagesPageIdPageAccessGroups(putPagesPageIdPageAccessGroups).Execute()
+> PageAccessGroup PutPagesPageIdPageAccessGroupsPageAccessGroupId(ctx, pageId, pageAccessGroupId).PutPagesPageIdPageAccessGroupsPageAccessGroupId(putPagesPageIdPageAccessGroupsPageAccessGroupId).Execute()
 
 Update a page access group
 
@@ -397,17 +397,17 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/sbecker59/statuspage-api-client-go/api/v1/statuspage"
+	openapiclient "github.com/sbecker59/statuspage-api-client-go"
 )
 
 func main() {
 	pageId := "pageId_example" // string | Page identifier
 	pageAccessGroupId := "pageAccessGroupId_example" // string | Page Access Group Identifier
-	putPagesPageIdPageAccessGroups := *openapiclient.NewPutPagesPageIdPageAccessGroups() // PutPagesPageIdPageAccessGroups | 
+	putPagesPageIdPageAccessGroupsPageAccessGroupId := *openapiclient.NewPutPagesPageIdPageAccessGroupsPageAccessGroupId(*openapiclient.NewPostPagesPageIdPageAccessGroupsPageAccessGroup()) // PutPagesPageIdPageAccessGroupsPageAccessGroupId | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PageAccessGroupsAPI.PutPagesPageIdPageAccessGroupsPageAccessGroupId(context.Background(), pageId, pageAccessGroupId).PutPagesPageIdPageAccessGroups(putPagesPageIdPageAccessGroups).Execute()
+	resp, r, err := apiClient.PageAccessGroupsAPI.PutPagesPageIdPageAccessGroupsPageAccessGroupId(context.Background(), pageId, pageAccessGroupId).PutPagesPageIdPageAccessGroupsPageAccessGroupId(putPagesPageIdPageAccessGroupsPageAccessGroupId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PageAccessGroupsAPI.PutPagesPageIdPageAccessGroupsPageAccessGroupId``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -435,7 +435,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **putPagesPageIdPageAccessGroups** | [**PutPagesPageIdPageAccessGroups**](PutPagesPageIdPageAccessGroups.md) |  | 
+ **putPagesPageIdPageAccessGroupsPageAccessGroupId** | [**PutPagesPageIdPageAccessGroupsPageAccessGroupId**](PutPagesPageIdPageAccessGroupsPageAccessGroupId.md) |  | 
 
 ### Return type
 

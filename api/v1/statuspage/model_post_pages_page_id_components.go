@@ -11,7 +11,9 @@ API version: 1.0.0
 package openapi
 
 import (
+	"bytes"
 	"encoding/json"
+	"fmt"
 )
 
 // checks if the PostPagesPageIdComponents type satisfies the MappedNullable interface at compile time
@@ -19,15 +21,18 @@ var _ MappedNullable = &PostPagesPageIdComponents{}
 
 // PostPagesPageIdComponents Create a component
 type PostPagesPageIdComponents struct {
-	Component *PostPagesPageIdComponentsComponent `json:"component,omitempty"`
+	Component PostPagesPageIdComponentsComponent `json:"component"`
 }
+
+type _PostPagesPageIdComponents PostPagesPageIdComponents
 
 // NewPostPagesPageIdComponents instantiates a new PostPagesPageIdComponents object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPostPagesPageIdComponents() *PostPagesPageIdComponents {
+func NewPostPagesPageIdComponents(component PostPagesPageIdComponentsComponent) *PostPagesPageIdComponents {
 	this := PostPagesPageIdComponents{}
+	this.Component = component
 	return &this
 }
 
@@ -39,36 +44,28 @@ func NewPostPagesPageIdComponentsWithDefaults() *PostPagesPageIdComponents {
 	return &this
 }
 
-// GetComponent returns the Component field value if set, zero value otherwise.
+// GetComponent returns the Component field value
 func (o *PostPagesPageIdComponents) GetComponent() PostPagesPageIdComponentsComponent {
-	if o == nil || IsNil(o.Component) {
+	if o == nil {
 		var ret PostPagesPageIdComponentsComponent
 		return ret
 	}
-	return *o.Component
+
+	return o.Component
 }
 
-// GetComponentOk returns a tuple with the Component field value if set, nil otherwise
+// GetComponentOk returns a tuple with the Component field value
 // and a boolean to check if the value has been set.
 func (o *PostPagesPageIdComponents) GetComponentOk() (*PostPagesPageIdComponentsComponent, bool) {
-	if o == nil || IsNil(o.Component) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Component, true
+	return &o.Component, true
 }
 
-// HasComponent returns a boolean if a field has been set.
-func (o *PostPagesPageIdComponents) HasComponent() bool {
-	if o != nil && !IsNil(o.Component) {
-		return true
-	}
-
-	return false
-}
-
-// SetComponent gets a reference to the given PostPagesPageIdComponentsComponent and assigns it to the Component field.
+// SetComponent sets field value
 func (o *PostPagesPageIdComponents) SetComponent(v PostPagesPageIdComponentsComponent) {
-	o.Component = &v
+	o.Component = v
 }
 
 func (o PostPagesPageIdComponents) MarshalJSON() ([]byte, error) {
@@ -81,10 +78,45 @@ func (o PostPagesPageIdComponents) MarshalJSON() ([]byte, error) {
 
 func (o PostPagesPageIdComponents) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Component) {
-		toSerialize["component"] = o.Component
-	}
+	toSerialize["component"] = o.Component
 	return toSerialize, nil
+}
+
+func (o *PostPagesPageIdComponents) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"component",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err
+	}
+
+	for _, requiredProperty := range requiredProperties {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varPostPagesPageIdComponents := _PostPagesPageIdComponents{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varPostPagesPageIdComponents)
+
+	if err != nil {
+		return err
+	}
+
+	*o = PostPagesPageIdComponents(varPostPagesPageIdComponents)
+
+	return err
 }
 
 type NullablePostPagesPageIdComponents struct {

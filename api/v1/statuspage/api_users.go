@@ -130,7 +130,7 @@ func (a *UsersAPIService) DeleteOrganizationsOrganizationIdUsersUserIdExecute(r 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -141,7 +141,7 @@ func (a *UsersAPIService) DeleteOrganizationsOrganizationIdUsersUserIdExecute(r 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -152,7 +152,7 @@ func (a *UsersAPIService) DeleteOrganizationsOrganizationIdUsersUserIdExecute(r 
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -284,7 +284,7 @@ func (a *UsersAPIService) GetOrganizationsOrganizationIdPermissionsUserIdExecute
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -295,7 +295,7 @@ func (a *UsersAPIService) GetOrganizationsOrganizationIdPermissionsUserIdExecute
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -443,7 +443,7 @@ func (a *UsersAPIService) GetOrganizationsOrganizationIdUsersExecute(r ApiGetOrg
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -454,7 +454,7 @@ func (a *UsersAPIService) GetOrganizationsOrganizationIdUsersExecute(r ApiGetOrg
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -593,7 +593,7 @@ func (a *UsersAPIService) PostOrganizationsOrganizationIdUsersExecute(r ApiPostO
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -604,7 +604,7 @@ func (a *UsersAPIService) PostOrganizationsOrganizationIdUsersExecute(r ApiPostO
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -615,7 +615,7 @@ func (a *UsersAPIService) PostOrganizationsOrganizationIdUsersExecute(r ApiPostO
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

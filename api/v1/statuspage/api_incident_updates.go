@@ -23,16 +23,16 @@ import (
 type IncidentUpdatesAPIService service
 
 type ApiPatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest struct {
-	ctx                                                context.Context
-	ApiService                                         *IncidentUpdatesAPIService
-	pageId                                             string
-	incidentId                                         string
-	incidentUpdateId                                   string
-	patchPagesPageIdIncidentsIncidentIdIncidentUpdates *PatchPagesPageIdIncidentsIncidentIdIncidentUpdates
+	ctx                                                                context.Context
+	ApiService                                                         *IncidentUpdatesAPIService
+	pageId                                                             string
+	incidentId                                                         string
+	incidentUpdateId                                                   string
+	patchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId *PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId
 }
 
-func (r ApiPatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest) PatchPagesPageIdIncidentsIncidentIdIncidentUpdates(patchPagesPageIdIncidentsIncidentIdIncidentUpdates PatchPagesPageIdIncidentsIncidentIdIncidentUpdates) ApiPatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest {
-	r.patchPagesPageIdIncidentsIncidentIdIncidentUpdates = &patchPagesPageIdIncidentsIncidentIdIncidentUpdates
+func (r ApiPatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest) PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId(patchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId PatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId) ApiPatchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest {
+	r.patchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId = &patchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId
 	return r
 }
 
@@ -85,8 +85,8 @@ func (a *IncidentUpdatesAPIService) PatchPagesPageIdIncidentsIncidentIdIncidentU
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.patchPagesPageIdIncidentsIncidentIdIncidentUpdates == nil {
-		return localVarReturnValue, nil, reportError("patchPagesPageIdIncidentsIncidentIdIncidentUpdates is required and must be specified")
+	if r.patchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId == nil {
+		return localVarReturnValue, nil, reportError("patchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -107,7 +107,7 @@ func (a *IncidentUpdatesAPIService) PatchPagesPageIdIncidentsIncidentIdIncidentU
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.patchPagesPageIdIncidentsIncidentIdIncidentUpdates
+	localVarPostBody = r.patchPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -160,16 +160,16 @@ func (a *IncidentUpdatesAPIService) PatchPagesPageIdIncidentsIncidentIdIncidentU
 }
 
 type ApiPutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest struct {
-	ctx                                              context.Context
-	ApiService                                       *IncidentUpdatesAPIService
-	pageId                                           string
-	incidentId                                       string
-	incidentUpdateId                                 string
-	putPagesPageIdIncidentsIncidentIdIncidentUpdates *PutPagesPageIdIncidentsIncidentIdIncidentUpdates
+	ctx                                                              context.Context
+	ApiService                                                       *IncidentUpdatesAPIService
+	pageId                                                           string
+	incidentId                                                       string
+	incidentUpdateId                                                 string
+	putPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId *PutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId
 }
 
-func (r ApiPutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest) PutPagesPageIdIncidentsIncidentIdIncidentUpdates(putPagesPageIdIncidentsIncidentIdIncidentUpdates PutPagesPageIdIncidentsIncidentIdIncidentUpdates) ApiPutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest {
-	r.putPagesPageIdIncidentsIncidentIdIncidentUpdates = &putPagesPageIdIncidentsIncidentIdIncidentUpdates
+func (r ApiPutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest) PutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId(putPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId PutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId) ApiPutPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateIdRequest {
+	r.putPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId = &putPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId
 	return r
 }
 
@@ -222,8 +222,8 @@ func (a *IncidentUpdatesAPIService) PutPagesPageIdIncidentsIncidentIdIncidentUpd
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.putPagesPageIdIncidentsIncidentIdIncidentUpdates == nil {
-		return localVarReturnValue, nil, reportError("putPagesPageIdIncidentsIncidentIdIncidentUpdates is required and must be specified")
+	if r.putPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId == nil {
+		return localVarReturnValue, nil, reportError("putPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -244,7 +244,7 @@ func (a *IncidentUpdatesAPIService) PutPagesPageIdIncidentsIncidentIdIncidentUpd
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.putPagesPageIdIncidentsIncidentIdIncidentUpdates
+	localVarPostBody = r.putPagesPageIdIncidentsIncidentIdIncidentUpdatesIncidentUpdateId
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

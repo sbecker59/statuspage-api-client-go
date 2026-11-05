@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Subscribers** | **string** | The array of subscriber codes to unsubscribe (limited to 100), or \&quot;all\&quot; to unsubscribe all subscribers if the number of subscribers is less than 100. | 
 **Type** | Pointer to **string** | If this is present, only unsubscribe subscribers of this type. | [optional] 
 **State** | Pointer to **string** | If this is present, only unsubscribe subscribers in this state. Specify state \&quot;all\&quot; to unsubscribe subscribers in any states. | [optional] [default to "active"]
-**SkipUnsubscriptionNotification** | Pointer to **bool** | If skip_unsubscription_notification is true, the subscribers do not receive any notifications when they are unsubscribed. | [optional] 
+**SkipUnsubscriptionNotification** | Pointer to **bool** | If skip_unsubscription_notification is true, the subscribers do not receive any notifications when they are unsubscribed. | [optional] [default to false]
 
 ## Methods
 

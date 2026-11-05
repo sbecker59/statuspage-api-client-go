@@ -18,7 +18,7 @@ import (
 // checks if the Postmortem type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Postmortem{}
 
-// Postmortem Revert Postmortem
+// Postmortem Postmortem model
 type Postmortem struct {
 	// Preview Key
 	PreviewKey *string `json:"preview_key,omitempty"`

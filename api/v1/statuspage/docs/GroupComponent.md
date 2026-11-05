@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **Components** | Pointer to **[]string** |  | [optional] 
-**Position** | Pointer to **int32** | Order the component group will appear on the page | [optional] 
+**Position** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
 
@@ -159,20 +159,20 @@ HasComponents returns a boolean if a field has been set.
 
 ### GetPosition
 
-`func (o *GroupComponent) GetPosition() int32`
+`func (o *GroupComponent) GetPosition() string`
 
 GetPosition returns the Position field if non-nil, zero value otherwise.
 
 ### GetPositionOk
 
-`func (o *GroupComponent) GetPositionOk() (*int32, bool)`
+`func (o *GroupComponent) GetPositionOk() (*string, bool)`
 
 GetPositionOk returns a tuple with the Position field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPosition
 
-`func (o *GroupComponent) SetPosition(v int32)`
+`func (o *GroupComponent) SetPosition(v string)`
 
 SetPosition sets Position field to given value.
 

@@ -130,7 +130,7 @@ func (a *PageAccessGroupsAPIService) DeletePagesPageIdPageAccessGroupsPageAccess
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -141,7 +141,7 @@ func (a *PageAccessGroupsAPIService) DeletePagesPageIdPageAccessGroupsPageAccess
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -152,7 +152,7 @@ func (a *PageAccessGroupsAPIService) DeletePagesPageIdPageAccessGroupsPageAccess
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -300,7 +300,7 @@ func (a *PageAccessGroupsAPIService) GetPagesPageIdPageAccessGroupsExecute(r Api
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -311,7 +311,7 @@ func (a *PageAccessGroupsAPIService) GetPagesPageIdPageAccessGroupsExecute(r Api
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -322,7 +322,7 @@ func (a *PageAccessGroupsAPIService) GetPagesPageIdPageAccessGroupsExecute(r Api
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -454,7 +454,7 @@ func (a *PageAccessGroupsAPIService) GetPagesPageIdPageAccessGroupsPageAccessGro
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -465,7 +465,7 @@ func (a *PageAccessGroupsAPIService) GetPagesPageIdPageAccessGroupsPageAccessGro
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -476,7 +476,7 @@ func (a *PageAccessGroupsAPIService) GetPagesPageIdPageAccessGroupsPageAccessGro
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -501,15 +501,15 @@ func (a *PageAccessGroupsAPIService) GetPagesPageIdPageAccessGroupsPageAccessGro
 }
 
 type ApiPatchPagesPageIdPageAccessGroupsPageAccessGroupIdRequest struct {
-	ctx                              context.Context
-	ApiService                       *PageAccessGroupsAPIService
-	pageId                           string
-	pageAccessGroupId                string
-	patchPagesPageIdPageAccessGroups *PatchPagesPageIdPageAccessGroups
+	ctx                                               context.Context
+	ApiService                                        *PageAccessGroupsAPIService
+	pageId                                            string
+	pageAccessGroupId                                 string
+	patchPagesPageIdPageAccessGroupsPageAccessGroupId *PatchPagesPageIdPageAccessGroupsPageAccessGroupId
 }
 
-func (r ApiPatchPagesPageIdPageAccessGroupsPageAccessGroupIdRequest) PatchPagesPageIdPageAccessGroups(patchPagesPageIdPageAccessGroups PatchPagesPageIdPageAccessGroups) ApiPatchPagesPageIdPageAccessGroupsPageAccessGroupIdRequest {
-	r.patchPagesPageIdPageAccessGroups = &patchPagesPageIdPageAccessGroups
+func (r ApiPatchPagesPageIdPageAccessGroupsPageAccessGroupIdRequest) PatchPagesPageIdPageAccessGroupsPageAccessGroupId(patchPagesPageIdPageAccessGroupsPageAccessGroupId PatchPagesPageIdPageAccessGroupsPageAccessGroupId) ApiPatchPagesPageIdPageAccessGroupsPageAccessGroupIdRequest {
+	r.patchPagesPageIdPageAccessGroupsPageAccessGroupId = &patchPagesPageIdPageAccessGroupsPageAccessGroupId
 	return r
 }
 
@@ -559,8 +559,8 @@ func (a *PageAccessGroupsAPIService) PatchPagesPageIdPageAccessGroupsPageAccessG
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.patchPagesPageIdPageAccessGroups == nil {
-		return localVarReturnValue, nil, reportError("patchPagesPageIdPageAccessGroups is required and must be specified")
+	if r.patchPagesPageIdPageAccessGroupsPageAccessGroupId == nil {
+		return localVarReturnValue, nil, reportError("patchPagesPageIdPageAccessGroupsPageAccessGroupId is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -581,7 +581,7 @@ func (a *PageAccessGroupsAPIService) PatchPagesPageIdPageAccessGroupsPageAccessG
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.patchPagesPageIdPageAccessGroups
+	localVarPostBody = r.patchPagesPageIdPageAccessGroupsPageAccessGroupId
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -619,7 +619,7 @@ func (a *PageAccessGroupsAPIService) PatchPagesPageIdPageAccessGroupsPageAccessG
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -630,7 +630,7 @@ func (a *PageAccessGroupsAPIService) PatchPagesPageIdPageAccessGroupsPageAccessG
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -641,7 +641,7 @@ func (a *PageAccessGroupsAPIService) PatchPagesPageIdPageAccessGroupsPageAccessG
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -780,7 +780,7 @@ func (a *PageAccessGroupsAPIService) PostPagesPageIdPageAccessGroupsExecute(r Ap
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -791,7 +791,7 @@ func (a *PageAccessGroupsAPIService) PostPagesPageIdPageAccessGroupsExecute(r Ap
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -802,7 +802,7 @@ func (a *PageAccessGroupsAPIService) PostPagesPageIdPageAccessGroupsExecute(r Ap
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -813,7 +813,7 @@ func (a *PageAccessGroupsAPIService) PostPagesPageIdPageAccessGroupsExecute(r Ap
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -824,7 +824,7 @@ func (a *PageAccessGroupsAPIService) PostPagesPageIdPageAccessGroupsExecute(r Ap
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -849,15 +849,15 @@ func (a *PageAccessGroupsAPIService) PostPagesPageIdPageAccessGroupsExecute(r Ap
 }
 
 type ApiPutPagesPageIdPageAccessGroupsPageAccessGroupIdRequest struct {
-	ctx                            context.Context
-	ApiService                     *PageAccessGroupsAPIService
-	pageId                         string
-	pageAccessGroupId              string
-	putPagesPageIdPageAccessGroups *PutPagesPageIdPageAccessGroups
+	ctx                                             context.Context
+	ApiService                                      *PageAccessGroupsAPIService
+	pageId                                          string
+	pageAccessGroupId                               string
+	putPagesPageIdPageAccessGroupsPageAccessGroupId *PutPagesPageIdPageAccessGroupsPageAccessGroupId
 }
 
-func (r ApiPutPagesPageIdPageAccessGroupsPageAccessGroupIdRequest) PutPagesPageIdPageAccessGroups(putPagesPageIdPageAccessGroups PutPagesPageIdPageAccessGroups) ApiPutPagesPageIdPageAccessGroupsPageAccessGroupIdRequest {
-	r.putPagesPageIdPageAccessGroups = &putPagesPageIdPageAccessGroups
+func (r ApiPutPagesPageIdPageAccessGroupsPageAccessGroupIdRequest) PutPagesPageIdPageAccessGroupsPageAccessGroupId(putPagesPageIdPageAccessGroupsPageAccessGroupId PutPagesPageIdPageAccessGroupsPageAccessGroupId) ApiPutPagesPageIdPageAccessGroupsPageAccessGroupIdRequest {
+	r.putPagesPageIdPageAccessGroupsPageAccessGroupId = &putPagesPageIdPageAccessGroupsPageAccessGroupId
 	return r
 }
 
@@ -907,8 +907,8 @@ func (a *PageAccessGroupsAPIService) PutPagesPageIdPageAccessGroupsPageAccessGro
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.putPagesPageIdPageAccessGroups == nil {
-		return localVarReturnValue, nil, reportError("putPagesPageIdPageAccessGroups is required and must be specified")
+	if r.putPagesPageIdPageAccessGroupsPageAccessGroupId == nil {
+		return localVarReturnValue, nil, reportError("putPagesPageIdPageAccessGroupsPageAccessGroupId is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -929,7 +929,7 @@ func (a *PageAccessGroupsAPIService) PutPagesPageIdPageAccessGroupsPageAccessGro
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.putPagesPageIdPageAccessGroups
+	localVarPostBody = r.putPagesPageIdPageAccessGroupsPageAccessGroupId
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -967,7 +967,7 @@ func (a *PageAccessGroupsAPIService) PutPagesPageIdPageAccessGroupsPageAccessGro
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -978,7 +978,7 @@ func (a *PageAccessGroupsAPIService) PutPagesPageIdPageAccessGroupsPageAccessGro
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -989,7 +989,7 @@ func (a *PageAccessGroupsAPIService) PutPagesPageIdPageAccessGroupsPageAccessGro
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorEntity
+			var v ApiV1ErrorEntity
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

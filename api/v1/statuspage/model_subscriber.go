@@ -18,7 +18,7 @@ import (
 // checks if the Subscriber type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &Subscriber{}
 
-// Subscriber Get an incident subscriber
+// Subscriber Subscriber model
 type Subscriber struct {
 	// Subscriber Identifier
 	Id *string `json:"id,omitempty"`
